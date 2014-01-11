@@ -7,4 +7,5 @@ rescue Bundler::GemfileNotFound => e
   require 'inch'
 end
 
+require 'inch'
 Inch::Runner.new(ARGV)
