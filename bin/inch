@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require 'bundler'
+begin
+  Bundler.require
+rescue Bundler::GemfileNotFound => e
+  require 'inch'
+end
+
+Inch::Runner.new(ARGV)
