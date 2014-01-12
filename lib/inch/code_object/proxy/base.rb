@@ -14,6 +14,14 @@ module Inch
           self.object = object
         end
 
+        def depth(i = 0)
+          if object.parent
+            Proxy.for(object.parent).depth(i+1)
+          else
+            i
+          end
+        end
+
         def evaluation
           @evaluation ||= CodeObject::Evaluation.for(self)
         end
@@ -30,7 +38,8 @@ module Inch
           false
         end
 
-        # Returns +true+ if the object has no documentation whatsoever. 
+        # Returns +true+ if the object has no documentation whatsoever.
+        # @return [Boolean]
         def undocumented?
           object.docstring.empty? && object.tags.empty?
         end

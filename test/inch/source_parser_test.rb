@@ -16,4 +16,10 @@ class TestSourceParser < MiniTest::Unit::TestCase
     refute_nil @source_parser.find_object("Foo::Bar#method_with_wrong_doc")
     refute_nil @source_parser.find_object("Foo::Bar#method_with_full_doc")
   end
+
+  def test_all_objects_parsed
+    assert_equal 1, @source_parser.find_object("Foo").depth
+    assert_equal 2, @source_parser.find_object("Foo::Bar").depth
+    assert_equal 3, @source_parser.find_object("Foo::Bar#method_without_doc").depth
+  end
 end
