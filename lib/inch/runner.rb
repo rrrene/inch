@@ -6,12 +6,24 @@ module Inch
       # TODO: provide a switch to ignore completely undocumented objects
       run_yard
       
+      last_score = nil
+
       all_object_proxies.sort_by do |o|
         o.evaluation.score
       end.reverse.each do |o|
-        puts "#{o.evaluation.score.to_s.rjust(4)} #{o.path}"
+        score = o.evaluation.score
+        if score != last_score
+          puts
+          puts "=== #{score}"
+          last_score = score
+        end
+        puts "#{score.to_s.rjust(4)} #{o.path}"
         #puts "# has_doc?".ljust(20) + "#{o.has_doc? ? 'Y' : 'N'}"
-        #if o.type == :method
+        #if o.namespace?
+        #  puts "# Namespace:"
+        #  p o.children
+        #end
+        #if o.method?
         #  puts "# Parameters:"
         #  o.parameter_doc.each do |p|
         #    puts "#   " + p.name.ljust(20) + "#{p.mentioned? ? 'M' : '-'} #{p.typed? ? 'T' : '-'} #{p.described? ? 'D' : '-'}"

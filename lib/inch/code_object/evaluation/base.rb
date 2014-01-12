@@ -7,10 +7,12 @@ module Inch
         MAX_SCORE = 100
 
         attr_accessor :object
-        attr_writer :min_score
+        attr_reader :min_score, :max_score
 
         def initialize(object)
           self.object = object
+          @min_score = 0
+          set_max_score(MAX_SCORE)
           evaluate
         end
 
@@ -27,6 +29,14 @@ module Inch
           end
         end
 
+        # Sets the max_score.
+        # Can only be decreased to create an upper bound for evaluation.
+        def max_score=(val)
+          if val < @max_score
+            @max_score = val
+          end
+        end
+
         protected
 
         def add_score(points)
@@ -37,8 +47,8 @@ module Inch
           @min_score.to_i
         end
 
-        def max_score
-          MAX_SCORE
+        def set_max_score(default)
+          @max_score = default
         end
       end
     end

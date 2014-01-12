@@ -8,6 +8,10 @@ module Inch
           !parameters.empty?
         end
 
+        def method?
+          true
+        end
+
         def parameter_doc
           parameters.map do |(name, default_value)|
             tag = paramter_tag(name)

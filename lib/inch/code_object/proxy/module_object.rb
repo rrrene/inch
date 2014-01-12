@@ -1,7 +1,7 @@
 module Inch
   module CodeObject
     module Proxy
-      class ModuleObject < Base
+      class ModuleObject < NamespaceObject
       end
     end
   end

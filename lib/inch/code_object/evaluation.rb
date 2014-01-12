@@ -17,6 +17,7 @@ module Inch
 end
 
 require_relative 'evaluation/base'
+require_relative 'evaluation/namespace_object'
 require_relative 'evaluation/class_object'
 require_relative 'evaluation/constant_object'
 require_relative 'evaluation/method_object'

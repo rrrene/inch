@@ -12,7 +12,7 @@ end
 
 require 'pp'
 
-require_relative 'inch/cli/trace_helper'
-require_relative 'inch/cli/option_parser'
+require_relative 'inch/cli'
+require_relative 'inch/source_parser'
 require_relative 'inch/code_object'
 require_relative 'inch/runner'

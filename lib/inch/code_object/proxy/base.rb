@@ -21,6 +21,14 @@ module Inch
         def has_doc?
           !!docstring
         end
+
+        def namespace?
+          false
+        end
+
+        def method?
+          false
+        end
       end
     end
   end

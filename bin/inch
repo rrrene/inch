@@ -8,4 +8,5 @@ rescue Bundler::GemfileNotFound => e
 end
 
 require 'inch'
-Inch::Runner.new(ARGV)
+#Inch::Runner.new(ARGV)
+Inch::CLI::CommandParser.run(*ARGV)

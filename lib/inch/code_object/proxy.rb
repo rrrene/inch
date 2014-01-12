@@ -17,6 +17,7 @@ module Inch
 end
 
 require_relative 'proxy/base'
+require_relative 'proxy/namespace_object'
 require_relative 'proxy/class_object'
 require_relative 'proxy/constant_object'
 require_relative 'proxy/method_object'

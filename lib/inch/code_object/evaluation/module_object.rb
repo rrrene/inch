@@ -1,7 +1,7 @@
 module Inch
   module CodeObject
     module Evaluation
-      class ModuleObject < ClassObject
+      class ModuleObject < NamespaceObject
       end
     end
   end
