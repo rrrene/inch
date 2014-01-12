@@ -5,8 +5,6 @@ module Inch
         attr_accessor :objects
       end
 
-      String.send(:include, Term::ANSIColor)
-
       def initialize
         @ranges = []
         @ranges << ScoreRange.new(80...100, "A - Good", :green)

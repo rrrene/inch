@@ -22,7 +22,8 @@ module Inch
       end
 
       self.commands = {
-        :list => List
+        :list => List,
+        :show => Show,
       }
 
       self.default_command = :list

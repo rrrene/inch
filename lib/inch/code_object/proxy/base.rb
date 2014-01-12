@@ -19,7 +19,7 @@ module Inch
         end
 
         def has_doc?
-          !!docstring
+          docstring && !docstring.empty?
         end
 
         def namespace?

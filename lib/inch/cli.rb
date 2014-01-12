@@ -15,3 +15,5 @@ end
 
 require_relative 'cli/command'
 require_relative 'cli/command_parser'
+
+String.send(:include, Term::ANSIColor)
