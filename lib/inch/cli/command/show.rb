@@ -20,10 +20,10 @@ module Inch
         common_options(opts)
         parse_options(opts, args)
         if args.first
-          if object = find_object(args.first)
+          if object = source_parser.find_object(args.first)
             @objects = [object]
           else
-            @objects = find_objects(args.first)
+            @objects = source_parser.find_objects(args.first)
           end
         end
       end
@@ -33,45 +33,37 @@ module Inch
       LJUST = 20
 
       def print_object(o)
-        print "#{o.path}".magenta.bold
+        echo "#{o.path}".magenta.bold
         o.files.each do |f|
-          print "-> #{f[0]}:#{f[1]}".magenta
+          echo "-> #{f[0]}:#{f[1]}".magenta
         end
-        print "-".magenta * o.path.size
+        echo "-".magenta * o.path.size
         #if o.has_doc?
-        #  print "#{o.docstring}".magenta
-        #  print "-".magenta * o.path.size
+        #  echo "#{o.docstring}".magenta
+        #  echo "-".magenta * o.path.size
         #end
-        print "Text".ljust(LJUST) + "#{o.has_doc? ? 'Yes' : 'No text'}"
+        echo "Text".ljust(LJUST) + "#{o.has_doc? ? 'Yes' : 'No text'}"
         if o.method?
-          print "Parameters:".ljust(LJUST) + "#{o.has_parameters? ? '' : 'No parameters'}"
-          o.parameter_doc.each do |p|
-            print "  " + p.name.ljust(LJUST-2) + "#{p.mentioned? ? 'Text' : 'No text'} / #{p.typed? ? 'Typed' : 'Not typed'} / #{p.described? ? 'Described' : 'Not described'}"
+          echo "Parameters:".ljust(LJUST) + "#{o.has_parameters? ? '' : 'No parameters'}"
+          o.parameters.each do |p|
+            echo "  " + p.name.ljust(LJUST-2) + "#{p.mentioned? ? 'Text' : 'No text'} / #{p.typed? ? 'Typed' : 'Not typed'} / #{p.described? ? 'Described' : 'Not described'}"
           end
-          print "Return type:".ljust(LJUST) + "#{o.return_typed? ? 'Defined' : 'Not defined'}"
+          echo "Return type:".ljust(LJUST) + "#{o.return_typed? ? 'Defined' : 'Not defined'}"
         end
 
         if o.namespace?
-          print "Children:"
+          echo "Children:"
           o.children.each do |child|
-            print "+ " + child.path.magenta
+            echo "+ " + child.path.magenta
           end
         end
 
-        print "Score:".ljust(LJUST) + "#{o.evaluation.score}"
-        print
+        echo "Score:".ljust(LJUST) + "#{o.evaluation.score}"
+        echo
       end
 
-      def print(msg = "", edge = "┃ ".magenta)
-        puts edge + msg
-      end
-
-      def find_object(path)
-        objects.detect { |o| o.path == path }
-      end
-
-      def find_objects(path)
-        objects.select { |o| o.path.start_with?(path) }
+      def echo(msg = "", edge = "┃ ".magenta)
+        trace edge + msg
       end
 
       def objects

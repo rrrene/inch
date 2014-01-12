@@ -31,7 +31,7 @@ module Inch
         end
 
         def eval_all_parameters
-          params = object.parameter_doc
+          params = object.parameters
           per_param = PARAM_SCORE.to_f / params.size
           params.each do |param|
             if param.mentioned?

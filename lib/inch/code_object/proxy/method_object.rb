@@ -2,8 +2,6 @@ module Inch
   module CodeObject
     module Proxy
       class MethodObject < Base
-        def_delegators :object, :parameters
-
         def has_parameters?
           !parameters.empty?
         end
@@ -12,14 +10,19 @@ module Inch
           true
         end
 
-        def parameter_doc
-          parameters.map do |(name, default_value)|
-            tag = paramter_tag(name)
+        def parameters
+          @parameters ||= all_parameter_names.map do |name|
+            in_signature = signature_parameter_names.include?(name)
+            tag = parameter_tag(name)
             mentioned = !!tag
             types = tag && tag.types
             description = tag && tag.text
-            MethodParameterDoc.new(name, mentioned, types, description)
+            MethodParameterObject.new(name, in_signature, mentioned, types, description)
           end
+        end
+
+        def parameter(name)
+          parameters.detect { |p| p.name == name.to_s }
         end
 
         def return_typed?
@@ -28,31 +31,29 @@ module Inch
 
         private
 
-        def paramter_tag(param_name)
-          object.tags(:param).detect do |tag|
+        def all_parameter_names
+          names = signature_parameter_names
+          names.concat parameter_tags.map(&:name)
+          names.uniq
+        end
+
+
+        def signature_parameter_names
+          object.parameters.map(&:first)
+        end
+
+        def parameter_tag(param_name)
+          parameter_tags.detect do |tag|
             tag.name == param_name
           end
         end
 
-        def return_tag
-          object.tags(:return).first
+        def parameter_tags
+          object.tags(:param)
         end
 
-        class MethodParameterDoc < Struct.new(:name, :mentioned, :types, :description)
-          # is the parameter mentioned in the docs
-          def mentioned?
-            mentioned
-          end
-
-          # is the type of the parameter defined
-          def typed?
-            types && !types.empty?
-          end
-
-          # is an additional description given?
-          def described?
-            description && !description.empty?
-          end
+        def return_tag
+          object.tags(:return).first
         end
       end
     end

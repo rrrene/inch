@@ -29,6 +29,11 @@ module Inch
         def method?
           false
         end
+
+        # Returns +true+ if the object has no documentation whatsoever. 
+        def undocumented?
+          object.docstring.empty? && object.tags.empty?
+        end
       end
     end
   end

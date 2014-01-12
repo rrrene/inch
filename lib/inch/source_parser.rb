@@ -13,6 +13,15 @@ module Inch
       end.sort_by(&:path)
     end
 
+    def find_object(path)
+      all_objects.detect { |o| o.path == path }
+    end
+    alias :[] :find_object
+
+    def find_objects(path)
+      all_objects.select { |o| o.path.start_with?(path) }
+    end
+
     def run(*args)
       YARD.parse(*args)
     end

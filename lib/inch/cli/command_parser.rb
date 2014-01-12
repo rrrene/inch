@@ -11,6 +11,8 @@ module Inch
     # (which itself defaults to +:doc+).
     #
     class CommandParser
+      include TraceHelper
+
       class << self
         # @return [Hash{Symbol => Command}] the mapping of command names to
         #   command classes to parse the user command.
@@ -33,7 +35,7 @@ module Inch
       def self.run(*args) new.run(*args) end
 
       def initialize
-        log.show_backtraces = false
+        #log.show_backtraces = false
       end
 
       # Runs the {Command} object matching the command name of the first
@@ -59,12 +61,12 @@ module Inch
       def commands; self.class.commands end
 
       def list_commands
-        log.puts "Usage: inch <command> [options]"
-        log.puts
-        log.puts "Commands:"
+        trace "Usage: inch <command> [options]"
+        trace
+        trace "Commands:"
         commands.keys.sort_by {|k| k.to_s }.each do |command_name|
           command = commands[command_name].new
-          log.puts "%-8s %s" % [command_name, command.description]
+          trace "%-8s %s" % [command_name, command.description]
         end
       end
     end

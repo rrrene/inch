@@ -40,7 +40,7 @@ module Inch
         protected
 
         def add_score(points)
-          @score = @score.to_i + points
+          @score = @score.to_f + points
         end
         
         def min_score

@@ -1,4 +1,7 @@
 require 'optparse'
+require 'term/ansicolor'
+
+String.send(:include, Term::ANSIColor)
 
 # This was adapted from https://github.com/lsegal/yard/blob/master/lib/yard/cli/command.rb
 module Inch
@@ -9,6 +12,8 @@ module Inch
     # @abstract
     # @since 0.6.0
     class Base
+      include TraceHelper
+
       # Helper method to run the utility on an instance.
       # @see #run
       def self.run(*args) new.run(*args) end
@@ -24,12 +29,17 @@ module Inch
       def common_options(opts)
         opts.separator ""
         opts.separator "Other options:"
-        opts.on_tail('-q', '--quiet', 'Show no warnings.') { log.level = Logger::ERROR }
-        opts.on_tail('--verbose', 'Show more information.') { log.level = Logger::INFO }
-        opts.on_tail('--debug', 'Show debugging information.') { log.level = Logger::DEBUG }
-        opts.on_tail('--backtrace', 'Show stack traces') { log.show_backtraces = true }
-        opts.on_tail('-v', '--version', 'Show version.') { log.puts "inch #{Inch::VERSION}"; exit }
-        opts.on_tail('-h', '--help', 'Show this help.')  { log.puts opts; exit }
+        opts.on("--[no-]color", "Run without color") do |v|
+          Term::ANSIColor::coloring = v
+        end
+        opts.on_tail('-v', '--version', 'Show version.') do
+          trace "inch #{Inch::VERSION}"
+          exit
+        end
+        opts.on_tail('-h', '--help', 'Show this help.') do
+          trace opts
+          exit
+        end
       end
 
       # Parses the option and gracefully handles invalid switches
@@ -51,7 +61,7 @@ module Inch
       # @param [OptionParser::ParseError] err the exception raised by the
       #   option parser
       def unrecognized_option(err)
-        log.warn "Unrecognized/#{err.message}"
+        trace "Unrecognized/#{err.message}".red
       end
     end
   end

@@ -21,7 +21,7 @@ module Inch
       # @return [void]
       def run(*args)
         if args.include?('--help')
-          log.puts "Usage: inch list"
+          trace "Usage: inch list"
         else
           assign_objects_to_ranges
           display_list
@@ -43,11 +43,11 @@ module Inch
           if range.objects.empty?
             # pass
           else
-            puts
-            puts "      #{range.description}".ljust(CLI::COLUMNS).black.dark.bold.method("on_intense_#{range.color}").call
+            trace
+            trace "      #{range.description}".ljust(CLI::COLUMNS).black.dark.bold.method("on_intense_#{range.color}").call
             range.objects.each do |o|
               score = o.evaluation.score.to_s.rjust(4).method(range.color).call
-              puts "#{score}  #{o.path}"
+              trace "#{score}  #{o.path}"
             end
           end
         end
