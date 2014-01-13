@@ -12,6 +12,7 @@ module Inch
         def initialize(object)
           self.object = object
           @min_score = 0
+          @scores = []
           set_max_score(MAX_SCORE)
           evaluate
         end
@@ -39,8 +40,9 @@ module Inch
 
         protected
 
-        def add_score(points)
-          @score = @score.to_f + points
+        def add_score(score_object)
+          @scores << score_object
+          @score = @score.to_f + score_object.to_f
         end
         
         def min_score

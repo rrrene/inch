@@ -35,6 +35,10 @@ module Foo
     def method_without_docstring(p1, p2 = nil)
     end
 
+    # @return [void]
+    def method_without_params_or_docstring
+    end
+
     # Provides an example of a method without parameters
     # missing the return type.
     #

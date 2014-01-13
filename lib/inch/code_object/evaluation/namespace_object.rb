@@ -8,7 +8,7 @@ module Inch
 
         def evaluate
           if object.has_doc?
-            add_score DOC_SCORE
+            add_score Score::ObjectHasDoc.new(object, DOC_SCORE)
           end
         end
 

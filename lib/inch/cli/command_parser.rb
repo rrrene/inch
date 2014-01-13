@@ -24,8 +24,8 @@ module Inch
       end
 
       self.commands = {
-        :list => List,
-        :show => Show,
+        :list => Command::List,
+        :show => Command::Show,
       }
 
       self.default_command = :list
@@ -66,7 +66,7 @@ module Inch
         trace "Commands:"
         commands.keys.sort_by {|k| k.to_s }.each do |command_name|
           command = commands[command_name].new
-          trace "%-8s %s" % [command_name, command.description]
+          trace "  %-8s %s" % [command_name, command.description]
         end
       end
     end
