@@ -18,6 +18,14 @@ module Inch
 
         private
 
+        def set_min_score(default)
+          if object.overridden?
+            @min_score = object.overridden_method.evaluation.score
+          else
+            @min_score = default
+          end
+        end
+
         def eval_doc
           if object.has_doc?
             add_score Score::ObjectHasDoc.new(object, DOC_SCORE)

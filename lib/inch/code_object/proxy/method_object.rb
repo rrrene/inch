@@ -25,6 +25,14 @@ module Inch
           parameters.detect { |p| p.name == name.to_s }
         end
 
+        def overridden?
+          !!object.overridden_method
+        end
+
+        def overridden_method
+          @overridden_method ||= Proxy.for(object.overridden_method)
+        end
+
         def return_typed?
           !!return_tag
         end

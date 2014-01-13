@@ -13,7 +13,7 @@ module Inch
         # Runs the commandline utility, parsing arguments and displaying a
         # list of objects
         #
-        # @param [Array<String>] args the list of arguments.
+        # @param *args [Array<String>] args the list of arguments.
         # @return [void]
         def run(*args)
           parse_arguments(*args)
@@ -49,10 +49,6 @@ module Inch
             echo "-> #{f[0]}:#{f[1]}".magenta
           end
           echo "-".magenta * o.path.size
-          #if o.has_doc?
-          #  echo "#{o.docstring}".magenta
-          #  echo "-".magenta * o.path.size
-          #end
           echo "Text".ljust(LJUST) + "#{o.has_doc? ? 'Yes' : 'No text'}"
           if o.method?
             echo "Parameters:".ljust(LJUST) + "#{o.has_parameters? ? '' : 'No parameters'}"

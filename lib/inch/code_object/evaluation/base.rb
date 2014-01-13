@@ -3,7 +3,8 @@ module Inch
     module Evaluation
       class Base
         extend Forwardable
-
+        
+        MIN_SCORE = 0
         MAX_SCORE = 100
 
         attr_accessor :object
@@ -11,8 +12,8 @@ module Inch
 
         def initialize(object)
           self.object = object
-          @min_score = 0
           @scores = []
+          set_min_score(MIN_SCORE)
           set_max_score(MAX_SCORE)
           evaluate
         end
@@ -38,6 +39,14 @@ module Inch
           end
         end
 
+        # Sets the min_score.
+        # Can only be increased to create a lower bound for evaluation.
+        def min_score=(val)
+          if val > @min_score
+            @min_score = val
+          end
+        end
+
         protected
 
         def add_score(score_object)
@@ -47,6 +56,10 @@ module Inch
         
         def min_score
           @min_score.to_i
+        end
+
+        def set_min_score(default)
+          @min_score = default
         end
 
         def set_max_score(default)

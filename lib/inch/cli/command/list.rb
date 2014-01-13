@@ -112,9 +112,11 @@ module Inch
         end
 
         def display_short_list
+          all_size = objects.size
           @ranges.each do |range|
             size = range.objects.size
-            trace "#{size.to_s.rjust(5)} objects: #{range.description}".ljust(CLI::COLUMNS).method("#{range.color}").call
+            percent = ((size/all_size.to_f) * 100).to_i
+            trace "#{size.to_s.rjust(5)} objects #{percent.to_s.rjust(3)}%  #{range.description}".method("#{range.color}").call
           end
         end
 

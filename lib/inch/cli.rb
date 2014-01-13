@@ -1,6 +1,9 @@
 module Inch
   module CLI
     class << self
+      # Returns the columns of the terminal window
+      # (defaults to 80)
+      # @return [Fixnum]
       def get_term_columns
         str = `stty size`
         rows_cols = str.split(' ').map(&:to_i)
@@ -16,4 +19,3 @@ end
 require_relative 'cli/trace_helper'
 require_relative 'cli/command'
 require_relative 'cli/command_parser'
-
