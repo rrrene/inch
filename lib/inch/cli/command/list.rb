@@ -91,7 +91,6 @@ module Inch
       end
 
       def display_list
-        # TODO: provide a switch to ignore completely undocumented objects
         @ranges.each do |range|
           if range.objects.empty?
             # pass
@@ -100,7 +99,7 @@ module Inch
             trace "      #{range.description}".ljust(CLI::COLUMNS).black.dark.bold.method("on_intense_#{range.color}").call
             range.objects.each do |o|
               score = o.evaluation.score.to_s.rjust(4).method(range.color).call
-              trace "#{score}  #{o.path} #{o.depth}"
+              trace "#{score}  #{o.path}"
             end
           end
         end
