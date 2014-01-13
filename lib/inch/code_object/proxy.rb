@@ -8,7 +8,7 @@ module Inch
       private
       def self.class_for(code_object)
         class_name = code_object.class.to_s.split('::').last
-        eval(class_name)
+        eval("::Inch::CodeObject::Proxy::#{class_name}")
       rescue
         Base
       end
