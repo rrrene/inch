@@ -24,6 +24,7 @@ module Inch
       end
 
       self.commands = {
+        :console => Command::Console,
         :list => Command::List,
         :show => Command::Show,
       }
