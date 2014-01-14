@@ -44,5 +44,39 @@ module Foo
     #
     def method_without_params_or_return_type
     end
+
+    # An example of a method using RDoc rather than YARD.
+    #
+    # == Parameters:
+    # param1::
+    #   A Symbol declaring some markup language like `:md` or `:html`.
+    #
+    # == Returns:
+    # A string in the specified format.
+    #
+    def method_with_rdoc_doc(param1 = :html)
+    end
+
+    # Another example of a method using RDoc rather than YARD.
+    #
+    # Params:
+    # +param1+:: param1 line string to be executed by the system
+    # +param2+:: +Proc+ object that takes a pipe object as first and only param (may be nil)
+    # +param3+:: +Proc+ object that takes a pipe object as first and only param (may be nil)
+    def method_with_other_rdoc_doc(param1, param2, param3)
+    end
+
+    # An example of a method that takes a parameter (+param1+)
+    # and does nothing. But the previous sentence mentions said
+    # parameter.
+    #
+    def method_with_unstructured_doc(param1)
+    end
+
+    # Just because format_html is mentioned here, does not mean
+    # the first parameter is mentioned.
+    #
+    def method_with_unstructured_doc_missing_params(format)
+    end
   end
 end

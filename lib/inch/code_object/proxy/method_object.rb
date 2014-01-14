@@ -14,10 +14,7 @@ module Inch
           @parameters ||= all_parameter_names.map do |name|
             in_signature = signature_parameter_names.include?(name)
             tag = parameter_tag(name)
-            mentioned = !!tag
-            types = tag && tag.types
-            description = tag && tag.text
-            MethodParameterObject.new(name, in_signature, mentioned, types, description)
+            MethodParameterObject.new(self, name, tag, in_signature)
           end
         end
 

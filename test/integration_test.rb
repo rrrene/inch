@@ -102,4 +102,52 @@ class TestFixtureSimple < MiniTest::Unit::TestCase
 
     assert m.evaluation.score
   end
+
+  def test_method_with_rdoc_doc
+    m = @source_parser.find_object("Foo::Bar#method_with_rdoc_doc")
+    assert m.has_doc?
+    assert m.has_parameters?
+    p = m.parameter(:param1)
+    assert p.mentioned?         # mentioned in docs, correctly
+    refute m.return_typed?
+
+    assert m.evaluation.score
+  end
+
+  def test_method_with_other_rdoc_doc
+    m = @source_parser.find_object("Foo::Bar#method_with_other_rdoc_doc")
+    assert m.has_doc?
+    assert m.has_parameters?
+    p = m.parameter(:param1)
+    assert p.mentioned?         # mentioned in docs, correctly
+    p = m.parameter(:param2)
+    assert p.mentioned?         # mentioned in docs, correctly
+    p = m.parameter(:param3)
+    assert p.mentioned?         # mentioned in docs, correctly
+    refute m.return_typed?
+
+    assert m.evaluation.score
+  end
+
+  def test_method_with_unstructured_doc
+    m = @source_parser.find_object("Foo::Bar#method_with_unstructured_doc")
+    assert m.has_doc?
+    assert m.has_parameters?
+    p = m.parameter(:param1)
+    assert p.mentioned?         # mentioned in docs, correctly
+    refute m.return_typed?
+
+    assert m.evaluation.score
+  end
+
+  def test_method_with_unstructured_doc_missing_params
+    m = @source_parser.find_object("Foo::Bar#method_with_unstructured_doc_missing_params")
+    assert m.has_doc?
+    assert m.has_parameters?
+    p = m.parameter(:format)
+    refute p.mentioned?         # mentioned in docs, correctly
+    refute m.return_typed?
+
+    assert m.evaluation.score
+  end
 end
