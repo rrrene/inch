@@ -79,4 +79,13 @@ module Foo
     def method_with_unstructured_doc_missing_params(format)
     end
   end
+
+  class Baz < Bar
+    def method_with_missing_param_doc(param1, param2, param3)
+    end
+  end
+
+  # Some documentation.
+  class Qux
+  end
 end

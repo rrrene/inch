@@ -12,9 +12,7 @@ module Inch
 
         def initialize(object)
           self.object = object
-          @scores = []
-          set_min_score(MIN_SCORE)
-          set_max_score(MAX_SCORE)
+          @roles = []
           evaluate
         end
 
@@ -22,48 +20,36 @@ module Inch
         end
 
         def score
-          if @score.to_i < min_score
+          value = @roles.inject(0) { |sum,r| sum + r.score.to_f }
+          if value < min_score
             min_score
-          elsif @score.to_i > max_score
+          elsif value > max_score
             max_score
           else
-            @score.to_i
+            value
           end
         end
 
-        # Sets the max_score.
-        # Can only be decreased to create an upper bound for evaluation.
-        def max_score=(val)
-          if val < @max_score
-            @max_score = val
-          end
-        end
-
-        # Sets the min_score.
-        # Can only be increased to create a lower bound for evaluation.
-        def min_score=(val)
-          if val > @min_score
-            @min_score = val
-          end
+        def roles
+          @roles
         end
 
         protected
 
-        def add_score(score_object)
-          @scores << score_object
-          @score = @score.to_f + score_object.to_f
+        def add_role(role)
+          @roles << role
+        end
+
+        private
+        
+        def max_score
+          arr = @roles.map(&:max_score).compact
+          [MAX_SCORE].concat(arr).min
         end
         
         def min_score
-          @min_score.to_i
-        end
-
-        def set_min_score(default)
-          @min_score = default
-        end
-
-        def set_max_score(default)
-          @max_score = default
+          arr = @roles.map(&:min_score).compact
+          [MIN_SCORE].concat(arr).max
         end
       end
     end

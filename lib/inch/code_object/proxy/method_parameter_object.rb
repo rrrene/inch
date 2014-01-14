@@ -22,7 +22,7 @@ module Inch
 
         # @return [Boolean] +true+ if the type of the parameter is defined
         def typed?
-          @tag && !@tag.types.empty?
+          @tag && @tag.types && !@tag.types.empty?
         end
 
         # @return [Boolean] +true+ if an additional description given?

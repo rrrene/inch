@@ -1,8 +1,8 @@
 module Inch
   module CodeObject
     module Evaluation
-      module Score
-        class MethodParameterIsMentioned < Base
+      module Role
+        class ObjectWithDoc < Base
         end
       end
     end

@@ -48,7 +48,7 @@ module Inch
           o.files.each do |f|
             echo "-> #{f[0]}:#{f[1]}".magenta
           end
-          echo "-".magenta * o.path.size
+          echo separator
           echo "Text".ljust(LJUST) + "#{o.has_doc? ? 'Yes' : 'No text'}"
           if o.method?
             echo "Parameters:".ljust(LJUST) + "#{o.has_parameters? ? '' : 'No parameters'}"
@@ -65,12 +65,37 @@ module Inch
             end
           end
 
-          echo "Score:".ljust(LJUST) + "#{o.evaluation.score}"
+          echo separator
+          o.evaluation.roles.each do |role|
+            name = role.class.to_s.split('::Role::').last
+            value = role.score.to_i
+            score = value.abs.to_s.rjust(4)
+            if value < 0
+              score = ("-" + score).red
+            elsif value > 0
+              score = ("+" + score).green
+            else
+              score = " " + score
+            end
+            echo name.ljust(40) + score
+            if role.max_score
+              echo "  (set max score to #{role.max_score})"
+            end
+            if role.min_score
+              echo "  (set min score to #{role.min_score})"
+            end
+          end
+          echo separator
+          echo "Score:".ljust(40) + "#{o.evaluation.score.to_i}".rjust(5)
           echo
         end
 
         def echo(msg = "", edge = "┃ ".magenta)
           trace edge + msg
+        end
+
+        def separator
+          "-".magenta * (CLI::COLUMNS - 2)
         end
 
         def source_parser

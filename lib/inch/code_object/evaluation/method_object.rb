@@ -14,6 +14,9 @@ module Inch
           else
             eval_no_parameters
           end
+          if object.overridden?
+            add_role Role::Method::Overridden.new(self, object.overridden_method.evaluation.score)
+          end
         end
 
         private
@@ -28,13 +31,13 @@ module Inch
 
         def eval_doc
           if object.has_doc?
-            add_score Score::ObjectHasDoc.new(object, DOC_SCORE)
+            add_role Role::ObjectWithDoc.new(object, DOC_SCORE)
           end
         end
 
         def eval_no_parameters
           if score > min_score
-            add_score Score::MethodHasNoParameters.new(object, PARAM_SCORE)
+            add_role Role::Method::WithoutParameters.new(object, PARAM_SCORE)
           end
         end
 
@@ -43,17 +46,21 @@ module Inch
           per_param = PARAM_SCORE.to_f / params.size
           params.each do |param|
             if param.mentioned?
-              add_score Score::MethodParameterIsMentioned.new(param, per_param * 0.5)
+              if param.wrongly_mentioned?
+                add_role Role::MethodParameter::WithWrongMention.new(param, -PARAM_SCORE)
+              else
+                add_role Role::MethodParameter::WithMention.new(param, per_param * 0.5)
+              end
             end
             if param.typed?
-              add_score Score::MethodParameterIsTyped.new(param, per_param * 0.5)
+              add_role Role::MethodParameter::WithType.new(param, per_param * 0.5)
             end
           end
         end
 
         def eval_return_type
           if object.return_typed?
-            add_score Score::MethodHasReturnType.new(object, RETURN_SCORE)
+            add_role Role::Method::WithReturnType.new(object, RETURN_SCORE)
           end
         end
       end
