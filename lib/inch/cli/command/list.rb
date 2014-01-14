@@ -71,6 +71,36 @@ module Inch
 
         private
 
+        def assign_objects_to_ranges
+          @ranges.each do |range|
+            arr = objects.select { |o| range.range.include?(o.evaluation.score) }
+            range.objects = arr.sort_by(&:path)
+          end
+        end
+
+        def display_list
+          @ranges.each do |range|
+            if range.objects.empty?
+              # pass
+            else
+              trace
+              trace_header(range.description, range.color)
+              range.objects.each do |o|
+                trace result(o.path, o.evaluation.score, range.color)
+              end
+            end
+          end
+        end
+
+        def display_short_list
+          all_size = objects.size
+          @ranges.each do |range|
+            size = range.objects.size
+            percent = ((size/all_size.to_f) * 100).to_i
+            trace "#{size.to_s.rjust(5)} objects #{percent.to_s.rjust(3)}%  #{range.description}".method("#{range.color}").call
+          end
+        end
+
         def filter_objects
           if @namespaces == :only
             self.objects = objects.select(&:namespace?)
@@ -89,36 +119,11 @@ module Inch
           end
         end
 
-        def assign_objects_to_ranges
-          @ranges.each do |range|
-            arr = objects.select { |o| range.range.include?(o.evaluation.score) }
-            range.objects = arr.sort_by(&:path)
-          end
-        end
-
-        def display_list
-          @ranges.each do |range|
-            if range.objects.empty?
-              # pass
-            else
-              trace
-              trace "      #{range.description}".ljust(CLI::COLUMNS).black.dark.bold.method("on_intense_#{range.color}").call
-              range.objects.each do |o|
-                value = o.evaluation.score.to_i
-                score = value.to_s.rjust(4).method(range.color).call
-                trace "#{score}  #{o.path}"
-              end
-            end
-          end
-        end
-
-        def display_short_list
-          all_size = objects.size
-          @ranges.each do |range|
-            size = range.objects.size
-            percent = ((size/all_size.to_f) * 100).to_i
-            trace "#{size.to_s.rjust(5)} objects #{percent.to_s.rjust(3)}%  #{range.description}".method("#{range.color}").call
-          end
+        def result(path, score, color)
+          value = score.to_i.to_s
+          value = value.rjust(3).method(color).call
+          "┃ ".method(color).call + 
+            "#{value}  #{path}"
         end
 
         def objects

@@ -18,6 +18,16 @@ module Inch
 
         def evaluate
         end
+        
+        def max_score
+          arr = @roles.map(&:max_score).compact
+          [MAX_SCORE].concat(arr).min
+        end
+        
+        def min_score
+          arr = @roles.map(&:min_score).compact
+          [MIN_SCORE].concat(arr).max
+        end
 
         def score
           value = @roles.inject(0) { |sum,r| sum + r.score.to_f }
@@ -38,18 +48,6 @@ module Inch
 
         def add_role(role)
           @roles << role
-        end
-
-        private
-        
-        def max_score
-          arr = @roles.map(&:max_score).compact
-          [MAX_SCORE].concat(arr).min
-        end
-        
-        def min_score
-          arr = @roles.map(&:min_score).compact
-          [MIN_SCORE].concat(arr).max
         end
       end
     end

@@ -8,16 +8,16 @@ module Inch
         RETURN_SCORE = 10
 
         def evaluate
-          eval_return_type
           eval_doc
+          if object.overridden?
+            add_role Role::Method::Overridden.new(self, object.overridden_method.evaluation.score)
+          end
           if object.has_parameters?
             eval_all_parameters
           else
             eval_no_parameters
           end
-          if object.overridden?
-            add_role Role::Method::Overridden.new(self, object.overridden_method.evaluation.score)
-          end
+          eval_return_type
         end
 
         private

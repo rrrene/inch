@@ -44,7 +44,8 @@ module Inch
         LJUST = 20
 
         def print_object(o)
-          echo "#{o.path}".magenta.bold
+          trace
+          trace_header(o.path, :magenta)
           o.files.each do |f|
             echo "-> #{f[0]}:#{f[1]}".magenta
           end
@@ -86,7 +87,7 @@ module Inch
             end
           end
           echo separator
-          echo "Score:".ljust(40) + "#{o.evaluation.score.to_i}".rjust(5)
+          echo "Score (min: #{o.evaluation.min_score}, max: #{o.evaluation.max_score})".ljust(40) + "#{o.evaluation.score.to_i}".rjust(5)
           echo
         end
 
