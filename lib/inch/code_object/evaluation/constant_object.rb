@@ -6,7 +6,7 @@ module Inch
 
         def evaluate
           if object.has_doc?
-            add_role Role::ObjectWithDoc.new(object, DOC_SCORE)
+            add_role Role::Object::WithDoc.new(object, DOC_SCORE)
           end
         end
       end

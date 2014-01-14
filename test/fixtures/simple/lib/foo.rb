@@ -78,6 +78,27 @@ module Foo
     #
     def method_with_unstructured_doc_missing_params(format)
     end
+
+    # This is an example:
+    #
+    #   method_with_code_example() # => some value
+    #
+    # @param p1 [String] mandatory param
+    # @param p2 [String, nil] optionally param
+    # @return [void]
+    def method_with_code_example(p1, p2 = nil)
+    end
+
+    # This is an example:
+    #
+    # @example
+    #   method_with_code_example() # => some value
+    #
+    # @param p1 [String] mandatory param
+    # @param p2 [String, nil] optionally param
+    # @return [void]
+    def method_with_code_example2(p1, p2 = nil)
+    end
   end
 
   class Baz < Bar
@@ -85,7 +106,6 @@ module Foo
     end
   end
 
-  # Some documentation.
   class Qux
   end
 end

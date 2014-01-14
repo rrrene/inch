@@ -37,27 +37,8 @@ module Inch
 
         private
 
-        def docstring_mention_patterns
-          [
-            "+#{name}+", 
-            "+#{name}+::", 
-            "<tt>#{name}</tt>", 
-            "<tt>#{name}</tt>::", 
-            "#{name}::"
-          ]
-        end
-
-        def docstring_regexps
-          docstring_mention_patterns.map do |pattern|
-            r = Regexp.escape(pattern)
-            /\W#{r}\W/
-          end
-        end
-
         def in_method_docstring?
-          docstring_regexps.any? do |pattern|
-            @method.docstring.index(pattern)
-          end
+          @method.docstring.mentions_parameter?(name)
         end
       end
     end

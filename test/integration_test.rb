@@ -150,4 +150,15 @@ class TestFixtureSimple < MiniTest::Unit::TestCase
 
     assert m.evaluation.score
   end
+
+  def test_method_with_code_example
+    m = @source_parser.find_object("Foo::Bar#method_with_code_example")
+    assert m.has_code_example?
+  end
+
+  def test_method_with_code_example2
+    m = @source_parser.find_object("Foo::Bar#method_with_code_example2")
+    assert m.has_code_example?
+  end
+
 end

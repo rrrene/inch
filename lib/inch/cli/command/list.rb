@@ -104,7 +104,8 @@ module Inch
               trace
               trace "      #{range.description}".ljust(CLI::COLUMNS).black.dark.bold.method("on_intense_#{range.color}").call
               range.objects.each do |o|
-                score = o.evaluation.score.to_s.rjust(4).method(range.color).call
+                value = o.evaluation.score.to_i
+                score = value.to_s.rjust(4).method(range.color).call
                 trace "#{score}  #{o.path}"
               end
             end

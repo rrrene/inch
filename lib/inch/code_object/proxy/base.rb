@@ -22,12 +22,21 @@ module Inch
           end
         end
 
+        def docstring
+          @docstring ||= Docstring.new(object.docstring)
+        end
+
         def evaluation
           @evaluation ||= CodeObject::Evaluation.for(self)
         end
 
+        def has_code_example?
+          !object.tags(:example).empty? ||
+            docstring.contains_code_example?
+        end
+
         def has_doc?
-          docstring && !docstring.empty?
+          !docstring.empty?
         end
 
         def namespace?
@@ -41,7 +50,7 @@ module Inch
         # Returns +true+ if the object has no documentation whatsoever.
         # @return [Boolean]
         def undocumented?
-          object.docstring.empty? && object.tags.empty?
+          docstring.empty? && object.tags.empty?
         end
       end
     end
