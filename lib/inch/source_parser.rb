@@ -23,6 +23,7 @@ module Inch
     end
 
     def run(extra_files = [], paths = ["{lib,app}/**/*.rb", "ext/**/*.c"], excluded = [])
+      YARD::Registry.clear
       YARD.parse(paths, excluded, ::Logger::UNKNOWN) # basically disable YARD's logging
       parse_extra_files(extra_files)
     end
