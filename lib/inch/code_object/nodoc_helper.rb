@@ -13,8 +13,6 @@ module Inch
         object.tag(:private) || nodoc_comment?
       end
 
-      private
-      
       NO_DOC_REGEX = /#\s+\:nodoc\:/
 
       def nodoc_comment?

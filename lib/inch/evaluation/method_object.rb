@@ -21,20 +21,16 @@ module Inch
 
       private
 
-      def set_min_score(default)
-        if object.overridden?
-          @min_score = object.overridden_method.score
-        else
-          @min_score = default
-        end
-      end
-
       def eval_doc
         if object.has_doc?
           add_role Role::Object::WithDoc.new(object, DOC_SCORE)
+        else
+          add_role Role::Object::WithoutDoc.new(object, DOC_SCORE)
         end
         if object.has_code_example?
           add_role Role::Object::WithCodeExample.new(object, EXAMPLE_SCORE)
+        else
+          add_role Role::Object::WithoutCodeExample.new(object, EXAMPLE_SCORE)
         end
       end
 
@@ -54,9 +50,13 @@ module Inch
             else
               add_role Role::MethodParameter::WithMention.new(param, per_param * 0.5)
             end
+          else
+            add_role Role::MethodParameter::WithoutMention.new(param, per_param * 0.5)
           end
           if param.typed?
             add_role Role::MethodParameter::WithType.new(param, per_param * 0.5)
+          else
+            add_role Role::MethodParameter::WithoutType.new(param, per_param * 0.5)
           end
         end
       end
@@ -64,6 +64,8 @@ module Inch
       def eval_return_type
         if object.return_typed?
           add_role Role::Method::WithReturnType.new(object, RETURN_SCORE)
+        else
+          add_role Role::Method::WithoutReturnType.new(object, RETURN_SCORE)
         end
       end
     end

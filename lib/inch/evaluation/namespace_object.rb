@@ -9,22 +9,18 @@ module Inch
       def evaluate
         if object.has_doc?
           add_role Role::Object::WithDoc.new(object, DOC_SCORE)
+        else
+          add_role Role::Object::WithoutDoc.new(object, DOC_SCORE)
         end
         if object.has_code_example?
           add_role Role::Object::WithCodeExample.new(object, EXAMPLE_SCORE)
+        else
+          add_role Role::Object::WithoutCodeExample.new(object, EXAMPLE_SCORE)
         end
         if children.empty?
           add_role Role::Namespace::WithoutChildren.new(self)
         else
           add_role Role::Namespace::WithChildren.new(self, children.map(&:score).min)
-        end
-      end
-
-      def set_max_score(default)
-        if children.empty?
-          @max_score = default
-        else
-          @max_score = children.map(&:score).min
         end
       end
 

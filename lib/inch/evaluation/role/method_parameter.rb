@@ -4,11 +4,15 @@ module Inch
       module MethodParameter
         class WithMention < Base
         end
+        class WithoutMention < BadRole
+        end
 
-        class WithWrongMention < Base
+        class WithWrongMention < BadRole
         end
 
         class WithType < Base
+        end
+        class WithoutType < BadRole
         end
       end
     end

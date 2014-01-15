@@ -22,6 +22,7 @@ require_relative 'evaluation/method_object'
 require_relative 'evaluation/module_object'
 
 require_relative 'evaluation/role/base'
+require_relative 'evaluation/role/bad_role'
 require_relative 'evaluation/role/method'
 require_relative 'evaluation/role/method_parameter'
 require_relative 'evaluation/role/namespace'

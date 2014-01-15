@@ -7,14 +7,9 @@ module Inch
         end
 
         def usage
-          "Usage: inch show OBJECT_NAME [options]"
+          "Usage: inch show [paths] OBJECT_NAME [options]"
         end
 
-        # Runs the commandline utility, parsing arguments and displaying a
-        # list of objects
-        #
-        # @param *args [Array<String>] args the list of arguments.
-        # @return [void]
         def run(*args)
           parse_arguments(args)
 
@@ -51,49 +46,74 @@ module Inch
         def print_object(o)
           trace
           trace_header(o.path, :magenta)
+
+          print_file_info(o)
+          print_doc_info(o)
+          print_namespace_info(o)
+          print_roles_info(o)
+
+          echo "Score (min: #{o.evaluation.min_score}, max: #{o.evaluation.max_score})".ljust(40) + "#{o.score.to_i}".rjust(5)
+          echo
+        end
+
+        def print_file_info(o)
           o.files.each do |f|
             echo "-> #{f[0]}:#{f[1]}".magenta
           end
           echo separator
-          echo "Text".ljust(LJUST) + "#{o.has_doc? ? 'Yes' : 'No text'}"
-          if o.method?
-            echo "Parameters:".ljust(LJUST) + "#{o.has_parameters? ? '' : 'No parameters'}"
-            o.parameters.each do |p|
-              echo "  " + p.name.ljust(LJUST-2) + "#{p.mentioned? ? 'Text' : 'No text'} / #{p.typed? ? 'Typed' : 'Not typed'} / #{p.described? ? 'Described' : 'Not described'}"
-            end
-            echo "Return type:".ljust(LJUST) + "#{o.return_typed? ? 'Defined' : 'Not defined'}"
-          end
+        end
 
+        def print_roles_info(o)
+          if o.roles.empty?
+            echo "No roles assigned.".dark
+          else
+            o.roles.each do |role|
+              name = role.class.to_s.split('::Role::').last
+              value = role.score.to_i
+              score = value.abs.to_s.rjust(4)
+              if value < 0
+                score = ("-" + score).red
+              elsif value > 0
+                score = ("+" + score).green
+              else
+                score = " " + score
+              end
+              echo name.ljust(40) + score
+              if role.max_score
+                echo "  (set max score to #{role.max_score})"
+              end
+              if role.min_score
+                echo "  (set min score to #{role.min_score})"
+              end
+            end
+          end
+          echo separator
+        end
+
+        def print_doc_info(o)
+          if o.nodoc?
+            echo "The object was tagged not to documented.".yellow
+          else
+            echo "Docstring".ljust(LJUST) + "#{o.has_doc? ? 'Yes' : 'No text'}"
+            if o.method?
+              echo "Parameters:".ljust(LJUST) + "#{o.has_parameters? ? '' : 'No parameters'}"
+              o.parameters.each do |p|
+                echo "  " + p.name.ljust(LJUST-2) + "#{p.mentioned? ? 'Text' : 'No text'} / #{p.typed? ? 'Typed' : 'Not typed'} / #{p.described? ? 'Described' : 'Not described'}"
+              end
+              echo "Return type:".ljust(LJUST) + "#{o.return_typed? ? 'Defined' : 'Not defined'}"
+            end
+          end
+          echo separator
+        end
+
+        def print_namespace_info(o)
           if o.namespace?
             echo "Children (height: #{o.height}):"
             o.children.each do |child|
               echo "+ " + child.path.magenta
             end
+            echo separator
           end
-
-          echo separator
-          o.evaluation.roles.each do |role|
-            name = role.class.to_s.split('::Role::').last
-            value = role.score.to_i
-            score = value.abs.to_s.rjust(4)
-            if value < 0
-              score = ("-" + score).red
-            elsif value > 0
-              score = ("+" + score).green
-            else
-              score = " " + score
-            end
-            echo name.ljust(40) + score
-            if role.max_score
-              echo "  (set max score to #{role.max_score})"
-            end
-            if role.min_score
-              echo "  (set min score to #{role.min_score})"
-            end
-          end
-          echo separator
-          echo "Score (min: #{o.evaluation.min_score}, max: #{o.evaluation.max_score})".ljust(40) + "#{o.score.to_i}".rjust(5)
-          echo
         end
 
         def echo(msg = "")

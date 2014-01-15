@@ -7,11 +7,13 @@ module Inch
 
         class WithReturnType < Base
         end
+        class WithoutReturnType < BadRole
+        end
 
         class Overridden < Base
           # This role doesnot assign a score.
           def score
-            0
+            nil
           end
 
           # This role sets a min_score.
