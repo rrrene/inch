@@ -16,7 +16,7 @@ module Inch
           "Usage: inch console [options]"
         end
 
-        def run(args)
+        def run(*args)
           parse_arguments(args)
           run_source_parser(args)
           binding.pry
