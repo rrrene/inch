@@ -31,6 +31,5 @@ TODO: Write usage instructions here
 ## TODOs
 
 * Honor .yardoc opts-file
-* Take paths for code parsing via CLI param (ARGV)
-* Test CLI tools
 * Generalize filter options for visible code objects (like in Command::List)
+* What about # :nodoc:? It would be cruel to punish not documenting explicitly excluded objects.

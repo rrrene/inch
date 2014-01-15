@@ -111,7 +111,21 @@ module Foo
     end
   end
 
-  class Qux
+  class Qux # :nodoc:
+    def method_with_implicit_nodoc
+    end
+
+    class Quux
+      def method_without_nodoc
+      end
+      
+      # @private
+      def method_with_private_tag
+      end
+
+      def method_with_explicit_nodoc # :nodoc:
+      end
+    end
   end
 end
 

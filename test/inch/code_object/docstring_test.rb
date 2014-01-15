@@ -1,7 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../test_helper')
 
-require 'minitest/autorun'
-
 describe ::Inch::CodeObject::Docstring do
 
   it "should work" do

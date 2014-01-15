@@ -5,6 +5,7 @@ module Inch
     module Proxy
       class Base
         extend Forwardable
+        include NodocHelper
 
         # the actual (YARD) code object
         attr_accessor :object
