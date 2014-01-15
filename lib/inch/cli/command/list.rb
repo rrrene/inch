@@ -30,11 +30,7 @@ module Inch
           run_source_parser(args)
           filter_objects
           assign_objects_to_ranges
-          if @short
-            display_short_list
-          else
-            display_list
-          end
+          display_list
         end
 
         private
@@ -54,9 +50,6 @@ module Inch
           opts.separator ""
           opts.separator "List options:"
 
-          opts.on("--short", "Only show file counts") do |v|
-            @short = true
-          end
           opts.on("--full", "Show all objects in the output") do
             @full = true
           end
@@ -103,15 +96,6 @@ module Inch
             trace
             trace "This output omitted #{@omitted} objects. ".dark + 
               "Use `--full` to display all objects.".dark
-          end
-        end
-
-        def display_short_list
-          all_size = objects.size
-          @ranges.each do |range|
-            size = range.objects.size
-            percent = ((size/all_size.to_f) * 100).to_i
-            trace "#{size.to_s.rjust(5)} objects #{percent.to_s.rjust(3)}%  #{range.description}".method("#{range.color}").call
           end
         end
 

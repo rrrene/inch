@@ -27,6 +27,7 @@ module Inch
         :console => Command::Console,
         :list => Command::List,
         :show => Command::Show,
+        :stats => Command::Stats,
       }
 
       self.default_command = :list
