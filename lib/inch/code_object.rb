@@ -5,4 +5,3 @@ end
 
 require_relative 'code_object/docstring'
 require_relative 'code_object/proxy'
-require_relative 'code_object/evaluation'

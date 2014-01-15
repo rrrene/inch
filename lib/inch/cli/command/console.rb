@@ -16,14 +16,19 @@ module Inch
           "Usage: inch console [options]"
         end
 
-        def run(*args)
+        def run(args)
+          parse_arguments(args)
+          run_source_parser(args)
           binding.pry
         end
 
         private
 
-        def source_parser
-          @source_parser ||= SourceParser.run(["{lib,app}/**/*.rb", "ext/**/*.c"])
+        def parse_arguments(args)
+          opts = OptionParser.new
+          opts.banner = usage
+          common_options(opts)
+          parse_options(opts, args)
         end
       end
     end

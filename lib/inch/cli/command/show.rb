@@ -16,18 +16,12 @@ module Inch
         # @param *args [Array<String>] args the list of arguments.
         # @return [void]
         def run(*args)
-          parse_arguments(*args)
-          @objects.each do |o|
-            print_object(o)
-          end
-        end
+          parse_arguments(args)
 
-        def parse_arguments(*args)
-          opts = OptionParser.new
-          opts.banner = usage
-          common_options(opts)
-          parse_options(opts, args)
-          object_name = args.first || ""
+          object_name = args.pop || ""
+
+          run_source_parser(args)
+          
           if object_name.empty?
             kill # "Provide a name to an object to show it's evaluation."
           else
@@ -37,9 +31,20 @@ module Inch
               @objects = source_parser.find_objects(object_name)
             end
           end
+
+          @objects.each do |o|
+            print_object(o)
+          end
         end
 
         private
+
+        def parse_arguments(args)
+          opts = OptionParser.new
+          opts.banner = usage
+          common_options(opts)
+          parse_options(opts, args)
+        end
 
         LJUST = 20
 
@@ -97,10 +102,6 @@ module Inch
 
         def separator
           "-".magenta * (CLI::COLUMNS - 2)
-        end
-
-        def source_parser
-          @source_parser ||= SourceParser.run(["{lib,app}/**/*.rb", "ext/**/*.c"])
         end
       end
     end

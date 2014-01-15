@@ -27,7 +27,7 @@ module Inch
         end
 
         def evaluation
-          @evaluation ||= CodeObject::Evaluation.for(self)
+          @evaluation ||= Evaluation.for(self)
         end
 
         def has_code_example?

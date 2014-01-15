@@ -22,7 +22,8 @@ module Inch
         # @param [Array<String>] args the list of arguments.
         # @return [void]
         def run(*args)
-          parse_arguments(*args)
+          parse_arguments(args)
+          run_source_parser(args)
           filter_objects
           assign_objects_to_ranges
           if @short
@@ -32,10 +33,12 @@ module Inch
           end
         end
 
+        private
+
         #
-        # @param [Array<String>] args the list of arguments.
+        # @param args [Array<String>] args the list of arguments.
         # @return [void]
-        def parse_arguments(*args)
+        def parse_arguments(args)
           opts = OptionParser.new
           opts.banner = usage
           list_options(opts)
@@ -68,8 +71,6 @@ module Inch
             @depth = depth.to_i
           end
         end
-
-        private
 
         def assign_objects_to_ranges
           @ranges.each do |range|
@@ -132,10 +133,6 @@ module Inch
           end.reverse
         end
         attr_writer :objects
-
-        def source_parser
-          @source_parser ||= SourceParser.run(["{lib,app}/**/*.rb", "ext/**/*.c"])
-        end
       end
     end
   end

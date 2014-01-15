@@ -54,6 +54,6 @@ describe ::Inch::CLI::Command::Show do
     out, err = capture_io do
       @command.run("Foo::Bar#", "--no-color")
     end
-    assert_equal out.uncolor, out, "should be uncolored"
+    assert_equal out.uncolor, out, "should not be colored"
   end
 end

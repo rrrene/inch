@@ -11,6 +11,7 @@ module Inch
       # @since 0.6.0
       class Base
         include TraceHelper
+        include ParserHelper
 
         # Helper method to run the utility on an instance.
         # @see #run
