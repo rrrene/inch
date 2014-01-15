@@ -10,7 +10,7 @@ module Inch
 
           # This role sets a max_score.
           def max_score
-            @value.to_f
+            # @value.to_f
           end
         end
         

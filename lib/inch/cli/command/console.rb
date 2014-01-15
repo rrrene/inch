@@ -9,6 +9,11 @@ module Inch
         def_delegators :source_parser, :all_objects, :find_object, :find_objects
         alias :f :find_object
 
+        attr_reader :object, :objects
+        alias :o :object
+
+
+
         def description
           'Shows a console'
         end
@@ -18,8 +23,20 @@ module Inch
         end
 
         def run(*args)
-          parse_arguments(args)
+          object_name = args.pop || ""
+
           run_source_parser(args)
+          
+          if object_name.empty?
+            @objects = []
+          else
+            if @object = source_parser.find_object(object_name)
+              @objects = [@object]
+            else
+              @objects = source_parser.find_objects(object_name)
+            end
+          end
+
           binding.pry
         end
 

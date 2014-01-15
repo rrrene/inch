@@ -65,7 +65,7 @@ module Inch
           end
 
           if o.namespace?
-            echo "Children:"
+            echo "Children (height: #{o.height}):"
             o.children.each do |child|
               echo "+ " + child.path.magenta
             end

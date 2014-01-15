@@ -99,6 +99,11 @@ module Foo
     # @return [void]
     def method_with_code_example2(p1, p2 = nil)
     end
+
+      class Baz
+        def initialize(param1, param2, param3)
+        end
+      end
   end
 
   class Baz < Bar
@@ -108,4 +113,8 @@ module Foo
 
   class Qux
   end
+end
+
+
+def top
 end

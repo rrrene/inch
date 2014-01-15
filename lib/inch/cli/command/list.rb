@@ -16,8 +16,10 @@ module Inch
 
           @omitted = 0
           @full = false
+          @visibility = [:public, :protected]
         end
 
+        # @private
         def description; 'Lists all objects with their results' end
 
         # Runs the commandline utility, parsing arguments and displaying a
@@ -54,12 +56,21 @@ module Inch
             @full = true
           end
 
-
           opts.on("--only-namespaces", "Only show namespaces (classes, modules)") do
             @namespaces = :only
           end
           opts.on("--no-namespaces", "Only show namespace children (methods, constants, attributes)") do
             @namespaces = :none
+          end
+
+          opts.on("--[no-]public", "Do [not] show public objects") do |v|
+            set_visibility :public, v
+          end
+          opts.on("--[no-]protected", "Do [not] show protected objects") do |v|
+            set_visibility :protected, v
+          end
+          opts.on("--[no-]private", "Do [not] show private objects") do |v|
+            set_visibility :private, v
           end
 
           opts.on("--only-undocumented", "Only show undocumented objects") do
@@ -137,12 +148,21 @@ module Inch
           if @depth
             self.objects = objects.select { |o| o.depth <= @depth }
           end
+          self.objects = objects.select { |o| @visibility.include?(o.visibility) }
         end
 
         def result(path, score, color)
           value = score.to_i.to_s
           value = value.rjust(3).method(color).call
           edged(color, "#{value}  #{path}")
+        end
+
+        def set_visibility(visibility, v)
+          if v
+            @visibility.push(visibility)
+          else
+            @visibility.delete(visibility)
+          end
         end
 
         def objects
