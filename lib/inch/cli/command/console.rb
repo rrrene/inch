@@ -7,6 +7,7 @@ module Inch
         extend Forwardable
 
         def_delegators :source_parser, :all_objects, :find_object, :find_objects
+        alias :f :find_object
 
         def description
           'Shows a console'
