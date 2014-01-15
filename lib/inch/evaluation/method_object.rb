@@ -9,7 +9,7 @@ module Inch
       def evaluate
         eval_doc
         if object.overridden?
-          add_role Role::Method::Overridden.new(self, object.overridden_method.evaluation.score)
+          add_role Role::Method::Overridden.new(self, object.overridden_method.score)
         end
         if object.has_parameters?
           eval_all_parameters
@@ -23,7 +23,7 @@ module Inch
 
       def set_min_score(default)
         if object.overridden?
-          @min_score = object.overridden_method.evaluation.score
+          @min_score = object.overridden_method.score
         else
           @min_score = default
         end

@@ -16,7 +16,7 @@ class TestFixtureSimple < MiniTest::Unit::TestCase
     refute m.return_typed?
     assert m.undocumented?
 
-    assert_equal 0, m.evaluation.score
+    assert_equal 0, m.score
   end
 
   def test_method_with_missing_param_doc
@@ -33,7 +33,7 @@ class TestFixtureSimple < MiniTest::Unit::TestCase
     p = m.parameter(:param3)
     refute p.mentioned?
 
-    assert m.evaluation.score
+    assert m.score
   end
 
   def test_method_with_wrong_doc
@@ -56,7 +56,7 @@ class TestFixtureSimple < MiniTest::Unit::TestCase
     assert p.mentioned?
     assert p.wrongly_mentioned? # mentioned in docs, but not present
 
-    assert m.evaluation.score
+    assert m.score
   end
 
   def test_method_with_full_doc
@@ -73,7 +73,7 @@ class TestFixtureSimple < MiniTest::Unit::TestCase
       refute param.wrongly_mentioned?
     end
 
-    assert_equal 100, m.evaluation.score
+    assert_equal 100, m.score
   end
 
   def test_method_without_params_or_return_type
@@ -82,7 +82,7 @@ class TestFixtureSimple < MiniTest::Unit::TestCase
     refute m.has_parameters?
     refute m.return_typed?
 
-    assert m.evaluation.score
+    assert m.score
   end
 
   def test_method_without_docstring
@@ -91,7 +91,7 @@ class TestFixtureSimple < MiniTest::Unit::TestCase
     assert m.has_parameters?
     assert m.return_typed?
 
-    assert m.evaluation.score
+    assert m.score
   end
 
   def test_method_without_params_or_docstring
@@ -100,7 +100,7 @@ class TestFixtureSimple < MiniTest::Unit::TestCase
     refute m.has_parameters?
     assert m.return_typed?
 
-    assert m.evaluation.score
+    assert m.score
   end
 
   def test_method_with_rdoc_doc
@@ -111,7 +111,7 @@ class TestFixtureSimple < MiniTest::Unit::TestCase
     assert p.mentioned?         # mentioned in docs, correctly
     refute m.return_typed?
 
-    assert m.evaluation.score
+    assert m.score
   end
 
   def test_method_with_other_rdoc_doc
@@ -126,7 +126,7 @@ class TestFixtureSimple < MiniTest::Unit::TestCase
     assert p.mentioned?         # mentioned in docs, correctly
     refute m.return_typed?
 
-    assert m.evaluation.score
+    assert m.score
   end
 
   def test_method_with_unstructured_doc
@@ -137,7 +137,7 @@ class TestFixtureSimple < MiniTest::Unit::TestCase
     assert p.mentioned?         # mentioned in docs, correctly
     refute m.return_typed?
 
-    assert m.evaluation.score
+    assert m.score
   end
 
   def test_method_with_unstructured_doc_missing_params
@@ -148,7 +148,7 @@ class TestFixtureSimple < MiniTest::Unit::TestCase
     refute p.mentioned?         # mentioned in docs, correctly
     refute m.return_typed?
 
-    assert m.evaluation.score
+    assert m.score
   end
 
   def test_method_with_code_example

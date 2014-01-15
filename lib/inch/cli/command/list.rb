@@ -74,8 +74,8 @@ module Inch
 
         def assign_objects_to_ranges
           @ranges.each do |range|
-            arr = objects.select { |o| range.range.include?(o.evaluation.score) }
-            range.objects = arr.sort_by(&:path)
+            arr = objects.select { |o| range.range.include?(o.score) }
+            range.objects = arr.sort_by(&:score).reverse
           end
         end
 
@@ -87,7 +87,7 @@ module Inch
               trace
               trace_header(range.description, range.color)
               range.objects.each do |o|
-                trace result(o.path, o.evaluation.score, range.color)
+                trace result(o.path, o.score, range.color)
               end
             end
           end
@@ -129,7 +129,7 @@ module Inch
 
         def objects
           @objects ||= source_parser.all_objects.sort_by do |o|
-            o.evaluation.score
+            o.score
           end.reverse
         end
         attr_writer :objects

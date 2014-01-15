@@ -92,7 +92,7 @@ module Inch
             end
           end
           echo separator
-          echo "Score (min: #{o.evaluation.min_score}, max: #{o.evaluation.max_score})".ljust(40) + "#{o.evaluation.score.to_i}".rjust(5)
+          echo "Score (min: #{o.evaluation.min_score}, max: #{o.evaluation.max_score})".ljust(40) + "#{o.score.to_i}".rjust(5)
           echo
         end
 
