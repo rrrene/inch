@@ -96,8 +96,8 @@ module Inch
           echo
         end
 
-        def echo(msg = "", edge = "┃ ".magenta)
-          trace edge + msg
+        def echo(msg = "")
+          trace edged(:magenta, msg)
         end
 
         def separator

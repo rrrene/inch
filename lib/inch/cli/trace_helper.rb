@@ -14,6 +14,10 @@ module Inch
 
       private
 
+      def edged(color, msg, edge = "┃ ")
+        edge.method(color).call + msg
+      end
+
       def header(text, color)
         " ".method("on_#{color}").call + 
           " #{text}".ljust(CLI::COLUMNS-1)

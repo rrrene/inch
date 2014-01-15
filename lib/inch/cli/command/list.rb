@@ -6,12 +6,16 @@ module Inch
           # Returns code_objects that received a score with the defined +range+
           attr_accessor :objects
         end
+        PER_RANGE = 10
 
         def initialize
           @ranges = []
           @ranges << ScoreRange.new(80..100, "A - Good", :green)
           @ranges << ScoreRange.new(50...80, "B - Medium", :yellow)
           @ranges << ScoreRange.new(0...50, "C - Bad", :red)
+
+          @omitted = 0
+          @full = false
         end
 
         def description; 'Lists all objects with their results' end
@@ -49,9 +53,14 @@ module Inch
         def list_options(opts)
           opts.separator ""
           opts.separator "List options:"
+
           opts.on("--short", "Only show file counts") do |v|
             @short = true
           end
+          opts.on("--full", "Show all objects in the output") do
+            @full = true
+          end
+
 
           opts.on("--only-namespaces", "Only show namespaces (classes, modules)") do
             @namespaces = :only
@@ -86,10 +95,14 @@ module Inch
             else
               trace
               trace_header(range.description, range.color)
-              range.objects.each do |o|
-                trace result(o.path, o.score, range.color)
-              end
+              display_range(range)
             end
+          end
+
+          if @omitted > 0
+            trace
+            trace "This output omitted #{@omitted} objects. ".dark + 
+              "Use `--full` to display all objects.".dark
           end
         end
 
@@ -100,6 +113,28 @@ module Inch
             percent = ((size/all_size.to_f) * 100).to_i
             trace "#{size.to_s.rjust(5)} objects #{percent.to_s.rjust(3)}%  #{range.description}".method("#{range.color}").call
           end
+        end
+
+        def display_range(range)
+          display_count = @full ? range.objects.size : PER_RANGE
+          list = range.objects[0...display_count]
+          list.each do |o|
+            trace result(o.path, o.score, range.color)
+          end
+
+          display_omitted_hint(range, display_count)
+        end
+
+        def display_omitted_hint(range, display_count)
+          omitted = range.objects.size - display_count
+          if omitted > 0
+            @omitted += omitted
+            echo range.color, "...  (omitting #{omitted} objects)".dark
+          end
+        end
+
+        def echo(color, msg)
+          trace edged(color, msg)
         end
 
         def filter_objects
@@ -123,8 +158,7 @@ module Inch
         def result(path, score, color)
           value = score.to_i.to_s
           value = value.rjust(3).method(color).call
-          "┃ ".method(color).call + 
-            "#{value}  #{path}"
+          edged(color, "#{value}  #{path}")
         end
 
         def objects
