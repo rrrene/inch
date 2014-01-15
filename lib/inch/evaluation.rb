@@ -1,17 +1,15 @@
 module Inch
-  module CodeObject
-    module Evaluation
-      def self.for(code_object)
-        class_for(code_object).new(code_object)
-      end
+  module Evaluation
+    def self.for(code_object)
+      class_for(code_object).new(code_object)
+    end
 
-      private
-      def self.class_for(code_object)
-        class_name = code_object.class.to_s.split('::').last
-        eval(class_name)
-      rescue
-        Base
-      end
+    private
+    def self.class_for(code_object)
+      class_name = code_object.class.to_s.split('::').last
+      eval(class_name)
+    rescue
+      Base
     end
   end
 end
