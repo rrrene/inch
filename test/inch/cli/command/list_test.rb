@@ -18,6 +18,26 @@ describe ::Inch::CLI::Command::List do
     assert_match /\bFoo::Bar#method_without_doc\b/, out
   end
 
+  it "should run with filelist in args" do
+    out, err = capture_io do
+      @command.run("lib/**/*.rb", "app/**/*.rb")
+    end
+    refute out.empty?, "there should be some output"
+    assert err.empty?, "there should be no errors"
+    assert_match /\bFoo\b/, out
+    assert_match /\bFoo::Bar\b/, out
+    assert_match /\bFoo::Bar#method_with_full_doc\b/, out
+    assert_match /\bFoo::Bar#method_without_doc\b/, out
+  end
+
+  it "should run with non-existing filelist in args" do
+    out, err = capture_io do
+      @command.run("app/**/*.rb")
+    end
+    assert out.empty?, "there should be no output"
+    assert err.empty?, "there should be no errors"
+  end
+
   it "should output info when run with --help" do
     out, err = capture_io do
       assert_raises(SystemExit) { @command.run("--help") }
