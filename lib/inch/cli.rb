@@ -16,6 +16,7 @@ module Inch
   end
 end
 
+require_relative 'cli/arguments'
 require_relative 'cli/parser_helper'
 require_relative 'cli/trace_helper'
 require_relative 'cli/yardopts_helper'

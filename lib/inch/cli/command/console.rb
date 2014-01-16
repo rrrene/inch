@@ -7,6 +7,7 @@ module Inch
         extend Forwardable
 
         def_delegators :source_parser, :all_objects, :find_object, :find_objects
+        alias :all :all_objects
         alias :f :find_object
 
         attr_reader :object, :objects
@@ -21,30 +22,23 @@ module Inch
         end
 
         def run(*args)
-          object_name = parse_arguments_and_object_names(args)
-          run_object(object_name)
+          object_names = parse_arguments_and_object_names(args)
+          run_objects(object_names)
+          binding.pry
         end
 
         private
 
-        def run_object(object_name)
-          if object_name.empty?
-            @objects = []
-          else
-            if @object = source_parser.find_object(object_name)
-              @objects = [@object]
-            else
-              @objects = source_parser.find_objects(object_name)
-            end
-          end
-          binding.pry
+        def run_objects(object_names)
+          @objects = find_object_names(object_names)
+          @object = objects.first
         end
 
         def parse_arguments_and_object_names(args)
           parse_arguments(args)
-          object_name = parse_object_names(args)
+          object_names = parse_object_names(args)
           run_source_parser(args)
-          object_name
+          object_names
         end
 
         def parse_arguments(args)

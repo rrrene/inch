@@ -11,21 +11,17 @@ module Inch
         end
 
         def run(*args)
-          object_name = parse_arguments_and_object_names(args)
-          run_object(object_name)
+          object_names = parse_arguments_and_object_names(args)
+          run_objects(object_names)
         end
 
         private
 
-        def run_object(object_name)
-          if object_name.empty?
+        def run_objects(object_names)
+          if object_names.empty?
             kill # "Provide a name to an object to show it's evaluation."
           else
-            if object = source_parser.find_object(object_name)
-              @objects = [object]
-            else
-              @objects = source_parser.find_objects(object_name)
-            end
+            @objects = find_object_names(object_names)
           end
 
           @objects.each do |o|
@@ -35,9 +31,9 @@ module Inch
 
         def parse_arguments_and_object_names(args)
           parse_arguments(args)
-          object_name = parse_object_names(args)
+          object_names = parse_object_names(args)
           run_source_parser(args)
-          object_name
+          object_names
         end
 
         def parse_arguments(args)
