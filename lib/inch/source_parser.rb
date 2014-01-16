@@ -1,7 +1,7 @@
 module Inch
   # Parses the source tree
   class SourceParser
-    def self.run(*args) 
+    def self.run(*args)
       parser = self.new
       parser.run(*args)
       parser

@@ -17,7 +17,7 @@ module Inch
         end
 
         def usage
-          "Usage: inch console [options]"
+          'Usage: inch console [paths] [OBJECT_NAME] [options]'
         end
 
         def run(*args)
@@ -37,9 +37,7 @@ module Inch
               @objects = source_parser.find_objects(object_name)
             end
           end
-          # comment line
           binding.pry
-          # another
         end
 
         def parse_arguments_and_object_names(args)
@@ -53,7 +51,7 @@ module Inch
           opts = OptionParser.new
           opts.banner = usage
           common_options(opts)
-          
+
           yardopts_options(opts)
           parse_yardopts_options(opts, args)
 

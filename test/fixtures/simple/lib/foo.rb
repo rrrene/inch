@@ -114,7 +114,7 @@ module Foo
   class Qux # :nodoc:
     def method_with_implicit_nodoc
     end
-    
+
     DOCCED_VALUE = 42 # :doc:
 
     class Quux
@@ -136,7 +136,7 @@ module Foo
   class HiddenClass #:nodoc: all
     def some_value
     end
-    
+
     class EvenMoreHiddenClass
       def method_with_implicit_nodoc
       end

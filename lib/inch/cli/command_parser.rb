@@ -34,7 +34,9 @@ module Inch
 
       # Convenience method to create a new CommandParser and call {#run}
       # @return (see #run)
-      def self.run(*args) new.run(*args) end
+      def self.run(*args)
+        new.run(*args)
+      end
 
       def initialize
         #log.show_backtraces = false
@@ -60,7 +62,9 @@ module Inch
 
       private
 
-      def commands; self.class.commands end
+      def commands
+        self.class.commands
+      end
 
       def list_commands
         trace "Usage: inch <command> [options]"

@@ -23,10 +23,10 @@ module Inch
 
       def parameter_mention_patterns(name)
         [
-          "+#{name}+", 
-          "+#{name}+::", 
-          "<tt>#{name}</tt>", 
-          "<tt>#{name}</tt>::", 
+          "+#{name}+",
+          "+#{name}+::",
+          "<tt>#{name}</tt>",
+          "<tt>#{name}</tt>::",
           "#{name}::"
         ]
       end

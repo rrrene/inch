@@ -19,8 +19,13 @@ module Inch
           @visibility = [:public, :protected]
         end
 
-        # @private
-        def description; 'Lists all objects with their results' end
+        def description
+          'Lists all objects with their results'
+        end
+
+        def usage
+          'Usage: inch list [paths] [options]'
+        end
 
         # Runs the commandline utility, parsing arguments and displaying a
         # list of objects
@@ -43,10 +48,10 @@ module Inch
         def parse_arguments(args)
           opts = OptionParser.new
           opts.banner = usage
-          
+
           list_options(opts)
           common_options(opts)
-          
+
           yardopts_options(opts)
           parse_yardopts_options(opts, args)
 
@@ -110,7 +115,7 @@ module Inch
 
           if @omitted > 0
             trace
-            trace "This output omitted #{@omitted} objects. ".dark + 
+            trace "This output omitted #{@omitted} objects. ".dark +
               "Use `--full` to display all objects.".dark
           end
         end
@@ -153,7 +158,9 @@ module Inch
           if @depth
             self.objects = objects.select { |o| o.depth <= @depth }
           end
-          self.objects = objects.select { |o| @visibility.include?(o.visibility) }
+          self.objects = objects.select do |o|
+            @visibility.include?(o.visibility)
+          end
         end
 
         def result(object, color)

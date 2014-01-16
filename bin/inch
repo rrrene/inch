@@ -3,10 +3,9 @@
 require 'bundler'
 begin
   Bundler.require
-rescue Bundler::GemfileNotFound => e
+rescue Bundler::GemfileNotFound
   require 'inch'
 end
 
 require 'inch'
-#Inch::Runner.new(ARGV)
 Inch::CLI::CommandParser.run(*ARGV)

@@ -2,7 +2,7 @@ module Inch
   module Evaluation
     class Base
       extend Forwardable
-      
+
       MIN_SCORE = 0
       MAX_SCORE = 100
 
@@ -17,12 +17,12 @@ module Inch
 
       def evaluate
       end
-      
+
       def max_score
         arr = @roles.map(&:max_score).compact
         [MAX_SCORE].concat(arr).min
       end
-      
+
       def min_score
         arr = @roles.map(&:min_score).compact
         [MIN_SCORE].concat(arr).max

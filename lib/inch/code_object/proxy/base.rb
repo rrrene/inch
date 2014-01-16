@@ -31,7 +31,7 @@ module Inch
         #    1 << 2 << 3  <<  4
         #
         # +depth+ answers the question "how many layers of code objects are
-        # above this one?" 
+        # above this one?"
         #
         # @note top-level counts, that's why Foo has depth 1!
         #

@@ -25,7 +25,7 @@ module Inch
             +1
           end
         end
-        
+
         class WithoutChildren < Base
         end
         class WithoutMethods < Base

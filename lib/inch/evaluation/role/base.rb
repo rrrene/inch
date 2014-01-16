@@ -6,7 +6,7 @@ module Inch
           @object = object
           @value = value
         end
-        
+
         # Override this method to that a max_score for the evaluation.
         def max_score
         end

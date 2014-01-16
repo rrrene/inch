@@ -2,7 +2,7 @@ module Inch
   module CodeObject
     module NodocHelper
 
-      # Returns true if the code object is somehow marked not to be 
+      # Returns true if the code object is somehow marked not to be
       # documented.
       #
       # @note Doesnot recognize ":startdoc:" and ":stopdoc:"
@@ -33,7 +33,7 @@ module Inch
 
       def implicit_nodoc_all_comment?
         if parent
-          parent.explicit_nodoc_all_comment? || 
+          parent.explicit_nodoc_all_comment? ||
             parent.implicit_nodoc_all_comment?
         end
       end

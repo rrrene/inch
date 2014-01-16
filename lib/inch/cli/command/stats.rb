@@ -3,7 +3,14 @@ module Inch
     module Command
       class Stats < List
         GOOD_ENOUGH_THRESHOLD = 50
-        def description; 'Lists all objects with their results' end
+
+        def description
+          'Lists all objects with their results'
+        end
+
+        def usage
+          'Usage: inch stats [paths] [options]'
+        end
 
         def run(*args)
           parse_arguments(args)

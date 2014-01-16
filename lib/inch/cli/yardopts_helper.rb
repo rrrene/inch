@@ -27,7 +27,7 @@ module Inch
         self.files = wrapper.files
         self.excluded = wrapper.excluded
       end
-      
+
       def yardopts_options(opts)
         wrapper = YardoptsWrapper.new()
         wrapper.add_yardoc_options(opts)
