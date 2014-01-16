@@ -1,6 +1,13 @@
 module Inch
   module CLI
     module TraceHelper
+      def debug(msg)
+        return
+        msg.to_s.lines.each do |line|
+          trace edged :dark, line.gsub(/\n$/,'').dark
+        end
+      end
+
       # Writes the given +text+ to stdout
       # @param text [String]
       # @return [void]

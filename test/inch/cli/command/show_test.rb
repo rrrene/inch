@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../../test_helper')
 describe ::Inch::CLI::Command::Show do
   before do
     Dir.chdir fixture_path(:simple)
-    @command = ::Inch::CLI::Command::Show.new
+    @command = ::Inch::CLI::Command::Show
   end
 
   it "should warn and exit when run without args" do

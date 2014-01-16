@@ -12,6 +12,7 @@ module Inch
       class Base
         include TraceHelper
         include ParserHelper
+        include YardoptsHelper
 
         # Helper method to run the utility on an instance.
         # @see #run
@@ -78,13 +79,17 @@ module Inch
         #   array will be modified.
         # @return [void]
         def parse_options(opts, args)
-          # color is enabled by default, can be turned of by switch --no-color
-          Term::ANSIColor::coloring = true
+          reset
           opts.parse!(args)
         rescue OptionParser::ParseError => err
           unrecognized_option(err)
           args.shift if args.first && args.first[0,1] != '-'
           retry
+        end
+
+        def reset
+          # color is enabled by default, can be turned of by switch --no-color
+          Term::ANSIColor::coloring = true
         end
 
         # Callback when an unrecognize option is parsed

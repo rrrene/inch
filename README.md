@@ -1,5 +1,7 @@
 # Inch
 
+A documentation measurement tool for Ruby, based on YARD.
+
 TODO: Write a gem description
 
 ## Installation
@@ -30,6 +32,16 @@ TODO: Write usage instructions here
 
 ## TODOs
 
-* Honor .yardoc opts-file
-* Generalize filter options for visible code objects (like in Command::List)
-* What about # :nodoc:? It would be cruel to punish not documenting explicitly excluded objects.
+* Recognize all relevant options in .yardopts file
+  * --no-public
+  * --protected
+  * --private
+  * --no-private
+  * --[no-]api API
+* Generalize filter options for visible code objects (adapt from YARD::CLI::Yardoc)
+
+## License
+
+Inch is released under the MIT License. See the LICENSE file for further details.
+
+For YARD's licensing, see https://github.com/lsegal/yard

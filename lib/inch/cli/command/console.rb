@@ -12,8 +12,6 @@ module Inch
         attr_reader :object, :objects
         alias :o :object
 
-
-
         def description
           'Shows a console'
         end
@@ -23,10 +21,13 @@ module Inch
         end
 
         def run(*args)
-          object_name = args.pop || ""
+          object_name = parse_arguments_and_object_names(args)
+          run_object(object_name)
+        end
 
-          run_source_parser(args)
-          
+        private
+
+        def run_object(object_name)
           if object_name.empty?
             @objects = []
           else
@@ -40,12 +41,21 @@ module Inch
           binding.pry
         end
 
-        private
+        def parse_arguments_and_object_names(args)
+          parse_arguments(args)
+          object_name = parse_object_names(args)
+          run_source_parser(args)
+          object_name
+        end
 
         def parse_arguments(args)
           opts = OptionParser.new
           opts.banner = usage
           common_options(opts)
+          
+          yardopts_options(opts)
+          parse_yardopts_options(opts, args)
+
           parse_options(opts, args)
         end
       end

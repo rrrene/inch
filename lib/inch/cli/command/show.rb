@@ -11,12 +11,13 @@ module Inch
         end
 
         def run(*args)
-          parse_arguments(args)
+          object_name = parse_arguments_and_object_names(args)
+          run_object(object_name)
+        end
 
-          object_name = args.pop || ""
+        private
 
-          run_source_parser(args)
-          
+        def run_object(object_name)
           if object_name.empty?
             kill # "Provide a name to an object to show it's evaluation."
           else
@@ -32,13 +33,30 @@ module Inch
           end
         end
 
-        private
+        def parse_arguments_and_object_names(args)
+          parse_arguments(args)
+          object_name = parse_object_names(args)
+          run_source_parser(args)
+          object_name
+        end
 
         def parse_arguments(args)
           opts = OptionParser.new
           opts.banner = usage
           common_options(opts)
+          
+          yardopts_options(opts)
+          parse_yardopts_options(opts, args)
+
           parse_options(opts, args)
+        end
+
+        # TOOD: really check the last parameters if they are globs, files 
+        # or switches and find the object_name(s) that way
+        def parse_object_names(args)
+          object_name = args.pop || ""
+          self.files.delete(object_name)
+          object_name
         end
 
         LJUST = 20

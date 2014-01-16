@@ -43,8 +43,13 @@ module Inch
         def parse_arguments(args)
           opts = OptionParser.new
           opts.banner = usage
+          
           list_options(opts)
           common_options(opts)
+          
+          yardopts_options(opts)
+          parse_yardopts_options(opts, args)
+
           parse_options(opts, args)
         end
 

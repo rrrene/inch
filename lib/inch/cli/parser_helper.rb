@@ -1,16 +1,23 @@
 module Inch
   module CLI
     module ParserHelper
+
       def run_source_parser(args)
-        paths = args
-        if paths.empty?
-          paths = ["lib/**/*.rb", "app/**/*.rb"]
-        end
-        extra_files = []
-        @source_parser = SourceParser.run(extra_files, paths, @excluded_files || [])
+        @source_parser = SourceParser.run(get_paths(args), @excluded || [])
       end
       attr_reader :source_parser
 
+      DEFAULT_PATHS = ["{lib,app}/**/*.rb", "ext/**/*.c"]
+
+      def get_paths(args)
+        paths = args.dup
+        paths.concat(@files) if @files
+        if paths.empty?
+          DEFAULT_PATHS
+        else
+          paths
+        end
+      end
     end
   end
 end
