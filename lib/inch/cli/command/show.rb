@@ -51,14 +51,6 @@ module Inch
           parse_options(opts, args)
         end
 
-        # TOOD: really check the last parameters if they are globs, files 
-        # or switches and find the object_name(s) that way
-        def parse_object_names(args)
-          object_name = args.pop || ""
-          self.files.delete(object_name)
-          object_name
-        end
-
         LJUST = 20
 
         def print_object(o)
@@ -96,7 +88,11 @@ module Inch
               else
                 score = " " + score
               end
-              echo name.ljust(40) + score
+              priority = role.priority.to_s.rjust(4)
+              if role.priority == 0
+                priority = priority.dark
+              end
+              echo name.ljust(40) + score + priority
               if role.max_score
                 echo "  (set max score to #{role.max_score})"
               end
@@ -116,7 +112,7 @@ module Inch
             if o.method?
               echo "Parameters:".ljust(LJUST) + "#{o.has_parameters? ? '' : 'No parameters'}"
               o.parameters.each do |p|
-                echo "  " + p.name.ljust(LJUST-2) + "#{p.mentioned? ? 'Text' : 'No text'} / #{p.typed? ? 'Typed' : 'Not typed'} / #{p.described? ? 'Described' : 'Not described'}"
+                echo "  " + p.name.ljust(LJUST-2) + "#{p.mentioned? ? 'Mentioned' : 'No text'} / #{p.typed? ? 'Typed' : 'Not typed'} / #{p.described? ? 'Described' : 'Not described'}"
               end
               echo "Return type:".ljust(LJUST) + "#{o.return_typed? ? 'Defined' : 'Not defined'}"
             end

@@ -9,6 +9,9 @@ module Inch
         else
           add_role Role::Object::WithoutDoc.new(object, DOC_SCORE)
         end
+        if object.nodoc?
+          add_role Role::Object::TaggedAsNodoc.new(object)
+        end
       end
     end
   end

@@ -7,6 +7,12 @@ module Inch
         class WithoutDoc < BadRole
         end
 
+        class TaggedAsNodoc < Base
+          def priority
+            -3
+          end
+        end
+
         class WithCodeExample < Base
         end
         class WithoutCodeExample < BadRole

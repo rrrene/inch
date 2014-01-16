@@ -4,6 +4,30 @@ module Inch
       module Method
         class WithoutParameters < Base
         end
+        class WithManyParameters < Base
+          # +priority
+          def priority
+            +1
+          end
+        end
+        class WithManyLines < Base
+          # +priority
+          def priority
+            +1
+          end
+        end
+        class WithBangName < Base
+          # +priority
+          def priority
+            +1
+          end
+        end
+        class HasAlias < Base
+          # +priority
+          def priority
+            +1
+          end
+        end
 
         class WithReturnType < Base
         end

@@ -2,8 +2,27 @@ module Inch
   module CodeObject
     module Proxy
       class MethodObject < Base
+        # convenient shortcuts to (YARD) code object
+        def_delegators :object, :name
+
+        def bang_name?
+          name =~ /\!$/
+        end
+
         def has_parameters?
           !parameters.empty?
+        end
+
+        MANY_PARAMETERS_THRESHOLD = 3
+        def has_many_parameters?
+          parameters.size > MANY_PARAMETERS_THRESHOLD
+        end
+
+        MANY_LINES_THRESHOLD = 20
+        def has_many_lines?
+          # for now, this includes the 'def' line and comments
+          size = object.source.lines.count
+          size > MANY_LINES_THRESHOLD
         end
 
         def method?
@@ -41,7 +60,6 @@ module Inch
           names.concat parameter_tags.map(&:name)
           names.uniq
         end
-
 
         def signature_parameter_names
           object.parameters.map(&:first)

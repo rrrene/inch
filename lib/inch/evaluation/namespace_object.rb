@@ -7,6 +7,20 @@ module Inch
       EXAMPLE_SCORE = 10
 
       def evaluate
+        eval_doc
+        eval_children
+
+        if object.has_many_attributes?
+          add_role Role::Namespace::WithManyAttributes.new(object)
+        end
+        if object.nodoc?
+          add_role Role::Object::TaggedAsNodoc.new(object)
+        end
+      end
+
+      private
+
+      def eval_doc
         if object.has_doc?
           add_role Role::Object::WithDoc.new(object, DOC_SCORE)
         else
@@ -17,14 +31,24 @@ module Inch
         else
           add_role Role::Object::WithoutCodeExample.new(object, EXAMPLE_SCORE)
         end
-        if children.empty?
-          add_role Role::Namespace::WithoutChildren.new(self)
-        else
-          add_role Role::Namespace::WithChildren.new(self, children.map(&:score).min)
-        end
       end
 
-      private
+      def eval_children
+        if children.empty?
+          add_role Role::Namespace::WithoutChildren.new(object)
+        else
+          add_role Role::Namespace::WithChildren.new(object, children.map(&:score).min)
+          if object.pure_namespace?
+            add_role Role::Namespace::Pure.new(object)
+          end
+          if object.no_methods?
+            add_role Role::Namespace::WithoutMethods.new(object)
+          end
+          if object.has_many_children?
+            add_role Role::Namespace::WithManyChildren.new(object)
+          end
+        end
+      end
 
       def children
         @children ||= object.children.map(&:evaluation)

@@ -14,10 +14,14 @@ module Inch
         def_delegators :object, :type, :path, :files, :namespace, :source, :source_type, :signature, :group, :dynamic, :visibility, :docstring
 
         # convenient shortcuts to evalution object
-        def_delegators :evaluation, :score, :roles
+        def_delegators :evaluation, :score, :roles, :priority
 
         def initialize(object)
           self.object = object
+        end
+
+        def has_alias?
+          !object.aliases.empty?
         end
 
         # The depth of the following is 4:
@@ -104,6 +108,10 @@ module Inch
         # @return [Boolean] +true+ if the object has no documentation at all
         def undocumented?
           docstring.empty? && object.tags.empty?
+        end
+
+        def inspect
+          "#<#{self.class.to_s}: #{path}>"
         end
       end
     end

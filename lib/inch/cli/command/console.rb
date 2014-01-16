@@ -37,8 +37,9 @@ module Inch
               @objects = source_parser.find_objects(object_name)
             end
           end
-
+          # comment line
           binding.pry
+          # another
         end
 
         def parse_arguments_and_object_names(args)

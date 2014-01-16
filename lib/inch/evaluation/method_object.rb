@@ -8,15 +8,24 @@ module Inch
 
       def evaluate
         eval_doc
-        if object.overridden?
-          add_role Role::Method::Overridden.new(self, object.overridden_method.score)
-        end
-        if object.has_parameters?
-          eval_all_parameters
-        else
-          eval_no_parameters
-        end
+        eval_parameters
         eval_return_type
+
+        if object.overridden?
+          add_role Role::Method::Overridden.new(object, object.overridden_method.score)
+        end
+        if object.has_many_lines?
+          add_role Role::Method::WithManyLines.new(object)
+        end
+        if object.bang_name?
+          add_role Role::Method::WithBangName.new(object)
+        end
+        if object.has_alias?
+          add_role Role::Method::HasAlias.new(object)
+        end
+        if object.nodoc?
+          add_role Role::Object::TaggedAsNodoc.new(object)
+        end
       end
 
       private
@@ -31,6 +40,14 @@ module Inch
           add_role Role::Object::WithCodeExample.new(object, EXAMPLE_SCORE)
         else
           add_role Role::Object::WithoutCodeExample.new(object, EXAMPLE_SCORE)
+        end
+      end
+
+      def eval_parameters
+        if object.has_parameters?
+          eval_all_parameters
+        else
+          eval_no_parameters
         end
       end
 
@@ -58,6 +75,18 @@ module Inch
           else
             add_role Role::MethodParameter::WithoutType.new(param, per_param * 0.5)
           end
+          if param.bad_name?
+            add_role Role::MethodParameter::WithBadName.new(param)
+          end
+          if param.block?
+            add_role Role::MethodParameter::IsBlock.new(param)
+          end
+          if param.splat?
+            add_role Role::MethodParameter::IsSplat.new(param)
+          end
+        end
+        if object.has_many_parameters?
+          add_role Role::Method::WithManyParameters.new(object)
         end
       end
 

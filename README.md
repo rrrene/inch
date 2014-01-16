@@ -38,7 +38,10 @@ TODO: Write usage instructions here
   * --private
   * --no-private
   * --[no-]api API
-* Generalize filter options for visible code objects (adapt from YARD::CLI::Yardoc)
+* Generalize filter options for visible code objects 
+  (adapt from YARD::CLI::Yardoc)
+* Add support for multiple method signatures for methods 
+  (realized via the @overload tag in YARD)
 
 ## License
 

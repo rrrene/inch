@@ -39,6 +39,10 @@ module Inch
         end
       end
 
+      def priority
+        @roles.inject(0) { |sum,r| sum + r.priority.to_i }
+      end
+
       def roles
         @roles
       end

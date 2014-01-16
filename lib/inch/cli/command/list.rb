@@ -93,7 +93,7 @@ module Inch
         def assign_objects_to_ranges
           @ranges.each do |range|
             arr = objects.select { |o| range.range.include?(o.score) }
-            range.objects = arr.sort_by(&:score).reverse
+            range.objects = arr.sort_by { |o| [o.priority, o.score] }.reverse
           end
         end
 
@@ -119,7 +119,7 @@ module Inch
           display_count = @full ? range.objects.size : PER_RANGE
           list = range.objects[0...display_count]
           list.each do |o|
-            trace result(o.path, o.score, range.color)
+            trace result(o, range.color)
           end
 
           display_omitted_hint(range, display_count)
@@ -156,10 +156,11 @@ module Inch
           self.objects = objects.select { |o| @visibility.include?(o.visibility) }
         end
 
-        def result(path, score, color)
-          value = score.to_i.to_s
-          value = value.rjust(3).method(color).call
-          edged(color, "#{value}  #{path}")
+        def result(object, color)
+          score = object.score.to_i.to_s
+          score = score.rjust(3).method(color).call
+          priority = object.priority
+          edged(color, "#{score}  #{priority}  #{object.path}")
         end
 
         def set_visibility(visibility, v)

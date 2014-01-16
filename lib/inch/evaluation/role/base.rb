@@ -15,9 +15,16 @@ module Inch
         def min_score
         end
 
+        # Returns a score that will be added to the associated object's
+        # overall score.
+        #
         # Override this method to that a score for the role.
         def score
           @value.to_f
+        end
+
+        def priority
+          0
         end
       end
     end
