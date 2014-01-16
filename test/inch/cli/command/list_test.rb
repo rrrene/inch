@@ -15,7 +15,7 @@ describe ::Inch::CLI::Command::List do
     assert_match /\bFoo\b/, out
     assert_match /\bFoo::Bar\b/, out
     assert_match /\bFoo::Bar#method_with_full_doc\b/, out
-    assert_match /\bFoo::Bar#method_without_doc\b/, out
+    assert_match /\bFoo::Bar#method_with_code_example\b/, out
   end
 
   it "should run with filelist in args" do
@@ -27,7 +27,7 @@ describe ::Inch::CLI::Command::List do
     assert_match /\bFoo\b/, out
     assert_match /\bFoo::Bar\b/, out
     assert_match /\bFoo::Bar#method_with_full_doc\b/, out
-    assert_match /\bFoo::Bar#method_without_doc\b/, out
+    assert_match /\bFoo::Bar#method_with_code_example\b/, out
   end
 
   it "should run with non-existing filelist in args" do
