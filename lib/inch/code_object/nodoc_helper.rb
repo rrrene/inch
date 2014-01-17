@@ -61,9 +61,15 @@ module Inch
       end
 
       def declarations
-        @declarations ||= object.files.map do |(filename, line_no)|
+        @declarations ||= files.map do |(filename, line_no)|
           get_line_no(filename, line_no)
         end
+      end
+
+      def files
+        object.files
+      rescue YARD::CodeObjects::ProxyMethodError
+        []
       end
 
       def get_line_no(filename, n)

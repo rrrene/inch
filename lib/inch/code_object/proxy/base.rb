@@ -11,7 +11,7 @@ module Inch
         attr_accessor :object
 
         # convenient shortcuts to (YARD) code object
-        def_delegators :object, :type, :path, :files, :namespace, :source, :source_type, :signature, :group, :dynamic, :visibility, :docstring
+        def_delegators :object, :type, :path, :namespace, :source, :source_type, :signature, :group, :dynamic, :visibility, :docstring
 
         # convenient shortcuts to evalution object
         def_delegators :evaluation, :score, :roles, :priority

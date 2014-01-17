@@ -20,7 +20,7 @@ module Inch
         dupped_args.delete("--help")
         wrapper.parse_arguments(*dupped_args)
 
-        debug "Using yardopts\n" \
+        debug "Using\n" \
               "  files:    #{wrapper.files}\n" \
               "  excluded: #{wrapper.excluded}"
 
