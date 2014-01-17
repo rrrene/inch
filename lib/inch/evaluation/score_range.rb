@@ -2,7 +2,12 @@ module Inch
   module Evaluation
     class ScoreRange < Struct.new(:range, :grade, :description, :color)
       # Returns code_objects that received a score with the defined +range+
-      attr_accessor :objects
+      attr_reader :objects
+
+      def objects=(arr)
+        arr.each { |o| o.grade = grade }
+        @objects = arr
+      end
     end
 
     SCORE_RANGE_ARGS = [

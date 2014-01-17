@@ -10,6 +10,11 @@ module Inch
         # the actual (YARD) code object
         attr_accessor :object
 
+        # @return [Symbol]
+        #   when objects are assigned to ScoreRanges, this grade is set to
+        #   enable easier querying for objects of a certain grade
+        attr_accessor :grade
+
         # convenient shortcuts to (YARD) code object
         def_delegators :object, :type, :path, :namespace, :source, :source_type, :signature, :group, :dynamic, :visibility, :docstring
 
