@@ -4,12 +4,12 @@ module Inch
       module MethodParameter
         class WithMention < Base
         end
-        class WithoutMention < BadRole
+        class WithoutMention < Missing
         end
 
         class WithType < Base
         end
-        class WithoutType < BadRole
+        class WithoutType < Missing
         end
 
         class Splat < Base
@@ -23,7 +23,7 @@ module Inch
           end
         end
 
-        class WithWrongMention < BadRole
+        class WithWrongMention < Missing
           def priority
             +1
           end

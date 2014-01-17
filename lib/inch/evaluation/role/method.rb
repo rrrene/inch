@@ -31,7 +31,7 @@ module Inch
 
         class WithReturnType < Base
         end
-        class WithoutReturnType < BadRole
+        class WithoutReturnType < Missing
         end
 
         class Overridden < Base

@@ -4,7 +4,7 @@ module Inch
       module Object
         class WithDoc < Base
         end
-        class WithoutDoc < BadRole
+        class WithoutDoc < Missing
         end
 
         class TaggedAsNodoc < Base
@@ -15,7 +15,7 @@ module Inch
 
         class WithCodeExample < Base
         end
-        class WithoutCodeExample < BadRole
+        class WithoutCodeExample < Missing
         end
       end
     end
