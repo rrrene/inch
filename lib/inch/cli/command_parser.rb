@@ -28,6 +28,7 @@ module Inch
         :list => Command::List,
         :show => Command::Show,
         :stats => Command::Stats,
+        :suggest => Command::Suggest,
       }
 
       self.default_command = :list

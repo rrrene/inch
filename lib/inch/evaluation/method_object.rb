@@ -26,6 +26,9 @@ module Inch
         if object.nodoc?
           add_role Role::Object::TaggedAsNodoc.new(object)
         end
+        if object.in_root?
+          add_role Role::Object::InRoot.new(object)
+        end
       end
 
       private
@@ -79,10 +82,10 @@ module Inch
             add_role Role::MethodParameter::WithBadName.new(param)
           end
           if param.block?
-            add_role Role::MethodParameter::IsBlock.new(param)
+            add_role Role::MethodParameter::Block.new(param)
           end
           if param.splat?
-            add_role Role::MethodParameter::IsSplat.new(param)
+            add_role Role::MethodParameter::Splat.new(param)
           end
         end
         if object.has_many_parameters?

@@ -7,25 +7,25 @@ module Inch
         class WithManyParameters < Base
           # +priority
           def priority
-            +1
+            +2
           end
         end
         class WithManyLines < Base
           # +priority
           def priority
-            +1
+            +2
           end
         end
         class WithBangName < Base
           # +priority
           def priority
-            +1
+            +3
           end
         end
         class HasAlias < Base
           # +priority
           def priority
-            +1
+            +2
           end
         end
 

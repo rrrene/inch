@@ -24,6 +24,10 @@ module Inch
           !object.aliases.empty?
         end
 
+        def in_root?
+          depth == 1
+        end
+
         # The depth of the following is 4:
         #
         #   Foo::Bar::Baz#initialize

@@ -12,6 +12,11 @@ module Inch
             -3
           end
         end
+        class InRoot < Base
+          def priority
+            +3
+          end
+        end
 
         class WithCodeExample < Base
         end

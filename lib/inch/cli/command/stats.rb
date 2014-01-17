@@ -33,6 +33,7 @@ module Inch
           percent = all_size > 0 ? ((good/all_size.to_f) * 100).to_i : 0
           trace "".ljust(14) + "#{percent.to_s.rjust(3)}% seem good."
         end
+
       end
     end
   end

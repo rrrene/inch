@@ -16,6 +16,9 @@ module Inch
         if object.nodoc?
           add_role Role::Object::TaggedAsNodoc.new(object)
         end
+        if object.in_root?
+          add_role Role::Object::InRoot.new(object)
+        end
       end
 
       private

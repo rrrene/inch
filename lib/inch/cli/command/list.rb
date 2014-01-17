@@ -2,18 +2,10 @@ module Inch
   module CLI
     module Command
       class List < Base
-        class ScoreRange < Struct.new(:range, :description, :color)
-          # Returns code_objects that received a score with the defined +range+
-          attr_accessor :objects
-        end
         PER_RANGE = 10
 
         def initialize
-          @ranges = []
-          @ranges << ScoreRange.new(80..100, "A - Good", :green)
-          @ranges << ScoreRange.new(50...80, "B - Medium", :yellow)
-          @ranges << ScoreRange.new(0...50, "C - Bad", :red)
-
+          @ranges = Evaluation.new_score_ranges
           @omitted = 0
           @full = false
           @visibility = [:public, :protected]
