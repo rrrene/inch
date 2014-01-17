@@ -20,10 +20,6 @@ module Inch
         dupped_args.delete("--help")
         wrapper.parse_arguments(*dupped_args)
 
-        debug "Using\n" \
-              "  files:    #{wrapper.files}\n" \
-              "  excluded: #{wrapper.excluded}"
-
         self.files = wrapper.files
         self.excluded = wrapper.excluded
       end

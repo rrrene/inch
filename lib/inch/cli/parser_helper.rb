@@ -24,7 +24,13 @@ module Inch
       end
 
       def run_source_parser(args)
-        @source_parser = SourceParser.run(get_paths(args), @excluded || [])
+        paths = get_paths(args)
+
+        debug "Parsing:\n" \
+              "  files:    #{paths.inspect}\n" \
+              "  excluded: #{@excluded.inspect}"
+
+        @source_parser = SourceParser.run(paths, @excluded || [])
       end
       attr_reader :source_parser
 
