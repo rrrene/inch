@@ -2,7 +2,7 @@ module Inch
   module CLI
     module TraceHelper
       def debug(msg)
-        return
+        return unless ENV['DEBUG']
         msg.to_s.lines.each do |line|
           trace edged :dark, line.gsub(/\n$/,'').dark
         end
