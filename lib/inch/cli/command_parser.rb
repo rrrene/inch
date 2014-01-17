@@ -31,7 +31,7 @@ module Inch
         :suggest => Command::Suggest,
       }
 
-      self.default_command = :list
+      self.default_command = :suggest
 
       # Convenience method to create a new CommandParser and call {#run}
       # @return (see #run)
