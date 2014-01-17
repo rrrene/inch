@@ -16,6 +16,16 @@ describe ::Inch::CLI::Arguments do
     assert_equal [], arguments.switches
   end
 
+  it "should run with directories as well" do
+    args = [
+      "lib", "app/**/*.rb", "README"
+    ]
+    arguments = ::Inch::CLI::Arguments.new(args)
+    assert_equal ["lib", "app/**/*.rb", "README"], arguments.files
+    assert_equal [], arguments.object_names
+    assert_equal [], arguments.switches
+  end
+
   it "should run with files and object_name" do
     args = [
       "{app,lib}.rb", "README", "Foo"

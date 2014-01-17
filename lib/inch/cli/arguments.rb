@@ -33,7 +33,7 @@ module Inch
         if f =~ /[\*\{]/
           true
         else
-          File.file?(f)
+          File.file?(f) || File.directory?(f)
         end
       end
 
