@@ -22,3 +22,9 @@ require_relative 'cli/trace_helper'
 require_relative 'cli/yardopts_helper'
 require_relative 'cli/command'
 require_relative 'cli/command_parser'
+
+# hit Control + C to stop
+Signal.trap("INT") do
+  warn "  cancelled by user (INT)"
+  exit 1
+end
