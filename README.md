@@ -33,14 +33,17 @@ TODO: Write usage instructions here
 ## TODOs
 
 * Recognize all relevant options in .yardopts file
+  * --plugin
   * --no-public
   * --protected
   * --private
   * --no-private
   * --[no-]api API
-* Generalize filter options for visible code objects 
+* Separate CLI::Command responsibilities into Command::Context for object
+  filtering/manipulation and Command::Output for presentation
+* Generalize filter options for visible code objects
   (adapt from YARD::CLI::Yardoc)
-* Add support for multiple method signatures for methods 
+* Add support for multiple method signatures for methods
   (realized via the @overload tag in YARD)
 
 ## License

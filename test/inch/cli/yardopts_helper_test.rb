@@ -58,7 +58,6 @@ describe ::Inch::CLI::YardoptsHelper do
   end
 
   it "should not interfere with paths in arguments" do
-    skip
     out, err = capture_io do
       @instance = @command.run("lib/**/foo*.rb")
     end
@@ -66,7 +65,6 @@ describe ::Inch::CLI::YardoptsHelper do
   end
 
   it "should not intefer with --full at the end" do
-    skip
     out, err = capture_io do
       @instance = @command.run("lib/**/foo*.rb", "--full")
     end

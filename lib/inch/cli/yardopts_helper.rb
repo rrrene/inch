@@ -7,6 +7,9 @@ module Inch
       # @return [Array<String>] list of excluded paths (regexp matches)
       attr_accessor :excluded
 
+      VALID_YARD_SWITCHES = %w(--private --no-private --protected --no-public
+          --plugin --load --safe --yardopts --no-yardopts --document --no-document)
+
       # Parses the option and gracefully handles invalid switches
       #
       # @param [OptionParser] opts the option parser object
@@ -18,6 +21,13 @@ module Inch
 
         dupped_args = args.dup
         dupped_args.delete("--help")
+        dupped_args.delete_if do |arg|
+          arg =~ /^\-/ && !VALID_YARD_SWITCHES.include?(arg)
+        end
+
+        debug "Sending args to YARD:\n" \
+              "  args: #{dupped_args}"
+
         wrapper.parse_arguments(*dupped_args)
 
         self.files = wrapper.files

@@ -103,7 +103,14 @@ module Inch
             end
 
             trace
-            trace "Better grades equal better documentation.".dark
+            trace "You might want to look at these files:".dark
+            trace
+            display_objects.map(&:files).map(&:first).map(&:first).flatten.uniq.each do |file|
+              trace edged(:dark, "#{file.dark}")
+            end
+
+            trace
+            # trace "Better grades equal better documentation.".dark
           end
         end
 
