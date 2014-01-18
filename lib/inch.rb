@@ -3,10 +3,6 @@ require "inch/version"
 module Inch
 end
 
-require 'logger'
-require 'yard'
-log.level = ::Logger::UNKNOWN # basically disable YARD's logging
-
 require_relative 'inch/core_ext'
 require_relative 'inch/cli'
 require_relative 'inch/source_parser'
