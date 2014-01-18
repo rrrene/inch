@@ -9,12 +9,28 @@ module Inch
 
         class TaggedAsNodoc < Base
           def priority
-            -3
+            -5
           end
         end
         class InRoot < Base
           def priority
             +3
+          end
+        end
+
+        class Public < Base
+          def priority
+            +2
+          end
+        end
+        class Protected < Base
+          def priority
+            +1
+          end
+        end
+        class Private < Base
+          def priority
+            -2
           end
         end
 

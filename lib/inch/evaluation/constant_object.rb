@@ -15,6 +15,15 @@ module Inch
         if object.in_root?
           add_role Role::Object::InRoot.new(object)
         end
+        if object.public?
+          add_role Role::Object::Public.new(object)
+        end
+        if object.protected?
+          add_role Role::Object::Protected.new(object)
+        end
+        if object.private?
+          add_role Role::Object::Private.new(object)
+        end
       end
     end
   end
