@@ -82,11 +82,6 @@ module Inch
           nil
         end
 
-        # @return [Array,nil] the parent of the current object or +nil+
-        def parent
-          Proxy.for(object.parent) if object.parent
-        end
-
         def docstring
           @docstring ||= Docstring.new(object.docstring)
         end
@@ -104,14 +99,31 @@ module Inch
           !docstring.empty?
         end
 
+        # @return [Boolean] +true+ if the object represents a method
+        def method?
+          false
+        end
+
         # @return [Boolean] +true+ if the object represents a namespace
         def namespace?
           false
         end
 
-        # @return [Boolean] +true+ if the object represents a method
-        def method?
-          false
+        # @return [Array,nil] the parent of the current object or +nil+
+        def parent
+          Proxy.for(object.parent) if object.parent
+        end
+
+        def public?
+          visibility == :public
+        end
+
+        def private?
+          visibility == :private
+        end
+
+        def protected?
+          visibility == :protected
         end
 
         # @return [Boolean] +true+ if the object has no documentation at all
