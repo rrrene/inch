@@ -43,6 +43,8 @@ TODO: Write usage instructions here
   filtering/manipulation and Command::Output for presentation
 * Generalize filter options for visible code objects
   (adapt from YARD::CLI::Yardoc)
+* Update `inch show` to display natural language descriptions of the detected
+  roles. Maybe provide current version of show as `inch inspect`.
 * Add support for multiple method signatures for methods
   (realized via the @overload tag in YARD)
 
