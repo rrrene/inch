@@ -86,7 +86,8 @@ module Inch
           if display_objects.size > @count
             display_objects = display_objects[0..@count]
           elsif display_objects.size < @count
-            puts "wtf"
+            # should we add objects with lower priority to fill out the
+            # requested count?
           end
 
           if display_objects.size > 0
