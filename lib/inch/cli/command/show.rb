@@ -7,7 +7,7 @@ module Inch
         end
 
         def usage
-          'Usage: inch show [paths] OBJECT_NAME [options]'
+          'Usage: inch show [paths] OBJECT_NAME [[OBJECT_NAME2] ...] [options]'
         end
 
         def run(*args)

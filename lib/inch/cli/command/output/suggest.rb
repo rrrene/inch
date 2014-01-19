@@ -32,12 +32,11 @@ module Inch
             all_size = objects.size
 
             percent = all_size > 0 ? ((proper_size/all_size.to_f) * 100).to_i : 0
-            trace
-            trace " #{proper_size} objects seem properly documented (#{percent}% of relevant objects)."
+            percent = 100 if percent > 100
+            trace "#{proper_size} objects seem properly documented (#{percent}% of relevant objects)."
           end
 
           def display_list
-            first_range = range(objects.first.grade)
             trace
             trace header("The following objects could be improved:", first_range.color)
             objects.each do |o|
@@ -57,9 +56,7 @@ module Inch
             files.each do |file|
               trace edged(:dark, "#{file.dark}")
             end
-
             trace
-            # trace "Better grades equal better documentation.".dark
           end
 
           def files
@@ -70,6 +67,11 @@ module Inch
               arr
             end
           end
+
+          def first_range
+            range(objects.first.grade)
+          end
+
         end
       end
     end

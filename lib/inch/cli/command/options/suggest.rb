@@ -18,6 +18,15 @@ module Inch
             yardopts_options(opts)
           end
 
+          def descriptions
+            [
+              "",
+              "Suggests objects and files that can be improved regarding their documentation.",
+              description_grades,
+              description_arrows
+            ]
+          end
+
           protected
 
           def suggest_options(opts)

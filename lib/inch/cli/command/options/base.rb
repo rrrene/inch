@@ -27,6 +27,13 @@ module Inch
           attribute :excluded, []
 
           def parse(args)
+            opts = OptionParser.new
+            opts.banner = usage
+
+            descriptions.each do |text|
+              opts.separator "  " + text
+            end
+
             set_options(opts)
             parse_options(opts, args)
           end
@@ -36,6 +43,24 @@ module Inch
           end
 
           protected
+
+          # Override and fill with an array of descriptions that will be
+          # shown via the help switch.
+          def descriptions
+            []
+          end
+
+          def description_arrows
+            arrows = Output::Base::PRIORITY_ARROWS.join(' ')
+            "Arrows (#{arrows}) hint at the importance of the object " +
+              "being documented."
+          end
+
+          def description_grades
+            grades = Evaluation.new_score_ranges.map(&:grade)
+            "School grades (#{grades.join(', ')}) are assigned and " +
+              "displayed with each object."
+          end
 
           DEFAULT_PATHS = ["{lib,app}/**/*.rb", "ext/**/*.c"]
 

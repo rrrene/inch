@@ -13,6 +13,10 @@ module Inch
             opts = OptionParser.new
             opts.banner = usage
 
+            descriptions.each do |text|
+              opts.separator "  " + text
+            end
+
             set_options(opts)
             parse_yardopts_options(opts, args)
             parse_options(opts, args)
@@ -61,7 +65,7 @@ module Inch
               @undocumented = :none
             end
 
-            opts.on("--depth [DEPTH]", "Only show file counts") do |depth|
+            opts.on("--depth [DEPTH]", "Only show objects up to a given DEPTH in the class tree") do |depth|
               @depth = depth.to_i
             end
           end

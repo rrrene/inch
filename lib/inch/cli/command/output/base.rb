@@ -16,6 +16,7 @@ module Inch
               (-2..-1) => "\u2198", # south-east
               (-99..-3) => "\u2193", # south-east
             }
+          PRIORITY_ARROWS = PRIORITY_MAP.values
 
           def priority_arrow(priority, color = :white)
             PRIORITY_MAP.each do |range, str|

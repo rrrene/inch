@@ -9,6 +9,10 @@ module Inch
             opts = OptionParser.new
             opts.banner = usage
 
+            descriptions.each do |text|
+              opts.separator "  " + text
+            end
+
             set_options(opts)
             parse_yardopts_options(opts, args)
             parse_options(opts, args)
