@@ -2,7 +2,7 @@ module Inch
   module CLI
     module YardoptsHelper
       # @return [Array<String>] list of Ruby source files to process
-      attr_accessor :files
+      attr_accessor :yard_files
 
       # @return [Array<String>] list of excluded paths (regexp matches)
       attr_accessor :excluded
@@ -30,7 +30,7 @@ module Inch
 
         wrapper.parse_arguments(*dupped_args)
 
-        self.files = wrapper.files
+        self.yard_files = wrapper.files
         self.excluded = wrapper.excluded
       end
 

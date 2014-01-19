@@ -11,40 +11,18 @@ module Inch
         end
 
         def run(*args)
-          object_names = parse_arguments_and_object_names(args)
-          run_objects(object_names)
+          @options.parse(args)
+          run_source_parser(@options.paths, @options.excluded)
+          run_objects(@options.object_names)
         end
 
         private
 
         def run_objects(object_names)
-          if object_names.empty?
-            kill # "Provide a name to an object to show it's evaluation."
-          else
-            @objects = find_object_names(object_names)
-          end
-
+          @objects = find_object_names(object_names)
           @objects.each do |o|
             print_object(o)
           end
-        end
-
-        def parse_arguments_and_object_names(args)
-          parse_arguments(args)
-          object_names = parse_object_names(args)
-          run_source_parser(args)
-          object_names
-        end
-
-        def parse_arguments(args)
-          opts = OptionParser.new
-          opts.banner = usage
-          common_options(opts)
-
-          yardopts_options(opts)
-          parse_yardopts_options(opts, args)
-
-          parse_options(opts, args)
         end
 
         LJUST = 20

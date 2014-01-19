@@ -5,10 +5,9 @@ module Inch
         PER_RANGE = 10
 
         def initialize
+          super
           @ranges = Evaluation.new_score_ranges
           @omitted = 0
-          @full = false
-          @visibility = [:public, :protected]
         end
 
         def description
@@ -25,67 +24,14 @@ module Inch
         # @param [Array<String>] args the list of arguments.
         # @return [void]
         def run(*args)
-          parse_arguments(args)
-          run_source_parser(args)
+          @options.parse(args)
+          run_source_parser(@options.paths, @options.excluded)
           filter_objects
           assign_objects_to_ranges
           display_list
         end
 
         private
-
-        #
-        # @param args [Array<String>] args the list of arguments.
-        # @return [void]
-        def parse_arguments(args)
-          opts = OptionParser.new
-          opts.banner = usage
-
-          list_options(opts)
-          common_options(opts)
-
-          yardopts_options(opts)
-          parse_yardopts_options(opts, args)
-
-          parse_options(opts, args)
-        end
-
-        def list_options(opts)
-          opts.separator ""
-          opts.separator "List options:"
-
-          opts.on("--full", "Show all objects in the output") do
-            @full = true
-          end
-
-          opts.on("--only-namespaces", "Only show namespaces (classes, modules)") do
-            @namespaces = :only
-          end
-          opts.on("--no-namespaces", "Only show namespace children (methods, constants, attributes)") do
-            @namespaces = :none
-          end
-
-          opts.on("--[no-]public", "Do [not] show public objects") do |v|
-            set_visibility :public, v
-          end
-          opts.on("--[no-]protected", "Do [not] show protected objects") do |v|
-            set_visibility :protected, v
-          end
-          opts.on("--[no-]private", "Do [not] show private objects") do |v|
-            set_visibility :private, v
-          end
-
-          opts.on("--only-undocumented", "Only show undocumented objects") do
-            @undocumented = :only
-          end
-          opts.on("--no-undocumented", "Only show documented objects") do
-            @undocumented = :none
-          end
-
-          opts.on("--depth [DEPTH]", "Only show file counts") do |depth|
-            @depth = depth.to_i
-          end
-        end
 
         def assign_objects_to_ranges
           @ranges.each do |range|
@@ -135,23 +81,23 @@ module Inch
         end
 
         def filter_objects
-          if @namespaces == :only
+          if @options.namespaces == :only
             self.objects = objects.select(&:namespace?)
           end
-          if @namespaces == :none
+          if @options.namespaces == :none
             self.objects = objects.reject(&:namespace?)
           end
-          if @undocumented == :only
+          if @options.undocumented == :only
             self.objects = objects.select(&:undocumented?)
           end
-          if @undocumented == :none
+          if @options.undocumented == :none
             self.objects = objects.reject(&:undocumented?)
           end
-          if @depth
+          if @options.depth
             self.objects = objects.select { |o| o.depth <= @depth }
           end
           self.objects = objects.select do |o|
-            @visibility.include?(o.visibility)
+            @options.visibility.include?(o.visibility)
           end
         end
 
@@ -160,14 +106,6 @@ module Inch
           score = score.rjust(3).method(color).call
           priority = object.priority
           edged(color, "#{score}  #{priority}  #{object.path}")
-        end
-
-        def set_visibility(visibility, v)
-          if v
-            @visibility.push(visibility)
-          else
-            @visibility.delete(visibility)
-          end
         end
 
         def objects

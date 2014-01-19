@@ -22,34 +22,17 @@ module Inch
         end
 
         def run(*args)
-          object_names = parse_arguments_and_object_names(args)
-          run_objects(object_names)
+          @options.parse(args)
+          run_source_parser(@options.paths, @options.excluded)
+          load_objects(@options.object_names)
           binding.pry
         end
 
         private
 
-        def run_objects(object_names)
+        def load_objects(object_names)
           @objects = find_object_names(object_names)
           @object = objects.first
-        end
-
-        def parse_arguments_and_object_names(args)
-          parse_arguments(args)
-          object_names = parse_object_names(args)
-          run_source_parser(args)
-          object_names
-        end
-
-        def parse_arguments(args)
-          opts = OptionParser.new
-          opts.banner = usage
-          common_options(opts)
-
-          yardopts_options(opts)
-          parse_yardopts_options(opts, args)
-
-          parse_options(opts, args)
         end
       end
     end

@@ -23,28 +23,14 @@ module Inch
         end.flatten
       end
 
-      def run_source_parser(args)
-        paths = get_paths(args)
-
+      def run_source_parser(paths, excluded)
         debug "Parsing:\n" \
               "  files:    #{paths.inspect}\n" \
-              "  excluded: #{@excluded.inspect}"
+              "  excluded: #{excluded.inspect}"
 
-        @source_parser = SourceParser.run(paths, @excluded || [])
+        @source_parser = SourceParser.run(paths, excluded)
       end
       attr_reader :source_parser
-
-      DEFAULT_PATHS = ["{lib,app}/**/*.rb", "ext/**/*.c"]
-
-      def get_paths(args)
-        paths = args.dup
-        paths.concat(@files) if @files
-        if paths.empty?
-          DEFAULT_PATHS
-        else
-          paths
-        end
-      end
     end
   end
 end

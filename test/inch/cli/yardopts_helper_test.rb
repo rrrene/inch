@@ -22,7 +22,6 @@ describe ::Inch::CLI::YardoptsHelper do
     out, err = capture_io do
       @instance = @command.run("app/**/*.rb", "--no-yardopts")
     end
-    assert_equal ["app/**/*.rb"], @instance.files
     assert out.empty?, "there should be no output"
     assert err.empty?, "there should be no errors"
   end
@@ -33,9 +32,22 @@ describe ::Inch::CLI::YardoptsHelper do
       # a command-line path to check if it appears in the parsed filelist
       @instance = @command.run("lib/something*.rb")
     end
-    assert_equal ["foo/**/*.rb", "lib/something*.rb"], @instance.files
     refute out.empty?, "there should be no output"
     assert err.empty?, "there should be no errors"
+  end
+
+  it "should parse options with --no-yardopts" do
+    @options = ::Inch::CLI::Command::Options::List.new
+    @options.parse(["app/**/*.rb", "--no-yardopts"])
+    assert_equal ["app/**/*.rb"], @options.paths
+  end
+
+  it "should parse options with a given path and .yardopts" do
+    # lib/something*.rb doesnot exist in the fixture, it is just given as
+    # a command-line path to check if it appears in the parsed filelist
+    @options = ::Inch::CLI::Command::Options::List.new
+    @options.parse(["lib/something*.rb"])
+    assert_equal ["foo/**/*.rb", "lib/something*.rb"], @options.paths
   end
 
   it "should output info when run with --help" do
@@ -58,17 +70,15 @@ describe ::Inch::CLI::YardoptsHelper do
   end
 
   it "should not interfere with paths in arguments" do
-    out, err = capture_io do
-      @instance = @command.run("lib/**/foo*.rb")
-    end
-    assert_equal ["lib/**/foo*.rb"], @instance.files
+    @options = ::Inch::CLI::Command::Options::List.new
+    @options.parse(["lib/**/foo*.rb"])
+    assert_equal ["lib/**/foo*.rb"], @options.paths
   end
 
   it "should not intefer with --full at the end" do
-    out, err = capture_io do
-      @instance = @command.run("lib/**/foo*.rb", "--full")
-    end
-    assert_equal ["lib/**/foo*.rb"], @instance.files
+    @options = ::Inch::CLI::Command::Options::List.new
+    @options.parse(["lib/**/foo*.rb", "--full"])
+    assert_equal ["lib/**/foo*.rb"], @options.paths
   end
 
 end

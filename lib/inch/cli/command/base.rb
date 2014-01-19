@@ -22,6 +22,12 @@ module Inch
           command
         end
 
+        def initialize
+          options_name = "Command::Options::#{self.class.to_s.split('::').last}"
+          @options = eval(options_name).new
+          @options.usage = usage
+        end
+
         # Returns a description of the command
         # @return [String]
         def description
@@ -43,62 +49,6 @@ module Inch
           "Usage: inch #{name} [options]"
         end
 
-        protected
-
-        # Adds a set of common options to the tail of the OptionParser
-        #
-        # @param [OptionParser] opts the option parser object
-        # @return [void]
-        def common_options(opts)
-          opts.separator ""
-          opts.separator "Other options:"
-          opts.on("--[no-]color", "Run without color") do |v|
-            Term::ANSIColor::coloring = v
-          end
-          opts.on_tail('-v', '--version', 'Show version.') do
-            trace "inch #{Inch::VERSION}"
-            exit
-          end
-          opts.on_tail('-h', '--help', 'Show this help.') do
-            trace opts
-            exit
-          end
-        end
-
-        def kill(msg = nil)
-          warn usage
-          warn msg.red unless msg.nil?
-          warn "Try `inch #{name} --help' for more information."
-          exit 1
-        end
-
-        # Parses the option and gracefully handles invalid switches
-        #
-        # @param [OptionParser] opts the option parser object
-        # @param [Array<String>] args the arguments passed from input. This
-        #   array will be modified.
-        # @return [void]
-        def parse_options(opts, args)
-          reset
-          opts.parse!(args)
-        rescue OptionParser::ParseError => err
-          unrecognized_option(err)
-          args.shift if args.first && args.first[0,1] != '-'
-          retry
-        end
-
-        def reset
-          # color is enabled by default, can be turned of by switch --no-color
-          Term::ANSIColor::coloring = true
-        end
-
-        # Callback when an unrecognize option is parsed
-        #
-        # @param [OptionParser::ParseError] err the exception raised by the
-        #   option parser
-        def unrecognized_option(err)
-          trace "Unrecognized/#{err.message}".red
-        end
       end
     end
   end

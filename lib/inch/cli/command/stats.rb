@@ -13,8 +13,8 @@ module Inch
         end
 
         def run(*args)
-          parse_arguments(args)
-          run_source_parser(args)
+          @options.parse(args)
+          run_source_parser(@options.paths, @options.excluded)
           filter_objects
           assign_objects_to_ranges
           display_stats
