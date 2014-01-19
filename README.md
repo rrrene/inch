@@ -1,6 +1,6 @@
 # Inch
 
-A documentation measurement tool for Ruby, based on YARD.
+Inch is a documentation measurement tool for Ruby, based on [YARD](http://yardoc.org/).
 
 TODO: Write a gem description
 
@@ -40,15 +40,17 @@ TODO: Write usage instructions here
   * --no-private
   * --[no-]api API
 * Generalize filter options for visible code objects
-  (adapt from YARD::CLI::Yardoc)
+  (maybe adapt from YARD::CLI::Yardoc)
 * Update `inch show` to display natural language descriptions of the detected
   roles. Maybe provide current version of show as `inch inspect`
 * Add support for multiple method signatures for methods
   (realized via the @overload tag in YARD)
-* Add some kind of "pedantic" mode that suggests even "okay" looking objects if they don't meet all the criteria
+* Add some kind of "pedantic" mode that suggests even "okay" looking objects
+  if they don't meet all the criteria
+* Refactor some of the messy CLI::Output classes
 
 ## License
 
 Inch is released under the MIT License. See the LICENSE file for further details.
 
-For YARD's licensing, see https://github.com/lsegal/yard
+For YARD's licensing, see YARD's README under http://yardoc.org/
