@@ -122,6 +122,10 @@ module Inch
           visibility == :private
         end
 
+        def private_tag?
+          !!object.tag(:private)
+        end
+
         def protected?
           visibility == :protected
         end

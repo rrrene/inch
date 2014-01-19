@@ -66,11 +66,11 @@ module Inch
             end
           end
 
-          def set_visibility(visibility, v)
-            if v
-              @visibility.push(visibility)
+          def set_visibility(_visibility, true_or_false)
+            if true_or_false
+              visibility.push(_visibility)
             else
-              @visibility.delete(visibility)
+              visibility.delete(_visibility)
             end
           end
         end

@@ -58,6 +58,11 @@ module Inch
           self.objects = objects.select do |o|
             @options.visibility.include?(o.visibility)
           end
+          if !@options.visibility.include?(:private)
+            self.objects = objects.reject do |o|
+              o.private_tag?
+            end
+          end
         end
 
         def objects
