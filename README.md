@@ -41,8 +41,6 @@ TODO: Write usage instructions here
   roles. Maybe provide current version of show as `inch inspect`
 * Add support for multiple method signatures for methods
   (realized via the @overload tag in YARD)
-* Add some kind of "pedantic" mode that suggests even "okay" looking objects
-  if they don't meet all the criteria
 * Refactor some of the messy CLI::Output classes
 
 ## License
