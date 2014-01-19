@@ -15,19 +15,12 @@ module Inch
 
             @object_names = parse_object_names(args)
             @paths = get_paths(args)
-            verify
           end
 
           def set_options(opts)
             common_options(opts)
 
             yardopts_options(opts)
-          end
-
-          def verify
-            if object_names.empty?
-              kill # "Provide a name to an object to show it's evaluation."
-            end
           end
 
           private

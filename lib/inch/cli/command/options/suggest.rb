@@ -4,6 +4,8 @@ module Inch
       module Options
         class Suggest < BaseList
           attribute :count, 15
+          attribute :file_count, 5
+
           attribute :proper_grades, [:A, :B]
           attribute :grades_to_display, [:B, :C]
           attribute :object_min_priority, 0

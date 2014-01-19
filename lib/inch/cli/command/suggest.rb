@@ -22,11 +22,21 @@ module Inch
           filter_objects
           assign_objects_to_ranges
 
-          display_proper_info
-          display_list
-        end
+          display_objects = []
+          @options.grades_to_display.map do |grade|
+            r = range(grade)
+            display_objects.concat select_by_priority(r.objects, @options.object_min_priority)
+          end
 
-        private
+          if display_objects.size > @options.count
+            display_objects = display_objects[0..@options.count]
+          elsif display_objects.size < @options.count
+            # should we add objects with lower priority to fill out the
+            # requested count?
+          end
+
+          Output::Suggest.new(@options, display_objects, @ranges)
+        end
 
         def assign_objects_to_ranges
           @ranges.each do |r|
@@ -41,55 +51,6 @@ module Inch
           @ranges.detect { |r| r.grade == grade }
         end
 
-        def display_proper_info
-          proper_size = @options.proper_grades.inject(0) do |sum,grade|
-            sum + range(grade).objects.size
-          end
-          all_size = select_by_priority(objects, @options.object_min_priority).size
-
-          percent = all_size > 0 ? ((proper_size/all_size.to_f) * 100).to_i : 0
-          trace
-          trace " #{proper_size} objects seem properly documented (#{percent}% of relevant objects)."
-        end
-
-        def display_list
-          display_objects = []
-          @options.grades_to_display.map do |grade|
-            r = range(grade)
-            display_objects.concat select_by_priority(r.objects, @options.object_min_priority)
-          end
-
-          if display_objects.size > @options.count
-            display_objects = display_objects[0..@options.count]
-          elsif display_objects.size < @options.count
-            # should we add objects with lower priority to fill out the
-            # requested count?
-          end
-
-          if display_objects.size > 0
-            first_range = range(display_objects.first.grade)
-            trace
-            trace header("The following objects could be improved:", first_range.color)
-            display_objects.each do |o|
-              # this is terrible
-              r = range(o.grade)
-              grade = o.grade.to_s.method(r.color).call
-              priority = o.priority
-              trace edged(r.color, "#{grade}  #{priority}  #{o.path}")
-            end
-
-            trace
-            trace "You might want to look at these files:".dark
-            trace
-            display_objects.map(&:files).map(&:first).map(&:first).flatten.uniq.each do |file|
-              trace edged(:dark, "#{file.dark}")
-            end
-
-            trace
-            # trace "Better grades equal better documentation.".dark
-          end
-        end
-
         def select_by_priority(arr, min_priority)
           arr.select { |o| o.priority >= min_priority }
         end
@@ -98,16 +59,6 @@ module Inch
           arr.sort_by do |o|
             [o.priority, o.score]
           end.reverse
-        end
-
-        def display_range(range)
-          display_count = @full ? range.objects.size : PER_RANGE
-          list = range.objects[0...display_count]
-          list.each do |o|
-            grade = range.grade.to_s.method(range.color).call
-            priority = o.priority
-            trace edged(range.color, "#{grade}  #{priority}  #{o.path}")
-          end
         end
 
       end

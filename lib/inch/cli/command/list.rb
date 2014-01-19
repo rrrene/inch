@@ -2,8 +2,6 @@ module Inch
   module CLI
     module Command
       class List < Base
-        PER_RANGE = 10
-
         def initialize
           super
           @ranges = Evaluation.new_score_ranges
@@ -28,7 +26,8 @@ module Inch
           run_source_parser(@options.paths, @options.excluded)
           filter_objects
           assign_objects_to_ranges
-          display_list
+
+          Output::List.new(@options, objects, @ranges)
         end
 
         private
@@ -38,46 +37,6 @@ module Inch
             arr = objects.select { |o| range.range.include?(o.score) }
             range.objects = arr.sort_by { |o| [o.priority, o.score] }.reverse
           end
-        end
-
-        def display_list
-          @ranges.each do |range|
-            if range.objects.empty?
-              # pass
-            else
-              trace
-              trace_header(range.description, range.color)
-              display_range(range)
-            end
-          end
-
-          if @omitted > 0
-            trace
-            trace "This output omitted #{@omitted} objects. ".dark +
-              "Use `--full` to display all objects.".dark
-          end
-        end
-
-        def display_range(range)
-          display_count = @full ? range.objects.size : PER_RANGE
-          list = range.objects[0...display_count]
-          list.each do |o|
-            trace result(o, range.color)
-          end
-
-          display_omitted_hint(range, display_count)
-        end
-
-        def display_omitted_hint(range, display_count)
-          omitted = range.objects.size - display_count
-          if omitted > 0
-            @omitted += omitted
-            echo range.color, "...  (omitting #{omitted} objects)".dark
-          end
-        end
-
-        def echo(color, msg)
-          trace edged(color, msg)
         end
 
         def filter_objects
@@ -99,13 +58,6 @@ module Inch
           self.objects = objects.select do |o|
             @options.visibility.include?(o.visibility)
           end
-        end
-
-        def result(object, color)
-          score = object.score.to_i.to_s
-          score = score.rjust(3).method(color).call
-          priority = object.priority
-          edged(color, "#{score}  #{priority}  #{object.path}")
         end
 
         def objects
