@@ -3,7 +3,7 @@ module Inch
     module Command
       module Options
         class Suggest < BaseList
-          attribute :count, 15
+          attribute :object_count, 15
           attribute :file_count, 5
 
           attribute :proper_grades, [:A, :B]
@@ -25,7 +25,7 @@ module Inch
             opts.separator "Suggest options:"
 
             opts.on("-n", "--objects [COUNT]", "Show COUNT objects") do |count|
-              @count = count.to_i
+              @object_count = count.to_i
             end
           end
         end

@@ -28,9 +28,9 @@ module Inch
             display_objects.concat select_by_priority(r.objects, @options.object_min_priority)
           end
 
-          if display_objects.size > @options.count
-            display_objects = display_objects[0..@options.count]
-          elsif display_objects.size < @options.count
+          if display_objects.size > @options.object_count
+            display_objects = display_objects[0..@options.object_count]
+          elsif display_objects.size < @options.object_count
             # should we add objects with lower priority to fill out the
             # requested count?
           end
