@@ -5,6 +5,9 @@ module Inch
         class WithMention < Base
         end
         class WithoutMention < Missing
+          def suggestion
+            "Describe the parameter '#{object.name}'"
+          end
         end
 
         class WithType < Base
@@ -24,6 +27,9 @@ module Inch
         end
 
         class WithWrongMention < Missing
+          def suggestion
+            "The parameter '#{object.name}' seems not to be part of the signature."
+          end
           def priority
             +1
           end

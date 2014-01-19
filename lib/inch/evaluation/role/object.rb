@@ -5,6 +5,9 @@ module Inch
         class WithDoc < Base
         end
         class WithoutDoc < Missing
+          def suggestion
+            "Add a comment describing the #{object_type}"
+          end
         end
 
         class TaggedAsNodoc < Base
@@ -37,6 +40,9 @@ module Inch
         class WithCodeExample < Base
         end
         class WithoutCodeExample < Missing
+          def suggestion
+            "Add a code example (optional)"
+          end
         end
       end
     end

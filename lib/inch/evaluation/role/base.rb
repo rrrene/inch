@@ -2,6 +2,8 @@ module Inch
   module Evaluation
     module Role
       class Base
+        attr_reader :object
+
         def initialize(object, value = nil)
           @object = object
           @value = value
@@ -23,8 +25,23 @@ module Inch
           @value.to_f
         end
 
+        # @return [Float]
+        #  a score that can be achieved by adding the missing thing mentioned
+        #  by the role
+        def potential_score
+          nil
+        end
+
         def priority
           0
+        end
+
+        def suggestion
+          nil
+        end
+
+        def object_type
+          object.class.to_s.split('::').last.gsub(/Object$/, '').downcase
         end
       end
     end

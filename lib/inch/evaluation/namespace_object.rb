@@ -9,6 +9,7 @@ module Inch
       def evaluate
         eval_doc
         eval_children
+        eval_code_example
 
         if object.has_many_attributes?
           add_role Role::Namespace::WithManyAttributes.new(object)
@@ -38,6 +39,9 @@ module Inch
         else
           add_role Role::Object::WithoutDoc.new(object, DOC_SCORE)
         end
+      end
+
+      def eval_code_example
         if object.has_code_example?
           add_role Role::Object::WithCodeExample.new(object, EXAMPLE_SCORE)
         else

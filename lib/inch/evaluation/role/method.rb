@@ -32,6 +32,9 @@ module Inch
         class WithReturnType < Base
         end
         class WithoutReturnType < Missing
+          def suggestion
+            "Describe the return type of '#{object.name}'"
+          end
         end
 
         class Overridden < Base
