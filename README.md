@@ -34,10 +34,6 @@ TODO: Write usage instructions here
 
 * Recognize all relevant options in .yardopts file
   * --plugin
-  * --no-public
-  * --protected
-  * --private
-  * --no-private
   * --[no-]api API
 * Generalize filter options for visible code objects
   (maybe adapt from YARD::CLI::Yardoc)
