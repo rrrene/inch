@@ -1,6 +1,5 @@
 require 'optparse'
 
-# This was adapted from https://github.com/lsegal/yard/blob/master/lib/yard/cli/command.rb
 module Inch
   module CLI
     module Command

@@ -1,6 +1,3 @@
-require 'optparse'
-
-# This was adapted from https://github.com/lsegal/yard/blob/master/lib/yard/cli/command.rb
 module Inch
   module CLI
     module Command
@@ -8,11 +5,11 @@ module Inch
       # the option parser
       #
       # @abstract
-      # @since 0.6.0
+      # @note This was adapted from YARD.
+      # @see https://github.com/lsegal/yard/blob/master/lib/yard/cli/command.rb
       class Base
         include TraceHelper
         include ParserHelper
-        include YardoptsHelper
 
         # Helper method to run the utility on an instance.
         # @see #run
@@ -23,8 +20,8 @@ module Inch
         end
 
         def initialize
-          options_name = "Command::Options::#{self.class.to_s.split('::').last}"
-          @options = eval(options_name).new
+          options_class = "Command::Options::#{self.class.to_s.split('::').last}"
+          @options = eval(options_class).new
           @options.usage = usage
         end
 
