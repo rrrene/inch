@@ -9,6 +9,7 @@ module Inch
           attribute :proper_grades, [:A, :B]
           attribute :grades_to_display, [:B, :C]
           attribute :object_min_priority, 0
+          attribute :object_max_score, ::Inch::Evaluation::Base::MAX_SCORE
 
           def set_options(opts)
             list_options(opts)
@@ -37,7 +38,11 @@ module Inch
               @object_count = count.to_i
             end
             opts.on("--pedantic", "Be excessively concerned with minor details and rules") do |count|
+              # all objects are considered a priority
               @object_min_priority = -99
+              # only objects with the highest score are omitted from the list
+              @object_max_score = object_max_score - 1
+              # only A-listers are regarded as 'proper'
               @proper_grades = [:A]
               @grades_to_display = [:A, :B, :C]
               @object_count = 25

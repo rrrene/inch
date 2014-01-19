@@ -25,7 +25,9 @@ module Inch
           display_objects = []
           @options.grades_to_display.map do |grade|
             r = range(grade)
-            display_objects.concat select_by_priority(r.objects, @options.object_min_priority)
+            arr = select_by_priority(r.objects, @options.object_min_priority)
+            arr = arr.select { |o| o.score <= @options.object_max_score }
+            display_objects.concat arr
           end
 
           if display_objects.size > @options.object_count

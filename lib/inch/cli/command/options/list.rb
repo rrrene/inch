@@ -3,6 +3,7 @@ module Inch
     module Command
       module Options
         class List < BaseList
+          attribute :numbers, false
 
           def descriptions
             [
@@ -11,6 +12,13 @@ module Inch
               description_grades,
               description_arrows
             ]
+          end
+
+          def list_options(opts)
+            super
+            opts.on("--numbers", "Show numbers instead of grades and arrows") do |depth|
+              @numbers = true
+            end
           end
 
         end
