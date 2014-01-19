@@ -1,6 +1,23 @@
 # The module 'Foo' has a doc string (this), but the class
 # 'Foo::Bar' does not.
 module Foo
+  def public_method
+  end
+  public :public_method
+
+
+  def protected_method
+  end
+  protected :protected_method
+
+  def private_method
+  end
+  private :private_method
+
+  # @private
+  def method_with_private_tag
+  end
+
   class Bar
     def method_without_doc
     end
@@ -100,10 +117,10 @@ module Foo
     def method_with_code_example2(p1, p2 = nil)
     end
 
-      class Baz
-        def initialize(param1, param2, param3)
-        end
+    class Baz
+      def initialize(param1, param2, param3)
       end
+    end
   end
 
   class Baz < Bar

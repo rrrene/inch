@@ -1,12 +1,9 @@
-require File.expand_path(File.dirname(__FILE__) + '/test_helper')
+require File.expand_path(File.dirname(__FILE__) + '/../../test_helper')
 
-# sort of an integration test
-# TOOD: move these checks in their right place
-
-class TestFixtureSimple < MiniTest::Unit::TestCase
-  def setup
+describe ::Inch::CodeObject::Proxy do
+  before do
     Dir.chdir fixture_path(:simple)
-    @source_parser = Inch::SourceParser.run(["lib/**/*.rb"])
+    @source_parser ||= Inch::SourceParser.run(["lib/**/*.rb"])
   end
 
   def test_method_without_doc
