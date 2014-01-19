@@ -5,10 +5,11 @@ module Inch
         class Suggest < Base
           attr_reader :objects
 
-          def initialize(options, objects, ranges)
+          def initialize(options, objects, ranges, relevant_count)
             @options = options
             @objects = objects
             @ranges = ranges
+            @relevant_count = relevant_count
 
             if objects.empty?
               # TODO: show hint
@@ -29,10 +30,13 @@ module Inch
             proper_size = @options.proper_grades.inject(0) do |sum,grade|
               sum + range(grade).objects.size
             end
-            all_size = objects.size
 
-            percent = all_size > 0 ? ((proper_size/all_size.to_f) * 100).to_i : 0
-            percent = 100 if percent > 100
+            percent = if @relevant_count > 0
+                ((proper_size/@relevant_count.to_f) * 100).to_i
+              else
+                0
+             end
+            percent = [percent, 100].min
             trace "#{proper_size} objects seem properly documented (#{percent}% of relevant objects)."
           end
 

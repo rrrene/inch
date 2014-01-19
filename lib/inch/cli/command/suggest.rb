@@ -35,7 +35,7 @@ module Inch
             # requested count?
           end
 
-          Output::Suggest.new(@options, display_objects, @ranges)
+          Output::Suggest.new(@options, display_objects, @ranges, @objects.size)
         end
 
         def assign_objects_to_ranges

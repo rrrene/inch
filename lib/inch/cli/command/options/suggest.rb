@@ -36,6 +36,12 @@ module Inch
             opts.on("-n", "--objects [COUNT]", "Show COUNT objects") do |count|
               @object_count = count.to_i
             end
+            opts.on("--pedantic", "Be excessively concerned with minor details and rules") do |count|
+              @object_min_priority = -99
+              @proper_grades = [:A]
+              @grades_to_display = [:A, :B, :C]
+              @object_count = 25
+            end
           end
         end
       end
