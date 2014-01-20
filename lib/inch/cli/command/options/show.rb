@@ -7,6 +7,8 @@ module Inch
           def descriptions
             [
               "",
+              "Example: " + "$ inch show lib/**/*.rb Foo::Bar#initialize".cyan,
+              "",
               "Shows one or more objects in detail.",
               description_grades,
               description_arrows

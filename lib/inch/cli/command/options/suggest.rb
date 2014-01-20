@@ -23,6 +23,9 @@ module Inch
             [
               "",
               "Suggests objects and files that can be improved regarding their documentation.",
+              "",
+              "Example: " + "$ inch suggest lib/**/*.rb --pedantic".cyan,
+              "",
               description_grades,
               description_arrows
             ]

@@ -7,6 +7,8 @@ module Inch
           def descriptions
             [
               "",
+              "Example: " + "$ inch inspect lib/**/*.rb Foo::Bar#initialize".cyan,
+              "",
               "Shows one or more objects in detail."
             ]
           end

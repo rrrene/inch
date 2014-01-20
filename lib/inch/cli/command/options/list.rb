@@ -9,6 +9,9 @@ module Inch
             [
               "",
               "Lists objects that can be improved regarding their documentation ordered by their grade.",
+              "",
+              "Example: " + "$ inch list lib/**/*.rb --all".cyan,
+              "",
               description_grades,
               description_arrows
             ]
@@ -20,7 +23,6 @@ module Inch
               @numbers = true
             end
           end
-
         end
       end
     end

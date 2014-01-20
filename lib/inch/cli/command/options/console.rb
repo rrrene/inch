@@ -8,6 +8,8 @@ module Inch
               "",
               "Provides a PRY based REPL to inspect objects.",
               "",
+              "Example: " + "$ inch console lib/**/*.rb Foo::Bar#initialize".cyan,
+              "",
               "Shortcut commands on the prompt are:",
               "",
               "all".ljust(5) + " returns all code objects",
