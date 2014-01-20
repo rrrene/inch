@@ -140,8 +140,8 @@ documentation.
 
 ### Documentation coverage
 
-Documentation coverage simple looks at all code objects and determines if the
-found documentation meets a certain threshold. 
+Documentation coverage (like it can be found in cane) simply looks at all code objects and determines if the
+found documentation meets a certain threshold.
 
 Inch takes a different approach as it aims for "proper documentation" rather
 than "100% coverage".
