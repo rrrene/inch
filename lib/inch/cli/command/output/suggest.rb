@@ -64,12 +64,28 @@ module Inch
           end
 
           def files
-            arr = objects.map(&:files).map(&:first).map(&:first).flatten.uniq
+            arr = files_sorted_by_objects
             if @options.file_count
               arr[0...@options.file_count]
             else
               arr
             end
+          end
+
+          def files_sorted_by_objects
+            counts = {}
+            files = []
+            objects.each do |object|
+              filenames = object.files.map(&:first)
+              filenames.each do |f|
+                counts[f] ||= 0
+                counts[f] += 1
+                files << f unless files.include?(f)
+              end
+            end
+            files = files.sort_by do |f|
+              counts[f]
+            end.reverse
           end
 
           def first_range
