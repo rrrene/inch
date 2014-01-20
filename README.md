@@ -127,6 +127,24 @@ Inch can list all objects in your codebase with their grades.
     This output omitted 323 objects. Use `--all` to display all objects.
 
 
+### Rake task
+
+Add this to your Rakefile:
+
+    require 'inch/rake'
+
+    Inch::Rake::Suggest.new
+
+Use the `args` config option to add any command-line arguments from `ìnch suggest --help`.
+
+    require 'inch/rake'
+
+    Inch::Rake::Suggest.new("doc:suggest") do |suggest|
+      suggest.args << "--no-protected"
+      suggest.args << "--no-private"
+    end
+
+
 ## Limitations
 
 Inch can't actually tell how good your docs are, if your code examples work
