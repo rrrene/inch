@@ -26,7 +26,7 @@ module Inch
       end
 
       def header(text, color)
-        " ".method("on_#{color}").call +
+        "#".color(color).method("on_#{color}").call +
           " #{text}".ljust(CLI::COLUMNS-1)
             .black.dark.bold
               .method("on_intense_#{color}").call
