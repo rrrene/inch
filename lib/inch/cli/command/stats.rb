@@ -2,8 +2,6 @@ module Inch
   module CLI
     module Command
       class Stats < List
-        GOOD_ENOUGH_THRESHOLD = 50
-
         def description
           'Lists all objects with their results'
         end
@@ -18,13 +16,7 @@ module Inch
           filter_objects
           assign_objects_to_ranges
 
-          Output::Stats.new(@options, objects, @ranges, good_count)
-        end
-
-        private
-
-        def good_count
-          objects.select { |o| o.score >= GOOD_ENOUGH_THRESHOLD }.size
+          Output::Stats.new(@options, objects, @ranges)
         end
       end
     end

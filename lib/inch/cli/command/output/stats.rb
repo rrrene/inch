@@ -5,11 +5,10 @@ module Inch
         class Stats < Base
           attr_reader :objects, :good_count
 
-          def initialize(options, objects, ranges, good_count)
+          def initialize(options, objects, ranges)
             @options = options
             @objects = objects
             @ranges = ranges
-            @good_count = good_count
 
             hash = {}
 
