@@ -1,6 +1,6 @@
 # Inch
 
-Inch is a documentation measurement tool for Ruby, based on 
+Inch is a documentation measurement tool for Ruby, based on
 [YARD](http://yardoc.org/).
 
 It does not simply measure documentation *coverage*, but grades and
@@ -133,15 +133,16 @@ Inch can't actually tell how good your docs are, if your code examples work
 or if you have just added "TODO: write docs" to each and every method. But
 it can make reasonable guesses based on how much and what kind of
 documentation is there and recommend places to improve the existing
-documentation.
+docs.
 
 
 ## How is this different from ...?
 
 ### Documentation coverage
 
-Documentation coverage (like it can be found in cane) simply looks at all code objects and determines if the
-found documentation meets a certain threshold.
+Documentation coverage (like it can be found in cane) simply looks at all
+code objects and determines if the found documentation meets a certain
+threshold.
 
 Inch takes a different approach as it aims for "proper documentation" rather
 than "100% coverage".
