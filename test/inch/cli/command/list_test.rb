@@ -18,6 +18,18 @@ describe ::Inch::CLI::Command::List do
     assert_match /\bFoo::Bar#method_with_code_example\b/, out
   end
 
+  it "should run with --numbers switch" do
+    out, err = capture_io do
+      @command.run("--numbers")
+    end
+    refute out.empty?, "there should be some output"
+    assert err.empty?, "there should be no errors"
+    assert_match /\bFoo\b/, out
+    assert_match /\bFoo::Bar\b/, out
+    assert_match /\bFoo::Bar#method_with_full_doc\b/, out
+    assert_match /\bFoo::Bar#method_with_code_example\b/, out
+  end
+
   it "should run with filelist in args" do
     out, err = capture_io do
       @command.run("lib/**/*.rb", "app/**/*.rb")

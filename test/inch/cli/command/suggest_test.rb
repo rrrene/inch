@@ -17,6 +17,14 @@ describe ::Inch::CLI::Command::Suggest do
     assert_match /\bFoo::Bar#method_with_unstructured_doc\b/, out
   end
 
+  it "should run with --pedantic switch" do
+    out, err = capture_io do
+      @command.run("--pedantic")
+    end
+    refute out.empty?, "there should be some output"
+    assert err.empty?, "there should be no errors"
+  end
+
   it "should run with filelist in args" do
     out, err = capture_io do
       @command.run("lib/**/*.rb", "app/**/*.rb")
