@@ -129,17 +129,17 @@ Inch can list all objects in your codebase with their grades.
 
 ### Rake task
 
-Add this to your Rakefile:
+Add this to your `Rakefile`:
 
     require 'inch/rake'
 
     Inch::Rake::Suggest.new
 
-Use the `args` config option to add any command-line arguments from `ìnch suggest --help`.
+This creates a rake task named `doc:suggest`. Change the name by passing it to the constructor. Use the `args` config option to add any command-line arguments from `inch suggest --help`.
 
     require 'inch/rake'
 
-    Inch::Rake::Suggest.new("doc:suggest") do |suggest|
+    Inch::Rake::Suggest.new("doc:report") do |suggest|
       suggest.args << "--no-protected"
       suggest.args << "--no-private"
     end
@@ -150,25 +150,26 @@ Use the `args` config option to add any command-line arguments from `ìnch sugge
 Inch can't actually tell how good your docs are, if your code examples work
 or if you have just added "TODO: write docs" to each and every method. But
 it can make reasonable guesses based on how much and what kind of
-documentation is there and recommend places to improve the existing
-docs.
+documentation is there and recommend places to improve the existing or add
+missing docs.
 
 
 ## How is this different from ...?
 
 ### Documentation coverage
 
-Documentation coverage (like it can be found in cane) simply looks at all
-code objects and determines if the found documentation meets a certain
-threshold.
+Documentation coverage checks (like they can be found in
+[cane](https://github.com/square/cane) and
+[rubocop](https://github.com/bbatsov/rubocop)) look at all code objects and
+determine if the found documentation meets a certain threshold/expectation.
 
-Inch takes a different approach as it aims for "proper documentation" rather
+Inch takes a different approach as it aims for "properly documented" rather
 than "100% coverage".
 
 ### Yardstick
 
 [Yardstick](https://github.com/dkubb/yardstick) is a tool that verifies
-documentation coverage of Code and is specifically designed for
+documentation coverage of Ruby code and is specifically designed for
 [YARD-style documentation](http://yardoc.org/). It is a great tool to see
 where your docs could benefit from YARD's extra features over RDoc, but, at
 the same time, it is very overwhelming when applied to a codebase that does
@@ -189,14 +190,14 @@ employing every technique YARD has to offer.
 5. Create new Pull Request
 
 
-## Authors
+## Author
 
-* René Föhring (@rrrene)
+René Föhring (@rrrene)
 
 
 ## Credits
 
-Inch would not exist without Loren Segal's YARD.
+Inch would not exist without Loren Segal's [YARD](http://yardoc.org/).
 
 
 ## TODOs
@@ -204,16 +205,16 @@ Inch would not exist without Loren Segal's YARD.
 * Recognize all relevant options in .yardopts file
   * --plugin
   * --[no-]api API
-* Generalize filter options for visible code objects
-  (maybe adapt from YARD::CLI::Yardoc)
-* Add support for multiple method signatures for methods
+* Provide reusable context that filters code objects according to the
+  visibility options
+* Add support for multiple signatures for methods
   (realized via the @overload tag in YARD)
 * Refactor some of the messy CLI::Output classes
 
 
 ## License
 
-Inch is released under the MIT License. See the LICENSE file for further
+Inch is released under the MIT License. See the LICENSE.txt file for further
 details.
 
 For YARD's licensing, see YARD's README under http://yardoc.org/
