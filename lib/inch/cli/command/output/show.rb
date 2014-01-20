@@ -27,7 +27,7 @@ module Inch
             trace_header(o.path, :magenta)
 
             print_file_info(o)
-            echo "Grade: #{grade(0)}".rjust(5)
+            echo "Grade: #{grade(o.score)}".rjust(5)
             echo separator
             print_roles_info(o)
 
@@ -61,9 +61,9 @@ module Inch
             "-".magenta * (CLI::COLUMNS - 2)
           end
 
-          def grade(o)
+          def grade(score)
             ranges ||= Evaluation.new_score_ranges
-            r = ranges.detect { |r| r.range.include?(o) }
+            r = ranges.detect { |r| r.range.include?(score) }
             "#{r.grade} - #{r.description}".method(r.color).call
           end
         end
