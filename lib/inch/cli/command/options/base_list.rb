@@ -37,7 +37,7 @@ module Inch
             opts.separator ""
             opts.separator "List options:"
 
-            opts.on("--full", "Show all objects in the output") do
+            opts.on("--all", "Show all objects in the output") do
               @full = true
             end
 

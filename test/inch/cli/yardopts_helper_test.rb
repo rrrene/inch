@@ -75,9 +75,9 @@ describe ::Inch::CLI::YardoptsHelper do
     assert_equal ["lib/**/foo*.rb"], @options.paths
   end
 
-  it "should not intefer with --full at the end" do
+  it "should not intefer with --all at the end" do
     @options = ::Inch::CLI::Command::Options::List.new
-    @options.parse(["lib/**/foo*.rb", "--full"])
+    @options.parse(["lib/**/foo*.rb", "--all"])
     assert_equal ["lib/**/foo*.rb"], @options.paths
   end
 

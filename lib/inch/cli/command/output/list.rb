@@ -32,7 +32,7 @@ module Inch
             if @omitted > 0
               trace
               trace "This output omitted #{@omitted} objects. ".dark +
-                "Use `--full` to display all objects.".dark
+                "Use `--all` to display all objects.".dark
             end
           end
 

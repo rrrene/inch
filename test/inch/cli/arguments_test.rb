@@ -48,23 +48,23 @@ describe ::Inch::CLI::Arguments do
 
   it "should run with option switches" do
     args = [
-      "--no-color", "--full"
+      "--no-color", "--all"
     ]
     arguments = ::Inch::CLI::Arguments.new(args)
     assert_equal [], arguments.files
     assert_equal [], arguments.object_names
-    assert_equal ["--no-color", "--full"], arguments.switches
+    assert_equal ["--no-color", "--all"], arguments.switches
   end
 
   it "should run with all of them" do
     args = [
       "lib/**/*.rb", "app/**/*.rb", "README",
-      "Foo", "Foo::Bar", "--no-color", "--full"
+      "Foo", "Foo::Bar", "--no-color", "--all"
     ]
     arguments = ::Inch::CLI::Arguments.new(args)
     assert_equal ["lib/**/*.rb", "app/**/*.rb", "README"], arguments.files
     assert_equal ["Foo", "Foo::Bar"], arguments.object_names
-    assert_equal ["--no-color", "--full"], arguments.switches
+    assert_equal ["--no-color", "--all"], arguments.switches
   end
 
 end

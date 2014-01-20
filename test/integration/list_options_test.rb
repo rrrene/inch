@@ -15,7 +15,7 @@ describe ::Inch::CLI::Command::List do
   end
 
   it "should run with --no-private switch" do
-    out = %x|#{@command} --full --no-private|
+    out = %x|#{@command} --all --no-private|
     refute out.empty?, "there should be some output"
     assert_match /\bFoo#public_method\b/, out
     assert_match /\bFoo#protected_method\b/, out
@@ -24,7 +24,7 @@ describe ::Inch::CLI::Command::List do
   end
 
   it "should run with --no-protected switch" do
-    out = %x|#{@command} --full --no-protected|
+    out = %x|#{@command} --all --no-protected|
     refute out.empty?, "there should be some output"
     assert_match /\bFoo#public_method\b/, out
     refute_match /\bFoo#protected_method\b/, out
@@ -33,7 +33,7 @@ describe ::Inch::CLI::Command::List do
   end
 
   it "should run with --no-public switch" do
-    out = %x|#{@command} --full --no-public|
+    out = %x|#{@command} --all --no-public|
     refute out.empty?, "there should be some output"
     refute_match /\bFoo#public_method\b/, out
     assert_match /\bFoo#protected_method\b/, out
@@ -42,7 +42,7 @@ describe ::Inch::CLI::Command::List do
   end
 
   it "should run with --no-public --no-protected switch" do
-    out = %x|#{@command} --full --no-public --no-protected|
+    out = %x|#{@command} --all --no-public --no-protected|
     assert out.empty?, "there should be no output"
     refute_match /\bFoo#public_method\b/, out
     refute_match /\bFoo#protected_method\b/, out
@@ -51,7 +51,7 @@ describe ::Inch::CLI::Command::List do
   end
 
   it "should run with --no-public --no-protected --private switch" do
-    out = %x|#{@command} --full --no-public --no-protected --private|
+    out = %x|#{@command} --all --no-public --no-protected --private|
     refute out.empty?, "there should be some output"
     refute_match /\bFoo#public_method\b/, out
     refute_match /\bFoo#protected_method\b/, out
@@ -60,7 +60,7 @@ describe ::Inch::CLI::Command::List do
   end
 
   it "should run with --no-public --no-private switch" do
-    out = %x|#{@command} --full --no-public --no-private|
+    out = %x|#{@command} --all --no-public --no-private|
     refute out.empty?, "there should be some output"
     refute_match /\bFoo#public_method\b/, out
     assert_match /\bFoo#protected_method\b/, out
@@ -69,7 +69,7 @@ describe ::Inch::CLI::Command::List do
   end
 
   it "should run with --no-protected --no-private switch" do
-    out = %x|#{@command} --full --no-protected --no-private|
+    out = %x|#{@command} --all --no-protected --no-private|
     refute out.empty?, "there should be some output"
     assert_match /\bFoo#public_method\b/, out
     refute_match /\bFoo#protected_method\b/, out
