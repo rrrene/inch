@@ -32,27 +32,6 @@ module Inch
 
             puts JSON.pretty_generate(hash)
           end
-
-          private
-
-          def display_stats
-            all_size = objects.size
-            @ranges.each do |range|
-              size = range.objects.size
-              percent = all_size > 0 ? ((size/all_size.to_f) * 100).to_i : 0
-              trace "#{size.to_s.rjust(5)} objects #{percent.to_s.rjust(3)}%  #{range.description}".method(range.color).call
-            end
-          end
-
-          def good_percent
-            total = objects.size
-            if total > 0
-              percent = good_count/total.to_f
-              (percent * 100).to_i
-            else
-              0
-            end
-          end
         end
       end
     end
