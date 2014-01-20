@@ -21,8 +21,12 @@ module Inch
         MANY_LINES_THRESHOLD = 20
         def has_many_lines?
           # for now, this includes the 'def' line and comments
-          size = object.source.lines.count
-          size > MANY_LINES_THRESHOLD
+          if source = object.source
+            size = source.lines.count
+            size > MANY_LINES_THRESHOLD
+          else
+            false
+          end
         end
 
         def method?
