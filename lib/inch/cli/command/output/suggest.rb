@@ -3,6 +3,11 @@ module Inch
     module Command
       module Output
         class Suggest < Base
+          RANGE_LABELS = {
+            :A => "Nearly perfect:",
+            :B => "Properly documented, could be improved:",
+            :C => "Not properly documented:",
+          }
           attr_reader :objects
 
           def initialize(options, objects, ranges, relevant_count)
@@ -14,9 +19,9 @@ module Inch
             if objects.empty?
               # TODO: show hint
             else
-              display_proper_info
               display_list
               display_files
+              display_proper_info
             end
           end
 
@@ -41,14 +46,18 @@ module Inch
           end
 
           def display_list
-            trace
-            trace header("The following objects could be improved:", first_range.color)
-            objects.each do |o|
-              # this is terrible
-              r = range(o.grade)
-              grade = o.grade.to_s.ljust(2).method(r.color).call
-              priority = o.priority
-              trace edged(r.color, " #{grade} #{priority_arrow(priority, r.color)}  #{o.path}")
+            @options.grades_to_display.map do |grade|
+              r = range(grade)
+              grade_objects = objects.select { |o| o.grade == r.grade }
+              unless grade_objects.empty?
+                trace
+                trace header(RANGE_LABELS[r.grade], r.color)
+                grade_objects.each do |o|
+                  grade = o.grade.to_s.ljust(2).method(r.color).call
+                  priority = o.priority
+                  trace edged(r.color, " #{grade} #{priority_arrow(priority, r.color)}  #{o.path}")
+                end
+              end
             end
           end
 

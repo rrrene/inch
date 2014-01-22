@@ -30,6 +30,10 @@ module Inch
             display_objects.concat arr
           end
 
+          display_objects = display_objects.sort_by do |o|
+            [o.priority, o.score]
+          end.reverse
+
           if display_objects.size > @options.object_count
             display_objects = display_objects[0..@options.object_count]
           elsif display_objects.size < @options.object_count
