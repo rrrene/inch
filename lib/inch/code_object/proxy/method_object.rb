@@ -93,7 +93,7 @@ module Inch
           line = get_line_no(filename, line_no)
           if yield(line) && line_no > 0
             lines << line.gsub(/^(\s+)/, '')
-            lines.concat get_lines_up_while(filename, line_no - 1, &block)
+            lines << get_lines_up_while(filename, line_no - 1, &block)
           end
           lines.reverse
         end
