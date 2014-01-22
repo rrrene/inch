@@ -96,8 +96,17 @@ module Inch
         end
 
         def has_multiple_code_examples?
-          object.tags(:example).size > 1 ||
-            docstring.code_examples.size > 1
+          if object.tags(:example).size > 1 || docstring.code_examples.size > 1
+            true
+          else
+            if tag = object.tag(:example)
+              multi_code_examples?(tag.text)
+            elsif text = docstring.code_examples.first
+              multi_code_examples?(text)
+            else
+              false
+            end
+          end
         end
 
         def has_doc?
@@ -142,6 +151,12 @@ module Inch
 
         def inspect
           "#<#{self.class.to_s}: #{path}>"
+        end
+
+        private
+
+        def multi_code_examples?(text)
+          text =~ /\b#{name}[^_0-9\!\?]/
         end
       end
     end

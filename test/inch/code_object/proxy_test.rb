@@ -158,4 +158,25 @@ describe ::Inch::CodeObject::Proxy do
     assert m.has_code_example?
   end
 
+  def test_method_with_code_examples
+    m = @source_parser.find_object("Foo::Bar::Baz#method_with_one_example")
+    assert m.has_code_example?
+    refute m.has_multiple_code_examples?
+  end
+
+  def test_method_with_code_examples
+    m = @source_parser.find_object("Foo::Bar::Baz#method_with_examples")
+    assert m.has_multiple_code_examples?
+  end
+
+  def test_method_with_code_examples
+    m = @source_parser.find_object("Foo::Bar::Baz#method_with_tagged_example")
+    assert m.has_multiple_code_examples?
+  end
+
+  def test_method_with_code_examples
+    m = @source_parser.find_object("Foo::Bar::Baz#method_with_2tagged_examples")
+    assert m.has_multiple_code_examples?
+  end
+
 end

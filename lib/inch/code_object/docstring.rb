@@ -14,7 +14,26 @@ module Inch
       end
 
       def code_examples
-        @code_examples ||= @text.scan(/\n\s*\n\ {2,}([^\n]+) /m).flatten
+        @code_examples ||= parse_code_examples
+      end
+
+      def parse_code_examples
+        code_examples = []
+        example = nil
+        @text.lines.each_with_index do |line, index|
+          if line =~/^\s*+$/
+            code_examples << example if example
+            example = []
+          elsif line =~/^\ {2,}\S+/
+            example << line if example
+          else
+            code_examples << example if example
+            example = nil
+          end
+          #binding.pry
+        end
+        code_examples << example if example
+        code_examples.delete_if(&:empty?).map(&:join)
       end
 
       def mentions_parameter?(name)

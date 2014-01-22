@@ -97,7 +97,8 @@ An example of a method using RDoc rather than YARD.
 
 Another example of a method:
 
-  Article.__elasticsearch__.create_index! force: true
+  Article.__elasticsearch__.create_index! 1, force: true
+  Article.__elasticsearch__.create_index! 2, force: true
 
 == Parameters:
 param1::
@@ -109,5 +110,6 @@ DOC
     docstring = ::Inch::CodeObject::Docstring.new(text)
     assert docstring.contains_code_example?
     assert_equal 2, docstring.code_examples.size
+    assert docstring.code_examples.last.index("create_index! 2")
   end
 end
