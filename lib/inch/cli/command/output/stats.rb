@@ -1,3 +1,5 @@
+require 'json'
+
 module Inch
   module CLI
     module Command
