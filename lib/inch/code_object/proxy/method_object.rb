@@ -5,6 +5,10 @@ module Inch
         # convenient shortcuts to (YARD) code object
         def_delegators :object, :name
 
+        def comment_and_abbrev_source
+          comments.join('') + abbrev_source
+        end
+
         def bang_name?
           name =~ /\!$/
         end
@@ -63,6 +67,35 @@ module Inch
           names = signature_parameter_names
           names.concat parameter_tags.map(&:name)
           names.uniq
+        end
+
+        def abbrev_source
+          lines = object.source.to_s.lines
+          if lines.size >= 5
+            indent = lines[1].scan(/^(\s+)/).flatten.join('')
+            lines = lines[0..1] +
+                    ["#{indent}# ... snip ...\n"] +
+                    lines[-2..-1]
+          end
+          lines.join('')
+        end
+
+        def comments
+          @comments ||= files.map do |(filename, line_no)|
+            get_lines_up_while(filename, line_no - 1) do |line|
+              line =~ /^\s*#/
+            end.flatten.join('')
+          end
+        end
+
+        def get_lines_up_while(filename, line_no, &block)
+          lines = []
+          line = get_line_no(filename, line_no)
+          if yield(line) && line_no > 0
+            lines << line.gsub(/^(\s+)/, '')
+            lines.concat get_lines_up_while(filename, line_no - 1, &block)
+          end
+          lines.reverse
         end
 
         def signature_parameter_names

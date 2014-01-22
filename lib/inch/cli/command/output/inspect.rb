@@ -27,6 +27,7 @@ module Inch
             trace_header(o.path, :magenta)
 
             print_file_info(o)
+            print_code_info(o)
             print_doc_info(o)
             print_namespace_info(o)
             print_roles_info(o)
@@ -40,6 +41,15 @@ module Inch
               echo "-> #{f[0]}:#{f[1]}".magenta
             end
             echo separator
+          end
+
+          def print_code_info(o)
+            if o.method?
+              o.comment_and_abbrev_source.lines.each do |line|
+                echo line.gsub(/\n$/m, '').dark
+              end
+              echo separator
+            end
           end
 
           def print_roles_info(o)
