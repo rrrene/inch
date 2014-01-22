@@ -1,3 +1,5 @@
+require 'sparkr'
+
 module Inch
   module CLI
     module Command
@@ -21,6 +23,7 @@ module Inch
             else
               display_list
               display_files
+              puts "Grade distribution: (undocumented, C, B, A): " + sparkline.to_s(' ')
               display_proper_info
             end
           end
@@ -42,7 +45,31 @@ module Inch
                 0
              end
             percent = [percent, 100].min
-            trace "#{proper_size} objects seem properly documented (#{percent}% of relevant objects)."
+            trace "#{percent}% of priority objects (#{min_priority_arrows})" +
+                    " seem properly documented."
+          end
+
+          def sparkline
+            zero_object_size = range(:C).objects.select { |o| o.score == 0 }.size
+            arr = [
+              zero_object_size,
+              range(:C).objects.size - zero_object_size,
+              range(:B).objects.size,
+              range(:A).objects.size
+            ]
+
+            sparkline = Sparkr::Sparkline.new(arr)
+            sparkline.format do |tick, count, index|
+              if index == 3 # A
+                tick.green
+              elsif index == 2 # B
+                tick.yellow
+              elsif index == 1 # C
+                tick.red
+              else
+                tick.intense_red
+              end
+            end
           end
 
           def display_list
@@ -73,11 +100,11 @@ module Inch
           end
 
           def files
-            arr = files_sorted_by_objects
+            list = files_sorted_by_objects
             if @options.file_count
-              arr[0...@options.file_count]
+              list[0...@options.file_count]
             else
-              arr
+              list
             end
           end
 
@@ -97,10 +124,15 @@ module Inch
             end.reverse
           end
 
-          def first_range
-            range(objects.first.grade)
+          def min_priority_arrows
+            priority_arrows_gte(@options.object_min_priority).join(' ')
           end
 
+          def priority_arrows_gte(min_priority)
+            PRIORITY_MAP.map do |range, str|
+              str if range.min >= min_priority
+            end.compact
+          end
         end
       end
     end
