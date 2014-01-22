@@ -3,6 +3,7 @@ module Inch
     class MethodObject < Base
       DOC_SCORE = 50
       EXAMPLE_SCORE = 10
+      MULTIPLE_EXAMPLES_SCORE = 25
       PARAM_SCORE = 40
       RETURN_SCORE = 10
 
@@ -53,7 +54,11 @@ module Inch
 
       def eval_code_example
         if object.has_code_example?
-          add_role Role::Object::WithCodeExample.new(object, EXAMPLE_SCORE)
+          if object.has_multiple_code_examples?
+            add_role Role::Object::WithMultipleCodeExamples.new(object, MULTIPLE_EXAMPLES_SCORE)
+          else
+            add_role Role::Object::WithCodeExample.new(object, EXAMPLE_SCORE)
+          end
         else
           add_role Role::Object::WithoutCodeExample.new(object, EXAMPLE_SCORE)
         end

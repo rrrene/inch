@@ -10,7 +10,11 @@ module Inch
       end
 
       def contains_code_example?
-        @text.match(/\n\s*\n\ {2,}\w+/m)
+        !code_examples.empty?
+      end
+
+      def code_examples
+        @code_examples ||= @text.scan(/\n\s*\n\ {2,}([^\n]+) /m).flatten
       end
 
       def mentions_parameter?(name)

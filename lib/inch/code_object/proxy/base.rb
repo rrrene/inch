@@ -95,6 +95,11 @@ module Inch
             docstring.contains_code_example?
         end
 
+        def has_multiple_code_examples?
+          object.tags(:example).size > 1 ||
+            docstring.code_examples.size > 1
+        end
+
         def has_doc?
           !docstring.empty?
         end

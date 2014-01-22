@@ -39,6 +39,8 @@ module Inch
 
         class WithCodeExample < Base
         end
+        class WithMultipleCodeExamples < Base
+        end
         class WithoutCodeExample < Missing
           def suggestion
             "Add a code example (optional)"

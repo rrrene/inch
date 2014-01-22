@@ -68,6 +68,7 @@ the first parameter is mentioned.
 DOC
     docstring = ::Inch::CodeObject::Docstring.new(text)
     assert docstring.contains_code_example?
+    assert_equal 1, docstring.code_examples.size
   end
 
   it "should work with code example 3" do
@@ -85,5 +86,28 @@ A string in the specified format.
 DOC
     docstring = ::Inch::CodeObject::Docstring.new(text)
     assert docstring.contains_code_example?
+    assert_equal 1, docstring.code_examples.size
+  end
+
+  it "should work with multiple code examples" do
+text = <<-DOC
+An example of a method using RDoc rather than YARD.
+
+  method_with_code_example() # => some value
+
+Another example of a method:
+
+  Article.__elasticsearch__.create_index! force: true
+
+== Parameters:
+param1::
+  A Symbol declaring some markup language like `:md` or `:html`.
+
+== Returns:
+A string in the specified format.
+DOC
+    docstring = ::Inch::CodeObject::Docstring.new(text)
+    assert docstring.contains_code_example?
+    assert_equal 2, docstring.code_examples.size
   end
 end
