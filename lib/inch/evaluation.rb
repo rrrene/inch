@@ -19,10 +19,11 @@ require_relative 'evaluation/score_range'
 
 require_relative 'evaluation/role/base'
 require_relative 'evaluation/role/missing'
+require_relative 'evaluation/role/object'
 require_relative 'evaluation/role/method'
 require_relative 'evaluation/role/method_parameter'
 require_relative 'evaluation/role/namespace'
-require_relative 'evaluation/role/object'
+require_relative 'evaluation/role/constant'
 
 require_relative 'evaluation/base'
 require_relative 'evaluation/namespace_object'

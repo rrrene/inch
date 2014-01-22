@@ -5,24 +5,24 @@ module Inch
 
       def evaluate
         if object.has_doc?
-          add_role Role::Object::WithDoc.new(object, DOC_SCORE)
+          add_role Role::Constant::WithDoc.new(object, DOC_SCORE)
         else
-          add_role Role::Object::WithoutDoc.new(object, DOC_SCORE)
+          add_role Role::Constant::WithoutDoc.new(object, DOC_SCORE)
         end
         if object.nodoc?
-          add_role Role::Object::TaggedAsNodoc.new(object)
+          add_role Role::Constant::TaggedAsNodoc.new(object)
         end
         if object.in_root?
-          add_role Role::Object::InRoot.new(object)
+          add_role Role::Constant::InRoot.new(object)
         end
         if object.public?
-          add_role Role::Object::Public.new(object)
+          add_role Role::Constant::Public.new(object)
         end
         if object.protected?
-          add_role Role::Object::Protected.new(object)
+          add_role Role::Constant::Protected.new(object)
         end
         if object.private?
-          add_role Role::Object::Private.new(object)
+          add_role Role::Constant::Private.new(object)
         end
       end
     end
