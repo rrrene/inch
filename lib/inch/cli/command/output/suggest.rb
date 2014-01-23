@@ -9,6 +9,7 @@ module Inch
             :A => "Nearly perfect:",
             :B => "Properly documented, could be improved:",
             :C => "Not properly documented:",
+            :U => "Undocumented:",
           }
           attr_reader :objects
 
@@ -50,10 +51,9 @@ module Inch
           end
 
           def sparkline
-            zero_object_size = range(:C).objects.select { |o| o.score == 0 }.size
             arr = [
-              zero_object_size,
-              range(:C).objects.size - zero_object_size,
+              range(:U).objects.size,
+              range(:C).objects.size,
               range(:B).objects.size,
               range(:A).objects.size
             ]
@@ -67,7 +67,7 @@ module Inch
               elsif index == 1 # C
                 tick.red
               else
-                tick.intense_red
+                tick.intense_red # U
               end
             end
           end

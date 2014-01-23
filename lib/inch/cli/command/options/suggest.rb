@@ -7,7 +7,7 @@ module Inch
           attribute :file_count, 5
 
           attribute :proper_grades, [:A, :B]
-          attribute :grades_to_display, [:B, :C]
+          attribute :grades_to_display, [:B, :C, :U]
           attribute :object_min_priority, 0
           attribute :object_max_score, ::Inch::Evaluation::Base::MAX_SCORE
 

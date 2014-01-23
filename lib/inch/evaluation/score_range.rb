@@ -13,7 +13,8 @@ module Inch
     SCORE_RANGE_ARGS = [
       [80..100, :A, "Seems really good", :green],
       [50...80, :B, "Proper documentation present", :yellow],
-      [0...50,  :C, "Needs work", :red],
+      [1...50,  :C, "Needs work", :red],
+      [0..0,    :U, "Undocumented", :white],
     ]
 
     def self.new_score_ranges
