@@ -202,6 +202,9 @@ Inch would not exist without Loren Segal's [YARD](http://yardoc.org/).
 
 ## TODOs
 
+* Improve suggestions on which files to edit first
+* Give roles based on the existence of tags (otherwise tagged objects get
+  zero score, because the tags don't appear in the docstring)
 * Recognize all relevant options in .yardopts file
   * --plugin
   * --[no-]api API
@@ -210,7 +213,6 @@ Inch would not exist without Loren Segal's [YARD](http://yardoc.org/).
 * Add support for multiple signatures for methods
   (realized via the @overload tag in YARD)
 * Refactor some of the messy CLI::Output classes
-
 
 ## License
 
