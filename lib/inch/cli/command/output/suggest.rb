@@ -67,7 +67,7 @@ module Inch
               grade_objects = objects.select { |o| o.grade == r.grade }
               unless grade_objects.empty?
                 trace
-                trace header(RANGE_LABELS[r.grade], r.color)
+                trace_header(RANGE_LABELS[r.grade], r.color)
                 grade_objects.each do |o|
                   grade = o.grade.to_s.ljust(2).method(r.color).call
                   priority = o.priority

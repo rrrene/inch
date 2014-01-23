@@ -17,6 +17,7 @@ module Inch
 
       def trace_header(text, color)
         trace header(text, color)
+        trace if !use_color?
       end
 
       private
@@ -30,6 +31,10 @@ module Inch
           " #{text}".ljust(CLI::COLUMNS-1)
             .black.dark.bold
               .method("on_intense_#{color}").call
+      end
+
+      def use_color?
+        "".red.size > 0
       end
 
     end
