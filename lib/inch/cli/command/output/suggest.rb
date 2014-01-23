@@ -5,13 +5,16 @@ module Inch
     module Command
       module Output
         class Suggest < Base
+          include SparklineHelper
+
+          attr_reader :objects
+
           RANGE_LABELS = {
             :A => "Nearly perfect:",
             :B => "Properly documented, could be improved:",
             :C => "Not properly documented:",
             :U => "Undocumented:",
           }
-          attr_reader :objects
 
           def initialize(options, objects, ranges, relevant_count)
             @options = options
@@ -24,52 +27,27 @@ module Inch
             else
               display_list
               display_files
-              puts "Grade distribution: (undocumented, C, B, A): " + sparkline.to_s(' ')
+              display_distribution
               display_proper_info
             end
           end
 
           private
 
-          def range(grade)
-            @ranges.detect { |r| r.grade == grade }
+          def display_distribution
+            sparkline = ranges_sparkline(@ranges).to_s(' ')
+            puts "Grade distribution: (undocumented, C, B, A): " + sparkline
           end
 
-          def display_proper_info
-            proper_size = @options.proper_grades.inject(0) do |sum,grade|
-              sum + range(grade).objects.size
+          def display_files
+            trace
+            trace "You might want to look at these files:".dark
+            trace
+
+            files.each do |file|
+              trace edged(:dark, "#{file.dark}")
             end
-
-            percent = if @relevant_count > 0
-                ((proper_size/@relevant_count.to_f) * 100).to_i
-              else
-                0
-             end
-            percent = [percent, 100].min
-            trace "#{percent}% of priority objects (#{min_priority_arrows})" +
-                    " seem properly documented."
-          end
-
-          def sparkline
-            arr = [
-              range(:U).objects.size,
-              range(:C).objects.size,
-              range(:B).objects.size,
-              range(:A).objects.size
-            ]
-
-            sparkline = Sparkr::Sparkline.new(arr)
-            sparkline.format do |tick, count, index|
-              if index == 3 # A
-                tick.green
-              elsif index == 2 # B
-                tick.yellow
-              elsif index == 1 # C
-                tick.red
-              else
-                tick.intense_red # U
-              end
-            end
+            trace
           end
 
           def display_list
@@ -88,15 +66,19 @@ module Inch
             end
           end
 
-          def display_files
-            trace
-            trace "You might want to look at these files:".dark
-            trace
-
-            files.each do |file|
-              trace edged(:dark, "#{file.dark}")
+          def display_proper_info
+            proper_size = @options.proper_grades.inject(0) do |sum,grade|
+              sum + range(grade).objects.size
             end
-            trace
+
+            percent = if @relevant_count > 0
+                ((proper_size/@relevant_count.to_f) * 100).to_i
+              else
+                0
+             end
+            percent = [percent, 100].min
+            trace "#{percent}% of priority objects (#{min_priority_arrows})" +
+                    " seem properly documented."
           end
 
           def files
@@ -132,6 +114,10 @@ module Inch
             PRIORITY_MAP.map do |range, str|
               str if range.min >= min_priority
             end.compact
+          end
+
+          def range(grade)
+            @ranges.detect { |r| r.grade == grade }
           end
         end
       end
