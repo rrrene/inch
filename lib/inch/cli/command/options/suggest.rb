@@ -11,6 +11,8 @@ module Inch
           attribute :object_min_priority, 0
           attribute :object_max_score, ::Inch::Evaluation::Base::MAX_SCORE
 
+          attribute :pedantic, false
+
           def set_options(opts)
             list_options(opts)
             suggest_options(opts)
@@ -49,6 +51,7 @@ module Inch
               @proper_grades = [:A]
               @grades_to_display = [:A, :B, :C]
               @object_count = 25
+              @pedantic = true
             end
           end
         end

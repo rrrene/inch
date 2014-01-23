@@ -16,11 +16,11 @@ module Inch
             :U => "Undocumented:",
           }
 
-          def initialize(options, objects, ranges, relevant_count)
+          def initialize(options, objects, ranges, relevant_objects)
             @options = options
             @objects = objects
             @ranges = ranges
-            @relevant_count = relevant_count
+            @relevant_objects = relevant_objects
 
             if objects.empty?
               # TODO: show hint
@@ -28,24 +28,35 @@ module Inch
               display_list
               display_files
               display_distribution
-              display_proper_info
             end
           end
 
           private
 
           def display_distribution
-            sparkline = ranges_sparkline(@ranges).to_s(' ')
-            puts "Grade distribution: (undocumented, C, B, A): " + sparkline
+            sparkline = grades_sparkline(@relevant_objects).to_s(' ')
+            puts "Grade distribution (undocumented, C, B, A):  " + sparkline
+            puts
+            puts pedantic_hint
+          end
+
+          def pedantic_hint
+            arrows = min_priority_arrows
+            if @options.pedantic
+              "Considering priority objects: #{arrows}".dark
+            else
+              "Only considering priority objects: #{arrows}".dark +
+                "  (use `--pedantic` to get touchy).".dark
+            end
           end
 
           def display_files
             trace
-            trace "You might want to look at these files:".dark
+            trace "You might want to look at these files:"
             trace
 
             files.each do |file|
-              trace edged(:dark, "#{file.dark}")
+              trace edged(:cyan, "#{file.cyan}")
             end
             trace
           end
@@ -64,21 +75,6 @@ module Inch
                 end
               end
             end
-          end
-
-          def display_proper_info
-            proper_size = @options.proper_grades.inject(0) do |sum,grade|
-              sum + range(grade).objects.size
-            end
-
-            percent = if @relevant_count > 0
-                ((proper_size/@relevant_count.to_f) * 100).to_i
-              else
-                0
-             end
-            percent = [percent, 100].min
-            trace "#{percent}% of priority objects (#{min_priority_arrows})" +
-                    " seem properly documented."
           end
 
           def files

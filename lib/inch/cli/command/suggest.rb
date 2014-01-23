@@ -36,8 +36,8 @@ module Inch
             # should we add objects with lower priority to fill out the
             # requested count?
           end
-
-          Output::Suggest.new(@options, display_objects, @ranges, @objects.size)
+          relevant_objects = select_by_priority(objects, @options.object_min_priority)
+          Output::Suggest.new(@options, display_objects, @ranges, relevant_objects)
         end
 
         def assign_objects_to_ranges
