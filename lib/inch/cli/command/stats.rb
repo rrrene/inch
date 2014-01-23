@@ -11,11 +11,7 @@ module Inch
         end
 
         def run(*args)
-          @options.parse(args)
-          run_source_parser(@options.paths, @options.excluded)
-          filter_objects
-          assign_objects_to_ranges
-
+          prepare_list(*args)
           Output::Stats.new(@options, objects, @ranges)
         end
       end

@@ -16,11 +16,7 @@ module Inch
         # @param [Array<String>] args the list of arguments.
         # @return [void]
         def run(*args)
-          @options.parse(args)
-
-          run_source_parser(@options.paths, @options.excluded)
-          filter_objects
-          assign_objects_to_ranges
+          prepare_list(*args)
 
           display_objects = []
           @options.grades_to_display.map do |grade|

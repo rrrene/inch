@@ -1,4 +1,6 @@
 require_relative 'command/base'
+require_relative 'command/base_list'
+
 require_relative 'command/console'
 require_relative 'command/inspect'
 require_relative 'command/list'
