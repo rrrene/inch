@@ -1,7 +1,7 @@
 module Inch
   module CLI
     module Command
-      class Inspect < Base
+      class Inspect < BaseObject
         def description
           'Inspects an object'
         end
@@ -11,12 +11,7 @@ module Inch
         end
 
         def run(*args)
-          @options.parse(args)
-          @options.verify
-
-          run_source_parser(@options.paths, @options.excluded)
-
-          objects = find_object_names(@options.object_names)
+          prepare_objects(*args)
           Output::Inspect.new(@options, objects)
         end
       end

@@ -42,6 +42,10 @@ module Inch
             common_options(opts)
           end
 
+          # Override and fill with validations
+          def verify
+          end
+
           protected
 
           # Override and fill with an array of descriptions that will be

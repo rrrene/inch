@@ -16,6 +16,7 @@ module Inch
         # @return [void]
         def prepare_list(*args)
           @options.parse(args)
+          @options.verify
           run_source_parser(@options.paths, @options.excluded)
           filter_objects
           assign_objects_to_ranges

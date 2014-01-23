@@ -9,7 +9,8 @@ module Inch
       # @see https://github.com/lsegal/yard/blob/master/lib/yard/cli/command.rb
       class Base
         include TraceHelper
-        include ParserHelper
+
+        attr_reader :source_parser
 
         # Helper method to run the utility on an instance.
         # @see #run
@@ -46,6 +47,15 @@ module Inch
           "Usage: inch #{name} [options]"
         end
 
+        private
+
+        def run_source_parser(paths, excluded)
+          debug "Parsing:\n" \
+                "  files:    #{paths.inspect}\n" \
+                "  excluded: #{excluded.inspect}"
+
+          @source_parser = SourceParser.run(paths, excluded)
+        end
       end
     end
   end
