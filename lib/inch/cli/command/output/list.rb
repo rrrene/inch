@@ -68,14 +68,14 @@ module Inch
 
           def result_grades(object, color)
             grade = object.grade.to_s
-            grade = grade.ljust(2).method(color).call
+            grade = grade.ljust(2).color(color)
             priority = object.priority
             " #{grade} #{priority_arrow(priority, color)}  #{object.path}"
           end
 
           def result_numbers(object, color)
             score = object.score.to_i.to_s
-            score = score.rjust(3).method(color).call
+            score = score.rjust(3).color(color)
             priority = object.priority
             "#{score}  #{priority}  #{object.path}"
           end

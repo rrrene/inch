@@ -21,7 +21,7 @@ module Inch
           def priority_arrow(priority, color = :white)
             PRIORITY_MAP.each do |range, str|
               if range.include?(priority)
-                return str.method(color).call.dark
+                return str.color(color).dark
               end
             end
           end

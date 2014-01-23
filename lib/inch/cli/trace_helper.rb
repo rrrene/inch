@@ -22,7 +22,7 @@ module Inch
       private
 
       def edged(color, msg, edge = "┃ ")
-        edge.method(color).call + msg
+        edge.color(color) + msg
       end
 
       def header(text, color)
