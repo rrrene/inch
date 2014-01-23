@@ -2,9 +2,6 @@ module Inch
   module CodeObject
     module Proxy
       class MethodObject < Base
-        # convenient shortcuts to (YARD) code object
-        def_delegators :object, :name
-
         def comment_and_abbrev_source
           comments.join('') + abbrev_source
         end

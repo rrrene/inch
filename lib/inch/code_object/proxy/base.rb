@@ -16,7 +16,7 @@ module Inch
         attr_accessor :grade
 
         # convenient shortcuts to (YARD) code object
-        def_delegators :object, :type, :path, :namespace, :source, :source_type, :signature, :group, :dynamic, :visibility, :docstring
+        def_delegators :object, :type, :path, :name, :namespace, :source, :source_type, :signature, :group, :dynamic, :visibility, :docstring
 
         # convenient shortcuts to evalution object
         def_delegators :evaluation, :score, :roles, :priority
@@ -156,7 +156,7 @@ module Inch
         private
 
         def multi_code_examples?(text)
-          text =~ /\b#{name}[^_0-9\!\?]/
+          text =~ /\b#{Regexp.escape(name)}[^_0-9\!\?]/
         end
       end
     end
