@@ -13,7 +13,7 @@ module Inch
         # @return [Symbol]
         #   when objects are assigned to ScoreRanges, this grade is set to
         #   enable easier querying for objects of a certain grade
-        attr_accessor :grade
+        attr_writer :grade
 
         # convenient shortcuts to (YARD) code object
         def_delegators :object, :type, :path, :name, :namespace, :source, :source_type, :signature, :group, :dynamic, :visibility, :docstring
@@ -23,6 +23,12 @@ module Inch
 
         def initialize(object)
           self.object = object
+        end
+
+        def grade
+          @grade ||= Evaluation.new_score_ranges.detect { |range|
+                range.range.include?(score)
+              }.grade
         end
 
         def has_alias?
