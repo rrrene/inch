@@ -215,9 +215,6 @@ Inch would not exist without Loren Segal's [YARD](http://yardoc.org/).
 
 ## TODOs
 
-* Improve suggestions on which files to edit first
-* Give roles based on the existence of tags (otherwise tagged objects get
-  zero score, because the tags don't appear in the docstring)
 * Maybe add some NotToBeDocumented role for monkey-patching (Array, Hash,
   String, etc.)
 * Recognize all relevant options in .yardopts file

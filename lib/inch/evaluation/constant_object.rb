@@ -12,6 +12,10 @@ module Inch
         if object.nodoc?
           add_role Role::Constant::TaggedAsNodoc.new(object)
         end
+        if object.has_unconsidered_tags?
+          count = object.unconsidered_tags.size
+          add_role Role::Object::Tagged.new(object, TAGGED_SCORE * count)
+        end
         if object.in_root?
           add_role Role::Constant::InRoot.new(object)
         end

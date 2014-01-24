@@ -30,7 +30,6 @@ module Inch
             code_examples << example if example
             example = nil
           end
-          #binding.pry
         end
         code_examples << example if example
         code_examples.delete_if(&:empty?).map(&:join)

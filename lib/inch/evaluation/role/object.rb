@@ -10,9 +10,17 @@ module Inch
           end
         end
 
+        # Tagged means tagged in an unconsidred way, i.e. YARD tags not
+        # considered by Inch. Since these tags are parsed from the docstring
+        # the object seems undocumented to Inch.
+        class Tagged < Base
+          def priority
+            -1
+          end
+        end
         class TaggedAsNodoc < Base
           def priority
-            -5
+            -7
           end
         end
         class InRoot < Base

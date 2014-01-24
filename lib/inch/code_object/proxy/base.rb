@@ -15,6 +15,9 @@ module Inch
         #   enable easier querying for objects of a certain grade
         attr_writer :grade
 
+        # Tags considered by wrapper methods like {#has_code_example?}
+        CONSIDERED_YARD_TAGS = %w(example param private return)
+
         # convenient shortcuts to (YARD) code object
         def_delegators :object, :type, :path, :name, :namespace, :source, :source_type, :signature, :group, :dynamic, :visibility, :docstring
 
@@ -25,6 +28,21 @@ module Inch
           self.object = object
         end
 
+        # To be overridden
+        # @see Proxy::NamespaceObject
+        # @return [Array,nil] the children of the current object or +nil+
+        def children
+          nil
+        end
+
+        def docstring
+          @docstring ||= Docstring.new(object.docstring)
+        end
+
+        def evaluation
+          @evaluation ||= Evaluation.for(self)
+        end
+
         def grade
           @grade ||= Evaluation.new_score_ranges.detect { |range|
                 range.range.include?(score)
@@ -33,6 +51,33 @@ module Inch
 
         def has_alias?
           !object.aliases.empty?
+        end
+
+        def has_code_example?
+          !object.tags(:example).empty? ||
+            docstring.contains_code_example?
+        end
+
+        def has_doc?
+          !docstring.empty?
+        end
+
+        def has_multiple_code_examples?
+          if object.tags(:example).size > 1 || docstring.code_examples.size > 1
+            true
+          else
+            if tag = object.tag(:example)
+              multi_code_examples?(tag.text)
+            elsif text = docstring.code_examples.first
+              multi_code_examples?(text)
+            else
+              false
+            end
+          end
+        end
+
+        def has_unconsidered_tags?
+          !unconsidered_tags.empty?
         end
 
         def in_root?
@@ -82,43 +127,6 @@ module Inch
           end
         end
 
-        # @see Proxy::NamespaceObject
-        # @return [Array,nil] the children of the current object or +nil+
-        def children
-          nil
-        end
-
-        def docstring
-          @docstring ||= Docstring.new(object.docstring)
-        end
-
-        def evaluation
-          @evaluation ||= Evaluation.for(self)
-        end
-
-        def has_code_example?
-          !object.tags(:example).empty? ||
-            docstring.contains_code_example?
-        end
-
-        def has_multiple_code_examples?
-          if object.tags(:example).size > 1 || docstring.code_examples.size > 1
-            true
-          else
-            if tag = object.tag(:example)
-              multi_code_examples?(tag.text)
-            elsif text = docstring.code_examples.first
-              multi_code_examples?(text)
-            else
-              false
-            end
-          end
-        end
-
-        def has_doc?
-          !docstring.empty?
-        end
-
         # @return [Boolean] +true+ if the object represents a method
         def method?
           false
@@ -134,10 +142,6 @@ module Inch
           Proxy.for(object.parent) if object.parent
         end
 
-        def public?
-          visibility == :public
-        end
-
         def private?
           visibility == :private
         end
@@ -150,9 +154,21 @@ module Inch
           visibility == :protected
         end
 
+        def public?
+          visibility == :public
+        end
+
         # @return [Boolean] +true+ if the object has no documentation at all
         def undocumented?
           docstring.empty? && object.tags.empty?
+        end
+
+        # @return [Array]
+        #   YARD tags that are not already covered by other wrapper methods
+        def unconsidered_tags
+          @unconsidered_tags ||= object.tags.reject do |tag|
+              CONSIDERED_YARD_TAGS.include?(tag.name)
+            end
         end
 
         def inspect

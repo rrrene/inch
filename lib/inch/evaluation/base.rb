@@ -6,6 +6,9 @@ module Inch
       MIN_SCORE = 0
       MAX_SCORE = 100
 
+      TAGGED_SCORE = 20 # assigned per unconsidered tag
+
+
       attr_accessor :object
       attr_reader :min_score, :max_score
 
