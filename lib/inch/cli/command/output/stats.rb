@@ -36,8 +36,8 @@ module Inch
             puts
             puts 'Grade distribution by priority:'
             puts
-            PRIORITY_MAP.each do |range, arrow|
-              list = objects.select { |o| range.include?(o.priority) }
+            PRIORITY_MAP.each do |priority_range, arrow|
+              list = objects.select { |o| priority_range.include?(o.priority) }
               sparkline = grades_sparkline(list).to_s(' ')
               puts "        #{arrow}   #{sparkline}  " +
                     "#{list.size.to_s.rjust(5)} objects"

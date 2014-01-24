@@ -5,6 +5,10 @@ module Inch
         class Inspect < Base
           attr_reader :objects
 
+          COLOR = :color198     # magenta-ish
+          BG_COLOR = :color207  # magenta-ish
+          LJUST = 20
+
           def initialize(options, objects)
             @options = options
             @objects = objects
@@ -20,11 +24,9 @@ module Inch
             end
           end
 
-          LJUST = 20
-
           def print_object(o)
             trace
-            trace_header(o.path, :magenta)
+            trace_header(o.path, COLOR, BG_COLOR)
 
             print_file_info(o)
             print_code_info(o)
@@ -38,7 +40,7 @@ module Inch
 
           def print_file_info(o)
             o.files.each do |f|
-              echo "-> #{f[0]}:#{f[1]}".magenta
+              echo "-> #{f[0]}:#{f[1]}".color(COLOR)
             end
             echo separator
           end
@@ -107,18 +109,18 @@ module Inch
             if o.namespace?
               echo "Children (height: #{o.height}):"
               o.children.each do |child|
-                echo "+ " + child.path.magenta
+                echo "+ " + child.path.color(COLOR)
               end
               echo separator
             end
           end
 
           def echo(msg = "")
-            trace edged(:magenta, msg)
+            trace edged(COLOR, msg)
           end
 
           def separator
-            "-".magenta * (CLI::COLUMNS - 2)
+            "-".color(COLOR) * (CLI::COLUMNS - 2)
           end
         end
       end

@@ -5,6 +5,10 @@ module Inch
         class Show < Base
           attr_reader :objects
 
+          COLOR = :color132
+          BG_COLOR = :color138
+          LJUST = 20
+
           def initialize(options, objects)
             @options = options
             @objects = objects
@@ -20,23 +24,25 @@ module Inch
             end
           end
 
-          LJUST = 20
-
           def print_object(o)
             trace
-            trace_header(o.path, :magenta)
+            trace_header(o.path, COLOR, BG_COLOR)
 
             print_file_info(o)
-            echo "Grade: #{grade(o.score)}".rjust(5)
-            echo separator
+            print_grade_info(o)
             print_roles_info(o)
 
           end
 
           def print_file_info(o)
             o.files.each do |f|
-              echo "-> #{f[0]}:#{f[1]}".magenta
+              echo "-> #{f[0]}:#{f[1]}".color(COLOR)
             end
+            echo separator
+          end
+
+          def print_grade_info(o)
+            echo "Grade: #{grade(o.score)}".rjust(5)
             echo separator
           end
 
@@ -46,7 +52,7 @@ module Inch
             else
               o.roles.each_with_index do |role, index|
                 if role.suggestion
-                  echo "+".magenta + " #{role.suggestion}"
+                  echo "+".color(COLOR) + " #{role.suggestion}"
                 end
               end
             end
@@ -54,11 +60,11 @@ module Inch
           end
 
           def echo(msg = "")
-            trace edged(:magenta, msg)
+            trace edged(COLOR, msg)
           end
 
           def separator
-            "-".magenta * (CLI::COLUMNS - 2)
+            "-".color(COLOR) * (CLI::COLUMNS - 2)
           end
 
           def grade(score)

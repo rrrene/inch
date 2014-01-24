@@ -48,6 +48,7 @@ module Inch
             # should we add objects with lower priority to fill out the
             # requested count?
           end
+          list
         end
 
         def files

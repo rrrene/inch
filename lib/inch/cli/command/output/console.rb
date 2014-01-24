@@ -13,6 +13,9 @@ module Inch
           alias :f :find_object
           alias :o :object
 
+          COLOR = :color198     # magenta-ish
+          BG_COLOR = :color207  # magenta-ish
+
           def initialize(options, object, objects, source_parser)
             @options = options
             @object = object
@@ -23,9 +26,20 @@ module Inch
           end
 
           def run
-            binding.pry
+            trace
+            trace_header("Welcome to Inch's console", COLOR, BG_COLOR)
+            trace edged(COLOR, @options.usage)
+            @options.descriptions.each do |line|
+              trace edged(COLOR, line)
+            end
+            run_pry
           end
 
+          private
+
+          def run_pry
+            binding.pry
+          end
         end
       end
     end
