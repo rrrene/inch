@@ -7,6 +7,9 @@ module Inch
       EXAMPLE_SCORE = 10
       MULTIPLE_EXAMPLES_SCORE = 20
 
+      RUBY_CORE = %w(Array Bignum BasicObject Object Module Class Complex NilClass Numeric String Float Fiber FiberError Continuation Dir File Encoding Enumerator StopIteration Enumerator::Generator Enumerator::Yielder Exception SystemExit SignalException Interrupt StandardError TypeError ArgumentError IndexError KeyError RangeError ScriptError SyntaxError LoadError NotImplementedError NameError NoMethodError RuntimeError SecurityError NoMemoryError EncodingError SystemCallError Encoding::CompatibilityError File::Stat IO Hash ENV IOError EOFError ARGF RubyVM RubyVM::InstructionSequence Math::DomainError ZeroDivisionError FloatDomainError Integer Fixnum Data TrueClass FalseClass Mutex Thread Proc LocalJumpError SystemStackError Method UnboundMethod Binding Process::Status Random Range Rational RegexpError Regexp MatchData Symbol Struct ThreadGroup ThreadError Time Encoding::UndefinedConversionError Encoding::InvalidByteSequenceError Encoding::ConverterNotFoundError Encoding::Converter RubyVM::Env) +
+                  %w(Comparable Kernel File::Constants Enumerable Errno FileTest GC ObjectSpace GC::Profiler IO::WaitReadable IO::WaitWritable Marshal Math Process Process::UID Process::GID Process::Sys Signal)
+
       def evaluate
         eval_doc
         eval_children
@@ -34,9 +37,17 @@ module Inch
         if object.private?
           add_role Role::Object::Private.new(object)
         end
+
+        eval_core
       end
 
       private
+
+      def eval_core
+        if RUBY_CORE.include?(object.path)
+          add_role Role::Namespace::Core.new(object)
+        end
+      end
 
       def eval_doc
         if object.has_doc?

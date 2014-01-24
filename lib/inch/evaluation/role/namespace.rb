@@ -41,6 +41,17 @@ module Inch
             -2
           end
         end
+        # A 'core' namespace is a class or module that is part of the Ruby
+        # core. It might appear in the object tree when monkey-patching
+        # functionality.
+        # But just because we patch Hash does not mean we need to document
+        # the Hash class itself.
+        class Core < Base
+          # --priority
+          def priority
+            -7
+          end
+        end
       end
     end
   end
