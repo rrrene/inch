@@ -20,15 +20,6 @@ module Inch
           Output::Suggest.new(@options, display_objects, relevant_objects, @ranges, files)
         end
 
-        def assign_objects_to_ranges
-          @ranges.each do |r|
-            arr = objects.select do |o|
-              r.range.include?(o.score)
-            end
-            r.objects = sort_by_priority(arr)
-          end
-        end
-
         def display_objects
           list = []
           @options.grades_to_display.map do |grade|
@@ -38,9 +29,7 @@ module Inch
             list.concat arr
           end
 
-          list = list.sort_by do |o|
-            [o.priority, o.score]
-          end.reverse
+          list = sort_by_priority(list)
 
           if list.size > @options.object_count
             list = list[0..@options.object_count]
@@ -86,12 +75,6 @@ module Inch
 
         def select_by_priority(arr, min_priority)
           arr.select { |o| o.priority >= min_priority }
-        end
-
-        def sort_by_priority(arr)
-          arr.sort_by do |o|
-            [o.priority, o.score]
-          end.reverse
         end
 
       end

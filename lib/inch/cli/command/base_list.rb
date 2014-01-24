@@ -24,10 +24,13 @@ module Inch
 
         private
 
+        # Assigns the objects returned by {#objects} to the score ranges in
+        # @ranges based on their score
+        #
         def assign_objects_to_ranges
           @ranges.each do |range|
-            arr = objects.select { |o| range.range.include?(o.score) }
-            range.objects = arr.sort_by { |o| [o.priority, o.score] }.reverse
+            list = objects.select { |o| range.range.include?(o.score) }
+            range.objects = sort_by_priority(list)
           end
         end
 
@@ -58,8 +61,12 @@ module Inch
         end
 
         def objects
-          @objects ||= source_parser.all_objects.sort_by do |o|
-            o.score
+          @objects ||= sort_by_priority(source_parser.all_objects)
+        end
+
+        def sort_by_priority(objects)
+          objects.sort_by do |o|
+            [o.priority, o.score]
           end.reverse
         end
       end
