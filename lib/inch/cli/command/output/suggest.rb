@@ -7,7 +7,7 @@ module Inch
         class Suggest < Base
           include SparklineHelper
 
-          attr_reader :objects
+          attr_reader :objects, :files
 
           FILE_COLOR = :dark # TODO: store all colors somewhere
           RANGE_LABELS = {
@@ -17,11 +17,12 @@ module Inch
             :U => "Undocumented:",
           }
 
-          def initialize(options, objects, ranges, relevant_objects)
+          def initialize(options, objects, relevant_objects, ranges, files)
             @options = options
             @objects = objects
-            @ranges = ranges
             @relevant_objects = relevant_objects
+            @ranges = ranges
+            @files = files
 
             if objects.empty?
               # TODO: show hint
@@ -76,31 +77,6 @@ module Inch
                 end
               end
             end
-          end
-
-          def files
-            list = files_sorted_by_objects
-            if @options.file_count
-              list[0...@options.file_count]
-            else
-              list
-            end
-          end
-
-          def files_sorted_by_objects
-            counts = {}
-            files = []
-            objects.each do |object|
-              filenames = object.files.map(&:first)
-              filenames.each do |f|
-                counts[f] ||= 0
-                counts[f] += 1
-                files << f unless files.include?(f)
-              end
-            end
-            files = files.sort_by do |f|
-              counts[f]
-            end.reverse
           end
 
           def min_priority_arrows
