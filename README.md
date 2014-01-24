@@ -31,33 +31,42 @@ Inch can suggest places where a codebase suffers a lack of documentation.
 
     $ inch suggest
 
-    94 objects seem properly documented (26% of relevant objects).
+    # Properly documented, could be improved:
 
-    # The following objects could be improved:
+    ┃  B  ↑  Inch::CLI::Command::BaseObject#prepare_objects
+    ┃  B  ↑  Inch::CLI::Command::BaseList#prepare_list
     ┃  B  ↑  Inch::CLI::Command::Suggest#run
     ┃  B  ↑  Inch::CLI::Command::List#run
     ┃  B  ↑  Inch::CodeObject::Proxy::MethodParameterObject#initialize
     ┃  B  ↗  Inch::CLI::Command::Stats#run
     ┃  B  ↗  Inch::CLI::CommandParser#run
     ┃  B  ↗  Inch::CLI::CommandParser.run
-    ┃  B  ↗  Inch::CLI::Command::Base.run
-    ┃  B  ↗  Inch::Evaluation::Base#object=
-    ┃  B  ↗  Inch::CodeObject::Proxy::Base#object=
-    ┃  C  ↑  Inch::CLI::Command::Output::Stats#initialize
-    ┃  C  ↑  Inch::CLI::Command::Output::Suggest#initialize
+
+    # Not properly documented:
+
     ┃  C  ↑  Inch::CodeObject::NodocHelper#implicit_nodoc_comment?
     ┃  C  ↑  Inch::CLI::Command::Output::Console#initialize
-    ┃  C  ↑  Inch::Evaluation::NamespaceObject#evaluate
-    ┃  C  ↑  Inch::Evaluation::ConstantObject#evaluate
-    ┃  C  ↑  Inch::SourceParser#find_object
+    ┃  C  ↑  Inch::CLI::Command::Output::Suggest#initialize
+    ┃  C  ↑  Inch::Rake::Suggest#initialize
+
+    # Undocumented:
+
+    ┃  U  ↑  Inch::Evaluation::NamespaceObject#evaluate
+    ┃  U  ↑  Inch::Evaluation::ConstantObject#evaluate
+    ┃  U  ↑  Inch::Evaluation::MethodObject#evaluate
+    ┃  U  ↑  Inch::SourceParser#find_object
 
     You might want to look at these files:
 
-    ┃ lib/inch/cli/command/suggest.rb
-    ┃ lib/inch/cli/command/list.rb
-    ┃ lib/inch/code_object/proxy/method_parameter_object.rb
-    ┃ lib/inch/cli/command/stats.rb
-    ┃ lib/inch/cli/command_parser.rb
+    ┃ lib/inch/code_object/proxy/base.rb
+    ┃ lib/inch/code_object/proxy/method_object.rb
+    ┃ lib/inch/evaluation/role/constant.rb
+    ┃ lib/inch/evaluation/role/method_parameter.rb
+    ┃ lib/inch/evaluation/role/object.rb
+
+    Grade distribution (undocumented, C, B, A):  █  ▃ ▁ ▄
+
+    Only considering priority objects: ↑ ↗ →  (use `--help` for options).
 
 The grades (A, B, C) show how good the present documentation seems.
 The arrows (↑ ↗ → ↘ ↓) hint at the importance of the object being documented.
@@ -70,6 +79,7 @@ Inch can show you details about what can be approved in a specific object.
     $ inch show Inch::SourceParser#find_object
 
     # Inch::SourceParser#find_object
+
     ┃ -> lib/inch/source_parser.rb:16
     ┃ ------------------------------------------------------
     ┃ Grade: C - Needs work
@@ -88,6 +98,7 @@ Inch can list all objects in your codebase with their grades.
     $ inch list
 
     # Seems really good
+
     ┃  A  ↑  Inch::CLI::Command::Output::Console#object
     ┃  A  ↗  Inch
     ┃  A  ↗  Inch::CodeObject::Proxy::Base#depth
@@ -101,6 +112,7 @@ Inch can list all objects in your codebase with their grades.
     ┃ ...  (omitting 75 objects)
 
     # Proper documentation present
+
     ┃  B  ↑  Inch::CLI::Command::Suggest#run
     ┃  B  ↑  Inch::CLI::Command::List#run
     ┃  B  ↑  Inch::CodeObject::Proxy::MethodParameterObject#initialize
@@ -112,6 +124,7 @@ Inch can list all objects in your codebase with their grades.
     ┃  B  ↗  Inch::CodeObject::Proxy::Base#object=
 
     # Needs work
+
     ┃  C  ↑  Inch::CLI::Command::Output::Stats#initialize
     ┃  C  ↑  Inch::CLI::Command::Output::Suggest#initialize
     ┃  C  ↑  Inch::CodeObject::NodocHelper#implicit_nodoc_comment?
