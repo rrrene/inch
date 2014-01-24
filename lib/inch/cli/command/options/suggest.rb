@@ -3,7 +3,7 @@ module Inch
     module Command
       module Options
         class Suggest < BaseList
-          attribute :object_count, 15
+          attribute :object_count, 20
           attribute :file_count, 5
 
           attribute :proper_grades, [:A, :B]

@@ -37,7 +37,7 @@ module Inch
 
 
           if list.size > @options.object_count
-            list = list[0..@options.object_count]
+            list = list[0...@options.object_count]
           elsif list.size < @options.object_count
             # should we add objects with lower priority to fill out the
             # requested count?
