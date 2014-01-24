@@ -196,7 +196,7 @@ employing every technique YARD has to offer.
 
 ## Contributing
 
-1. Fork it ( http://github.com/rrrene/inch/fork )
+1. [Fork it!](http://github.com/rrrene/inch/fork)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
@@ -218,6 +218,8 @@ Inch would not exist without Loren Segal's [YARD](http://yardoc.org/).
 * Improve suggestions on which files to edit first
 * Give roles based on the existence of tags (otherwise tagged objects get
   zero score, because the tags don't appear in the docstring)
+* Maybe add some NotToBeDocumented role for monkey-patching (Array, Hash,
+  String, etc.)
 * Recognize all relevant options in .yardopts file
   * --plugin
   * --[no-]api API
