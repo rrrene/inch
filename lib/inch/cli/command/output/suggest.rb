@@ -67,9 +67,9 @@ module Inch
               grade_objects = objects.select { |o| o.grade == r.grade }
               unless grade_objects.empty?
                 trace
-                trace_header(RANGE_LABELS[r.grade], r.color)
+                trace_header(RANGE_LABELS[r.grade], r.color, r.bg_color)
                 grade_objects.each do |o|
-                  grade = o.grade.to_s.ljust(2).method(r.color).call
+                  grade = o.grade.to_s.ljust(2).color(r.color)
                   priority = o.priority
                   trace edged(r.color, " #{grade} #{priority_arrow(priority, r.color)}  #{o.path}")
                 end

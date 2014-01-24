@@ -1,6 +1,6 @@
 module Inch
   module Evaluation
-    class ScoreRange < Struct.new(:range, :grade, :description, :color)
+    class ScoreRange < Struct.new(:range, :grade, :description, :color, :bg_color)
       # Returns code_objects that received a score with the defined +range+
       attr_reader :objects
 
@@ -14,7 +14,7 @@ module Inch
       [80..100, :A, "Seems really good", :green],
       [50...80, :B, "Proper documentation present", :yellow],
       [1...50,  :C, "Needs work", :red],
-      [0..0,    :U, "Undocumented", :white],
+      [0..0,    :U, "Undocumented", :color141, :color105],
     ]
 
     def self.new_score_ranges

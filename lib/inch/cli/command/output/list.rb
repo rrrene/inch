@@ -24,7 +24,7 @@ module Inch
                 # pass
               else
                 trace
-                trace_header(range.description, range.color)
+                trace_header(range.description, range.color, range.bg_color)
                 display_range(range)
               end
             end

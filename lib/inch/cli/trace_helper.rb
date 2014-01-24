@@ -15,8 +15,8 @@ module Inch
         puts text
       end
 
-      def trace_header(text, color)
-        trace header(text, color)
+      def trace_header(text, color, bg_color = nil)
+        trace header(text, color, bg_color)
         trace if !use_color?
       end
 
@@ -26,7 +26,8 @@ module Inch
         edge.color(color) + msg
       end
 
-      def header(text, color, bg_color = "intense_#{color}")
+      def header(text, color, bg_color = nil)
+        bg_color ||= "intense_#{color}"
         bar = " #{text}".ljust(CLI::COLUMNS-1)
                 .on_color(bg_color).color(:color16)
         "#".color(color).on_color(color) + bar

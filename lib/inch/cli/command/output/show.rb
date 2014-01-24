@@ -64,7 +64,7 @@ module Inch
           def grade(score)
             ranges ||= Evaluation.new_score_ranges
             r = ranges.detect { |r| r.range.include?(score) }
-            "#{r.grade} - #{r.description}".method(r.color).call
+            "#{r.grade} - #{r.description}".color(r.color)
           end
         end
       end
