@@ -35,7 +35,6 @@ module Inch
 
           list = sort_by_priority(list)
 
-
           if list.size > @options.object_count
             list = list[0...@options.object_count]
           elsif list.size < @options.object_count
@@ -48,26 +47,26 @@ module Inch
         def files
           list = files_sorted_by_importance
           how_many = @options.file_count || list.size
-          list[0...how_many].sort
+          list[0...how_many]
         end
 
         def files_sorted_by_importance
-          relevant_grades = grades[-2..-1]
-          counts = {}
-          files = []
-          objects_to_display.each do |object|
-            filenames = object.files.map(&:first)
-            filenames.each do |filename|
-              if relevant_grades.include?(object.grade)
-                counts[filename] ||= 0
-                counts[filename] += 1
-                files << filename unless files.include?(filename)
-              end
-            end
+          list = all_filenames(relevant_objects).uniq.map do |filename|
+            f = Evaluation::File.for(filename, relevant_objects)
           end
-          files = files.sort_by do |f|
-            counts[f]
-          end.reverse
+
+          list = list.select do |f|
+            relevant_grades.include?(f.grade) &&
+              relevant_priorities.include?(f.priority)
+          end
+
+          sort_by_priority(list)
+        end
+
+        def all_filenames(objects)
+          objects.map do |o|
+            o.files.map(&:first)
+          end.flatten
         end
 
         # Returns the unique grades assigned to objects
@@ -85,6 +84,14 @@ module Inch
 
         def relevant_objects
           select_by_priority(objects, @options.object_min_priority)
+        end
+
+        def relevant_grades
+          grades.size >= 2 ? grades[-2..-1] : [grades.last].compact
+        end
+
+        def relevant_priorities
+          (@options.object_min_priority..99)
         end
 
         def select_by_priority(list, min_priority)

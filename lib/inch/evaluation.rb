@@ -15,6 +15,8 @@ module Inch
   end
 end
 
+require_relative 'evaluation/file'
+
 require_relative 'evaluation/score_range'
 
 require_relative 'evaluation/role/base'

@@ -17,9 +17,14 @@ module Inch
             :U => "Undocumented:",
           }
 
-          def initialize(options, objects, relevant_objects, ranges, files)
+          # @param options [Command::Options::Suggest]
+          # @param objects_to_display [Array<CodeObject::Proxy::Base>]
+          # @param relevant_objects [Array<CodeObject::Proxy::Base>] the objects meeting the criteria defined in +options+
+          # @param ranges [Array<Evaluation::ScoreRange>]
+          # @param files [Array<Evaluation::File>]
+          def initialize(options, objects_to_display, relevant_objects, ranges, files)
             @options = options
-            @objects = objects
+            @objects = objects_to_display
             @relevant_objects = relevant_objects
             @ranges = ranges
             @files = files
@@ -39,10 +44,10 @@ module Inch
             sparkline = grades_sparkline(@relevant_objects).to_s(' ')
             puts "Grade distribution (undocumented, C, B, A):  " + sparkline
             puts
-            puts pedantic_hint
+            puts priority_filter_hint
           end
 
-          def pedantic_hint
+          def priority_filter_hint
             arrows = min_priority_arrows
             pretext = if @options.pedantic
               "Considering priority objects: #{arrows}"
@@ -57,8 +62,8 @@ module Inch
             trace "You might want to look at these files:"
             trace
 
-            files.each do |filename|
-              trace edged(FILE_COLOR, filename.color(FILE_COLOR))
+            files.each do |f|
+              trace edged(FILE_COLOR, f.path.color(FILE_COLOR))
             end
             trace
           end
