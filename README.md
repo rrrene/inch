@@ -213,19 +213,6 @@ René Föhring (@rrrene)
 Inch would not exist without Loren Segal's [YARD](http://yardoc.org/).
 
 
-## TODOs
-
-* Maybe add some NotToBeDocumented role for monkey-patching (Array, Hash,
-  String, etc.)
-* Recognize all relevant options in .yardopts file
-  * --plugin
-  * --[no-]api API
-* Provide reusable context that filters code objects according to the
-  visibility options
-* Add support for multiple signatures for methods
-  (realized via the @overload tag in YARD)
-* Refactor some of the messy CLI::Output classes
-
 ## License
 
 Inch is released under the MIT License. See the LICENSE.txt file for further
