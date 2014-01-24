@@ -17,10 +17,14 @@ module Inch
         # @return [void]
         def run(*args)
           prepare_list(*args)
-          Output::Suggest.new(@options, display_objects, relevant_objects, @ranges, files)
+          Output::Suggest.new(@options, objects_to_display, relevant_objects, @ranges, files)
         end
 
-        def display_objects
+        def objects_to_display
+          @objects_to_display ||= filter_objects_to_display
+        end
+
+        def filter_objects_to_display
           list = []
           @options.grades_to_display.map do |grade|
             r = range(grade)
@@ -30,6 +34,7 @@ module Inch
           end
 
           list = sort_by_priority(list)
+
 
           if list.size > @options.object_count
             list = list[0..@options.object_count]
@@ -41,28 +46,37 @@ module Inch
         end
 
         def files
-          list = files_sorted_by_objects
-          if @options.file_count
-            list[0...@options.file_count]
-          else
-            list
-          end
+          list = files_sorted_by_importance
+          how_many = @options.file_count || list.size
+          list[0...how_many].sort
         end
 
-        def files_sorted_by_objects
+        def files_sorted_by_importance
+          relevant_grades = grades[-2..-1]
           counts = {}
           files = []
-          objects.each do |object|
+          objects_to_display.each do |object|
             filenames = object.files.map(&:first)
-            filenames.each do |f|
-              counts[f] ||= 0
-              counts[f] += 1
-              files << f unless files.include?(f)
+            filenames.each do |filename|
+              if relevant_grades.include?(object.grade)
+                counts[filename] ||= 0
+                counts[filename] += 1
+                files << filename unless files.include?(filename)
+              end
             end
           end
           files = files.sort_by do |f|
             counts[f]
           end.reverse
+        end
+
+        # Returns the unique grades assigned to objects
+        #
+        #   grades # => [:A, :B, :C, :U]
+        #
+        # @return [Array<Symbol>]
+        def grades
+          objects.map(&:grade).uniq
         end
 
         def range(grade)
@@ -73,8 +87,8 @@ module Inch
           select_by_priority(objects, @options.object_min_priority)
         end
 
-        def select_by_priority(arr, min_priority)
-          arr.select { |o| o.priority >= min_priority }
+        def select_by_priority(list, min_priority)
+          list.select { |o| o.priority >= min_priority }
         end
 
       end

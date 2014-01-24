@@ -66,7 +66,7 @@ module Inch
 
         def sort_by_priority(objects)
           objects.sort_by do |o|
-            [o.priority, o.score]
+            [o.priority, o.score, o.path.size]
           end.reverse
         end
       end

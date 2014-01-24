@@ -50,7 +50,7 @@ module Inch
               # only A-listers are regarded as 'proper'
               @proper_grades = [:A]
               @grades_to_display = [:A, :B, :C]
-              @object_count = 25
+              @object_count = 30
               @pedantic = true
             end
           end

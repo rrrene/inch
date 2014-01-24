@@ -44,12 +44,12 @@ module Inch
 
           def pedantic_hint
             arrows = min_priority_arrows
-            if @options.pedantic
-              "Considering priority objects: #{arrows}".dark
+            pretext = if @options.pedantic
+              "Considering priority objects: #{arrows}"
             else
-              "Only considering priority objects: #{arrows}".dark +
-                "  (use `--pedantic` to get touchy).".dark
+              "Only considering priority objects: #{arrows}"
             end
+            "#{pretext}  (use `--help` for options).".dark
           end
 
           def display_files
