@@ -9,6 +9,7 @@ module Inch
 
           attr_reader :objects
 
+          FILE_COLOR = :dark # TODO: store all colors somewhere
           RANGE_LABELS = {
             :A => "Nearly perfect:",
             :B => "Properly documented, could be improved:",
@@ -55,8 +56,8 @@ module Inch
             trace "You might want to look at these files:"
             trace
 
-            files.each do |file|
-              trace edged(:cyan, "#{file.cyan}")
+            files.each do |filename|
+              trace edged(FILE_COLOR, filename.color(FILE_COLOR))
             end
             trace
           end
