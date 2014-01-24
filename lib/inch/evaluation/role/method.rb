@@ -38,6 +38,12 @@ module Inch
         end
 
         class Overridden < Base
+          # It seems more important to document the overridden method,
+          # than the overriding one
+          def priority
+            -2
+          end
+
           # This role doesnot assign a score.
           def score
             nil
