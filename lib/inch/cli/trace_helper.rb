@@ -27,14 +27,15 @@ module Inch
       end
 
       def header(text, color)
-        "#".color(color).method("on_#{color}").call +
-          " #{text}".ljust(CLI::COLUMNS-1)
-            .black.dark.bold
-              .method("on_intense_#{color}").call
+        h = "#".color(color).method("on_#{color}").call +
+              " #{text}".ljust(CLI::COLUMNS-1)
+                .black.bold
+                .method("on_intense_#{color}").call
+        CLI.mac? ? h : h.dark
       end
 
       def use_color?
-        "".red.size > 0
+        Term::ANSIColor::coloring?
       end
 
     end
