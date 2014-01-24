@@ -11,10 +11,6 @@ module Inch
       rescue
         80
       end
-
-      def mac?
-        %x|uname| == "Darwin"
-      end
     end
     COLUMNS = get_term_columns
   end

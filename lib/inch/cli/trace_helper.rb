@@ -26,12 +26,10 @@ module Inch
         edge.color(color) + msg
       end
 
-      def header(text, color)
-        h = "#".color(color).method("on_#{color}").call +
-              " #{text}".ljust(CLI::COLUMNS-1)
-                .black.bold
-                .method("on_intense_#{color}").call
-        CLI.mac? ? h : h.dark
+      def header(text, color, bg_color = "intense_#{color}")
+        bar = " #{text}".ljust(CLI::COLUMNS-1)
+                .on_color(bg_color).color(:color16)
+        "#".color(color).on_color(color) + bar
       end
 
       def use_color?
