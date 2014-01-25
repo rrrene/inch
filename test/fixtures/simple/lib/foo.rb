@@ -1,23 +1,6 @@
 # The module 'Foo' has a doc string (this), but the class
 # 'Foo::Bar' does not.
 module Foo
-  def public_method
-  end
-  public :public_method
-
-
-  def protected_method
-  end
-  protected :protected_method
-
-  def private_method
-  end
-  private :private_method
-
-  # @private
-  def method_with_private_tag
-  end
-
   class Bar
     def method_without_doc
     end

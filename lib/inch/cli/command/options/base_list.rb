@@ -48,14 +48,14 @@ module Inch
               @namespaces = :none
             end
 
-            opts.on("--[no-]public", "Do [not] show public objects") do |v|
-              set_visibility :public, v
+            opts.on("--no-public", "Do not show public objects") do
+              set_visibility :public, false
             end
-            opts.on("--[no-]protected", "Do [not] show protected objects") do |v|
-              set_visibility :protected, v
+            opts.on("--no-protected", "Do not show protected objects") do
+              set_visibility :protected, false
             end
-            opts.on("--[no-]private", "Do [not] show private objects") do |v|
-              set_visibility :private, v
+            opts.on("--private", "Show private objects") do
+              set_visibility :private, true
             end
 
             opts.on("--only-undocumented", "Only show undocumented objects") do
