@@ -6,9 +6,7 @@ module Inch
       def initialize(filename, objects)
         self.filename = filename
         self.objects = objects.select do |o|
-          # just checking the first file (which is the file where an object
-          # is first declared)
-          o.files.map(&:first).first == filename
+          o.filename == filename
         end
       end
 
@@ -18,7 +16,7 @@ module Inch
       end
 
       #
-      # grade, priority, and score are not meant to be displayed inthe CLI
+      # grade, priority, and score are not meant to be displayed in the CLI
       # they are just for internal evaluation purposes
       #
 

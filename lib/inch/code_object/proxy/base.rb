@@ -43,6 +43,14 @@ module Inch
           @evaluation ||= Evaluation.for(self)
         end
 
+        # Returns the name of the file where the object is declared first
+        # @return [String] a filename
+        def filename
+          # just checking the first file (which is the file where an object
+          # is first declared)
+          files.size > 0 ? files[0][0] : nil
+        end
+
         def grade
           @grade ||= Evaluation.new_score_ranges.detect { |range|
                 range.range.include?(score)
