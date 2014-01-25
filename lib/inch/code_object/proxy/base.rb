@@ -175,7 +175,7 @@ module Inch
         #   YARD tags that are not already covered by other wrapper methods
         def unconsidered_tags
           @unconsidered_tags ||= object.tags.reject do |tag|
-              CONSIDERED_YARD_TAGS.include?(tag.name)
+              CONSIDERED_YARD_TAGS.include?(tag.tag_name)
             end
         end
 
