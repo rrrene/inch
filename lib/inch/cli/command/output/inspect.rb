@@ -34,7 +34,7 @@ module Inch
             print_namespace_info(o)
             print_roles_info(o)
 
-            echo "Score (min: #{o.evaluation.min_score}, max: #{o.evaluation.max_score})".ljust(40) + "#{o.score.to_i}".rjust(5)
+            echo "Score (min: #{o.evaluation.min_score}, max: #{o.evaluation.max_score})".ljust(40) + "#{o.score.to_i}".rjust(5) + "#{o.priority.to_i}".rjust(4)
             echo
           end
 
