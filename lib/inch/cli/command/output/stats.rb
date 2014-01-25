@@ -10,6 +10,12 @@ module Inch
 
           attr_reader :objects
 
+          PRIORITY_COLORS = [
+              [213,212,211,210,210,209,209],
+              [177],
+              [203, 203, 204, 204, 205, 206, 207]
+            ].flatten.map { |s| :"color#{s}" }
+
           def initialize(options, objects, ranges)
             @options = options
             @objects = objects
@@ -59,13 +65,7 @@ module Inch
 
               sparkline = Sparkr::Sparkline.new(priorities.values)
               sparkline.format do |tick, count, index|
-                if index < 7 # negative priorities
-                  tick.blue
-                elsif index == 7
-                  tick.dark
-                else
-                  tick.cyan
-                end
+                tick.color( PRIORITY_COLORS[index] )
               end
               puts "  #{range.grade}:  " + sparkline.to_s(' ') +
                     " #{range.objects.size.to_s.rjust(5)} objects"
