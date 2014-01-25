@@ -68,7 +68,7 @@ Inch can suggest places where a codebase suffers a lack of documentation.
 
     Only considering priority objects: ↑ ↗ →  (use `--help` for options).
 
-The grades (A, B, C) show how good the present documentation seems.
+The grades (A, B, C) show how good the present documentation seems. The grade `U` is assigned to all undocumented objects.
 The arrows (↑ ↗ → ↘ ↓) hint at the importance of the object being documented.
 
 

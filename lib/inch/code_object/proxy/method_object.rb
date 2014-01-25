@@ -54,8 +54,8 @@ module Inch
           @overridden_method ||= Proxy.for(object.overridden_method)
         end
 
-        def return_typed?
-          !!return_tag
+        def return_mentioned?
+          !!return_tag || docstring.mentions_return?
         end
 
         private
@@ -63,7 +63,7 @@ module Inch
         def all_parameter_names
           names = signature_parameter_names
           names.concat parameter_tags.map(&:name)
-          names.uniq
+          names.compact.uniq
         end
 
         def abbrev_source

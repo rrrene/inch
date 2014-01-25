@@ -10,7 +10,7 @@ describe ::Inch::CodeObject::Proxy::Base do
     m = @source_parser.find_object("Foo::Bar#method_without_doc")
     refute m.has_doc?
     refute m.has_parameters?
-    refute m.return_typed?
+    refute m.return_mentioned?
     assert m.undocumented?
 
     assert_equal 0, m.score
@@ -20,7 +20,7 @@ describe ::Inch::CodeObject::Proxy::Base do
     m = @source_parser.find_object("Foo::Bar#method_with_missing_param_doc")
     assert m.has_doc?
     assert m.has_parameters?
-    assert m.return_typed?
+    assert m.return_mentioned?
 
     assert_equal 3, m.parameters.size
     p = m.parameter(:param1)
@@ -37,7 +37,7 @@ describe ::Inch::CodeObject::Proxy::Base do
     m = @source_parser.find_object("Foo::Bar#method_with_wrong_doc")
     assert m.has_doc?
     assert m.has_parameters?
-    assert m.return_typed?
+    assert m.return_mentioned?
 
     assert_equal 4, m.parameters.size
     p = m.parameter(:param1)
@@ -60,7 +60,7 @@ describe ::Inch::CodeObject::Proxy::Base do
     m = @source_parser.find_object("Foo::Bar#method_with_full_doc")
     assert m.has_doc?
     assert m.has_parameters?
-    assert m.return_typed?
+    assert m.return_mentioned?
 
     assert_equal 2, m.parameters.size
     m.parameters.each do |param|
@@ -77,7 +77,7 @@ describe ::Inch::CodeObject::Proxy::Base do
     m = @source_parser.find_object("Foo::Bar#method_without_params_or_return_type")
     assert m.has_doc?
     refute m.has_parameters?
-    refute m.return_typed?
+    refute m.return_mentioned?
 
     assert m.score
   end
@@ -86,7 +86,7 @@ describe ::Inch::CodeObject::Proxy::Base do
     m = @source_parser.find_object("Foo::Bar#method_without_docstring")
     refute m.has_doc?
     assert m.has_parameters?
-    assert m.return_typed?
+    assert m.return_mentioned?
 
     assert m.score
   end
@@ -95,7 +95,7 @@ describe ::Inch::CodeObject::Proxy::Base do
     m = @source_parser.find_object("Foo::Bar#method_without_params_or_docstring")
     refute m.has_doc?
     refute m.has_parameters?
-    assert m.return_typed?
+    assert m.return_mentioned?
 
     assert m.score
   end
@@ -106,7 +106,7 @@ describe ::Inch::CodeObject::Proxy::Base do
     assert m.has_parameters?
     p = m.parameter(:param1)
     assert p.mentioned?         # mentioned in docs, correctly
-    refute m.return_typed?
+    refute m.return_mentioned?
 
     assert m.score
   end
@@ -121,7 +121,7 @@ describe ::Inch::CodeObject::Proxy::Base do
     assert p.mentioned?         # mentioned in docs, correctly
     p = m.parameter(:param3)
     assert p.mentioned?         # mentioned in docs, correctly
-    refute m.return_typed?
+    refute m.return_mentioned?
 
     assert m.score
   end
@@ -132,7 +132,7 @@ describe ::Inch::CodeObject::Proxy::Base do
     assert m.has_parameters?
     p = m.parameter(:param1)
     assert p.mentioned?         # mentioned in docs, correctly
-    refute m.return_typed?
+    refute m.return_mentioned?
 
     assert m.score
   end
@@ -143,7 +143,7 @@ describe ::Inch::CodeObject::Proxy::Base do
     assert m.has_parameters?
     p = m.parameter(:format)
     refute p.mentioned?         # mentioned in docs, correctly
-    refute m.return_typed?
+    refute m.return_mentioned?
 
     assert m.score
   end

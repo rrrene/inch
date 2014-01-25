@@ -17,6 +17,16 @@ module Inch
         @code_examples ||= parse_code_examples
       end
 
+      def mentions_parameter?(name)
+        mention_regexps(name).any? do |pattern|
+          @text.index(pattern)
+        end
+      end
+
+      def mentions_return?
+        @text.lines.last =~ /^Returns\ /
+      end
+
       def parse_code_examples
         code_examples = []
         example = nil
@@ -35,12 +45,6 @@ module Inch
         code_examples.delete_if(&:empty?).map(&:join)
       end
 
-      def mentions_parameter?(name)
-        mention_regexps(name).any? do |pattern|
-          @text.index(pattern)
-        end
-      end
-
       private
 
       def parameter_mention_patterns(name)
@@ -49,14 +53,19 @@ module Inch
           "+#{name}+::",
           "<tt>#{name}</tt>",
           "<tt>#{name}</tt>::",
-          "#{name}::"
+          "#{name}::",
+          /^#{name}\ \-\ /
         ]
       end
 
       def mention_regexps(name)
         parameter_mention_patterns(name).map do |pattern|
-          r = Regexp.escape(pattern)
-          /\W#{r}\W/
+          if pattern.is_a?(Regexp)
+            pattern
+          else
+            r = Regexp.escape(pattern)
+            /\W#{r}\W/
+          end
         end
       end
     end

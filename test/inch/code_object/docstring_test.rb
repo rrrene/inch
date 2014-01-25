@@ -2,21 +2,79 @@ require File.expand_path(File.dirname(__FILE__) + '/../../test_helper')
 
 describe ::Inch::CodeObject::Docstring do
 
-  it "should work" do
-text = <<-DOC
-Another example.
 
-Params:
-+param1+:: param1 line string to be executed by the system
-+param2+:: +Proc+ object that takes a pipe object as first and only param (may be nil)
-+param3+:: +Proc+ object that takes a pipe object as first and only param (may be nil)
+  #
+  # loose TomDoc compatibility
+  #
+
+
+  it "should notice things in tomdoc style docs" do
+text = <<-DOC
+Public: Detects the Language of the blob.
+
+param1 - String filename
+param2 - String blob data. A block also maybe passed in for lazy
+       loading. This behavior is deprecated and you should always
+       pass in a String.
+param3 - Optional String mode (defaults to nil)
+
+Returns Language or nil.
 DOC
     docstring = ::Inch::CodeObject::Docstring.new(text)
     assert docstring.mentions_parameter?(:param1)
     assert docstring.mentions_parameter?(:param2)
     assert docstring.mentions_parameter?(:param3)
     refute docstring.contains_code_example?
+    assert docstring.mentions_return?
   end
+
+  it "should notice things in tomdoc style docs 2" do
+text = <<-DOC
+Public: Look up Language by one of its aliases.
+
+param1 - A String alias of the Language
+
+Examples
+
+  Language.find_by_alias('cpp')
+  # => #<Language name="C++">
+
+Returns the Lexer or nil if none was found.
+DOC
+    docstring = ::Inch::CodeObject::Docstring.new(text)
+    assert docstring.mentions_parameter?(:param1)
+    refute docstring.mentions_parameter?(:alias)
+    refute docstring.mentions_parameter?(:Look)
+    assert docstring.contains_code_example?
+    assert docstring.mentions_return?
+  end
+
+  it "should notice things in tomdoc style docs 3" do
+text = <<-DOC
+Public: Look up Language by one of its aliases.
+
+param1 - A String alias of the Language
+
+Examples
+
+  Language.find_by_alias('cpp')
+  # => #<Language name="C++">
+
+Returns the Lexer or nil if none was found.
+DOC
+    docstring = ::Inch::CodeObject::Docstring.new(text)
+    assert docstring.mentions_parameter?(:param1)
+    refute docstring.mentions_parameter?(:alias)
+    refute docstring.mentions_parameter?(:Look)
+    assert docstring.contains_code_example?
+    assert docstring.mentions_return?
+  end
+
+
+  #
+  # PARAMETER MENTIONS
+  #
+
 
   it "should work 2" do
 text = <<-DOC
@@ -27,6 +85,24 @@ DOC
     refute docstring.mentions_parameter?(:format)
     refute docstring.contains_code_example?
   end
+
+
+  it "should work 2" do
+text = <<-DOC
+Just because format is mentioned here, does not mean
+the first parameter is meant.
+DOC
+    docstring = ::Inch::CodeObject::Docstring.new(text)
+    refute docstring.mentions_parameter?(:format)
+    refute docstring.contains_code_example?
+  end
+
+
+
+  #
+  # CODE EXAMPLES
+  #
+
 
   it "should work 3" do
 text = <<-DOC

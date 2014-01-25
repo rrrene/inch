@@ -116,7 +116,7 @@ module Inch
       end
 
       def eval_return_type
-        if object.return_typed?
+        if object.return_mentioned?
           add_role Role::Method::WithReturnType.new(object, RETURN_SCORE)
         else
           add_role Role::Method::WithoutReturnType.new(object, RETURN_SCORE)

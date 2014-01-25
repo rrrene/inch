@@ -99,7 +99,7 @@ module Inch
                 o.parameters.each do |p|
                   echo "  " + p.name.ljust(LJUST-2) + "#{p.mentioned? ? 'Mentioned' : 'No text'} / #{p.typed? ? 'Typed' : 'Not typed'} / #{p.described? ? 'Described' : 'Not described'}"
                 end
-                echo "Return type:".ljust(LJUST) + "#{o.return_typed? ? 'Defined' : 'Not defined'}"
+                echo "Return type:".ljust(LJUST) + "#{o.return_mentioned? ? 'Defined' : 'Not defined'}"
               end
             end
             echo separator

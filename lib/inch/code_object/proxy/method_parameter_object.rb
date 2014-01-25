@@ -2,7 +2,7 @@ module Inch
   module CodeObject
     module Proxy
       class MethodParameterObject
-        attr_reader :name # @return [String] the name of the parameter
+        attr_reader :name
 
         # @param method [Inch::CodeObject::Proxy::MethodObject] the method the parameter belongs_to
         # @param name [String] the name of the parameter
