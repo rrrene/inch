@@ -35,8 +35,6 @@ module Inch
             run_pry
           end
 
-          private
-
           def run_pry
             binding.pry
           end
