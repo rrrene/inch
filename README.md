@@ -148,13 +148,12 @@ Add this to your `Rakefile`:
 
     Inch::Rake::Suggest.new
 
-This creates a rake task named `doc:suggest`. Change the name by passing it to the constructor. Use the `args` config option to add any command-line arguments from `inch suggest --help`.
+This creates a rake task named `inch`. Change the name by passing it to the constructor. Use the `args` config option to add any command-line arguments from `inch suggest --help`.
 
     require 'inch/rake'
 
-    Inch::Rake::Suggest.new("doc:report") do |suggest|
-      suggest.args << "--no-protected"
-      suggest.args << "--no-private"
+    Inch::Rake::Suggest.new("doc:suggest") do |suggest|
+      suggest.args << "--private"
     end
 
 

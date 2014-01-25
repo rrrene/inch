@@ -9,7 +9,7 @@ module Inch
       attr_accessor :name
       attr_accessor :args
 
-      def initialize(name = "doc:suggest", *args, &block)
+      def initialize(name = "inch", *args, &block)
         @name = name
         @args = args
         block.call(self) if block
