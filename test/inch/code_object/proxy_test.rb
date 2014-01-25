@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../test_helper')
 
-describe ::Inch::CodeObject::Proxy do
+describe ::Inch::CodeObject::Proxy::Base do
   before do
     Dir.chdir fixture_path(:simple)
     @source_parser ||= Inch::SourceParser.run(["lib/**/*.rb"])
@@ -147,6 +147,13 @@ describe ::Inch::CodeObject::Proxy do
 
     assert m.score
   end
+end
+
+describe ::Inch::CodeObject::Proxy::Base do
+  before do
+    Dir.chdir fixture_path(:code_examples)
+    @source_parser = Inch::SourceParser.run(["lib/**/*.rb"])
+  end
 
   def test_method_with_code_example
     m = @source_parser.find_object("Foo::Bar#method_with_code_example")
@@ -159,24 +166,23 @@ describe ::Inch::CodeObject::Proxy do
   end
 
   def test_method_with_code_examples
-    m = @source_parser.find_object("Foo::Bar::Baz#method_with_one_example")
+    m = @source_parser.find_object("Foo::Bar#method_with_one_example")
     assert m.has_code_example?
     refute m.has_multiple_code_examples?
   end
 
   def test_method_with_code_examples
-    m = @source_parser.find_object("Foo::Bar::Baz#method_with_examples")
+    m = @source_parser.find_object("Foo::Bar#method_with_examples")
     assert m.has_multiple_code_examples?
   end
 
   def test_method_with_code_examples
-    m = @source_parser.find_object("Foo::Bar::Baz#method_with_tagged_example")
+    m = @source_parser.find_object("Foo::Bar#method_with_tagged_example")
     assert m.has_multiple_code_examples?
   end
 
   def test_method_with_code_examples
-    m = @source_parser.find_object("Foo::Bar::Baz#method_with_2tagged_examples")
+    m = @source_parser.find_object("Foo::Bar#method_with_2tagged_examples")
     assert m.has_multiple_code_examples?
   end
-
 end
