@@ -24,6 +24,9 @@ DOC
     assert docstring.mentions_parameter?(:param1)
     assert docstring.mentions_parameter?(:param2)
     assert docstring.mentions_parameter?(:param3)
+    assert docstring.describes_parameter?(:param1)
+    assert docstring.describes_parameter?(:param2)
+    assert docstring.describes_parameter?(:param3)
     refute docstring.contains_code_example?
     assert docstring.mentions_return?
   end
@@ -43,6 +46,7 @@ Returns the Lexer or nil if none was found.
 DOC
     docstring = ::Inch::CodeObject::Docstring.new(text)
     assert docstring.mentions_parameter?(:param1)
+    assert docstring.describes_parameter?(:param1)
     refute docstring.mentions_parameter?(:alias)
     refute docstring.mentions_parameter?(:Look)
     assert docstring.contains_code_example?
@@ -64,6 +68,7 @@ Returns the Lexer or nil if none was found.
 DOC
     docstring = ::Inch::CodeObject::Docstring.new(text)
     assert docstring.mentions_parameter?(:param1)
+    assert docstring.describes_parameter?(:param1)
     refute docstring.mentions_parameter?(:alias)
     refute docstring.mentions_parameter?(:Look)
     assert docstring.contains_code_example?
@@ -132,6 +137,12 @@ Params:
 DOC
     docstring = ::Inch::CodeObject::Docstring.new(text)
     assert docstring.contains_code_example?
+    assert docstring.mentions_parameter?(:param1)
+    assert docstring.mentions_parameter?(:param2)
+    assert docstring.mentions_parameter?(:param3)
+    assert docstring.describes_parameter?(:param1)
+    assert docstring.describes_parameter?(:param2)
+    assert docstring.describes_parameter?(:param3)
   end
 
   it "should work with code example 2" do
@@ -163,6 +174,8 @@ DOC
     docstring = ::Inch::CodeObject::Docstring.new(text)
     assert docstring.contains_code_example?
     assert_equal 1, docstring.code_examples.size
+    assert docstring.mentions_parameter?(:param1)
+    assert docstring.describes_parameter?(:param1)
   end
 
   it "should work with multiple code examples" do

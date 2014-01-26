@@ -29,12 +29,12 @@ module Inch
 
         # @return [Boolean] +true+ if an additional description given?
         def described?
-          @tag && !@tag.text.empty?
+          described_by_tag? || described_by_docstring?
         end
 
         # @return [Boolean] +true+ if the parameter is mentioned in the docs
         def mentioned?
-          !!@tag || in_method_docstring?
+          !!@tag || mentioned_by_docstring?
         end
 
         # @return [Boolean] +true+ if the parameter is a splat argument
@@ -54,7 +54,20 @@ module Inch
 
         private
 
-        def in_method_docstring?
+        def described_by_tag?
+          @tag && !@tag.text.empty?
+        end
+
+        def described_by_docstring?
+          if @method.docstring.describes_parameter?(name)
+            true
+          else
+            unsplatted = name.gsub(/^[\&\*]/, '')
+            @method.docstring.describes_parameter?(unsplatted)
+          end
+        end
+
+        def mentioned_by_docstring?
           if @method.docstring.mentions_parameter?(name)
             true
           else

@@ -17,8 +17,14 @@ module Inch
         @code_examples ||= parse_code_examples
       end
 
+      def describes_parameter?(name)
+        describe_parameter_regexps(name).any? do |pattern|
+          @text.index(pattern)
+        end
+      end
+
       def mentions_parameter?(name)
-        mention_regexps(name).any? do |pattern|
+        mention_parameter_regexps(name).any? do |pattern|
           @text.index(pattern)
         end
       end
@@ -47,7 +53,7 @@ module Inch
 
       private
 
-      def parameter_mention_patterns(name)
+      def mention_parameter_patterns(name)
         [
           "+#{name}+",
           "+#{name}+::",
@@ -58,8 +64,26 @@ module Inch
         ]
       end
 
-      def mention_regexps(name)
-        parameter_mention_patterns(name).map do |pattern|
+      def describe_parameter_extra_regexps(name)
+        [
+          "#{name}::",
+          "+#{name}+::",
+          "<tt>#{name}</tt>::",
+        ].map do |pattern|
+          r = pattern.is_a?(Regexp) ? pattern : Regexp.escape(pattern)
+          /#{r}\n\ {2,}.+/m
+        end
+      end
+
+      def describe_parameter_regexps(name)
+        mention_parameter_patterns(name).map do |pattern|
+          r = pattern.is_a?(Regexp) ? pattern : Regexp.escape(pattern)
+          /^#{r}\s?\S+/
+        end + describe_parameter_extra_regexps(name)
+      end
+
+      def mention_parameter_regexps(name)
+        mention_parameter_patterns(name).map do |pattern|
           if pattern.is_a?(Regexp)
             pattern
           else
