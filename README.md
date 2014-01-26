@@ -3,7 +3,7 @@
 Inch is a documentation measurement tool for Ruby, based on
 [YARD](http://yardoc.org/).
 
-It does not simply measure documentation *coverage*, but grades and
+It does not measure documentation *coverage*, but grades and
 prioritizes code objects to give you hints where to improve your docs.
 One Inch at a time.
 
@@ -25,9 +25,89 @@ Or install it yourself as:
 
 ## Usage
 
+To run Inch, simply type
+
+    $ inch
+
+Given a `lib` directory with the following code inside:
+
+    class Foo
+      # A complicated method
+      def complicated(o, i, *args, &block)
+        # ... snip ...
+      end
+
+      # An example of a method that takes a parameter (+param1+)
+      # and does nothing.
+      #
+      # Returns nil
+      def nothing(param1)
+      end
+
+      def filename
+        "#{self.class}_#{id}.foo"
+      end
+    end
+
+Inch will suggest that the docs could be improved:
+
+    # Properly documented, could be improved:
+
+    ┃  B  ↑  Foo#complicated
+
+    # Undocumented:
+
+    ┃  U  ↑  Foo
+    ┃  U  ↗  Foo#filename
+
+    You might want to look at these files:
+
+    ┃ lib/foo.rb
+
+    Grade distribution (undocumented, C, B, A):  █  ▁ ▄ ▄
+
+    Only considering priority objects: ↑ ↗ →  (use `--help` for options).
+
+Inch does not assign coverage scores to code objects. It gives grades and shows you the grade distribution rather then an overall grade.
+
+The grades (A, B, C) show how good the present documentation seems. The grade `U` is assigned to all undocumented objects. The arrows (↑ ↗ → ↘ ↓) hint at the importance of the object being documented.
+
+
+### Inch does not judge
+
+The reason for using the grade distribution is that the distribution says more
+about your codebase than a coverage percentage ever could:
+
+    Grade distribution (undocumented, C, B, A):  ▄  ▁ ▄ █
+
+In this example we have a good chunk of code that is still undocumented, but
+the vast majority of code is rated A or B. This tells you three things:
+
+* There is a significant amount of documentation present.
+* The present documentation seems good.
+* There are still undocumented methods.
+
+
+
+### Limitations
+
+Inch does not tell you to document all your methods. Neither does it tell you
+not to. It does not tell you "methods documentation should be a single line
+under 80 characters not ending in a period".
+
+How you document your code is up to you to decide. Inch can't actually tell how good your docs are, if your code examples work or if you have just added `# TODO: write docs` to each and every method. It is a tool, that can be used to find parts of a codebase lacking documentation.
+
+
+
+## Features
+
+Inch is build to parse YARD, RDoc and TomDoc style documentation comments.
+
+It comes with three sub-commands:
+
 ### inch suggest
 
-Inch can suggest places where a codebase suffers a lack of documentation.
+Suggests places where a codebase suffers a lack of documentation.
 
     $ inch suggest
 
@@ -68,13 +148,10 @@ Inch can suggest places where a codebase suffers a lack of documentation.
 
     Only considering priority objects: ↑ ↗ →  (use `--help` for options).
 
-The grades (A, B, C) show how good the present documentation seems. The grade `U` is assigned to all undocumented objects.
-The arrows (↑ ↗ → ↘ ↓) hint at the importance of the object being documented.
-
 
 ### inch show
 
-Inch can show you details about what can be approved in a specific object.
+Shows you details about what can be approved in a specific object.
 
     $ inch show Inch::SourceParser#find_object
 
@@ -93,7 +170,7 @@ Inch can show you details about what can be approved in a specific object.
 
 ### inch list
 
-Inch can list all objects in your codebase with their grades.
+Lists all objects in your codebase with their grades.
 
     $ inch list
 
@@ -156,14 +233,6 @@ This creates a rake task named `inch`. Change the name by passing it to the cons
       suggest.args << "--private"
     end
 
-
-## Limitations
-
-Inch can't actually tell how good your docs are, if your code examples work
-or if you have just added "TODO: write docs" to each and every method. But
-it can make reasonable guesses based on how much and what kind of
-documentation is there and recommend places to improve the existing or add
-missing docs.
 
 
 ## How is this different from ...?
