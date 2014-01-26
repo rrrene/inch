@@ -68,15 +68,19 @@ Inch will suggest that the docs could be improved:
 
     Only considering priority objects: ↑ ↗ →  (use `--help` for options).
 
-Inch does not assign coverage scores to code objects. It gives grades and shows you the grade distribution rather then an overall grade.
+Inch does not report coverage scores for code objects. It assigns grades and shows you the grade distribution rather then an overall grade.
 
 The grades (A, B, C) show how good the present documentation seems. The grade `U` is assigned to all undocumented objects. The arrows (↑ ↗ → ↘ ↓) hint at the importance of the object being documented.
 
 
 ### Inch does not judge
 
-The reason for using the grade distribution is that the distribution says more
-about your codebase than a coverage percentage ever could:
+Inch uses grades instead of scores to take a more relaxed approach. You can
+get an `A` without employing every trick from a predetermined list of checks.
+
+The reason for using the grade distribution instead of an overall score is
+that the distribution says more about your codebase than a coverage percentage
+ever could:
 
     Grade distribution (undocumented, C, B, A):  ▄  ▁ ▄ █
 
@@ -87,23 +91,46 @@ the vast majority of code is rated A or B. This tells you three things:
 * The present documentation seems good.
 * There are still undocumented methods.
 
+Inch does not really tell you what to do from here. It suggests objects and
+files that could be improved to get a better rating, but that is all.
 
+This way, it is perfectly reasonable to leave parts of your codebase
+undocumented. Instead of reporting
 
-### Limitations
+    coverage: 67.1%  46 ouf of 140 checks failed
+
+and leaving you with a bad feeling, Inch tells you there are still
+undocumented objects without judging.
 
 Inch does not tell you to document all your methods. Neither does it tell you
 not to. It does not tell you "methods documentation should be a single line
 under 80 characters not ending in a period".
 
-How you document your code is up to you to decide. Inch can't actually tell how good your docs are, if your code examples work or if you have just added `# TODO: write docs` to each and every method. It is a tool, that can be used to find parts of a codebase lacking documentation.
+
+
+### Limitations
+
+How you document your code is up to you and Inch can't actually tell you how good your docs are.
+
+It can't tell if your code examples work or if you described parameters
+correctly or if you have just added `# TODO: write docs` to each and every
+method.
+
+It is just a tool, that you can use to find parts of a codebase lacking
+documentation.
 
 
 
 ## Features
 
-Inch is build to parse YARD, RDoc and TomDoc style documentation comments.
+Inch is build to parse [YARD](http://yardoc.org/),
+[RDoc](http://rdoc.rubyforge.org/) and [TomDoc](http://tomdoc.org/)
+style documentation comments, but works reasonably well with unstructured
+comments.
 
-It comes with three sub-commands:
+It comes with four sub-commands: `suggest`, `stats`, `show`, and `list`
+
+
 
 ### inch suggest
 
@@ -149,6 +176,45 @@ Suggests places where a codebase suffers a lack of documentation.
     Only considering priority objects: ↑ ↗ →  (use `--help` for options).
 
 
+
+### inch stats
+
+Shows you an overview of the codebase.
+
+    $ inch stats
+
+    Grade distribution: (undocumented, C, B, A)
+
+      Overall:  █  ▂ ▁ ▃    439 objects
+
+    Grade distribution by priority:
+
+            ↑   ▁  ▄ █ ▁     10 objects
+
+            ↗   █  ▃ ▁ ▃    302 objects
+
+            →   ▆  ▂ ▁ █     73 objects
+
+            ↘   █  ▁ ▁ ▁     54 objects
+
+            ↓   ▁  ▁ ▁ ▁      0 objects
+
+    Priority distribution in grades: (low to high)
+
+          ↓      ↘      →      ↗      ↑
+      U:  ▁ ▁ ▁ ▁ ▁ ▁ ▂ ▂ ▁ █ ▁ ▁ ▁ ▁ ▁   243 objects
+
+      C:  ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ █ ▁ ▁ ▁ ▁ ▁    73 objects
+
+      B:  ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▁ █ ▂ ▄ ▁ ▁ ▁    19 objects
+
+      A:  ▁ ▁ ▁ ▁ ▁ ▁ ▁ ▄ ▁ █ ▁ ▁ ▁ ▁ ▁   104 objects
+
+
+    Try `--format json|yaml` for raw numbers.
+
+
+
 ### inch show
 
 Shows you details about what can be approved in a specific object.
@@ -166,6 +232,7 @@ Shows you details about what can be approved in a specific object.
     ┃ + Describe the return type of 'find_object'
     ┃ + Add a code example (optional)
     ┃ ------------------------------------------------------
+
 
 
 ### inch list
@@ -217,6 +284,7 @@ Lists all objects in your codebase with their grades.
     This output omitted 323 objects. Use `--all` to display all objects.
 
 
+
 ### Rake task
 
 Add this to your `Rakefile`:
@@ -262,6 +330,7 @@ grades instead of coverage measurements. So you can get an "A" rating without
 employing every technique YARD has to offer.
 
 
+
 ## Contributing
 
 1. [Fork it!](http://github.com/rrrene/inch/fork)
@@ -271,14 +340,17 @@ employing every technique YARD has to offer.
 5. Create new Pull Request
 
 
+
 ## Author
 
 René Föhring (@rrrene)
 
 
+
 ## Credits
 
 Inch would not exist without Loren Segal's [YARD](http://yardoc.org/).
+
 
 
 ## License
