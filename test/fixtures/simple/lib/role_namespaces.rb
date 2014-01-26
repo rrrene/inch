@@ -3,7 +3,29 @@
 # @see PureNamespace
 PUBLIC_ROOT_CONSTANT = :foo
 
-module Inch
+class String
+  def foobar
+    self + 'foobar!'
+  end
+end
+
+module InchTest
+  # You would want to use it like this:
+  #
+  #  CodeExample.new
+  #
+  class CodeExample
+  end
+
+  # You would want to use it like this:
+  #
+  #  CodeExample.new
+  #
+  #  CodeExample.new # => something
+  #
+  class MultipleCodeExamples
+  end
+
   module PureNamespace
   end
 

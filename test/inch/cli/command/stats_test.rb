@@ -30,6 +30,22 @@ describe ::Inch::CLI::Command::Stats do
     assert err.empty?, "there should be no errors"
   end
 
+  it "should output info when run with --format=json" do
+    out, err = capture_io do
+      @command.run("--format=json")
+    end
+    refute out.empty?, "there should be some output"
+    assert err.empty?, "there should be no errors: #{err.yellow}"
+  end
+
+  it "should output info when run with --format=yaml" do
+    out, err = capture_io do
+      @command.run("--format=yaml")
+    end
+    refute out.empty?, "there should be some output"
+    assert err.empty?, "there should be no errors: #{err.yellow}"
+  end
+
   it "should output info when run with --help" do
     out, err = capture_io do
       assert_raises(SystemExit) { @command.run("--help") }
