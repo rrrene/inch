@@ -103,7 +103,7 @@ and leaving you with a bad feeling, Inch tells you there are still
 undocumented objects without judging.
 
 Inch does not tell you to document all your methods. Neither does it tell you
-not to. It does not tell you "methods documentation should be a single line
+not to. It does not tell you "a method's documentation should be a single line
 under 80 characters not ending in a period".
 
 
