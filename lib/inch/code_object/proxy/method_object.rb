@@ -58,6 +58,10 @@ module Inch
           !!return_tag || docstring.mentions_return?
         end
 
+        def return_described?
+          (return_tag && !return_tag.text.empty?) || docstring.describes_return?
+        end
+
         def questioning_name?
           name =~ /\?$/
         end

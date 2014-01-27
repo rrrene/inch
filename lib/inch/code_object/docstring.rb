@@ -33,6 +33,10 @@ module Inch
         @text.lines.last =~ /^Returns\ /
       end
 
+      def describes_return?
+        @text.lines.last =~ /^Returns\ (\w+\s){2,}/
+      end
+
       def parse_code_examples
         code_examples = []
         example = nil
@@ -76,10 +80,11 @@ module Inch
       end
 
       def describe_parameter_regexps(name)
-        mention_parameter_patterns(name).map do |pattern|
+        same_line_regexps = mention_parameter_patterns(name).map do |pattern|
           r = pattern.is_a?(Regexp) ? pattern : Regexp.escape(pattern)
           /^#{r}\s?\S+/
-        end + describe_parameter_extra_regexps(name)
+        end
+        same_line_regexps + describe_parameter_extra_regexps(name)
       end
 
       def mention_parameter_regexps(name)

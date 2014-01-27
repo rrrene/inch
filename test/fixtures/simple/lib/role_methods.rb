@@ -17,6 +17,10 @@ module InchTest
     end
   end
 
+  # @return [Boolean] something funny
+  def question_mark_method_with_description?
+  end
+
   def many_parameters_method(a,b,c,d,e,f)
   end
 

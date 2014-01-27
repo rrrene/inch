@@ -38,7 +38,7 @@ module Inch
         end
         class WithoutReturnType < Missing
           def suggestion
-            "Describe the return type of '#{object.name}'"
+            "Describe what '#{object.name}' returns"
           end
         end
 

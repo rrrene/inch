@@ -29,6 +29,7 @@ DOC
     assert docstring.describes_parameter?(:param3)
     refute docstring.contains_code_example?
     assert docstring.mentions_return?
+    assert docstring.describes_return?
   end
 
   it "should notice things in tomdoc style docs 2" do
@@ -51,6 +52,7 @@ DOC
     refute docstring.mentions_parameter?(:Look)
     assert docstring.contains_code_example?
     assert docstring.mentions_return?
+    assert docstring.describes_return?
   end
 
   it "should notice things in tomdoc style docs 3" do
@@ -73,6 +75,7 @@ DOC
     refute docstring.mentions_parameter?(:Look)
     assert docstring.contains_code_example?
     assert docstring.mentions_return?
+    assert docstring.describes_return?
   end
 
 

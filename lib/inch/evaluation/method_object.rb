@@ -120,7 +120,15 @@ module Inch
 
       def eval_return_type
         if object.return_mentioned?
-          add_role Role::Method::WithReturnType.new(object, RETURN_SCORE)
+          if object.questioning_name? && !object.return_described?
+            # annotating a question mark method with the return type boolean
+            # does not give any points
+            # also, this could to be one of those cases where YARD
+            # automatically assigns a @return tag to methods ending in a
+            # question mark
+          else
+            add_role Role::Method::WithReturnType.new(object, RETURN_SCORE)
+          end
         else
           add_role Role::Method::WithoutReturnType.new(object, RETURN_SCORE)
         end

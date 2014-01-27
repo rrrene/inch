@@ -1,5 +1,11 @@
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  add_filter '/test/'
+
+  add_group 'CLI', 'lib/inch/cli'
+  add_group 'Code Objects', 'lib/inch/code_object'
+  add_group 'Evaluation', 'lib/inch/evaluation'
+end
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
