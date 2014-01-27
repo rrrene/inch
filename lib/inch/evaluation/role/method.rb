@@ -22,6 +22,11 @@ module Inch
             +3
           end
         end
+        class WithQuestioningName < Base
+          def priority
+            -4
+          end
+        end
         class HasAlias < Base
           # +priority
           def priority

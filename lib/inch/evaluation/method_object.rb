@@ -22,6 +22,9 @@ module Inch
         if object.bang_name?
           add_role Role::Method::WithBangName.new(object)
         end
+        if object.questioning_name?
+          add_role Role::Method::WithQuestioningName.new(object)
+        end
         if object.has_alias?
           add_role Role::Method::HasAlias.new(object)
         end

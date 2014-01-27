@@ -58,6 +58,10 @@ module Inch
           !!return_tag || docstring.mentions_return?
         end
 
+        def questioning_name?
+          name =~ /\?$/
+        end
+
         private
 
         def all_parameter_names
