@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Inch &middot; A documentation measurement tool for Ruby
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/site.css">
+
+  <!-- Icons
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+ -->
+  <link rel="shortcut icon" href="/public/favicon.png">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="container content">
+      <div class="masthead">
+        <h1 class="masthead-title">
+          <a class="title" href="/" title="Home">Inch</a><br>
+          <small class="tagline">
+            A documentation measurement tool for Ruby
+          </small>
+        </h3>
+      </div>
+
+      <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">Quickstart</h1>
+    <p>Install Inch:</p>
+
+<div class="screenshot">
+  <div style="height: 20px; background-image: url(/public/images/quickstart-gem-install.png);"></div>
+</div>
+
+<p>Try it out (showing output for OptionParser):</p>
+
+<div class="screenshot">
+  <div style="height: 575px; background-image: url(/public/images/quickstart-optparse.png);"></div>
+</div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">Introduction</h1>
+    <p>Inch is a command-line tool that gives you hints where to improve your Ruby docs. One Inch at a time.</p>
+
+<h2>No coverage percentages</h2>
+
+<p>Inch does not measure documentation <em>coverage</em>. It does not tell you to document all your code. Neither does it tell you not to.</p>
+
+<h2>Grades &amp; Priorities</h2>
+
+<div class="screenshot">
+  <div style="height: 90px; background-image: url(/public/images/quickstart-optparse.png); background-position: 0 -322px;"></div>
+</div>
+
+<p>Inch assigns grades (<code>A</code>,<code>B</code>,<code>C</code>) to each class, module, constant or method in a codebase. It also assigns a special grade (<code>U</code>) to undocumented objects.</p>
+
+<p>Afterwards, it calculates a priority for each of these objects. The priorities are represented by arrows and based on simple assumptions like <em>&quot;public methods are more important to document than private ones&quot;</em>.</p>
+
+<h2>Grade distribution</h2>
+
+<p>At the end of the &quot;report&quot;, Inch shows the distribution of grades:</p>
+
+<div class="screenshot">
+  <div style="height: 20px; background-image: url(/public/images/quickstart-optparse.png); background-position: 0 -520px;"></div>
+</div>
+
+<p>This provides a lot more insight than an overall grade could. In this example:</p>
+
+<ul>
+<li>There is a significant amount of documented code.</li>
+<li>The present documentation seems good.</li>
+<li>There are still some undocumented methods.</li>
+</ul>
+
+<p>Inch shows this without judging. This way, it is perfectly reasonable to leave <em>parts</em> of the codebase undocumented.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">Features</h1>
+    <ul>
+<li><p>Suggests objects and files to document based on a priority ranking</p></li>
+<li><p>Undocumented methods and classes are not considered <em>bad</em> (they are given a special grade, because there is nothing to evaluate and maybe things were left undocumented intentionally)</p></li>
+<li><p>No hard rules, like &quot;every method&#39;s documentation should be a single line under 80 characters not ending in a period&quot;</p></li>
+<li><p>Inch let&#39;s you write your documentation the way you want</p></li>
+<li><p>Can handle all forms of inline docs, but was built with an emphasis on <a href="http://yardoc.org/">YARD</a>, <a href="http://rdoc.rubyforge.org/">RDoc</a> and <a href="http://tomdoc.org/">TomDoc</a></p></li>
+</ul>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">Source Code</h1>
+    <p>Inch is available <a href="https://github.com/rrrene/inch">on GitHub</a>.</p>
+
+  </div>
+  
+</div>
+
+
+      <div class="footer">
+        <p>
+          &copy; 2014. All rights reserved.
+        </p>
+      </div>
+    </div>
+
+
+<a href="http://github.com/rrrene/inch"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-47478322-1', 'trivelop.de');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>

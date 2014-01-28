@@ -1,0 +1,33 @@
+<p>Inch is a command-line tool that gives you hints where to improve your Ruby docs. One Inch at a time.</p>
+
+<h2>No coverage percentages</h2>
+
+<p>Inch does not measure documentation <em>coverage</em>. It does not tell you to document all your code. Neither does it tell you not to.</p>
+
+<h2>Grades &amp; Priorities</h2>
+
+<div class="screenshot">
+  <div style="height: 90px; background-image: url(/public/images/quickstart-optparse.png); background-position: 0 -322px;"></div>
+</div>
+
+<p>Inch assigns grades (<code>A</code>,<code>B</code>,<code>C</code>) to each class, module, constant or method in a codebase. It also assigns a special grade (<code>U</code>) to undocumented objects.</p>
+
+<p>Afterwards, it calculates a priority for each of these objects. The priorities are represented by arrows and based on simple assumptions like <em>&quot;public methods are more important to document than private ones&quot;</em>.</p>
+
+<h2>Grade distribution</h2>
+
+<p>At the end of the &quot;report&quot;, Inch shows the distribution of grades:</p>
+
+<div class="screenshot">
+  <div style="height: 20px; background-image: url(/public/images/quickstart-optparse.png); background-position: 0 -520px;"></div>
+</div>
+
+<p>This provides a lot more insight than an overall grade could. In this example:</p>
+
+<ul>
+<li>There is a significant amount of documented code.</li>
+<li>The present documentation seems good.</li>
+<li>There are still some undocumented methods.</li>
+</ul>
+
+<p>Inch shows this without judging. This way, it is perfectly reasonable to leave <em>parts</em> of the codebase undocumented.</p>
