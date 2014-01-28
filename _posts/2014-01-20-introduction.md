@@ -11,7 +11,7 @@ Inch does not measure documentation *coverage*. It does not tell you to document
 ## Grades & Priorities
 
 <div class="screenshot">
-  <div style="height: 90px; background-image: url(/public/images/quickstart-optparse.png); background-position: 0 -322px;"></div>
+  <div style="height: 90px; background-image: url(public/images/quickstart-optparse.png); background-position: 0 -322px;"></div>
 </div>
 
 Inch assigns grades (`A`,`B`,`C`) to each class, module, constant or method in a codebase. It also assigns a special grade (`U`) to undocumented objects.
@@ -25,7 +25,7 @@ Afterwards, it calculates a priority for each of these objects. The priorities a
 At the end of the "report", Inch shows the distribution of grades:
 
 <div class="screenshot">
-  <div style="height: 20px; background-image: url(/public/images/quickstart-optparse.png); background-position: 0 -520px;"></div>
+  <div style="height: 20px; background-image: url(public/images/quickstart-optparse.png); background-position: 0 -520px;"></div>
 </div>
 
 This provides a lot more insight than an overall grade could. In this example:
