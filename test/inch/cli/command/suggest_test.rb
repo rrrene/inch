@@ -45,6 +45,12 @@ describe ::Inch::CLI::Command::Suggest do
     #assert out.empty?, "there should be no output"
     #assert err.empty?, "there should be no errors"
   end
+  
+  it "should give error when run with --unknown-switch" do
+    out, err = capture_io do
+      assert_raises(SystemExit) { @command.run("--unknown-switch") }
+    end
+  end
 
   it "should output info when run with --help" do
     out, err = capture_io do
@@ -52,6 +58,15 @@ describe ::Inch::CLI::Command::Suggest do
     end
     refute out.empty?, "there should be some output"
     assert_match /\bUsage\b.+suggest/, out
+    assert err.empty?, "there should be no errors"
+  end
+
+  it "should output version when run with --version" do
+    out, err = capture_io do
+      assert_raises(SystemExit) { @command.run("--version") }
+    end
+    refute out.empty?, "there should be some output"
+    assert_match /inch\ \d\.\d\.\d/, out
     assert err.empty?, "there should be no errors"
   end
 end
