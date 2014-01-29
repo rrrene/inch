@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 
+title:
 ---
 
 
@@ -20,7 +20,7 @@ Inch ***takes a more relaxed approach*** towards documentation measurement and t
 ## The Grade System
 
 <div class="screenshot">
-  <div style="height: 90px; background-image: url(public/images/quickstart-optparse.png); background-position: 0 -322px;"></div>
+  <div style="height: 90px; background-image: url(public/images/quickstart-optparse.png); background-position: 0 -324px;"></div>
 </div>
 
 Inch ***assigns grades to each class, module, constant or method*** in a codebase, based on how complete the docs are.
@@ -45,7 +45,7 @@ The last point might be the most important one: If objects are undocumented, the
 ## Priorities
 
 <div class="screenshot">
-  <div style="height: 20px; background-image: url(public/images/quickstart-optparse.png); background-position: 0 -555px;"></div>
+  <div style="height: 20px; background-image: url(public/images/quickstart-optparse.png); background-position: 0 -575px;"></div>
 </div>
 
 Every class, module, constant and method in a codebase is assigned a priority which reflects how important Inch thinks it is to be documented.
@@ -63,16 +63,14 @@ Priorities are displayed as arrows. Arrows pointing north mark high priority obj
 ## No overall scores or grades
 
 <div class="screenshot">
-  <div style="height: 20px; background-image: url(public/images/quickstart-optparse.png); background-position: 0 -520px;"></div>
+  <div style="height: 20px; background-image: url(public/images/introduction-grade-distribution.png);"></div>
 </div>
 
-Inch ***does not give you a grade for your whole codebase***. "Why?" you might ask.
+Inch ***does not give you a grade for your whole codebase***.
 
-Because if you look at the following example
+"Why?" you might ask. Look at the example above.
 
-    Grade distribution (undocumented, C, B, A):  █  ▁ ▄ █
-
-***you can see a grade distribution that*** tells you three things:
+***You can see a grade distribution that*** tells you three things:
 
 * There is a significant amount of documented code.
 * The present documentation seems really good.
@@ -80,7 +78,7 @@ Because if you look at the following example
 
 This ***provides a lot more insight than an overall grade could***, because an overall grade for the above example would either be an `A` (if the evaluation ignores undocumented objects) or a weak `C` (if the evaluation includes them).
 
-The grade distribution ***does a much better job at painting the bigger picture***.
+The grade distribution ***does a much better job of painting the bigger picture***.
 
 
 
