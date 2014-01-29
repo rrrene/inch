@@ -55,12 +55,12 @@ module Inch
             f = Evaluation::File.for(filename, relevant_objects)
           end
 
-          list = list.select do |f|
+          priority_list = list.select do |f|
             relevant_grades.include?(f.grade) &&
               relevant_priorities.include?(f.priority)
           end
 
-          sort_by_priority(list)
+          sort_by_priority(priority_list.empty? ? list : priority_list)
         end
 
         def all_filenames(objects)
@@ -97,7 +97,6 @@ module Inch
         def select_by_priority(list, min_priority)
           list.select { |o| o.priority >= min_priority }
         end
-
       end
     end
   end
