@@ -30,11 +30,11 @@ module Inch
       end
 
       def mentions_return?
-        @text.lines.last =~ /^Returns\ /
+        @text.lines.to_a.last =~ /^Returns\ /
       end
 
       def describes_return?
-        @text.lines.last =~ /^Returns\ (\w+\s){2,}/
+        @text.lines.to_a.last =~ /^Returns\ (\w+\s){2,}/
       end
 
       def parse_code_examples

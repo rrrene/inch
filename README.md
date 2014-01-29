@@ -1,10 +1,12 @@
 # Inch
 
+[![Build Status](https://travis-ci.org/rrrene/inch.png?branch=v0.1.1)](https://travis-ci.org/rrrene/inch)
+
 Inch is a documentation measurement tool for Ruby, based on
 [YARD](http://yardoc.org/).
 
-It does not measure *coverage*, but grades your documentation to give you
-hints where to improve your docs. One Inch at a time.
+It does not measure *coverage*, but gives you hints where to improve your
+docs. One Inch at a time.
 
 
 ## Installation

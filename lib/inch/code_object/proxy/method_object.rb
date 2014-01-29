@@ -75,7 +75,7 @@ module Inch
         end
 
         def abbrev_source
-          lines = object.source.to_s.lines
+          lines = object.source.to_s.lines.to_a
           if lines.size >= 5
             indent = lines[1].scan(/^(\s+)/).flatten.join('')
             lines = lines[0..1] +
