@@ -78,8 +78,8 @@ a:focus {
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
-  margin-bottom: .5rem;
-  font-weight: bold;
+  margin-bottom: 1.5rem;
+  font-weight: normal;
   line-height: 1.25;
   color: #313131;
   text-rendering: optimizeLegibility;
@@ -88,8 +88,9 @@ h1 {
   font-size: 2rem;
 }
 h2 {
-  margin-top: 1rem;
-  font-size: 1.1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
 }
 h3 {
   margin-top: 1.5rem;
@@ -276,19 +277,24 @@ tbody tr:nth-child(odd) th {
 .masthead {
   padding-top:    1rem;
   padding-bottom: 1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 .masthead-title {
   margin-top: 0;
   margin-bottom: 0;
-  color: #505050;
+  color: #666;
+}
+.masthead-title {
+  font-size: 3rem;
+  line-height: 4rem;
 }
 .masthead-title a {
   color: #505050;
 }
-.masthead-title small {
-  font-size: 75%;
-  font-weight: 400;
+.masthead small {
+  font-size: 1rem !important;
+  line-height: 2rem;
+  font-weight: normal;
   color: #c0c0c0;
   letter-spacing: 0;
 }

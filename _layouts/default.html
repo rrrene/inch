@@ -7,19 +7,15 @@
 
     <div class="container content">
       <div class="masthead">
-        <h1 class="masthead-title">
-          <a class="title" href="/" title="Home">{{ site.title }}</a><br>
-          <small class="tagline">
-            {{ site.tagline }}
-          </small>
-        </h3>
+        <h1 class="masthead-title"><em>#</em> {{ site.title }}</h1>
+        <small class="tagline">A documentation tool for the Ruby programming language</small>
       </div>
 
       {{ content }}
 
       <div class="footer">
         <p>
-          &copy; {{ site.time | date: '%Y' }}. All rights reserved.
+          &copy; {{ site.time | date: '%Y' }} René Föhring (@rrrene). Released under the MIT LICENSE.
         </p>
       </div>
     </div>

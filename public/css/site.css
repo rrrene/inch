@@ -32,3 +32,9 @@ b.update {
   background-repeat: no-repeat;
   width: 700px;
 }
+
+strong > em {
+  font-weight: normal;
+  font-style: normal;
+  background-color: #ffa;
+}
