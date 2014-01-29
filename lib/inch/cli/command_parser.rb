@@ -6,9 +6,7 @@ module Inch
     #
     #   $ inch command_name [options]
     #
-    # If no command or arguments are specified, or if the arguments immediately
-    # begin with a +--opt+ (not +--help+), the {default_command} will be used
-    # (which itself defaults to +:doc+).
+    # If no command_name is specified, the {default_command} will be used.
     #
     class CommandParser
       include TraceHelper
@@ -48,18 +46,11 @@ module Inch
       # argument.
       # @return [void]
       def run(*args)
-        unless ['--help', '-h'].include?(args.join)
-          if args.size == 0 || args.first =~ /^-/
-            command_name = self.class.default_command
-          else
-            command_name = args.first.to_sym
-            args.shift
-          end
-          if commands.has_key?(command_name)
-            return commands[command_name].run(*args)
-          end
+        if ['--help', '-h'].include?(args.join)
+          list_commands
+        else
+          run_command(*args)
         end
-        list_commands
       end
 
       private
@@ -76,6 +67,23 @@ module Inch
           command = commands[command_name].new
           trace "  %-8s %s" % [command_name, command.description]
         end
+      end
+
+      def run_command(*args)
+        if args.empty?
+          command_name = self.class.default_command
+        else
+          possible_command_name = args.first.to_sym
+
+          if commands.has_key?(possible_command_name)
+            command_name = possible_command_name
+            args.shift
+          else
+            command_name = self.class.default_command
+          end
+        end
+
+        commands[command_name].run(*args)
       end
     end
   end
