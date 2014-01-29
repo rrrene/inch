@@ -1,6 +1,6 @@
 # Inch
 
-[![Build Status](https://travis-ci.org/rrrene/inch.png?branch=v0.1.1)](https://travis-ci.org/rrrene/inch)
+[![Build Status](https://travis-ci.org/rrrene/inch.png)](https://travis-ci.org/rrrene/inch)
 
 Inch is a documentation measurement tool for Ruby, based on
 [YARD](http://yardoc.org/).
