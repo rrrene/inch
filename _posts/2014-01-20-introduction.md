@@ -42,24 +42,6 @@ The last point might be the most important one: If objects are undocumented, the
 
 
 
-## Priorities
-
-<div class="screenshot">
-  <div style="height: 20px; background-image: url(public/images/quickstart-optparse.png); background-position: 0 -575px;"></div>
-</div>
-
-Every class, module, constant and method in a codebase is assigned a priority which reflects how important Inch thinks it is to be documented.
-
-This process follows some reasonable rules, like
-
-* it is more important to document public methods than private ones
-* it is more important to document methods with many parameters than methods without parameters
-* it is not important to document objects marked as `:nodoc:`
-
-Priorities are displayed as arrows. Arrows pointing north mark high priority objects, arrows pointing south mark low priority objects.
-
-
-
 ## No overall scores or grades
 
 <div class="screenshot">
@@ -79,6 +61,24 @@ Inch ***does not give you a grade for your whole codebase***.
 This ***provides a lot more insight than an overall grade could***, because an overall grade for the above example would either be an `A` (if the evaluation ignores undocumented objects) or a weak `C` (if the evaluation includes them).
 
 The grade distribution ***does a much better job of painting the bigger picture***.
+
+
+
+## Priorities
+
+<div class="screenshot">
+  <div style="height: 20px; background-image: url(public/images/quickstart-optparse.png); background-position: 0 -575px;"></div>
+</div>
+
+Every class, module, constant and method in a codebase is assigned a priority which reflects how important Inch thinks it is to be documented.
+
+This process follows some reasonable rules, like
+
+* it is more important to document public methods than private ones
+* it is more important to document methods with many parameters than methods without parameters
+* it is not important to document objects marked as `:nodoc:`
+
+Priorities are displayed as arrows. Arrows pointing north mark high priority objects, arrows pointing south mark low priority objects.
 
 
 
