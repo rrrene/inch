@@ -12,20 +12,24 @@ module Inch
         # Prepares the (list of) objects, parsing arguments and
         # running the source parser.
         #
-        # @param [Array<String>] args the list of arguments.
+        # @param *args [Array<String>] the list of arguments
         # @return [void]
         def prepare_objects(*args)
           @options.parse(args)
           @options.verify
           run_source_parser(@options.paths, @options.excluded)
 
-          self.objects = find_object_names(@options.object_names)
+          self.objects = find_objects_with_names(@options.object_names)
           self.object = @objects.first
         end
 
         private
 
-        def find_object_names(object_names)
+        # Returns all objects matching the given +object_names+
+        #
+        # @param object_names [Array<String>]
+        # @return [Array<CodeObject::Proxy::Base>]
+        def find_objects_with_names(object_names)
           object_names.map do |object_name|
             if object = source_parser.find_object(object_name)
               object

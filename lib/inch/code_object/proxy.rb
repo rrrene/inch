@@ -1,7 +1,14 @@
 module Inch
   module CodeObject
+    # CodeObject::Proxy object represent code objects in the analaysed
+    # codebase.
+    #
     module Proxy
       class << self
+        # Returns a Proxy object for the given +code_object+
+        #
+        # @param code_object [YARD::CodeObject]
+        # @return [CodeObject::Proxy::Base]
         def for(code_object)
           @cache ||= {}
           if proxy_object = @cache[cache_key(code_object)]
@@ -13,6 +20,10 @@ module Inch
 
         private
 
+        # Returns a Proxy class for the given +code_object+
+        #
+        # @param code_object [YARD::CodeObject]
+        # @return [Class]
         def class_for(code_object)
           class_name = code_object.class.to_s.split('::').last
           eval("::Inch::CodeObject::Proxy::#{class_name}")
@@ -20,8 +31,11 @@ module Inch
           Base
         end
 
-        def cache_key(o)
-          o.path
+        # Returns a cache key for the given +code_object+
+        #
+        # @return [String]
+        def cache_key(code_object)
+          code_object.path
         end
       end
     end

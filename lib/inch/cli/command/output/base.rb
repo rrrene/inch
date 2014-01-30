@@ -3,9 +3,18 @@ require 'optparse'
 module Inch
   module CLI
     module Command
+      # The classes in the Command::Output namespace act as presenter
+      # objects to the classes in the Command namespace.
+      #
+      # They are given all the objects and data they are supposed
+      # to display to the user. They do not filter the received data.
+      #
+      # @see Inch::CLI:Command::Suggest
+      # @see Inch::CLI:Command::Output::Suggest
       module Output
         # Abstract base class for CLI output
         #
+        # @abstract
         class Base
           include TraceHelper
 

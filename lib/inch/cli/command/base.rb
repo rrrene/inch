@@ -1,8 +1,16 @@
 module Inch
   module CLI
+    # The classes in the Command namespace are controller objects for the
+    # command-.line interface parsing of command-line arguments via OptionParser and converting
+    # these arguments into instance attributes.
+    #
+    # These attributes are then read and interpreted by the Command object.
+    #
+    # @see Inch::CLI:Command::Suggest
+    # @see Inch::CLI:Command::Options::Suggest
+    # @see Inch::CLI:Command::Output::Suggest
     module Command
-      # Abstract base class for CLI utilities. Provides some helper methods for
-      # the option parser
+      # Abstract base class for CLI controllers
       #
       # @abstract
       # @note This was adapted from YARD.
@@ -10,10 +18,12 @@ module Inch
       class Base
         include TraceHelper
 
-        attr_reader :source_parser
+        attr_reader :source_parser # @return [SourceParser]
 
-        # Helper method to run the utility on an instance.
+        # Helper method to run the utility on an instance
+        #
         # @see #run
+        # @return [Command::Base] the instance that ran
         def self.run(*args)
           command = new
           command.run(*args)
@@ -27,13 +37,15 @@ module Inch
         end
 
         # Returns a description of the command
+        #
         # @return [String]
         def description
           ""
         end
 
         # Returns the name of the command by which it is referenced
-        # in the command list.
+        # in the command list
+        #
         # @return [String]
         def name
           CommandParser.commands.each do |name, klass|
@@ -42,6 +54,7 @@ module Inch
         end
 
         # Returns a description of the command's usage pattern
+        #
         # @return [String]
         def usage
           "Usage: inch #{name} [options]"
@@ -49,6 +62,12 @@ module Inch
 
         private
 
+        # Returns the source parser against the given +paths+, while
+        # excluding all paths given in +excluded+
+        #
+        # @param paths [Array<String>]
+        # @param excluded [Array<String>]
+        # @return [void]
         def run_source_parser(paths, excluded)
           debug "Parsing:\n" \
                 "  files:    #{paths.inspect}\n" \

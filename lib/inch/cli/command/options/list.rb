@@ -12,8 +12,8 @@ module Inch
               "",
               "Example: " + "$ inch list lib/**/*.rb --all".cyan,
               "",
-              description_grades,
-              description_arrows
+              description_hint_grades,
+              description_hint_arrows
             ]
           end
 

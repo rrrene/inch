@@ -28,8 +28,8 @@ module Inch
               "",
               "Example: " + "$ inch suggest lib/**/*.rb --pedantic".cyan,
               "",
-              description_grades,
-              description_arrows
+              description_hint_grades,
+              description_hint_arrows
             ]
           end
 

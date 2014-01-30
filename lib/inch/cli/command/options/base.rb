@@ -3,15 +3,29 @@ require 'optparse'
 module Inch
   module CLI
     module Command
+      # The classes in the Command::Options namespace are concerned with
+      # parsing of command-line arguments via OptionParser and converting
+      # these arguments into instance attributes.
+      #
+      # These attributes are then read and interpreted by the Command object.
+      #
+      # @see Inch::CLI:Command::Suggest
+      # @see Inch::CLI:Command::Options::Suggest
       module Options
         # Abstract base class for CLI options. Provides some helper methods for
-        # the option parser
+        # the option parser.
         #
+        # @abstract
         class Base
           include TraceHelper
           include YardoptsHelper
 
           class << self
+            # Creates an attribute with an optional default value
+            #
+            # @param name [Symbol] the name of the attribute
+            # @param default [nil] the default value of the attribute
+            # @return [void]
             def attribute(name, default = nil)
               define_method(name) do
                 instance_variable_get("@#{name}") || default
@@ -23,9 +37,13 @@ module Inch
           end
 
           attribute :usage, ""
-          attribute :paths, []
-          attribute :excluded, []
+          attribute :paths, []    # the paths of the to-be-analysed sources
+          attribute :excluded, [] # paths to be excluded from the analysis
 
+          # Parses the given +args+ "into" the current Options object
+          #
+          # @param args [Array<String>] command-line arguments
+          # @return [void]
           def parse(args)
             opts = OptionParser.new
             opts.banner = usage
@@ -38,29 +56,51 @@ module Inch
             parse_options(opts, args)
           end
 
+          # Sets all options for the current Options object
+          #
+          # @note Override to fill with individual options
+          #
+          # @param opts [OptionParser]
+          # @return [void]
           def set_options(opts)
             common_options(opts)
           end
 
-          # Override and fill with validations
+          # Verifies if the given options are valid
+          #
+          # @note Override to fill with validations
+          #
+          # @return [void]
           def verify
           end
 
           protected
 
-          # Override and fill with an array of descriptions that will be
-          # shown via the help switch.
+          # Returns an array of descriptions that will be shown via the
+          # +--help+ switch
+          #
+          # @note Override to fill with an array of descriptions
+          #
+          # @return [Array<String>]
           def descriptions
             []
           end
 
-          def description_arrows
+          # Returns a decriptive hint explaining the arrows used to represent
+          # code object priorities
+          #
+          # @return [String]
+          def description_hint_arrows
             arrows = Output::Base::PRIORITY_ARROWS.join(' ')
             "Arrows (#{arrows}) hint at the importance of the object " +
               "being documented."
           end
 
-          def description_grades
+          # Returns a decriptive hint explaining the arrows used to represent
+          # code object grades
+          #
+          # @return [String]
+          def description_hint_grades
             grades = Evaluation.new_score_ranges.map(&:grade)
             "School grades (#{grades.join(', ')}) are assigned and " +
               "displayed with each object."
@@ -68,8 +108,8 @@ module Inch
 
           DEFAULT_PATHS = ["{lib,app}/**/*.rb", "ext/**/*.c"]
 
-          # @yard_files is assigned by YardoptsHelper#parse_yardopts_options
           def get_paths(args)
+            # @yard_files is assigned by YardoptsHelper#parse_yardopts_options
             paths = @yard_files ? @yard_files : args.dup
             if paths.empty?
               DEFAULT_PATHS
@@ -98,6 +138,10 @@ module Inch
             end
           end
 
+          # Quits the application using `exit`
+          #
+          # @param msg [String,nil] optional, message to be displayed
+          # @return [void]
           def kill(msg = nil)
             warn usage
             warn msg.red unless msg.nil?
@@ -118,6 +162,7 @@ module Inch
             kill unrecognized_option(err)
           end
 
+          # Resets the command-line interface before each run
           def reset
             # color is enabled by default, can be turned of by switch --no-color
             Term::ANSIColor::coloring = true

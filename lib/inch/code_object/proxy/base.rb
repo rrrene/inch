@@ -3,6 +3,7 @@ require 'forwardable'
 module Inch
   module CodeObject
     module Proxy
+      # @abstract
       class Base
         extend Forwardable
         include NodocHelper

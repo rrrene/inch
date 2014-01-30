@@ -10,8 +10,8 @@ module Inch
               "Example: " + "$ inch show lib/**/*.rb Foo::Bar#initialize".cyan,
               "",
               "Shows one or more objects in detail.",
-              description_grades,
-              description_arrows
+              description_hint_grades,
+              description_hint_arrows
             ]
           end
 

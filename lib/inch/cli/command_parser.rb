@@ -1,12 +1,35 @@
 # This was adapted from https://github.com/lsegal/yard/blob/master/lib/yard/cli/command_parser.rb
 module Inch
   module CLI
-    # This class parses a command name out of the +inch+ CLI command and calls
-    # that command in the form:
+    # CommandParser parses a command-line arguments to decide which Command to run.
+    #
+    # The basic form translates this shell command
     #
     #   $ inch command_name [options]
     #
-    # If no command_name is specified, the {default_command} will be used.
+    # into a method call on the corresponding Command class.
+    #
+    # Some examples:
+    #
+    #   $ inch
+    #   # >>> Command::Suggest.new.run()
+    #
+    #   $ inch --pedantic
+    #   # >>> Command::Suggest.new.run("--pedantic")
+    #
+    # As you can see, if no command_name is given, the {default_command}
+    # will be used.
+    #
+    #   $ inch list --all
+    #   # >>> Command::List.new.run("--all")
+    #
+    # If a command_name is found to match a Command, that Command will be
+    # used.
+    #
+    #   $ inch --help
+    #   # >>> CommandParser#list_commands
+    #
+    # The +--help+ switch is an exception and lists all available commands.
     #
     class CommandParser
       include TraceHelper
@@ -36,10 +59,6 @@ module Inch
       # @return (see #run)
       def self.run(*args)
         new.run(*args)
-      end
-
-      def initialize
-        #log.show_backtraces = false
       end
 
       # Runs the {Command} object matching the command name of the first

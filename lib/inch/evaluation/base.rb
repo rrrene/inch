@@ -1,5 +1,6 @@
 module Inch
   module Evaluation
+    # @abstract
     class Base
       extend Forwardable
 

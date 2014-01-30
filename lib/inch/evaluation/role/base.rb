@@ -1,6 +1,7 @@
 module Inch
   module Evaluation
     module Role
+      # @abstract
       class Base
         attr_reader :object
 
@@ -9,18 +10,18 @@ module Inch
           @value = value
         end
 
-        # Override this method to that a max_score for the evaluation.
+        # @note Override this method to that a max_score for the evaluation.
         def max_score
         end
 
-        # Override this method to that a min_score for the evaluation.
+        # @note Override this method to that a min_score for the evaluation.
         def min_score
         end
 
         # Returns a score that will be added to the associated object's
         # overall score.
         #
-        # Override this method to that a score for the role.
+        # @note Override this method to assign a score for the role
         def score
           @value.to_f
         end
@@ -32,6 +33,10 @@ module Inch
           nil
         end
 
+        # Returns a priority that will be added to the associated object's
+        # overall priority.
+        #
+        # @note Override this method to assign a priority for the role
         def priority
           0
         end
