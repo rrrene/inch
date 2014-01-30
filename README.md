@@ -8,6 +8,8 @@ Inch is a documentation measurement tool for Ruby, based on
 It does not measure *coverage*, but gives you hints where to improve your
 docs. One Inch at a time.
 
+Take a look at the project page for [screenshots (live and in full color)](http://rrrene.github.io/inch/).
+
 
 ## Installation
 
