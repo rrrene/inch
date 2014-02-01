@@ -1,14 +1,10 @@
-# Inch
+# Inch [![Build Status](https://travis-ci.org/rrrene/inch.png)](https://travis-ci.org/rrrene/inch)
 
-[![Build Status](https://travis-ci.org/rrrene/inch.png)](https://travis-ci.org/rrrene/inch)
+Take a look at the project page for an [introduction with screenshots (live and in full color)](http://rrrene.github.io/inch/).
 
-Inch is a documentation measurement tool for Ruby, based on
-[YARD](http://yardoc.org/).
+Inch is a documentation measurement tool for the Ruby programming language
+that gives you hints where to improve your docs. One Inch at a time.
 
-It does not measure *coverage*, but gives you hints where to improve your
-docs. One Inch at a time.
-
-Take a look at the project page for [screenshots (live and in full color)](http://rrrene.github.io/inch/).
 
 
 ## Installation
@@ -24,6 +20,7 @@ And then execute:
 Or install it yourself as:
 
     $ gem install inch
+
 
 
 ## Usage

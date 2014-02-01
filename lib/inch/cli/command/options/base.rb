@@ -9,13 +9,13 @@ module Inch
       #
       # These attributes are then read and interpreted by the Command object.
       #
-      # @see Inch::CLI:Command::Suggest
-      # @see Inch::CLI:Command::Options::Suggest
+      # @see Inch::CLI::Command::Suggest
+      # @see Inch::CLI::Command::Options::Suggest
       module Options
         # Abstract base class for CLI options. Provides some helper methods for
         # the option parser.
         #
-        # @abstract
+        # @abstract Subclass and override #set_options
         class Base
           include TraceHelper
           include YardoptsHelper
@@ -36,7 +36,7 @@ module Inch
             end
           end
 
-          attribute :usage, ""
+          attribute :usage, ""    # usage description for the command
           attribute :paths, []    # the paths of the to-be-analysed sources
           attribute :excluded, [] # paths to be excluded from the analysis
 

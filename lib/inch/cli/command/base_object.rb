@@ -1,6 +1,15 @@
 module Inch
   module CLI
     module Command
+      # Base class for Command objects concerned with clearly specified
+      # objects.
+      #
+      # Commands subclassing from this class are called with a list of object
+      # names (most commonly only one) in the form:
+      #
+      #   $ inch COMMAND [paths] OBJECT_NAME [, OBJECT_NAME2, ...] [options]
+      #
+      # @abstract
       class BaseObject < Base
         attr_accessor :object, :objects
 
@@ -9,7 +18,7 @@ module Inch
           @ranges = Evaluation.new_score_ranges
         end
 
-        # Prepares the (list of) objects, parsing arguments and
+        # Prepares the given objects, parsing arguments and
         # running the source parser.
         #
         # @param *args [Array<String>] the list of arguments

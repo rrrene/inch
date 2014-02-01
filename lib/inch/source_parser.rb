@@ -1,7 +1,7 @@
 module Inch
   # Parses the source tree (using YARD)
   class SourceParser
-    # Helper method to run the utility on an instance
+    # Helper method to run an instance with the given +args+
     #
     # @see #run
     # @return [SourceParser] the instance that ran

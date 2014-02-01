@@ -2,6 +2,9 @@ module Inch
   module CLI
     module Command
       module Options
+        # Abstract base class for CLI options concerning lists of objects
+        #
+        # @abstract Subclass and override #set_options
         class BaseList < Base
           attribute :full, false
           attribute :visibility, [:public, :protected]
@@ -33,6 +36,11 @@ module Inch
 
           protected
 
+
+          # Sets all list related options for the current Options object
+          #
+          # @param opts [OptionParser]
+          # @return [void]
           def list_options(opts)
             opts.separator ""
             opts.separator "List options:"
@@ -70,11 +78,20 @@ module Inch
             end
           end
 
-          def set_visibility(_visibility, true_or_false)
+          # Sets the visibility of a given +kind+ of objects
+          #
+          # @example
+          #   set_visibility :private, false
+          #   set_visibility :protected, true
+          #
+          # @param kind [Symbol] +:public+, +:protected:, or +:private+
+          # @param true_or_false [Boolean]
+          # @return [void]
+          def set_visibility(kind, true_or_false)
             if true_or_false
-              visibility.push(_visibility)
+              visibility.push(kind)
             else
-              visibility.delete(_visibility)
+              visibility.delete(kind)
             end
           end
         end

@@ -16,6 +16,10 @@ module Inch
           COLOR = :color198     # magenta-ish
           BG_COLOR = :color207  # magenta-ish
 
+          # @param options [Options::Console]
+          # @param object [CodeObject::Proxy::Base]
+          # @param objects [Array<CodeObject::Proxy::Base>]
+          # @param source_parser [SourceParser]
           def initialize(options, object, objects, source_parser)
             @options = options
             @object = object

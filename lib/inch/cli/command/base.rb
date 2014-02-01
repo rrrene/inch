@@ -1,26 +1,46 @@
 module Inch
   module CLI
     # The classes in the Command namespace are controller objects for the
-    # command-.line interface parsing of command-line arguments via OptionParser and converting
-    # these arguments into instance attributes.
+    # command-line interface.
     #
-    # These attributes are then read and interpreted by the Command object.
+    # A Command object is run via the class method +run+ (see {Base.run}).
+    # Its parameters are the command-line arguments (typically ARGV).
     #
-    # @see Inch::CLI:Command::Suggest
-    # @see Inch::CLI:Command::Options::Suggest
-    # @see Inch::CLI:Command::Output::Suggest
+    # A Command object utilizes an {Options} object to interpret the command-
+    # line arguments, then processes files and/or objects and finally uses an
+    # {Output} object to present the results to the user.
+    #
+    #
+    # To create a new command +Foo+ you must first subclass any of
+    #
+    # * Command::Base
+    # * Command::BaseList
+    # * Command::BaseObject
+    #
+    # Then you have to subclass Options and Output
+    # classes as well, to finally get something like this:
+    #
+    # * Command::Foo
+    # * Command::Options::Foo
+    # * Command::Output::Foo
+    #
+    # For an example, take a look at the Suggest command.
+    #
+    # @see Inch::CLI::Command::Suggest
+    # @see Inch::CLI::Command::Options::Suggest
+    # @see Inch::CLI::Command::Output::Suggest
     module Command
-      # Abstract base class for CLI controllers
+      # Abstract base class for CLI controller objects
       #
-      # @abstract
-      # @note This was adapted from YARD.
-      # @see https://github.com/lsegal/yard/blob/master/lib/yard/cli/command.rb
+      # @abstract Subclass and override #run to implement a new command
+      # @note This was adapted from YARD
+      #   https://github.com/lsegal/yard/blob/master/lib/yard/cli/command.rb
       class Base
         include TraceHelper
 
         attr_reader :source_parser # @return [SourceParser]
 
-        # Helper method to run the utility on an instance
+        # Helper method to run an instance with the given +args+
         #
         # @see #run
         # @return [Command::Base] the instance that ran
@@ -51,6 +71,15 @@ module Inch
           CommandParser.commands.each do |name, klass|
             return name if klass == self.class
           end
+        end
+
+        # Runs the command with the given +args+
+        #
+        # @abstract
+        # @note Override with implementation
+        # @param *args [Array<String>]
+        def run(*args)
+          raise NotImplementedError
         end
 
         # Returns a description of the command's usage pattern

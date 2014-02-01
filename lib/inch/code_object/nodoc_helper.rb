@@ -60,21 +60,42 @@ module Inch
         end
       end
 
+      # Returns all lines in all files declaring the object
+      #
+      # @example
+      #   declarations # => ["class Base # :nodoc:", "class Foo < Base"]
+      #
+      # @return [Array<String>]
       def declarations
         @declarations ||= files.map do |(filename, line_no)|
           get_line_no(filename, line_no)
         end
       end
 
+      # Returns all files declaring the object in the form of an Array of
+      # Arrays containing the filename and the line number of their
+      # declaration.
+      #
+      # @example
+      #   files # => [["lib/inch.rb", 3],
+      #                ["lib/inch/cli.rb", 1],
+      #                 ["lib/inch/version.rb", 1],
+      #
+      # @return [Array<Array(String, Fixnum)>]
       def files
         object.files
       rescue YARD::CodeObjects::ProxyMethodError
         []
       end
 
-      def get_line_no(filename, n)
+      # Returns a +line_number+ from a file
+      #
+      # @param filename [String]
+      # @param line_number [Fixnum]
+      # @return [String]
+      def get_line_no(filename, line_number)
         f = File.open(filename)
-        n.times{f.gets}
+        line_number.times{f.gets}
         result = $_
         f.close
         result

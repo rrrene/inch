@@ -1,8 +1,9 @@
 module Inch
   module CodeObject
     module Proxy
+      # Proxy class for method parameters
       class MethodParameterObject
-        attr_reader :name
+        attr_reader :name # @return [String]
 
         # @param method [Inch::CodeObject::Proxy::MethodObject] the method the parameter belongs_to
         # @param name [String] the name of the parameter
@@ -17,6 +18,8 @@ module Inch
 
         BAD_NAME_EXCEPTIONS = %w(id)
         BAD_NAME_THRESHOLD = 3
+
+        # @return [Boolean] +true+ if the name of the parameter is uncommunicative
         def bad_name?
           return false if BAD_NAME_EXCEPTIONS.include?(name)
           name.size < BAD_NAME_THRESHOLD || name =~ /[0-9]$/

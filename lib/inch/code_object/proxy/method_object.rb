@@ -1,6 +1,7 @@
 module Inch
   module CodeObject
     module Proxy
+      # Proxy class for methods
       class MethodObject < Base
         def comment_and_abbrev_source
           comments.join('') + abbrev_source

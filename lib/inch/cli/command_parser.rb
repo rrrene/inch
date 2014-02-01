@@ -1,4 +1,3 @@
-# This was adapted from https://github.com/lsegal/yard/blob/master/lib/yard/cli/command_parser.rb
 module Inch
   module CLI
     # CommandParser parses a command-line arguments to decide which Command to run.
@@ -63,7 +62,7 @@ module Inch
 
       # Runs the {Command} object matching the command name of the first
       # argument.
-      # @return [void]
+      # @return [Command::Base]
       def run(*args)
         if ['--help', '-h'].include?(args.join)
           list_commands
@@ -88,6 +87,9 @@ module Inch
         end
       end
 
+      # Runs the {Command} object matching the command name of the first
+      # argument.
+      # @return [Command::Base]
       def run_command(*args)
         if args.empty?
           command_name = self.class.default_command
