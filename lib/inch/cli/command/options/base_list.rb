@@ -6,11 +6,13 @@ module Inch
         #
         # @abstract Subclass and override #set_options
         class BaseList < Base
-          attribute :full, false
+          attribute :show_all, false
           attribute :visibility, [:public, :protected]
           attribute :namespaces
           attribute :undocumented
           attribute :depth
+
+          alias :show_all? :show_all
 
           def parse(args)
             opts = OptionParser.new
@@ -46,7 +48,7 @@ module Inch
             opts.separator "List options:"
 
             opts.on("--all", "Show all objects in the output") do
-              @full = true
+              @show_all = true
             end
 
             opts.on("--only-namespaces", "Only show namespaces (classes, modules)") do
@@ -88,10 +90,11 @@ module Inch
           # @param true_or_false [Boolean]
           # @return [void]
           def set_visibility(kind, true_or_false)
+            @visibility ||= visibility.dup # initialize with attribute default
             if true_or_false
-              visibility.push(kind)
+              @visibility.push(kind)
             else
-              visibility.delete(kind)
+              @visibility.delete(kind)
             end
           end
         end
