@@ -91,7 +91,7 @@ module Inch
 
           def print_doc_info(o)
             if o.nodoc?
-              echo "The object was tagged not to documented.".yellow
+              echo "The object was tagged not to be documented.".yellow
             else
               echo "Docstring".ljust(LJUST) + "#{o.has_doc? ? 'Yes' : 'No text'}"
               if o.method?
@@ -107,7 +107,7 @@ module Inch
 
           def print_namespace_info(o)
             if o.namespace?
-              echo "Children (height: #{o.height}):"
+              echo "Children:"
               o.children.each do |child|
                 echo "+ " + child.path.color(COLOR)
               end
