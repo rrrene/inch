@@ -22,9 +22,6 @@ module Inch
         if object.public?
           add_role Role::Constant::Public.new(object)
         end
-        if object.protected?
-          add_role Role::Constant::Protected.new(object)
-        end
         if object.private?
           add_role Role::Constant::Private.new(object)
         end

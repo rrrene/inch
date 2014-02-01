@@ -6,6 +6,8 @@ describe ::Inch::CLI::Command::List do
     @command = ::Inch::CLI::Command::List
   end
 
+  include BaseListTests
+
   it "should run without args" do
     out, err = capture_io do
       @command.run()
@@ -59,3 +61,4 @@ describe ::Inch::CLI::Command::List do
     assert err.empty?, "there should be no errors"
   end
 end
+

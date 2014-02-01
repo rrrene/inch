@@ -6,6 +6,16 @@ describe ::Inch::CodeObject::Proxy::Base do
     @source_parser = Inch::SourceParser.run(["lib/**/*.rb"])
   end
 
+  def test_inspect_gives_original_name
+    m = @source_parser.find_object("Foo::Bar#method_with_code_example")
+    assert_match /Foo::Bar#method_with_code_example/, m.inspect
+  end
+
+  def test_grade_is_not_nil
+    m = @source_parser.find_object("Foo::Bar#method_with_code_example")
+    assert m.grade
+  end
+
   def test_method_with_code_example
     m = @source_parser.find_object("Foo::Bar#method_with_code_example")
     assert m.has_code_example?

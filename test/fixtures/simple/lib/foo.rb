@@ -27,6 +27,12 @@ module Foo
     # @param p2 [String, nil] optionally param
     # @return [void]
     def method_with_full_doc(p1, p2 = nil)
+      many_lines = true
+      if true
+        if many_lines
+          true
+        end
+      end
     end
 
     # @param p1 [String] mandatory param

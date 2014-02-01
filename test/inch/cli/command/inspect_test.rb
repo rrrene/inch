@@ -33,6 +33,15 @@ describe ::Inch::CLI::Command::Inspect do
     assert err.empty?, "there should be no errors"
   end
 
+
+  it "should output some info when run with a definitive object name" do
+    out, err = capture_io do
+      @command.run("Foo::Qux")
+    end
+    refute out.empty?, "there should be some output"
+    assert err.empty?, "there should be no errors"
+  end
+
   it "should output all children info when run with a partial name" do
     out, err = capture_io do
       @command.run("Foo::Bar#", "--no-color")

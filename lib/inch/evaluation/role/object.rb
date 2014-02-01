@@ -31,11 +31,7 @@ module Inch
 
         class Public < Base
           def priority
-            if object.type == :constant
-              -1
-            else
-              +2
-            end
+            +2
           end
         end
         class Protected < Base

@@ -3,6 +3,9 @@
 # @see PureNamespace
 PUBLIC_ROOT_CONSTANT = :foo
 
+PRIVATE_ROOT_CONSTANT = :foo
+private_constant :PRIVATE_ROOT_CONSTANT
+
 class String
   def foobar
     self + 'foobar!'
@@ -12,18 +15,27 @@ end
 module InchTest
   # You would want to use it like this:
   #
-  #  CodeExample.new
+  #   CodeExample.new
   #
   class CodeExample
   end
 
   # You would want to use it like this:
   #
-  #  CodeExample.new
+  #   MultipleCodeExamples.new
   #
-  #  CodeExample.new # => something
+  #   MultipleCodeExamples.new # => something
   #
   class MultipleCodeExamples
+  end
+
+  # You would want to use it like this:
+  #
+  # @example
+  #   MultipleCodeExamples2.new
+  #   MultipleCodeExamples2.new # => something
+  #
+  class MultipleCodeExamples2
   end
 
   module PureNamespace

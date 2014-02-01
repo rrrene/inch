@@ -37,7 +37,7 @@ module Inch
           end
 
           def display_range(range)
-            display_count = @options.full ? range.objects.size : PER_RANGE
+            display_count = @options.show_all? ? range.objects.size : PER_RANGE
             list = range.objects[0...display_count]
             list.each do |o|
               echo range.color, result(o, range.color)

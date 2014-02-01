@@ -42,10 +42,6 @@ module Inch
         objects.map(&:priority)
       end
 
-      def scores
-        objects.map(&:score)
-      end
-
       def median(sorted_list)
         index = (sorted_list.size / 2).round
         sorted_list[index]

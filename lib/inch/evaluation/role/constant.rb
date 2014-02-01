@@ -17,11 +17,6 @@ module Inch
             -1
           end
         end
-        class Protected < Object::Protected
-          def priority
-            -2
-          end
-        end
         class Private < Object::Private
           def priority
             -3

@@ -46,6 +46,17 @@ describe ::Inch::CLI::Command::Suggest do
     #assert err.empty?, "there should be no errors"
   end
   
+  it "should run with --objects switch" do
+    out, err = capture_io do
+      @command.run("lib/**/*.rb", "app/**/*.rb", "--objects=30")
+    end
+    refute out.empty?, "there should be some output"
+    assert err.empty?, "there should be no errors"
+    assert_match /\bFoo::Bar#method_with_wrong_doc\b/, out
+    assert_match /\bFoo::Bar#method_without_docstring\b/, out
+    assert_match /\bFoo::Bar#method_with_unstructured_doc\b/, out
+  end
+
   it "should give error when run with --unknown-switch" do
     out, err = capture_io do
       assert_raises(SystemExit) { @command.run("--unknown-switch") }

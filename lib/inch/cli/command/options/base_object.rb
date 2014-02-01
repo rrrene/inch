@@ -29,8 +29,6 @@ module Inch
 
           private
 
-          # TODO: really check the last parameters if they are globs, files
-          # or switches and find the object_name(s) that way
           def parse_object_names(args)
             arguments = Arguments.new(args)
             object_names = arguments.object_names

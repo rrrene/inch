@@ -1,21 +1,15 @@
 require File.expand_path(File.dirname(__FILE__) + '/../test_helper')
 
-#
-# Tests with the YARD specific --no-public, --no-protected and --private
-# switches can't be run in one test instance. The flags seem to add up after
-# being called. In combination with a random test order this resulted in ever
-# different failure outputs.
-#
-# Therefore, here are some integration tests:
-#
-describe ::Inch::CLI::Command::List do
+describe ::Inch::CLI::Command do
   before do
     Dir.chdir fixture_path(:visibility)
-    @command = "bundle exec inch list"
+    @command = ::Inch::CLI::Command::List
   end
 
   it "should run without visibility switches" do
-    out = %x|#{@command} --all|
+    out, err = capture_io do
+      @command.run("--all")
+    end
     refute out.empty?, "there should be some output"
     assert_match /\bFoo#public_method\b/, out
     assert_match /\bFoo#protected_method\b/, out
@@ -24,7 +18,9 @@ describe ::Inch::CLI::Command::List do
   end
 
   it "should run with --no-protected switch" do
-    out = %x|#{@command} --all --no-protected|
+    out, err = capture_io do
+      @command.run("--all", "--no-protected")
+    end
     refute out.empty?, "there should be some output"
     assert_match /\bFoo#public_method\b/, out
     refute_match /\bFoo#protected_method\b/, out
@@ -33,7 +29,9 @@ describe ::Inch::CLI::Command::List do
   end
 
   it "should run with --no-public switch" do
-    out = %x|#{@command} --all --no-public|
+    out, err = capture_io do
+      @command.run(*%w|--all --no-public|)
+    end
     refute out.empty?, "there should be some output"
     refute_match /\bFoo#public_method\b/, out
     assert_match /\bFoo#protected_method\b/, out
@@ -42,7 +40,9 @@ describe ::Inch::CLI::Command::List do
   end
 
   it "should run with --no-public --no-protected switch" do
-    out = %x|#{@command} --all --no-public --no-protected|
+    out, err = capture_io do
+      @command.run(*%w|--all --no-public --no-protected|)
+    end
     assert out.empty?, "there should be no output"
     refute_match /\bFoo#public_method\b/, out
     refute_match /\bFoo#protected_method\b/, out
@@ -51,7 +51,9 @@ describe ::Inch::CLI::Command::List do
   end
 
   it "should run with --no-public --no-protected --private switch" do
-    out = %x|#{@command} --all --no-public --no-protected --private|
+    out, err = capture_io do
+      @command.run(*%w|--all --no-public --no-protected --private|)
+    end
     refute out.empty?, "there should be some output"
     refute_match /\bFoo#public_method\b/, out
     refute_match /\bFoo#protected_method\b/, out
@@ -60,7 +62,9 @@ describe ::Inch::CLI::Command::List do
   end
 
   it "should run with --no-public switch" do
-    out = %x|#{@command} --all --no-public|
+    out, err = capture_io do
+      @command.run(*%w|--all --no-public|)
+    end
     refute out.empty?, "there should be some output"
     refute_match /\bFoo#public_method\b/, out
     assert_match /\bFoo#protected_method\b/, out
@@ -69,11 +73,14 @@ describe ::Inch::CLI::Command::List do
   end
 
   it "should run with --no-protected switch" do
-    out = %x|#{@command} --all --no-protected|
+    out, err = capture_io do
+      @command.run(*%w|--all --no-protected|)
+    end
     refute out.empty?, "there should be some output"
     assert_match /\bFoo#public_method\b/, out
     refute_match /\bFoo#protected_method\b/, out
     refute_match /\bFoo#private_method\b/, out # has @private tag
     refute_match /\bFoo#method_with_private_tag\b/, out # has a @private tag, but is really :public
   end
+
 end
