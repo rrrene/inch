@@ -114,28 +114,6 @@ module Inch
           end
         end
 
-        # In the following example, the height of +Foo+ is 3
-        # (the height of the top-level is 4):
-        #
-        #   Foo::Bar::Baz#initialize
-        #    ^    ^    ^      ^
-        #    0 >> 1 >> 2  >>  3
-        #
-        # +height+ answers the question "how many layers of code objects are
-        # underneath this one?"
-        #
-        # @param i [Fixnum] a counter for recursive method calls
-        # @return [Fixnum] the height of the object in terms of namespace
-        def height(i = 0)
-          if children && !children.empty?
-            children.map do |child|
-              child.height(i+1)
-            end.max
-          else
-            i
-          end
-        end
-
         # @return [Boolean] +true+ if the object represents a method
         def method?
           false
@@ -187,7 +165,7 @@ module Inch
         private
 
         def multi_code_examples?(text)
-          text =~ /\b#{Regexp.escape(name)}[^_0-9\!\?]/
+          text.scan(/\b(#{Regexp.escape(name)})[^_0-9\!\?]/m).size > 1
         end
       end
     end
