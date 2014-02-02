@@ -9,29 +9,36 @@ module Inch
 
       TAGGED_SCORE = 20 # assigned per unconsidered tag
 
-
+      # @return [CodeObject::Proxy::Base]
       attr_accessor :object
+      
       attr_reader :min_score, :max_score
 
+      # @param object [CodeObject::Proxy::Base]
       def initialize(object)
         self.object = object
         @roles = []
         evaluate
       end
 
+      # Evaluates the objects and assigns roles
+      # @abstract
       def evaluate
       end
 
+      # @return [Float]
       def max_score
         arr = @roles.map(&:max_score).compact
         [MAX_SCORE].concat(arr).min
       end
 
+      # @return [Float]
       def min_score
         arr = @roles.map(&:min_score).compact
         [MIN_SCORE].concat(arr).max
       end
 
+      # @return [Float]
       def score
         value = @roles.inject(0) { |sum,r| sum + r.score.to_f }
         if value < min_score
@@ -43,10 +50,12 @@ module Inch
         end
       end
 
+      # @return [Fixnum]
       def priority
         @roles.inject(0) { |sum,r| sum + r.priority.to_i }
       end
 
+      # @return [Array<Evaluation::Role::Base>]
       def roles
         @roles
       end

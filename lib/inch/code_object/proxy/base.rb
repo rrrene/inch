@@ -8,7 +8,7 @@ module Inch
         extend Forwardable
         include NodocHelper
 
-        # the actual (YARD) code object
+        # @return [YARD::CodeObjects::Base] the actual (YARD) code object
         attr_accessor :object
 
         # @return [Symbol]
@@ -25,6 +25,7 @@ module Inch
         # convenient shortcuts to evalution object
         def_delegators :evaluation, :score, :roles, :priority
 
+        # @param object [YARD::CodeObjects::Base] the actual (YARD) code object
         def initialize(object)
           self.object = object
         end
@@ -36,10 +37,12 @@ module Inch
           nil
         end
 
+        # @return [Docstring]
         def docstring
           @docstring ||= Docstring.new(object.docstring)
         end
 
+        # @return [Evaluation::Base]
         def evaluation
           @evaluation ||= Evaluation.for(self)
         end
@@ -52,6 +55,7 @@ module Inch
           files.size > 0 ? files[0][0] : nil
         end
 
+        # @return [Symbol]
         def grade
           @grade ||= Evaluation.new_score_ranges.detect { |range|
                 range.range.include?(score)

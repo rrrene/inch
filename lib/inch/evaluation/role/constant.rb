@@ -1,6 +1,7 @@
 module Inch
   module Evaluation
     module Role
+      # Roles assigned to constants
       module Constant
         class WithDoc < Object::WithDoc
         end

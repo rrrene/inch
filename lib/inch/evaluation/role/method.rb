@@ -2,46 +2,62 @@ module Inch
   module Evaluation
     module Role
       module Method
+        # Role assigned to methods without parameters
         class WithoutParameters < Base
         end
+
+        # Role assigned to methods with many parameters
+        #
+        # @see CodeObject::Proxy::MethodObject#has_many_parameters?
         class WithManyParameters < Base
-          # +priority
-          def priority
-            +2
-          end
-        end
-        class WithManyLines < Base
-          # +priority
-          def priority
-            +2
-          end
-        end
-        class WithBangName < Base
-          # +priority
-          def priority
-            +3
-          end
-        end
-        class WithQuestioningName < Base
-          def priority
-            -4
-          end
-        end
-        class HasAlias < Base
-          # +priority
           def priority
             +2
           end
         end
 
+
+        # Role assigned to methods with many lines
+        #
+        # @see CodeObject::Proxy::MethodObject#has_many_lines?
+        class WithManyLines < Base
+          def priority
+            +2
+          end
+        end
+
+        # Role assigned to methods whose name end in a '!'
+        class WithBangName < Base
+          def priority
+            +3
+          end
+        end
+
+        # Role assigned to methods whose name end in a '?'
+        class WithQuestioningName < Base
+          def priority
+            -4
+          end
+        end
+
+        # Role assigned to methods which are aliased
+        class HasAlias < Base
+          def priority
+            +2
+          end
+        end
+
+        # Role assigned to methods that are typed in the docs
         class WithReturnType < Base
         end
+
+        # Role assigned to methods that are not typed in the docs
         class WithoutReturnType < Missing
           def suggestion
             "Describe what '#{object.name}' returns"
           end
         end
 
+        # Role assigned to methods that are overriding another method
         class Overridden < Base
           # It seems more important to document the overridden method,
           # than the overriding one
