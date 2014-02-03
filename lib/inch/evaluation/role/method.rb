@@ -15,6 +15,17 @@ module Inch
           end
         end
 
+        # Role assigned to methods that are typed in the docs
+        class WithReturnType < Base
+        end
+
+        # Role assigned to methods that are not typed in the docs
+        class WithoutReturnType < Missing
+          def suggestion
+            "Describe what '#{object.name}' returns"
+          end
+        end
+
 
         # Role assigned to methods with many lines
         #
@@ -46,15 +57,8 @@ module Inch
           end
         end
 
-        # Role assigned to methods that are typed in the docs
-        class WithReturnType < Base
-        end
-
-        # Role assigned to methods that are not typed in the docs
-        class WithoutReturnType < Missing
-          def suggestion
-            "Describe what '#{object.name}' returns"
-          end
+        # Role assigned to methods that are constructors
+        class Constructor < Base
         end
 
         # Role assigned to methods that are overriding another method
