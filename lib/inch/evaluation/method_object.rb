@@ -6,44 +6,8 @@ module Inch
         eval_parameters
         eval_return_type
         eval_code_example
-
-        if object.overridden?
-          add_role Role::Method::Overridden.new(object, object.overridden_method.score)
-        end
-        if object.constructor?
-          add_role Role::Method::Constructor.new(object)
-        end
-        if object.has_many_lines?
-          add_role Role::Method::WithManyLines.new(object)
-        end
-        if object.bang_name?
-          add_role Role::Method::WithBangName.new(object)
-        end
-        if object.questioning_name?
-          add_role Role::Method::WithQuestioningName.new(object)
-        end
-        if object.has_alias?
-          add_role Role::Method::HasAlias.new(object)
-        end
-        if object.nodoc?
-          add_role Role::Object::TaggedAsNodoc.new(object)
-        end
-        if object.has_unconsidered_tags?
-          count = object.unconsidered_tags.size
-          add_role Role::Object::Tagged.new(object, score_for(:unconsidered_tag) * count)
-        end
-        if object.in_root?
-          add_role Role::Object::InRoot.new(object)
-        end
-        if object.public?
-          add_role Role::Object::Public.new(object)
-        end
-        if object.protected?
-          add_role Role::Object::Protected.new(object)
-        end
-        if object.private?
-          add_role Role::Object::Private.new(object)
-        end
+        eval_method
+        eval_misc
       end
 
       private
@@ -65,6 +29,49 @@ module Inch
           end
         else
           add_role Role::Object::WithoutCodeExample.new(object, score_for(:code_example_single))
+        end
+      end
+
+      def eval_method
+        if object.constructor?
+          add_role Role::Method::Constructor.new(object)
+        end
+        if object.overridden?
+          add_role Role::Method::Overridden.new(object, object.overridden_method.score)
+        end
+        if object.has_many_lines?
+          add_role Role::Method::WithManyLines.new(object)
+        end
+        if object.bang_name?
+          add_role Role::Method::WithBangName.new(object)
+        end
+        if object.questioning_name?
+          add_role Role::Method::WithQuestioningName.new(object)
+        end
+        if object.has_alias?
+          add_role Role::Method::HasAlias.new(object)
+        end
+      end
+
+      def eval_misc
+        if object.nodoc?
+          add_role Role::Object::TaggedAsNodoc.new(object)
+        end
+        if object.has_unconsidered_tags?
+          count = object.unconsidered_tags.size
+          add_role Role::Object::Tagged.new(object, score_for(:unconsidered_tag) * count)
+        end
+        if object.in_root?
+          add_role Role::Object::InRoot.new(object)
+        end
+        if object.public?
+          add_role Role::Object::Public.new(object)
+        end
+        if object.protected?
+          add_role Role::Object::Protected.new(object)
+        end
+        if object.private?
+          add_role Role::Object::Private.new(object)
         end
       end
 
