@@ -138,7 +138,7 @@ module Inch
         end
 
         def private_tag?
-          !!object.tag(:private)
+          !object.tag(:private).nil?
         end
 
         def protected?

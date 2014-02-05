@@ -6,7 +6,7 @@ describe ::Inch::CodeObject::NodocHelper do
     @source_parser = Inch::SourceParser.run(["lib/**/*.rb"])
   end
 
-  it "should return true for explicitly tagged objects" do
+  it "should return true for explicitly or implicitly tagged objects" do
     [
       "Foo::Qux",
       "Foo::Qux#method_with_implicit_nodoc",
@@ -16,6 +16,8 @@ describe ::Inch::CodeObject::NodocHelper do
       "Foo::HiddenClass",
       "Foo::HiddenClass::EvenMoreHiddenClass",
       "Foo::HiddenClass::EvenMoreHiddenClass#method_with_implicit_nodoc",
+      "Foo::HiddenClassViaTag",
+      "Foo::HiddenClassViaTag#some_value",
     ].each do |query|
       m = @source_parser.find_object(query)
       assert m.nodoc?, "nodoc? should return true for #{query}"

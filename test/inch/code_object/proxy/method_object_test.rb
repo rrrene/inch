@@ -168,7 +168,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   def test_method_with_description_and_parameters
     m = @source_parser.find_object("InchTest#method_with_description_and_parameters?")
     refute m.has_doc?
-    refute m.has_parameters?
+    assert m.has_parameters?
 
     assert m.score > 0
   end

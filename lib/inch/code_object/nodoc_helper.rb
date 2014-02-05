@@ -8,7 +8,7 @@ module Inch
       # @note Doesnot recognize ":startdoc:" and ":stopdoc:"
       #
       def nodoc?
-        object.tag(:private) || nodoc_comment?
+        private_tag? || nodoc_comment?
       end
 
       NO_DOC_REGEX = /#\s*\:nodoc\:/
@@ -20,11 +20,11 @@ module Inch
       end
 
       def explicit_nodoc_comment?
-        declarations.any? { |str| str =~ NO_DOC_REGEX }
+        private_tag? || declarations.any? { |str| str =~ NO_DOC_REGEX }
       end
 
       def explicit_nodoc_all_comment?
-        declarations.any? { |str| str =~ NO_DOC_ALL_REGEX }
+        private_tag? || declarations.any? { |str| str =~ NO_DOC_ALL_REGEX }
       end
 
       def explicit_doc_comment?
