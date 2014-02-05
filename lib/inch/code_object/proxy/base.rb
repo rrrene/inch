@@ -17,7 +17,7 @@ module Inch
         attr_writer :grade
 
         # Tags considered by wrapper methods like {#has_code_example?}
-        CONSIDERED_YARD_TAGS = %w(example param private return)
+        CONSIDERED_YARD_TAGS = %w(api example param private return)
 
         # convenient shortcuts to (YARD) code object
         def_delegators :object, :type, :path, :name, :namespace, :source, :source_type, :signature, :group, :dynamic, :visibility, :docstring
@@ -28,6 +28,10 @@ module Inch
         # @param object [YARD::CodeObjects::Base] the actual (YARD) code object
         def initialize(object)
           self.object = object
+        end
+
+        def api_tag?
+          !object.tag(:api).nil? || (parent && parent.api_tag?)
         end
 
         # To be overridden
@@ -137,8 +141,15 @@ module Inch
           visibility == :private
         end
 
+        # @return [Boolean]
+        #   +true+ if the object or its parent is tagged as @private
         def private_tag?
-          !object.tag(:private).nil?
+          !object.tag(:private).nil? || (parent && parent.private_tag?)
+        end
+
+        def private_api_tag?
+          tag = object.tag(:api)
+          tag.text == 'private'
         end
 
         def protected?

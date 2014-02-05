@@ -20,11 +20,11 @@ module Inch
       end
 
       def explicit_nodoc_comment?
-        private_tag? || declarations.any? { |str| str =~ NO_DOC_REGEX }
+        declarations.any? { |str| str =~ NO_DOC_REGEX }
       end
 
       def explicit_nodoc_all_comment?
-        private_tag? || declarations.any? { |str| str =~ NO_DOC_ALL_REGEX }
+        declarations.any? { |str| str =~ NO_DOC_ALL_REGEX }
       end
 
       def explicit_doc_comment?

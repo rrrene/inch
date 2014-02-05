@@ -24,12 +24,26 @@ module Inch
         end
 
         # Role assigned to objects explicitly or implicitly tagged not to be
-        # documented. 
+        # documented.
         #
         # @see CodeObject::NodocHelper
         class TaggedAsNodoc < Base
           def priority
             -7
+          end
+        end
+
+        # Role assigned to objects explicitly or implicitly tagged to be part
+        # of an API. If the API is 'private' TaggedAsPrivateAPI is assigned
+        # instead.
+        class TaggedAsAPI < Base
+        end
+
+        # Role assigned to objects explicitly or implicitly tagged to be part
+        # of a private API.
+        class TaggedAsPrivateAPI < Base
+          def priority
+            -5
           end
         end
 
