@@ -128,6 +128,11 @@ module Inch
         else
           add_role Role::Method::WithoutReturnType.new(object, score_for(:return_type))
         end
+        if object.return_described?
+          add_role Role::Method::WithReturnDescription.new(object, score_for(:return_description))
+        else
+          add_role Role::Method::WithoutReturnDescription.new(object, score_for(:return_description))
+        end
       end
     end
   end
