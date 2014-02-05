@@ -162,5 +162,14 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     refute m.has_parameters?
 
     assert m.score > 0
+    assert m.score >= 50 # TODO: don't use magic numbers
+  end
+
+  def test_method_with_description_and_parameters
+    m = @source_parser.find_object("InchTest#method_with_description_and_parameters?")
+    refute m.has_doc?
+    refute m.has_parameters?
+
+    assert m.score > 0
   end
 end

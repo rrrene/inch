@@ -33,13 +33,14 @@ module Inch
       return_description  0.3
 
       if object.constructor? || object.questioning_name?
-        parameters        parameters + return_type
-        return_type       0.0
+        parameters          parameters + return_type
+        return_type         0.0
       end
 
       unless object.has_parameters?
-        docstring         docstring + parameters
-        parameters        0.0
+        return_description  docstring + parameters
+        docstring           docstring + parameters
+        parameters          0.0
       end
 
       # optional:
