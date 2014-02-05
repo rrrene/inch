@@ -23,6 +23,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "yard", "~> 0.8.7"
   spec.add_dependency "term-ansicolor"
-  spec.add_dependency 'sparkr', "~> 0.2.0"
+  spec.add_dependency 'sparkr', ">= 0.2.0"
   spec.add_dependency "pry"
 end
