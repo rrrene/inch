@@ -1,12 +1,6 @@
 module Inch
   module Evaluation
     class MethodObject < Base
-      DOC_SCORE = 50
-      EXAMPLE_SCORE = 10
-      MULTIPLE_EXAMPLES_SCORE = 25
-      PARAM_SCORE = 40
-      RETURN_SCORE = 10
-
       def evaluate
         eval_doc
         eval_parameters
@@ -36,7 +30,7 @@ module Inch
         end
         if object.has_unconsidered_tags?
           count = object.unconsidered_tags.size
-          add_role Role::Object::Tagged.new(object, TAGGED_SCORE * count)
+          add_role Role::Object::Tagged.new(object, score_for(:unconsidered_tag) * count)
         end
         if object.in_root?
           add_role Role::Object::InRoot.new(object)
@@ -56,21 +50,21 @@ module Inch
 
       def eval_doc
         if object.has_doc?
-          add_role Role::Object::WithDoc.new(object, DOC_SCORE)
+          add_role Role::Object::WithDoc.new(object, score_for(:docstring))
         else
-          add_role Role::Object::WithoutDoc.new(object, DOC_SCORE)
+          add_role Role::Object::WithoutDoc.new(object, score_for(:docstring))
         end
       end
 
       def eval_code_example
         if object.has_code_example?
           if object.has_multiple_code_examples?
-            add_role Role::Object::WithMultipleCodeExamples.new(object, MULTIPLE_EXAMPLES_SCORE)
+            add_role Role::Object::WithMultipleCodeExamples.new(object, score_for(:code_example_multi))
           else
-            add_role Role::Object::WithCodeExample.new(object, EXAMPLE_SCORE)
+            add_role Role::Object::WithCodeExample.new(object, score_for(:code_example_single))
           end
         else
-          add_role Role::Object::WithoutCodeExample.new(object, EXAMPLE_SCORE)
+          add_role Role::Object::WithoutCodeExample.new(object, score_for(:code_example_single))
         end
       end
 
@@ -84,17 +78,17 @@ module Inch
 
       def eval_no_parameters
         if score > min_score
-          add_role Role::Method::WithoutParameters.new(object, PARAM_SCORE)
+          add_role Role::Method::WithoutParameters.new(object, score_for(:parameters))
         end
       end
 
       def eval_all_parameters
         params = object.parameters
-        per_param = PARAM_SCORE.to_f / params.size
+        per_param = score_for(:parameters) / params.size
         params.each do |param|
           if param.mentioned?
             if param.wrongly_mentioned?
-              add_role Role::MethodParameter::WithWrongMention.new(param, -PARAM_SCORE)
+              add_role Role::MethodParameter::WithWrongMention.new(param, -score_for(:parameters))
             else
               add_role Role::MethodParameter::WithMention.new(param, per_param * 0.5)
             end
@@ -123,17 +117,9 @@ module Inch
 
       def eval_return_type
         if object.return_mentioned?
-          if object.questioning_name? && !object.return_described?
-            # annotating a question mark method with the return type boolean
-            # does not give any points
-            # also, this could to be one of those cases where YARD
-            # automatically assigns a @return tag to methods ending in a
-            # question mark
-          else
-            add_role Role::Method::WithReturnType.new(object, RETURN_SCORE)
-          end
+          add_role Role::Method::WithReturnType.new(object, score_for(:return_type))
         else
-          add_role Role::Method::WithoutReturnType.new(object, RETURN_SCORE)
+          add_role Role::Method::WithoutReturnType.new(object, score_for(:return_type))
         end
       end
     end
