@@ -17,6 +17,7 @@ module Inch
 end
 
 require_relative 'cli/arguments'
+require_relative 'cli/weighted_list'
 require_relative 'cli/sparkline_helper'
 require_relative 'cli/trace_helper'
 require_relative 'cli/yardopts_helper'

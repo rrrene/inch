@@ -20,26 +20,40 @@ module Inch
           Output::Suggest.new(@options, objects_to_display, relevant_objects, @ranges, files)
         end
 
+        private
+
+        # @return [Fixnum] how many objects should be displayed in the output
+        def object_count
+          @options.object_count
+        end
+
+        # @return [Array<Fixnum>]
+        #   how many objects of each grade should be displayed in the output
+        def object_list_counts
+          @options.grade_weights.map { |w| w * object_count }
+        end
+
+        # @return [Array] the objects that should be displayed in the output
         def objects_to_display
           @objects_to_display ||= filter_objects_to_display
         end
 
+        # @return [Array] the objects that should be displayed in the output
         def filter_objects_to_display
-          list = []
+          grade_list = []
           @options.grades_to_display.map do |grade|
             r = range(grade)
             arr = select_by_priority(r.objects, @options.object_min_priority)
             arr = arr.select { |o| o.score <= @options.object_max_score }
-            list.concat arr
+            grade_list << arr
           end
 
-          list = sort_by_priority(list)
+          weighted_list = WeightedList.new(grade_list, object_list_counts)
 
-          if list.size > @options.object_count
-            list = list[0...@options.object_count]
-          elsif list.size < @options.object_count
-            # should we add objects with lower priority to fill out the
-            # requested count?
+          list = sort_by_priority(weighted_list.to_a.flatten)
+
+          if list.size > object_count
+            list = list[0...object_count]
           end
           list
         end

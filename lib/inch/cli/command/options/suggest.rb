@@ -8,6 +8,7 @@ module Inch
 
           attribute :proper_grades, [:A, :B]
           attribute :grades_to_display, [:B, :C, :U]
+          attribute :grade_weights, [0.2, 0.4, 0.4]
           attribute :object_min_priority, 0
           attribute :object_max_score, ::Inch::Evaluation::Base::MAX_SCORE
 
@@ -49,7 +50,8 @@ module Inch
               @object_max_score = object_max_score - 1
               # only A-listers are regarded as 'proper'
               @proper_grades = [:A]
-              @grades_to_display = [:A, :B, :C]
+              @grades_to_display = [:A, :B, :C, :U]
+              @grade_weights = [0.3, 0.3, 0.2, 0.2]
               @object_count = 30
               @pedantic = true
             end
