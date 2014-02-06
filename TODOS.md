@@ -9,7 +9,6 @@
   (realized via the @overload tag in YARD)
 
 * Think about implicit cases in terms of evaluation:
-  * constructors and ?-methods are automatically assigned a @return tag
   * attr_* methods are automatically assigned a docstring and @param tag
 
 * Think about limiting the number of `B`-objects in `inch suggest`
