@@ -9,7 +9,7 @@ module Inch
         include NodocHelper
 
         # @return [YARD::CodeObjects::Base] the actual (YARD) code object
-        attr_accessor :object
+        attr_reader :object
 
         # @return [Symbol]
         #   when objects are assigned to ScoreRanges, this grade is set to
@@ -27,7 +27,7 @@ module Inch
 
         # @param object [YARD::CodeObjects::Base] the actual (YARD) code object
         def initialize(object)
-          self.object = object
+          @object = object
         end
 
         def api_tag?
