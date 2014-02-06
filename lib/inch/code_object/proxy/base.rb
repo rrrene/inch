@@ -31,7 +31,11 @@ module Inch
         end
 
         def api_tag?
-          !object.tag(:api).nil? || (parent && parent.api_tag?)
+          !api_tag.nil?
+        end
+
+        def api_tag
+          object.tag(:api) || (parent && parent.api_tag)
         end
 
         # To be overridden
@@ -148,8 +152,7 @@ module Inch
         end
 
         def private_api_tag?
-          tag = object.tag(:api)
-          tag && tag.text == 'private'
+          api_tag && api_tag.text == 'private'
         end
 
         def protected?
