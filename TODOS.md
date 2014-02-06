@@ -10,8 +10,3 @@
 
 * Think about implicit cases in terms of evaluation:
   * attr_* methods are automatically assigned a docstring and @param tag
-
-* Think about limiting the number of `B`-objects in `inch suggest`
-  `inch suggest` shows too many `B`s even though there are still undocumented
-  objects in the codebase. this becomes a problem, when one thinks of `B` as
-  "good enough", which Inch itself suggests.
