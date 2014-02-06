@@ -1,7 +1,12 @@
+require_relative 'options/inspect'
+require_relative 'output/inspect'
+
 module Inch
   module CLI
     module Command
       class Inspect < BaseObject
+        CLI::CommandParser.commands[:inspect] = self
+
         def description
           'Inspects an object'
         end

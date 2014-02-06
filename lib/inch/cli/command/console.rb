@@ -1,9 +1,13 @@
 require 'pry'
+require_relative 'options/console'
+require_relative 'output/console'
 
 module Inch
   module CLI
     module Command
       class Console < BaseObject
+        CLI::CommandParser.commands[:console] = self
+
         def description
           'Shows a console'
         end
