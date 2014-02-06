@@ -1,6 +1,6 @@
 module Inch
   module Evaluation
-    class Criteria
+    class ObjectSchema
       attr_reader :object
 
       def initialize(&block)
@@ -12,17 +12,7 @@ module Inch
         instance_eval(&@block)
       end
 
-      NAMES = %w(
-        docstring
-        parameters
-        return_type
-        return_description
-        code_example_single
-        code_example_multi
-        unconsidered_tag
-        )
-
-      NAMES.each do |name|
+      def self.rw_method(name)
         class_eval """
           def #{name}(value = nil)
             if value.nil?
@@ -33,6 +23,20 @@ module Inch
           end
         """
       end
+
+      def self.rw_methods(*names)
+        [names].flatten.each { |name| rw_method(name) }
+      end
+
+      rw_methods %w(
+        docstring
+        parameters
+        return_type
+        return_description
+        code_example_single
+        code_example_multi
+        unconsidered_tag
+        )
     end
   end
 end

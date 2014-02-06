@@ -79,7 +79,7 @@ module Inch
         # @return [void]
         def criteria(&block)
           @criteria_map ||= {}
-          @criteria_map[to_s] ||= Criteria.new(&block)
+          @criteria_map[to_s] ||= ObjectSchema.new(&block)
         end
       end
 

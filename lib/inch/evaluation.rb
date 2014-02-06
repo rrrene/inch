@@ -13,8 +13,8 @@ module Inch
   end
 end
 
-require_relative 'evaluation/criteria'
 require_relative 'evaluation/file'
+require_relative 'evaluation/object_schema'
 require_relative 'evaluation/score_range'
 
 require_relative 'evaluation/role/base'
