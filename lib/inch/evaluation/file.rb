@@ -21,7 +21,7 @@ module Inch
       #
 
       def grade
-        median(grades.sort)
+        median(grades.sort_by(&:to_sym))
       end
 
       def priority

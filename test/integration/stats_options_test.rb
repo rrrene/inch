@@ -14,7 +14,7 @@ describe ::Inch::CLI::Command::List do
 
   def assert_parsed_output(parsed)
     assert parsed.size > 0
-    assert parsed["ranges"]
+    assert parsed["grade_lists"]
     assert parsed["scores"]
     assert parsed["priorities"]
   end

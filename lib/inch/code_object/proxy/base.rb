@@ -12,7 +12,7 @@ module Inch
         attr_reader :object
 
         # @return [Symbol]
-        #   when objects are assigned to ScoreRanges, this grade is set to
+        #   when objects are assigned to GradeLists, this grade is set to
         #   enable easier querying for objects of a certain grade
         attr_writer :grade
 
@@ -65,8 +65,8 @@ module Inch
 
         # @return [Symbol]
         def grade
-          @grade ||= Evaluation.new_score_ranges.detect { |range|
-                range.range.include?(score)
+          @grade ||= Evaluation.new_grade_lists.detect { |range|
+                range.scores.include?(score)
               }.grade
         end
 

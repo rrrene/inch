@@ -7,10 +7,10 @@ module Inch
 
           PER_RANGE = 10
 
-          def initialize(options, objects, ranges)
+          def initialize(options, objects, grade_lists)
             @options = options
             @objects = objects
-            @ranges = ranges
+            @grade_lists = grade_lists
             @omitted = 0
 
             display_list
@@ -19,13 +19,13 @@ module Inch
           private
 
           def display_list
-            @ranges.each do |range|
+            @grade_lists.each do |range|
               if range.objects.empty?
                 # pass
               else
                 trace
-                trace_header(range.description, range.color, range.bg_color)
-                display_range(range)
+                trace_header(range.label, range.color, range.bg_color)
+                display_grade_list(range)
               end
             end
 
@@ -36,7 +36,7 @@ module Inch
             end
           end
 
-          def display_range(range)
+          def display_grade_list(range)
             display_count = @options.show_all? ? range.objects.size : PER_RANGE
             list = range.objects[0...display_count]
             list.each do |o|

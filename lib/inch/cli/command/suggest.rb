@@ -17,7 +17,7 @@ module Inch
         # @return [void]
         def run(*args)
           prepare_list(*args)
-          Output::Suggest.new(@options, objects_to_display, relevant_objects, @ranges, files)
+          Output::Suggest.new(@options, objects_to_display, relevant_objects, @grade_lists, files)
         end
 
         private
@@ -42,7 +42,7 @@ module Inch
         def filter_objects_to_display
           grade_list = []
           @options.grades_to_display.map do |grade|
-            r = range(grade)
+            r = grade_list(grade)
             arr = select_by_priority(r.objects, @options.object_min_priority)
             arr = arr.select { |o| o.score <= @options.object_max_score }
             grade_list << arr
@@ -92,8 +92,8 @@ module Inch
           objects.map(&:grade).uniq
         end
 
-        def range(grade)
-          @ranges.detect { |r| r.grade == grade }
+        def grade_list(grade_symbol)
+          @grade_lists.detect { |r| r.grade.to_sym == grade_symbol }
         end
 
         def relevant_objects

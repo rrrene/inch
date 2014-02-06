@@ -12,7 +12,7 @@ module Inch
 
         def run(*args)
           prepare_list(*args)
-          Output::Stats.new(@options, objects, @ranges)
+          Output::Stats.new(@options, objects, @grade_lists)
         end
       end
     end

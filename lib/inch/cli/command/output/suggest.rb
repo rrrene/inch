@@ -20,13 +20,13 @@ module Inch
           # @param options [Command::Options::Suggest]
           # @param objects_to_display [Array<CodeObject::Proxy::Base>]
           # @param relevant_objects [Array<CodeObject::Proxy::Base>] the objects meeting the criteria defined in +options+
-          # @param ranges [Array<Evaluation::ScoreRange>]
+          # @param grade_lists [Array<Evaluation::GradeList>]
           # @param files [Array<Evaluation::File>]
-          def initialize(options, objects_to_display, relevant_objects, ranges, files)
+          def initialize(options, objects_to_display, relevant_objects, grade_lists, files)
             @options = options
             @objects = objects_to_display
             @relevant_objects = relevant_objects
-            @ranges = ranges
+            @grade_lists = grade_lists
             @files = files
 
             if objects.empty?
@@ -70,11 +70,11 @@ module Inch
 
           def display_list
             @options.grades_to_display.map do |grade|
-              r = range(grade)
+              r = grade_list(grade)
               grade_objects = objects.select { |o| o.grade == r.grade }
               unless grade_objects.empty?
                 trace
-                trace_header(RANGE_LABELS[r.grade], r.color, r.bg_color)
+                trace_header(RANGE_LABELS[r.grade.to_sym], r.color, r.bg_color)
                 grade_objects.each do |o|
                   grade = o.grade.to_s.ljust(2).color(r.color)
                   priority = o.priority
@@ -94,8 +94,8 @@ module Inch
             end.compact
           end
 
-          def range(grade)
-            @ranges.detect { |r| r.grade == grade }
+          def grade_list(grade_symbol)
+            @grade_lists.detect { |r| r.grade.to_sym == grade_symbol }
           end
         end
       end

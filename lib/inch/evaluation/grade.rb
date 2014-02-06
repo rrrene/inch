@@ -17,8 +17,17 @@ module Inch
         @symbol
       end
 
+      def to_s
+        @symbol.to_s
+      end
+
       class << self
         attr_reader :grade_map
+
+        def all
+          @grade_map ||= {}
+          @grade_map.values
+        end
 
         def grade(symbol, &block)
           @grade_map ||= {}

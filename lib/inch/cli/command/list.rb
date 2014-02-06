@@ -17,7 +17,7 @@ module Inch
         # @return [void]
         def run(*args)
           prepare_list(*args)
-          Output::List.new(@options, objects, @ranges)
+          Output::List.new(@options, objects, @grade_lists)
         end
       end
     end

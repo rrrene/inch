@@ -17,7 +17,7 @@ Inch::Config.run do
     grade(:C) do
       scores    1...50
       label     "Needs work"
-      color     :green
+      color     :red
     end
 
     grade(:U) do

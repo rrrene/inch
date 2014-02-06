@@ -14,10 +14,10 @@ module Inch
 
         def initialize
           super
-          @ranges = Evaluation.new_score_ranges
+          @grade_lists = Evaluation.new_grade_lists
         end
 
-        # Prepares the list of objects and ranges, parsing arguments and
+        # Prepares the list of objects and grade_lists, parsing arguments and
         # running the source parser.
         #
         # @param *args [Array<String>] the list of arguments.
@@ -27,17 +27,17 @@ module Inch
           @options.verify
           run_source_parser(@options.paths, @options.excluded)
           filter_objects
-          assign_objects_to_ranges
+          assign_objects_to_grade_lists
         end
 
         private
 
-        # Assigns the objects returned by {#objects} to the score ranges in
-        # +@ranges+ based on their score
+        # Assigns the objects returned by {#objects} to the grade_lists
+        # based on their score
         #
-        def assign_objects_to_ranges
-          @ranges.each do |range|
-            list = objects.select { |o| range.range.include?(o.score) }
+        def assign_objects_to_grade_lists
+          @grade_lists.each do |range|
+            list = objects.select { |o| range.scores.include?(o.score) }
             range.objects = sort_by_priority(list)
           end
         end

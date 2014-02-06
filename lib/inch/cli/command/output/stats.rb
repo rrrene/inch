@@ -16,10 +16,10 @@ module Inch
               [203, 203, 204, 204, 205, 206, 207]
             ].flatten.map { |s| :"color#{s}" }
 
-          def initialize(options, objects, ranges)
+          def initialize(options, objects, grade_lists)
             @options = options
             @objects = objects
-            @ranges = ranges
+            @grade_lists = grade_lists
 
             method("display_#{@options.format}").call
           end
@@ -34,7 +34,7 @@ module Inch
           end
 
           def display_text_grades
-            sparkline = ranges_sparkline(@ranges).to_s(' ')
+            sparkline = grade_lists_sparkline(@grade_lists).to_s(' ')
             puts
             puts 'Grade distribution: (undocumented, C, B, A)'
             puts
@@ -55,7 +55,7 @@ module Inch
             puts "Priority distribution in grades: (low to high)"
             puts
             puts "      #{PRIORITY_MAP.values.reverse.join('      ')}"
-            @ranges.reverse.each do |range|
+            @grade_lists.reverse.each do |range|
               list = range.objects.map(&:priority)
 
               priorities = {}
@@ -84,9 +84,9 @@ module Inch
           def stats_hash
             hash = {}
 
-            hash['ranges'] = {}
-            @ranges.each do |r|
-              hash['ranges'][r.grade.to_s] = r.objects.size
+            hash['grade_lists'] = {}
+            @grade_lists.each do |r|
+              hash['grade_lists'][r.grade.to_s] = r.objects.size
             end
 
             hash['scores'] = {}

@@ -15,7 +15,7 @@ module Inch
 
         def initialize
           super
-          @ranges = Evaluation.new_score_ranges
+          @grade_lists = Evaluation.new_grade_lists
         end
 
         # Prepares the given objects, parsing arguments and

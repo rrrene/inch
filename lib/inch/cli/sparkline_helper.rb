@@ -1,12 +1,12 @@
 module Inch
   module CLI
     module SparklineHelper
-      def ranges_sparkline(_ranges)
-        ranges = _ranges.reverse
-        list = ranges.map { |r| r.objects.size }
+      def grade_lists_sparkline(_grade_lists)
+        grade_lists = _grade_lists.reverse
+        list = grade_lists.map { |r| r.objects.size }
         sparkline = Sparkr::Sparkline.new(list)
         sparkline.format do |tick, count, index|
-          t = tick.color(ranges[index].color)
+          t = tick.color(grade_lists[index].color)
           index == 0 ? t + ' ' : t
         end
       end
@@ -14,15 +14,15 @@ module Inch
       def grades_sparkline(objects)
         grades = {}
         objects.each do |o|
-          grades[o.grade] ||= 0
-          grades[o.grade] += 1
+          grades[o.grade.to_sym] ||= 0
+          grades[o.grade.to_sym] += 1
         end
-        ranges = Evaluation.new_score_ranges.reverse
-        order = ranges.map(&:grade)
+        grade_lists = Evaluation.new_grade_lists.reverse
+        order = grade_lists.map(&:to_sym)
         list = order.map { |g| grades[g] }
         sparkline = Sparkr::Sparkline.new(list)
         sparkline.format do |tick, count, index|
-          t = tick.color(ranges[index].color)
+          t = tick.color(grade_lists[index].color)
           index == 0 ? t + ' ' : t
         end
       end

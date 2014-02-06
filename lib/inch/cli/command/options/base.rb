@@ -101,7 +101,7 @@ module Inch
           #
           # @return [String]
           def description_hint_grades
-            grades = Evaluation.new_score_ranges.map(&:grade)
+            grades = Evaluation::Grade.all
             "School grades (#{grades.join(', ')}) are assigned and " +
               "displayed with each object."
           end
