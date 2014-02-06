@@ -149,7 +149,7 @@ module Inch
 
         def private_api_tag?
           tag = object.tag(:api)
-          tag.text == 'private'
+          tag && tag.text == 'private'
         end
 
         def protected?
