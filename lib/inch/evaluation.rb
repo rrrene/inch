@@ -13,7 +13,10 @@ module Inch
   end
 end
 
+require_relative 'evaluation/read_write_methods'
+
 require_relative 'evaluation/file'
+require_relative 'evaluation/grade'
 require_relative 'evaluation/object_schema'
 require_relative 'evaluation/score_range'
 

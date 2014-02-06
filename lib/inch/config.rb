@@ -1,53 +1,46 @@
 module Inch
-  module Evaluation
+  class Config
+    class << self
+      attr_accessor :instance
 
-    ConstantObject.criteria do
-      docstring           1.0
-
-      # optional:
-      unconsidered_tag    0.2
+      def run(&block)
+        self.instance ||= new
+        instance.update(&block)
+        instance
+      end
     end
 
-    ClassObject.criteria do
-      docstring           1.0
-
-      # optional:
-      code_example_single 0.1
-      code_example_multi  0.2
-      unconsidered_tag    0.2
+    def update(&block)
+      instance_eval(&block)
     end
 
-    ModuleObject.criteria do
-      docstring           1.0
-
-      # optional:
-      code_example_single 0.1
-      code_example_multi  0.2
-      unconsidered_tag    0.2
+    def development?
+      @development
     end
 
-    MethodObject.criteria do
-      docstring           0.5
-      parameters          0.4
-      return_type         0.1
-      return_description  0.3
+    def development!
+      @development = true
+    end
 
-      if object.constructor? || object.questioning_name?
-        parameters          parameters + return_type
-        return_type         0.0
+    def evaluation(&block)
+      @evaluation ||= Evaluation.new
+      @evaluation.update(&block) if block
+      @evaluation
+    end
+
+    class Evaluation
+      def update(&block)
+        instance_eval(&block)
       end
 
-      unless object.has_parameters?
-        return_description  docstring + parameters
-        docstring           docstring + parameters
-        parameters          0.0
+      def grade(symbol, &block)
+        ::Inch::Evaluation::Grade.grade(symbol, &block)
       end
 
-      # optional:
-      code_example_single 0.1
-      code_example_multi  0.25
-      unconsidered_tag    0.2
+      def schema(constant_name, &block)
+        constant = eval("::Inch::Evaluation::#{constant_name}")
+        constant.criteria(&block)
+      end
     end
-
   end
 end

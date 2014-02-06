@@ -18,20 +18,14 @@ module Inch
       end
     end
 
-    SCORE_RANGE_ARGS = [
-      [80..100, :A, "Seems really good", :green],
-      [50...80, :B, "Proper documentation present", :yellow],
-      [1...50,  :C, "Needs work", :red],
-      [0..0,    :U, "Undocumented", :color141, :color105],
-    ]
-
-    # Returns newly instanciated score range objects based on 
+    # Returns newly instanciated score range objects based on
     # {SCORE_RANGE_ARGS}
     #
     # @return [Array<ScoreRange>]
     def self.new_score_ranges
-      SCORE_RANGE_ARGS.map do |args|
-        ScoreRange.new(*args)
+      grades = Evaluation::Grade.grade_map.values
+      grades.map do |g|
+        ScoreRange.new(g.scores, g.to_sym, g.label, g.color, g.bg_color)
       end
     end
   end

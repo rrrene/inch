@@ -1,32 +1,7 @@
 module Inch
   module Evaluation
     class ObjectSchema
-      attr_reader :object
-
-      def initialize(&block)
-        @block = block
-      end
-
-      def evaluate(object)
-        @object = object
-        instance_eval(&@block)
-      end
-
-      def self.rw_method(name)
-        class_eval """
-          def #{name}(value = nil)
-            if value.nil?
-              @#{name}.to_f
-            else
-              @#{name} = value
-            end
-          end
-        """
-      end
-
-      def self.rw_methods(*names)
-        [names].flatten.each { |name| rw_method(name) }
-      end
+      extend Evaluation::ReadWriteMethods
 
       rw_methods %w(
         docstring
@@ -37,6 +12,17 @@ module Inch
         code_example_multi
         unconsidered_tag
         )
+
+      attr_reader :object
+
+      def initialize(&block)
+        @block = block
+      end
+
+      def evaluate(object)
+        @object = object
+        instance_eval(&@block)
+      end
     end
   end
 end
