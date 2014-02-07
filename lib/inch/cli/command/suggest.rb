@@ -1,7 +1,12 @@
+require_relative 'options/suggest'
+require_relative 'output/suggest'
+
 module Inch
   module CLI
     module Command
       class Suggest < List
+        register_command_as :suggest, true
+
         def description
           'Suggests some objects to be doucmented (better)'
         end

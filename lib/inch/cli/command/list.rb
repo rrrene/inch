@@ -1,7 +1,12 @@
+require_relative 'options/list'
+require_relative 'output/list'
+
 module Inch
   module CLI
     module Command
       class List < BaseList
+        register_command_as :list
+
         def description
           'Lists all objects with their results'
         end

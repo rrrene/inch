@@ -5,7 +5,7 @@ module Inch
   module CLI
     module Command
       class Inspect < BaseObject
-        CLI::CommandParser.commands[:inspect] = self
+        register_command_as :console
 
         def description
           'Inspects an object'

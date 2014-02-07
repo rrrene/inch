@@ -21,8 +21,8 @@ require_relative 'cli/weighted_list'
 require_relative 'cli/sparkline_helper'
 require_relative 'cli/trace_helper'
 require_relative 'cli/yardopts_helper'
+
 require_relative 'cli/command'
-require_relative 'cli/command_parser'
 
 console_rb = File.join(File.dirname(__FILE__), 'cli', 'command', 'console.rb')
 if File.exists?(console_rb)

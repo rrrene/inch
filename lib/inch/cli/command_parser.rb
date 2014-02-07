@@ -43,15 +43,8 @@ module Inch
         attr_accessor :default_command
       end
 
-      self.commands = {
-        :list => Command::List,
-        :show => Command::Show,
-        :stats => Command::Stats,
-        :suggest => Command::Suggest,
-      }
-
-      self.default_command = :suggest
-
+      self.commands = {}
+      
       # Convenience method to create a new CommandParser and call {#run}
       # @return (see #run)
       def self.run(*args)

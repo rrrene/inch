@@ -50,6 +50,15 @@ module Inch
           command
         end
 
+        # Registers the current Command in the CommandParser
+        #
+        # @param name [Symbol] name of the Command
+        # @return [void]
+        def self.register_command_as(name, default = false)
+          CLI::CommandParser.default_command = name if default
+          CLI::CommandParser.commands[name] = self
+        end
+
         def initialize
           options_class = "Command::Options::#{self.class.to_s.split('::').last}"
           @options = eval(options_class).new

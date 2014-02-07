@@ -6,7 +6,7 @@ module Inch
   module CLI
     module Command
       class Console < BaseObject
-        CLI::CommandParser.commands[:console] = self
+        register_command_as :console
 
         def description
           'Shows a console'

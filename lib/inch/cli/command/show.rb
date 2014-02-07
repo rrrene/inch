@@ -1,7 +1,12 @@
+require_relative 'options/show'
+require_relative 'output/show'
+
 module Inch
   module CLI
     module Command
       class Show < BaseObject
+        register_command_as :show
+
         def description
           'Shows an object with its results'
         end
