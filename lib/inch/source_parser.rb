@@ -33,7 +33,6 @@ module Inch
     def find_object(path)
       all_objects.detect { |o| o.path == path }
     end
-    alias :[] :find_object
 
     # Returns all objects where the +path+ starts_with the given +path+
     #
