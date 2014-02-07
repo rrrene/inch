@@ -1,9 +1,16 @@
 # Inch [![Build Status](https://travis-ci.org/rrrene/inch.png)](https://travis-ci.org/rrrene/inch)
 
-Take a look at the project page for an [introduction with screenshots (live and in full color)](http://rrrene.github.io/inch/).
+`inch` gives you hints where to improve your docs. One Inch at a time.
 
-Inch is a documentation measurement tool for the Ruby programming language
-that gives you hints where to improve your docs. One Inch at a time.
+Take a look at the [project page with screenshots (live and in full color)](http://rrrene.github.io/inch/).
+
+## What can it do?
+
+`inch` is a little bit like Code Climate, but for your inline code documentation (and not a webservice).
+
+It is a command-line utility that suggests places in your codebase where documentation can be improved. 
+
+If there are no inline-docs yet, `inch` can tell you where to start.
 
 
 
@@ -68,43 +75,88 @@ Inch will suggest that the docs could be improved:
 
     Only considering priority objects: ↑ ↗ →  (use `--help` for options).
 
-Inch does not report coverage scores for code objects. It assigns grades and shows you the grade distribution rather then an overall grade.
-
-The grades (A, B, C) show how good the present documentation seems. The grade `U` is assigned to all undocumented objects. The arrows (↑ ↗ → ↘ ↓) hint at the importance of the object being documented.
 
 
-### Inch does not judge
+## Philosophy
 
-Inch uses grades instead of scores to take a more relaxed approach. You can
-get an `A` without employing every trick from a predetermined list of checks.
+Inch was created to help people document their code, therefore it may be more important to look at **what it does not** do than at what it does.
 
-The reason for using the grade distribution instead of an overall score is
-that the distribution says more about your codebase than a coverage percentage
-ever could:
+* It does not aim for "fully documented" or "100% documentation coverage".
+* It does not tell you to document all your code (neither does it tell you not to).
+* It does not impose rules on how your documentation should look like.
+* It does not require that, e.g."every method's documentation should be a single line under 80 characters not ending in a period" or that "every class and module should provide a code example of their usage".
+
+Inch takes a more relaxed approach towards documentation measurement and tries to show you places where your codebase *could* use more documentation.
+
+
+
+### The Grade System
+
+Inch assigns grades to each class, module, constant or method in a codebase, based on how complete the docs are.
+
+The grades are:
+
+* `A` - Seems really good
+* `B` - Properly documented, but could be improved
+* `C` - Needs work
+* `U` - Undocumented
+
+Using this system has some advantages compared to plain coverage scores:
+
+* You can get an `A` even if you "only" get 90 out of 100 possible points.
+* Getting a `B` is basically good enough.
+* Undocumented objects are assigned a special grade, instead of scoring 0%.
+
+The last point might be the most important one: If objects are undocumented, there is nothing to evaluate. Therefore you can not simply give them a bad rating, because they might be left undocumented intentionally.
+
+
+
+### Priorities ↑ ↓
+
+Every class, module, constant and method in a codebase is assigned a priority which reflects how important Inch thinks it is to be documented.
+
+This process follows some reasonable rules, like
+
+* it is more important to document public methods than private ones
+* it is more important to document methods with many parameters than methods without parameters
+* it is not important to document objects marked as `:nodoc:`
+
+Priorities are displayed as arrows. Arrows pointing north mark high priority objects, arrows pointing south mark low priority objects.
+
+
+
+### No overall scores or grades
+
+Inch does not give you a grade for your whole codebase.
+
+"Why?" you might ask. Look at the example below:
 
     Grade distribution (undocumented, C, B, A):  ▄  ▁ ▄ █
 
-In this example we have a good chunk of code that is still undocumented, but
-the vast majority of code is rated A or B. This tells you three things:
+In this example there is a part of code that is still undocumented, but
+the vast majority of code is rated A or B.
+
+This tells you three things:
 
 * There is a significant amount of documentation present.
 * The present documentation seems good.
 * There are still undocumented methods.
 
 Inch does not really tell you what to do from here. It suggests objects and
-files that could be improved to get a better rating, but that is all.
+files that could be improved to get a better rating, but that is all. This 
+way, it is perfectly reasonable to leave parts of your codebase
+undocumented. 
 
-This way, it is perfectly reasonable to leave parts of your codebase
-undocumented. Instead of reporting
+Instead of reporting
 
     coverage: 67.1%  46 ouf of 140 checks failed
 
 and leaving you with a bad feeling, Inch tells you there are still
 undocumented objects without judging.
 
-Inch does not tell you to document all your methods. Neither does it tell you
-not to. It does not tell you "a method's documentation should be a single line
-under 80 characters not ending in a period".
+This provides a lot more insight than an overall grade could, because an overall grade for the above example would either be an `A` (if the evaluation ignores undocumented objects) or a weak `C` (if the evaluation includes them).
+
+The grade distribution does a much better job of painting the bigger picture.
 
 
 
@@ -128,8 +180,67 @@ Inch is build to parse [YARD](http://yardoc.org/),
 style documentation comments, but works reasonably well with unstructured
 comments.
 
-It comes with four sub-commands: `suggest`, `stats`, `show`, and `list`
+These inline-docs below all score an `A` despite being written in different styles:
 
+```ruby
+# Detects the size of the blob.
+#
+# @example
+#   blob_size(filename, blob) # => some value
+#
+# @param filename [String] the filename
+# @param blob [String] the blob data
+# @param mode [String, nil] optional String mode
+# @return [Fixnum,nil]
+def blob_size(filename, blob, mode = nil)
+```
+
+```ruby
+# Detects the size of the blob.
+#
+#   blob_size(filename, blob) # => some value
+#
+# Params:
+# +filename+:: String filename
+# +blob+:: String blob data
+# +mode+:: Optional String mode (defaults to nil)
+def blob_size(filename, blob, mode = nil)
+```
+
+```ruby
+# Public: Detects the size of the blob.
+#
+# filename - String filename
+# blob - String blob data
+# mode - Optional String mode (defaults to nil)
+#
+# Examples
+#
+#   blob_size(filename, blob)
+#   # => some value
+#
+# Returns Fixnum or nil.
+def blob_size(filename, blob, mode = nil)
+```
+
+
+But you don't have to adhere to any specific syntax. This gets an `A` as well:
+
+```ruby
+# Returns the size of a +blob+ for a given +filename+.
+#
+#   blob_size(filename, blob)
+#   # => some value
+#
+def blob_size(filename, blob, mode = nil)
+```
+
+Inch *let's you write your documentation the way you want*.
+
+
+## Subcommands
+
+It comes with four sub-commands: `suggest`, `stats`, `show`, and `list`
 
 
 ### inch suggest
