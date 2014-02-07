@@ -27,19 +27,23 @@ module Inch
           private
 
           def display_text
-            display_text_grades
-            display_text_priorities
+            print_grades
+            print_grades_by_priority
+            print_priorities
             puts
             puts 'Try `--format json|yaml` for raw numbers.'.dark
           end
 
-          def display_text_grades
+          def print_grades
             sparkline = grade_lists_sparkline(@grade_lists).to_s(' ')
             puts
             puts 'Grade distribution: (undocumented, C, B, A)'
             puts
             puts "  Overall:  #{sparkline}  #{objects.size.to_s.rjust(5)} objects"
             puts
+          end
+
+          def print_grades_by_priority
             puts 'Grade distribution by priority:'
             puts
             PRIORITY_MAP.each do |priority_range, arrow|
@@ -51,25 +55,29 @@ module Inch
             end
           end
 
-          def display_text_priorities
+          def print_grade_list(grade_list)
+            list = grade_list.objects.map(&:priority)
+
+            priorities = {}
+            (-7..7).each do |key|
+              priorities[key.to_s] = list.select { |p| p == key }.size
+            end
+
+            sparkline = Sparkr::Sparkline.new(priorities.values)
+            sparkline.format do |tick, count, index|
+              tick.color( PRIORITY_COLORS[index] )
+            end
+            puts "  #{grade_list.grade}:  " + sparkline.to_s(' ') +
+                  " #{grade_list.objects.size.to_s.rjust(5)} objects"
+            puts
+          end
+
+          def print_priorities
             puts "Priority distribution in grades: (low to high)"
             puts
             puts "      #{PRIORITY_MAP.values.reverse.join('      ')}"
-            @grade_lists.reverse.each do |range|
-              list = range.objects.map(&:priority)
-
-              priorities = {}
-              (-7..7).each do |key|
-                priorities[key.to_s] = list.select { |p| p == key }.size
-              end
-
-              sparkline = Sparkr::Sparkline.new(priorities.values)
-              sparkline.format do |tick, count, index|
-                tick.color( PRIORITY_COLORS[index] )
-              end
-              puts "  #{range.grade}:  " + sparkline.to_s(' ') +
-                    " #{range.objects.size.to_s.rjust(5)} objects"
-              puts
+            @grade_lists.reverse.each do |grade_list|
+              print_grade_list(grade_list)
             end
           end
 
@@ -82,25 +90,36 @@ module Inch
           end
 
           def stats_hash
+            {
+              'grade_lists' => __grade_lists,
+              'scores' => __scores,
+              'priorities' => __priorities
+            }
+          end
+
+          def __grade_lists
             hash = {}
-
-            hash['grade_lists'] = {}
             @grade_lists.each do |r|
-              hash['grade_lists'][r.grade.to_s] = r.objects.size
+              hash[r.grade.to_s] = r.objects.size
             end
+            hash
+          end
 
-            hash['scores'] = {}
+          def __scores
+            hash = {}
             @objects.sort_by(&:score).each do |o|
-              hash['scores'][o.score.to_i] ||= 0
-              hash['scores'][o.score.to_i] += 1
+              hash[o.score.to_i] ||= 0
+              hash[o.score.to_i] += 1
             end
+            hash
+          end
 
-            hash['priorities'] = {}
+          def __priorities
+            hash = {}
             @objects.sort_by(&:priority).each do |o|
-              hash['priorities'][o.priority.to_i] ||= 0
-              hash['priorities'][o.priority.to_i] += 1
+              hash[o.priority.to_i] ||= 0
+              hash[o.priority.to_i] += 1
             end
-
             hash
           end
 

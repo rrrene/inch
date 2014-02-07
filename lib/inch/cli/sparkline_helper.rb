@@ -4,11 +4,7 @@ module Inch
       def grade_lists_sparkline(_grade_lists)
         grade_lists = _grade_lists.reverse
         list = grade_lists.map { |r| r.objects.size }
-        sparkline = Sparkr::Sparkline.new(list)
-        sparkline.format do |tick, count, index|
-          t = tick.color(grade_lists[index].color)
-          index == 0 ? t + ' ' : t
-        end
+        __sparkline(list, grade_lists)
       end
 
       def grades_sparkline(objects)
@@ -20,6 +16,10 @@ module Inch
         grade_lists = Evaluation.new_grade_lists.reverse
         order = grade_lists.map(&:to_sym)
         list = order.map { |g| grades[g] }
+        __sparkline(list, grade_lists)
+      end
+
+      def __sparkline(list, grade_lists)
         sparkline = Sparkr::Sparkline.new(list)
         sparkline.format do |tick, count, index|
           t = tick.color(grade_lists[index].color)

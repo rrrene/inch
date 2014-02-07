@@ -18,6 +18,9 @@ module Inch
         else
           add_role Role::Object::WithoutDoc.new(object, score_for(:docstring))
         end
+        if object.nodoc?
+          add_role Role::Object::TaggedAsNodoc.new(object)
+        end
       end
 
       def eval_code_example
@@ -57,23 +60,6 @@ module Inch
         if object.has_alias?
           add_role Role::Method::HasAlias.new(object)
         end
-      end
-
-      def eval_misc
-        if object.nodoc?
-          add_role Role::Object::TaggedAsNodoc.new(object)
-        end
-        if object.api_tag?
-          if object.private_api_tag?
-            add_role Role::Object::TaggedAsPrivateAPI.new(object)
-          else
-            add_role Role::Object::TaggedAsAPI.new(object)
-          end
-        end
-        if object.has_unconsidered_tags?
-          count = object.unconsidered_tags.size
-          add_role Role::Object::Tagged.new(object, score_for(:unconsidered_tag) * count)
-        end
         if object.in_root?
           add_role Role::Object::InRoot.new(object)
         end
@@ -85,6 +71,20 @@ module Inch
         end
         if object.private?
           add_role Role::Object::Private.new(object)
+        end
+      end
+
+      def eval_misc
+        if object.api_tag?
+          if object.private_api_tag?
+            add_role Role::Object::TaggedAsPrivateAPI.new(object)
+          else
+            add_role Role::Object::TaggedAsAPI.new(object)
+          end
+        end
+        if object.has_unconsidered_tags?
+          count = object.unconsidered_tags.size
+          add_role Role::Object::Tagged.new(object, score_for(:unconsidered_tag) * count)
         end
       end
 
