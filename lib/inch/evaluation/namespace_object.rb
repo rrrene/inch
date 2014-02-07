@@ -8,37 +8,22 @@ module Inch
 
       def evaluate
         eval_doc
-        eval_children
         eval_code_example
-        eval_misc
-        eval_core
+        eval_visibility
+        eval_tags
+        
+        eval_children
+        eval_namespace
       end
 
       private
 
-      def eval_core
+      def eval_namespace
         if RUBY_CORE.include?(object.path)
           add_role Role::Namespace::Core.new(object)
         end
-      end
-
-      def eval_code_example
-        if object.has_code_example?
-          if object.has_multiple_code_examples?
-            add_role Role::Object::WithMultipleCodeExamples.new(object, score_for(:code_example_multi))
-          else
-            add_role Role::Object::WithCodeExample.new(object, score_for(:code_example_single))
-          end
-        else
-          add_role Role::Object::WithoutCodeExample.new(object, score_for(:code_example_single))
-        end
-      end
-
-      def eval_doc
-        if object.has_doc?
-          add_role Role::Object::WithDoc.new(object, score_for(:docstring))
-        else
-          add_role Role::Object::WithoutDoc.new(object, score_for(:docstring))
+        if object.has_many_attributes?
+          add_role Role::Namespace::WithManyAttributes.new(object)
         end
       end
 
@@ -56,32 +41,6 @@ module Inch
           if object.has_many_children?
             add_role Role::Namespace::WithManyChildren.new(object)
           end
-        end
-      end
-
-      def eval_misc
-        if object.has_many_attributes?
-          add_role Role::Namespace::WithManyAttributes.new(object)
-        end
-        if object.nodoc?
-          add_role Role::Object::TaggedAsNodoc.new(object)
-        end
-        if object.api_tag?
-          if object.private_api_tag?
-            add_role Role::Object::TaggedAsPrivateAPI.new(object)
-          else
-            add_role Role::Object::TaggedAsAPI.new(object)
-          end
-        end
-        if object.has_unconsidered_tags?
-          count = object.unconsidered_tags.size
-          add_role Role::Object::Tagged.new(object, score_for(:unconsidered_tag) * count)
-        end
-        if object.in_root?
-          add_role Role::Object::InRoot.new(object)
-        end
-        if object.public? # this is always true for classes and modules
-          add_role Role::Object::Public.new(object)
         end
       end
 

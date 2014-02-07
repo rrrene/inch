@@ -97,6 +97,58 @@ module Inch
         end
       end
 
+      def eval_visibility
+        if object.in_root?
+          add_role Role::Object::InRoot.new(object)
+        end
+        if object.public?
+          add_role Role::Object::Public.new(object)
+        end
+        if object.protected?
+          add_role Role::Object::Protected.new(object)
+        end
+        if object.private?
+          add_role Role::Object::Private.new(object)
+        end
+      end
+
+      def eval_doc
+        if object.has_doc?
+          add_role Role::Object::WithDoc.new(object, score_for(:docstring))
+        else
+          add_role Role::Object::WithoutDoc.new(object, score_for(:docstring))
+        end
+        if object.nodoc?
+          add_role Role::Object::TaggedAsNodoc.new(object)
+        end
+      end
+
+      def eval_code_example
+        if object.has_code_example?
+          if object.has_multiple_code_examples?
+            add_role Role::Object::WithMultipleCodeExamples.new(object, score_for(:code_example_multi))
+          else
+            add_role Role::Object::WithCodeExample.new(object, score_for(:code_example_single))
+          end
+        else
+          add_role Role::Object::WithoutCodeExample.new(object, score_for(:code_example_single))
+        end
+      end
+
+      def eval_tags
+        if object.api_tag?
+          if object.private_api_tag?
+            add_role Role::Object::TaggedAsPrivateAPI.new(object)
+          else
+            add_role Role::Object::TaggedAsAPI.new(object)
+          end
+        end
+        if object.has_unconsidered_tags?
+          count = object.unconsidered_tags.size
+          add_role Role::Object::Tagged.new(object, score_for(:unconsidered_tag) * count)
+        end
+      end
+
       def score_for(criteria_name)
         criteria.send(criteria_name) * MAX_SCORE
       end
