@@ -160,19 +160,6 @@ The grade distribution does a much better job of painting the bigger picture.
 
 
 
-### Limitations
-
-How you document your code is up to you and Inch can't actually tell you how good your docs are.
-
-It can't tell if your code examples work or if you described parameters
-correctly or if you have just added `# TODO: write docs` to each and every
-method.
-
-It is just a tool, that you can use to find parts of a codebase lacking
-documentation.
-
-
-
 ## Features
 
 Inch is build to parse [YARD](http://yardoc.org/),
@@ -386,6 +373,21 @@ This creates a rake task named `inch`. Change the name by passing it to the cons
     Inch::Rake::Suggest.new("doc:suggest") do |suggest|
       suggest.args << "--private"
     end
+
+
+
+
+
+## Limitations
+
+How you document your code is up to you and Inch can't actually tell you how good your docs are.
+
+It can't tell if your code examples work or if you described parameters
+correctly or if you have just added `# TODO: write docs` to each and every
+method.
+
+It is just a tool, that you can use to find parts in your codebase that are
+lacking documentation.
 
 
 
