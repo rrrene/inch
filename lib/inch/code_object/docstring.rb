@@ -64,7 +64,7 @@ module Inch
           "<tt>#{name}</tt>",
           "<tt>#{name}</tt>::",
           "#{name}::",
-          /^#{name}\ \-\ /
+          /^#{Regexp.escape(name)}\ \-\ /
         ]
       end
 
