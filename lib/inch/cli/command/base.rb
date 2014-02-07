@@ -38,7 +38,7 @@ module Inch
       class Base
         include TraceHelper
 
-        attr_reader :source_parser # @return [SourceParser]
+        attr_reader :codebase # @return [Codebase::Proxy]
 
         # Helper method to run an instance with the given +args+
         #
@@ -106,12 +106,12 @@ module Inch
         # @param paths [Array<String>]
         # @param excluded [Array<String>]
         # @return [void]
-        def run_source_parser(paths, excluded)
+        def parse_codebase(paths, excluded)
           debug "Parsing:\n" \
                 "  files:    #{paths.inspect}\n" \
                 "  excluded: #{excluded.inspect}"
 
-          @source_parser = SourceParser.run(paths, excluded)
+          @codebase = Codebase.parse(Dir.pwd, paths, excluded)
         end
       end
     end

@@ -25,7 +25,7 @@ module Inch
         def prepare_list(*args)
           @options.parse(args)
           @options.verify
-          run_source_parser(@options.paths, @options.excluded)
+          parse_codebase(@options.paths, @options.excluded)
           filter_objects
           assign_objects_to_grade_lists
         end
@@ -73,7 +73,7 @@ module Inch
 
         # @return [Array<CodeObject::Proxy::Base>]
         def objects
-          @objects ||= sort_by_priority(source_parser.all_objects)
+          @objects ||= sort_by_priority(codebase.objects.all)
         end
 
         # @param objects [Array<CodeObject::Proxy::Base>]

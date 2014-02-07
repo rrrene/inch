@@ -18,7 +18,7 @@ module Inch
 
         def run(*args)
           prepare_objects(*args)
-          Output::Console.new(@options, @object, @objects, source_parser)
+          Output::Console.new(@options, @object, @objects, codebase)
         end
       end
     end

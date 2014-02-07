@@ -26,7 +26,7 @@ module Inch
         def prepare_objects(*args)
           @options.parse(args)
           @options.verify
-          run_source_parser(@options.paths, @options.excluded)
+          parse_codebase(@options.paths, @options.excluded)
 
           self.objects = find_objects_with_names(@options.object_names)
           self.object = @objects.first
@@ -40,10 +40,10 @@ module Inch
         # @return [Array<CodeObject::Proxy::Base>]
         def find_objects_with_names(object_names)
           object_names.map do |object_name|
-            if object = source_parser.find_object(object_name)
+            if object = codebase.objects.find(object_name)
               object
             else
-              source_parser.find_objects(object_name)
+              codebase.objects.starting_with(object_name)
             end
           end.flatten
         end
