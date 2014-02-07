@@ -38,43 +38,44 @@ To run Inch, simply type
 
 Given a `lib` directory with the following code inside:
 
-    class Foo
-      # A complicated method
-      def complicated(o, i, *args, &block)
-        # ... snip ...
-      end
+```ruby
+class Foo
+  # A complicated method
+  def complicated(o, i, *args, &block)
+    # ... snip ...
+  end
 
-      # An example of a method that takes a parameter (+param1+)
-      # and does nothing.
-      #
-      # Returns nil
-      def nothing(param1)
-      end
+  # An example of a method that takes a parameter (+param1+)
+  # and does nothing.
+  #
+  # Returns nil
+  def nothing(param1)
+  end
 
-      def filename
-        "#{self.class}_#{id}.foo"
-      end
-    end
+  def filename
+    "#{self.class}_#{id}.foo"
+  end
+end
+```
 
 Inch will suggest that the docs could be improved:
 
     # Properly documented, could be improved:
-
+    
     ┃  B  ↑  Foo#complicated
-
+    
     # Undocumented:
-
+    
     ┃  U  ↑  Foo
     ┃  U  ↗  Foo#filename
-
+    
     You might want to look at these files:
-
+    
     ┃ lib/foo.rb
-
+    
     Grade distribution (undocumented, C, B, A):  █  ▁ ▄ ▄
-
+    
     Only considering priority objects: ↑ ↗ →  (use `--help` for options).
-
 
 
 ## Philosophy
