@@ -64,7 +64,7 @@ module Inch
             echo separator
           end
 
-          def print_role(role)
+          def print_role_info(role)
             name = role.class.to_s.split('::Role::').last
             score = colored_role_score(role)
             
