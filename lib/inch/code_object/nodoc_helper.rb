@@ -85,6 +85,8 @@ module Inch
       def files
         object.files
       rescue YARD::CodeObjects::ProxyMethodError
+        # this error is raised by YARD
+        # see broken.rb in test fixtures
         []
       end
 

@@ -35,7 +35,7 @@ module Inch
         end
 
         def api_tag
-          object.tag(:api) || (parent && parent.api_tag)
+          tag(:api) || (parent && parent.api_tag)
         end
 
         # To be overridden
@@ -82,7 +82,7 @@ module Inch
         end
 
         def has_code_example?
-          !object.tags(:example).empty? ||
+          !tags(:example).empty? ||
             docstring.contains_code_example?
         end
 
@@ -91,10 +91,10 @@ module Inch
         end
 
         def has_multiple_code_examples?
-          if object.tags(:example).size > 1 || docstring.code_examples.size > 1
+          if tags(:example).size > 1 || docstring.code_examples.size > 1
             true
           else
-            if tag = object.tag(:example)
+            if tag = tag(:example)
               multi_code_examples?(tag.text)
             elsif text = docstring.code_examples.first
               multi_code_examples?(text)
@@ -155,7 +155,11 @@ module Inch
         # @return [Boolean]
         #   +true+ if the object or its parent is tagged as @private
         def private_tag?
-          !object.tag(:private).nil? || (parent && parent.private_tag?)
+          !private_tag.nil?
+        end
+
+        def private_tag
+          tag(:private) || (parent && parent.private_tag)
         end
 
         def private_api_tag?
@@ -172,13 +176,13 @@ module Inch
 
         # @return [Boolean] +true+ if the object has no documentation at all
         def undocumented?
-          docstring.empty? && object.tags.empty?
+          docstring.empty? && tags.empty?
         end
 
         # @return [Array]
         #   YARD tags that are not already covered by other wrapper methods
         def unconsidered_tags
-          @unconsidered_tags ||= object.tags.reject do |tag|
+          @unconsidered_tags ||= tags.reject do |tag|
               CONSIDERED_YARD_TAGS.include?(tag.tag_name)
             end
         end
@@ -187,10 +191,22 @@ module Inch
           "#<#{self.class.to_s}: #{path}>"
         end
 
-        private
+        protected
 
         def multi_code_examples?(text)
           text.scan(/\b(#{Regexp.escape(name)})[^_0-9\!\?]/m).size > 1
+        end
+
+        def tag(name)
+          tags(name).first
+        end
+
+        def tags(name = nil)
+          object.tags(name)
+        rescue YARD::CodeObjects::ProxyMethodError
+          # this error is raised by YARD
+          # see broken.rb in test fixtures
+          []
         end
       end
     end
