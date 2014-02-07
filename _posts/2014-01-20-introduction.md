@@ -42,7 +42,6 @@ The last point might be the most important one: If objects are undocumented, the
 
 
 
-## No overall scores or grades
 
 <div class="screenshot">
   <div style="height: 20px; background-image: url(public/images/introduction-grade-distribution.png);"></div>
@@ -64,7 +63,7 @@ The grade distribution ***does a much better job of painting the bigger picture*
 
 
 
-## Priorities
+## Priorities  ↑ ↓
 
 <div class="screenshot">
   <div style="height: 20px; background-image: url(public/images/quickstart-optparse.png); background-position: 0 -575px;"></div>
