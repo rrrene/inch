@@ -62,8 +62,12 @@ Inch::Config.run do
         parameters          parameters + return_type
         return_type         0.0
       end
+      
+      if object.constructor?
+        return_description  0.0
+      end
 
-      unless object.has_parameters?
+      if !object.has_parameters? || object.setter?
         return_description  docstring + parameters
         docstring           docstring + parameters
         parameters          0.0

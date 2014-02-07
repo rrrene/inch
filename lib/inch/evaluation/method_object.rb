@@ -36,6 +36,12 @@ module Inch
         if object.constructor?
           add_role Role::Method::Constructor.new(object)
         end
+        if object.getter?
+          add_role Role::Method::Getter.new(object)
+        end
+        if object.setter?
+          add_role Role::Method::Setter.new(object)
+        end
         if object.overridden?
           add_role Role::Method::Overridden.new(object, object.overridden_method.score)
         end

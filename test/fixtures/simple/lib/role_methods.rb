@@ -2,6 +2,21 @@ def root_method
 end
 
 module InchTest
+  attr_accessor :attr_getset
+
+  def manual_getset
+  end
+
+  def manual_getset=(val)
+  end
+
+  attr_reader :getter
+
+  def manual_setter=(val)
+  end
+
+  attr_writer :attr_setter
+
   def bang_method!
   end
 

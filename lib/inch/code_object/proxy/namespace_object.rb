@@ -4,6 +4,12 @@ module Inch
       # a namespace object can have methods and other namespace objects
       # inside itself (e.g. classes and modules)
       class NamespaceObject < Base
+        def child(name)
+          if children
+            children.detect { |child| child.name == name }
+          end
+        end
+
         def children
           object.children.map do |o|
             Proxy.for(o)

@@ -172,4 +172,46 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
 
     assert m.score > 0
   end
+
+  def test_getter
+    m = @source_parser.find_object("InchTest#getter")
+    assert m.getter?, "should be a getter"
+    refute m.setter?
+  end
+
+  def test_setter
+    m = @source_parser.find_object("InchTest#attr_setter=")
+    refute m.getter?
+    assert m.setter?, "should be a setter"
+  end
+
+  def test_setter2
+    m = @source_parser.find_object("InchTest#manual_setter=")
+    refute m.getter?
+    assert m.setter?, "should be a setter"
+  end
+
+  def test_manual_getset
+    m = @source_parser.find_object("InchTest#manual_getset")
+    assert m.getter?, "should be a getter"
+    refute m.setter?
+  end
+
+  def test_manual_getset2
+    m = @source_parser.find_object("InchTest#manual_getset=")
+    refute m.getter?
+    assert m.setter?, "should be a setter"
+  end
+
+  def test_attr_getset
+    m = @source_parser.find_object("InchTest#attr_getset")
+    assert m.getter?, "should be a getter"
+    refute m.setter?
+  end
+
+  def test_attr_getset2
+    m = @source_parser.find_object("InchTest#attr_getset=")
+    refute m.getter?
+    assert m.setter?, "should be a setter"
+  end
 end

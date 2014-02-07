@@ -16,6 +16,20 @@ module Inch
           name =~ /\!$/
         end
 
+        def getter?
+          attr_info = object.attr_info || {}
+          read_info = attr_info[:read]
+          if read_info
+            read_info.path == path
+          else
+            parent.child(:"#{name}=")
+          end
+        end
+
+        def has_doc?
+          super && !implicit_docstring?
+        end
+
         def has_parameters?
           !parameters.empty?
         end
@@ -68,6 +82,10 @@ module Inch
           (return_tag && !return_tag.text.empty?) || docstring.describes_return?
         end
 
+        def setter?
+          name =~ /\=$/ && parameters.size == 1
+        end
+
         def questioning_name?
           name =~ /\?$/
         end
@@ -107,6 +125,17 @@ module Inch
             lines << get_lines_up_while(filename, line_no - 1, &block)
           end
           lines.reverse
+        end
+
+        def implicit_docstring?
+          if getter?
+            docstring == "Returns the value of attribute #{name}"
+          elsif setter?
+            basename = name.to_s.gsub(/(\=)$/, '')
+            docstring == "Sets the attribute #{basename}"
+          else
+            false
+          end
         end
 
         def signature_parameter_names

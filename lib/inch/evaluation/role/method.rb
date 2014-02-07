@@ -72,6 +72,14 @@ module Inch
         class Constructor < Base
         end
 
+        # Role assigned to methods that are getters
+        class Getter < Base
+        end
+
+        # Role assigned to methods that are setters
+        class Setter < Base
+        end
+
         # Role assigned to methods that are overriding another method
         class Overridden < Base
           # It seems more important to document the overridden method,
