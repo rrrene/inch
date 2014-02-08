@@ -69,29 +69,7 @@ module Inch
       #
       # @return [void]
       def filter!(options)
-        if options.namespaces == :only
-          @list = @list.select(&:namespace?)
-        end
-        if options.namespaces == :none
-          @list = @list.reject(&:namespace?)
-        end
-        if options.undocumented == :only
-          @list = @list.select(&:undocumented?)
-        end
-        if options.undocumented == :none
-          @list = @list.reject(&:undocumented?)
-        end
-        if options.depth
-          @list = @list.select { |o| o.depth <= options.depth }
-        end
-        @list = @list.select do |o|
-          options.visibility.include?(o.visibility)
-        end
-        if !options.visibility.include?(:private)
-          @list = @list.reject do |o|
-            o.private_tag?
-          end
-        end
+        @list = ObjectsFilter.new(all, options).objects
       end
     end
   end

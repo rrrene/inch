@@ -13,7 +13,7 @@ module Inch
           # @param options [Options::Console]
           # @param object [CodeObject::Proxy::Base]
           # @param objects [Array<CodeObject::Proxy::Base>]
-          # @param source_parser [SourceParser]
+          # @param codebase [Codebase::Proxy]
           def initialize(options, object, objects, codebase)
             @options = options
             @object = object
