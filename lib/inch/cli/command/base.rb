@@ -97,22 +97,6 @@ module Inch
         def usage
           "Usage: inch #{name} [options]"
         end
-
-        private
-
-        # Returns the source parser against the given +paths+, while
-        # excluding all paths given in +excluded+
-        #
-        # @param paths [Array<String>]
-        # @param excluded [Array<String>]
-        # @return [void]
-        def parse_codebase(paths, excluded)
-          debug "Parsing:\n" \
-                "  files:    #{paths.inspect}\n" \
-                "  excluded: #{excluded.inspect}"
-
-          @codebase = Codebase.parse(Dir.pwd, paths, excluded)
-        end
       end
     end
   end

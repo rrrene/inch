@@ -1,9 +1,7 @@
 module Inch
   module Codebase
-    def self.parse(dir, paths, excluded = [])
-      instance = Proxy.new(dir)
-      instance.parse(paths, excluded)
-      instance
+    def self.parse(dir, paths = nil, excluded = nil)
+      Proxy.new(dir, paths, excluded)
     end
   end
 end

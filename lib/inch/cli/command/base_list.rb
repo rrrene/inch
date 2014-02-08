@@ -10,12 +10,7 @@ module Inch
       #
       # @abstract
       class BaseList < Base
-        attr_writer :objects
-
-        def initialize
-          super
-          @grade_lists = Evaluation.new_grade_lists
-        end
+        attr_accessor :objects
 
         # Prepares the list of objects and grade_lists, parsing arguments and
         # running the source parser.
@@ -25,63 +20,12 @@ module Inch
         def prepare_list(*args)
           @options.parse(args)
           @options.verify
-          parse_codebase(@options.paths, @options.excluded)
-          filter_objects
-          assign_objects_to_grade_lists
-        end
 
-        private
+          @codebase = ::Inch::Codebase.parse(Dir.pwd, @options.paths, @options.excluded)
+          codebase.objects.filter!(@options)
 
-        # Assigns the objects returned by {#objects} to the grade_lists
-        # based on their score
-        #
-        def assign_objects_to_grade_lists
-          @grade_lists.each do |range|
-            list = objects.select { |o| range.scores.include?(o.score) }
-            range.objects = sort_by_priority(list)
-          end
-        end
-
-        # Filters the +@objects+ based on the settings in +@options+
-        #
-        # @return [void]
-        def filter_objects
-          if @options.namespaces == :only
-            self.objects = objects.select(&:namespace?)
-          end
-          if @options.namespaces == :none
-            self.objects = objects.reject(&:namespace?)
-          end
-          if @options.undocumented == :only
-            self.objects = objects.select(&:undocumented?)
-          end
-          if @options.undocumented == :none
-            self.objects = objects.reject(&:undocumented?)
-          end
-          if @options.depth
-            self.objects = objects.select { |o| o.depth <= @options.depth }
-          end
-          self.objects = objects.select do |o|
-            @options.visibility.include?(o.visibility)
-          end
-          if !@options.visibility.include?(:private)
-            self.objects = objects.reject do |o|
-              o.private_tag?
-            end
-          end
-        end
-
-        # @return [Array<CodeObject::Proxy::Base>]
-        def objects
-          @objects ||= sort_by_priority(codebase.objects.all)
-        end
-
-        # @param objects [Array<CodeObject::Proxy::Base>]
-        # @return [Array<CodeObject::Proxy::Base>]
-        def sort_by_priority(objects)
-          objects.sort_by do |o|
-            [o.priority, o.score, o.path.size]
-          end.reverse
+          @objects = codebase.objects.to_a
+          @grade_lists = @codebase.grade_lists
         end
       end
     end

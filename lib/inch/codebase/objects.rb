@@ -6,10 +6,19 @@ module Inch
 
       def_delegators :@list, :each, :empty?, :size
 
+      # @param objects [Array<CodeObject::Proxy::Base>]
+      # @return [Array<CodeObject::Proxy::Base>]
+      def self.sort_by_priority(objects)
+        objects.sort_by do |o|
+          [o.priority, o.score, o.path.size]
+        end.reverse
+      end
+
       def initialize(objects)
-        @list = objects.map do |o|
+        list = objects.map do |o|
           CodeObject::Proxy.for(o)
-        end.sort_by(&:path)
+        end
+        @list = self.class.sort_by_priority(list)
       end
 
       # Returns all parsed objects as code object proxies
@@ -25,7 +34,7 @@ module Inch
       # @example
       #
       #   find("Foo#bar")
-      #   # => returns code object proxy for Foo#bar
+      #   # => returns the code object proxy for Foo#bar
       #
       # @param path [String] partial path/name of an object
       # @return [CodeObject::Proxy::Base]
@@ -38,12 +47,51 @@ module Inch
       # @example
       #
       #   find("Foo#")
-      #   # => returns code object proxies for all instance methods of Foo
+      #   # => returns the code object proxies for all instance methods of Foo
       #
       # @param path [String] partial path/name of an object
       # @return [Array<CodeObject::Proxy::Base>]
       def starting_with(path)
         all.select { |o| o.path.start_with?(path) }
+      end
+
+      # Filters the +@objects+ based on the settings in +options+
+      #
+      # @return [Objects] a new Objects object
+      def filter(options)
+        objects = @list.map(&:object)
+        instance = self.class.new(objects)
+        instance.filter!(options)
+        instance
+      end
+
+      # Filters the list based on the settings in +options+
+      #
+      # @return [void]
+      def filter!(options)
+        if options.namespaces == :only
+          @list = @list.select(&:namespace?)
+        end
+        if options.namespaces == :none
+          @list = @list.reject(&:namespace?)
+        end
+        if options.undocumented == :only
+          @list = @list.select(&:undocumented?)
+        end
+        if options.undocumented == :none
+          @list = @list.reject(&:undocumented?)
+        end
+        if options.depth
+          @list = @list.select { |o| o.depth <= options.depth }
+        end
+        @list = @list.select do |o|
+          options.visibility.include?(o.visibility)
+        end
+        if !options.visibility.include?(:private)
+          @list = @list.reject do |o|
+            o.private_tag?
+          end
+        end
       end
     end
   end

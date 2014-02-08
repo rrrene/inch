@@ -55,7 +55,7 @@ module Inch
 
           weighted_list = WeightedList.new(grade_list, object_list_counts)
 
-          list = sort_by_priority(weighted_list.to_a.flatten)
+          list = Codebase::Objects.sort_by_priority(weighted_list.to_a.flatten)
 
           if list.size > object_count
             list = list[0...object_count]
@@ -79,7 +79,7 @@ module Inch
               relevant_priorities.include?(f.priority)
           end
 
-          sort_by_priority(priority_list.empty? ? list : priority_list)
+          Codebase::Objects.sort_by_priority(priority_list.empty? ? list : priority_list)
         end
 
         def all_filenames(objects)

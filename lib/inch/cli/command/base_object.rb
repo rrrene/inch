@@ -13,11 +13,6 @@ module Inch
       class BaseObject < Base
         attr_accessor :object, :objects
 
-        def initialize
-          super
-          @grade_lists = Evaluation.new_grade_lists
-        end
-
         # Prepares the given objects, parsing arguments and
         # running the source parser.
         #
@@ -26,7 +21,7 @@ module Inch
         def prepare_objects(*args)
           @options.parse(args)
           @options.verify
-          parse_codebase(@options.paths, @options.excluded)
+          @codebase = ::Inch::Codebase.parse(Dir.pwd, @options.paths, @options.excluded)
 
           self.objects = find_objects_with_names(@options.object_names)
           self.object = @objects.first

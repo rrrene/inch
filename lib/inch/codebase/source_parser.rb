@@ -2,6 +2,9 @@ module Inch
   module Codebase
     # Parses the source tree (using YARD)
     class SourceParser
+      DEFAULT_PATHS     = ["app/**/*.rb", "lib/**/*.rb"]
+      DEFAULT_EXCLUDED  = []
+
       # Helper method to run an instance with the given +args+
       #
       # @see #run
@@ -12,9 +15,9 @@ module Inch
         parser
       end
 
-      def run(paths, excluded = [])
+      def run(paths, excluded)
         YARD::Registry.clear
-        YARD.parse(paths, excluded)
+        YARD.parse(paths || DEFAULT_PATHS, excluded || DEFAULT_EXCLUDED)
       end
 
       def yard_objects
