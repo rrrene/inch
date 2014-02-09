@@ -1,12 +1,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../test_helper')
 
-describe ::Inch::CLI::WeightedList do
+describe ::Inch::Utils::WeightedList do
   before do
     @counts = [4, 8, 8]
   end
 
   def assert_weighted_list(list, counts, expected)
-    weighted_list = ::Inch::CLI::WeightedList.new(list, counts)
+    weighted_list = ::Inch::Utils::WeightedList.new(list, counts)
     # assert_equal expected.map(&:size).inject(:+), weighted_list.to_a.map(&:size).inject(:+)
     assert_equal expected, weighted_list.to_a, "should be #{expected.map(&:size)}, was #{weighted_list.to_a.map(&:size)}"
   end

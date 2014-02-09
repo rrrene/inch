@@ -10,8 +10,8 @@ module Inch
       #   $ inch COMMAND [paths] OBJECT_NAME [, OBJECT_NAME2, ...] [options]
       #
       # @abstract
-      class BaseObject < Base
-        attr_accessor :object, :objects
+      class BaseObject < BaseList
+        attr_accessor :object
 
         # Prepares the given objects, parsing arguments and
         # running the source parser.
@@ -19,28 +19,11 @@ module Inch
         # @param *args [Array<String>] the list of arguments
         # @return [void]
         def prepare_objects(*args)
-          @options.parse(args)
-          @options.verify
-          @codebase = ::Inch::Codebase.parse(Dir.pwd, @options.paths, @options.excluded)
+          prepare_codebase(*args)
 
-          self.objects = find_objects_with_names(@options.object_names)
-          self.object = @objects.first
-        end
-
-        private
-
-        # Returns all objects matching the given +object_names+
-        #
-        # @param object_names [Array<String>]
-        # @return [Array<CodeObject::Proxy::Base>]
-        def find_objects_with_names(object_names)
-          object_names.map do |object_name|
-            if object = codebase.objects.find(object_name)
-              object
-            else
-              codebase.objects.starting_with(object_name)
-            end
-          end.flatten
+          context = API::Get.new(codebase, @options.object_names)
+          self.objects = context.objects
+          self.object = context.object
         end
       end
     end

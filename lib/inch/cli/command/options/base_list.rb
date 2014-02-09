@@ -6,12 +6,14 @@ module Inch
         #
         # @abstract Subclass and override #set_options
         class BaseList < Base
-          attribute :show_all, false
-          attribute :visibility, [:public, :protected]
+          include API::Options::Filter::DefaultAttributeValues
+
+          attribute :visibility, DEFAULT_VISIBILITY
           attribute :namespaces
           attribute :undocumented
           attribute :depth
 
+          attribute :show_all, false
           alias :show_all? :show_all
 
           def parse(args)

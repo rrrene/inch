@@ -3,6 +3,7 @@ require "inch/version"
 module Inch
 end
 
+require_relative 'inch/api'
 require_relative 'inch/core_ext'
 require_relative 'inch/codebase'
 require_relative 'inch/code_object'

@@ -3,14 +3,15 @@ module Inch
     module Command
       module Options
         class Suggest < BaseList
-          attribute :object_count, 20
-          attribute :file_count, 5
+          include API::Options::Suggest::DefaultAttributeValues
 
-          attribute :proper_grades, [:A, :B]
-          attribute :grades_to_display, [:B, :C, :U]
-          attribute :grade_weights, [0.2, 0.4, 0.4]
-          attribute :object_min_priority, 0
-          attribute :object_max_score, ::Inch::Evaluation::Base::MAX_SCORE
+          attribute :object_count, DEFAULT_OBJECT_COUNT
+          attribute :file_count, DEFAULT_FILE_COUNT
+          attribute :proper_grades, DEFAULT_PROPER_GRADES
+          attribute :grades_to_display, DEFAULT_GRADES_TO_DISPLAY
+          attribute :grade_weights, DEFAULT_GRADE_WEIGHTS
+          attribute :object_min_priority, DEFAULT_OBJECT_MIN_PRIORITY
+          attribute :object_max_score, DEFAULT_OBJECT_MAX_SCORE
 
           attribute :pedantic, false
 

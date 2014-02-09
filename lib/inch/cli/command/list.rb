@@ -21,8 +21,9 @@ module Inch
         # @param [Array<String>] args the list of arguments.
         # @return [void]
         def run(*args)
-          prepare_list(*args)
-          Output::List.new(@options, objects, @grade_lists)
+          prepare_codebase(*args)
+          context = API::List.new(codebase, @options)
+          Output::List.new(@options, context.objects, context.grade_lists)
         end
       end
     end

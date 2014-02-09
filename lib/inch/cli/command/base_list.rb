@@ -17,15 +17,11 @@ module Inch
         #
         # @param *args [Array<String>] the list of arguments.
         # @return [void]
-        def prepare_list(*args)
+        def prepare_codebase(*args)
           @options.parse(args)
           @options.verify
 
           @codebase = ::Inch::Codebase.parse(Dir.pwd, @options.paths, @options.excluded)
-          codebase.objects.filter!(@options)
-
-          @objects = codebase.objects.to_a
-          @grade_lists = @codebase.grade_lists
         end
       end
     end

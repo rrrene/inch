@@ -1,5 +1,5 @@
 module Inch
-  module CLI
+  module Utils
     class WeightedList
       # Trims down a list of object lists to given sizes.
       # If there are not enough objects in any particular tier,

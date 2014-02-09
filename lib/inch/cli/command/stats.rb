@@ -16,8 +16,9 @@ module Inch
         end
 
         def run(*args)
-          prepare_list(*args)
-          Output::Stats.new(@options, objects, @grade_lists)
+          prepare_codebase(*args)
+          context = API::Stats.new(codebase, @options)
+          Output::Stats.new(@options, context.objects, context.grade_lists)
         end
       end
     end
