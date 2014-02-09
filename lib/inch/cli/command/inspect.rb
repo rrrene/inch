@@ -5,7 +5,7 @@ module Inch
   module CLI
     module Command
       class Inspect < BaseObject
-        register_command_as :console
+        register_command_as :inspect
 
         def description
           'Inspects an object'
