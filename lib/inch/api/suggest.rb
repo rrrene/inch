@@ -14,12 +14,14 @@ module Inch
         list[0...how_many]
       end
 
-      # @return [Array] the objects that should be displayed in the output
-      def objects_to_display
+      # @return [Array] the +@options.object_count+ objects the API suggests
+      def objects
         filter_objects_to_display
       end
 
-      def objects
+
+      # @return [Array] all the objects that match +@options+
+      def all_objects
         relevant_objects
       end
 

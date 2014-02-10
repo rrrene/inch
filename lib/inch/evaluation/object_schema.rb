@@ -1,5 +1,7 @@
 module Inch
   module Evaluation
+    # An ObjectSchema describes how important certain parts of the docs are
+    # for the associated Object
     class ObjectSchema
       extend Utils::ReadWriteMethods
 
