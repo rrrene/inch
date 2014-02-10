@@ -13,7 +13,7 @@ module Inch
   end
 end
 
-require_relative 'evaluation/read_write_methods'
+require_relative 'utils/read_write_methods'
 
 require_relative 'evaluation/file'
 require_relative 'evaluation/grade'

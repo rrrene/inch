@@ -1,7 +1,7 @@
 module Inch
   module Evaluation
     class Grade
-      extend Evaluation::ReadWriteMethods
+      extend Utils::ReadWriteMethods
 
       rw_methods %w(scores label color bg_color)
 

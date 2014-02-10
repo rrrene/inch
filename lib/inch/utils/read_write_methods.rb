@@ -1,5 +1,5 @@
 module Inch
-  module Evaluation
+  module Utils
     module ReadWriteMethods
       def rw_method(name)
         class_eval """

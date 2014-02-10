@@ -1,7 +1,7 @@
 module Inch
   module Evaluation
     class ObjectSchema
-      extend Evaluation::ReadWriteMethods
+      extend Utils::ReadWriteMethods
 
       rw_methods %w(
         docstring

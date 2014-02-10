@@ -1,12 +1,12 @@
 module Inch
   module Evaluation
     class PriorityRange
-      extend Evaluation::ReadWriteMethods
+      extend Utils::ReadWriteMethods
       extend Forwardable
 
-      def_delegators :priorities, :include?, :min, :max
-
       rw_methods %w(priorities arrow)
+
+      def_delegators :priorities, :include?, :min, :max
 
       def initialize(symbol)
         @symbol = symbol
