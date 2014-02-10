@@ -8,7 +8,7 @@ module Inch
         register_command_as :stats
 
         def description
-          'Lists all objects with their results'
+          'Show statistics'
         end
 
         def usage
