@@ -34,6 +34,13 @@ module Inch
               end
             end
           end
+
+          def print_file_info(o, _color)
+            o.files.each do |f|
+              echo "-> #{f[0]}:#{f[1]}".color(_color)
+            end
+            echo separator
+          end
         end
       end
     end

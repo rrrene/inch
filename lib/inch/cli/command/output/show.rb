@@ -28,17 +28,9 @@ module Inch
             trace
             trace_header(o.path, COLOR, BG_COLOR)
 
-            print_file_info(o)
+            print_file_info(o, COLOR)
             print_grade_info(o)
             print_roles_info(o)
-
-          end
-
-          def print_file_info(o)
-            o.files.each do |f|
-              echo "-> #{f[0]}:#{f[1]}".color(COLOR)
-            end
-            echo separator
           end
 
           def print_grade_info(o)

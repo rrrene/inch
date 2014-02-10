@@ -28,20 +28,20 @@ module Inch
             trace
             trace_header(o.path, COLOR, BG_COLOR)
 
-            print_file_info(o)
+            print_file_info(o, COLOR)
             print_code_info(o)
             print_namespace_info(o)
             print_roles_info(o)
 
-            echo "Score (min: #{o.evaluation.min_score}, max: #{o.evaluation.max_score})".ljust(40) + "#{o.score.to_i}".rjust(5) + "#{o.priority.to_i}".rjust(4)
-            echo
+            print_score_summary(o)
           end
 
-          def print_file_info(o)
-            o.files.each do |f|
-              echo "-> #{f[0]}:#{f[1]}".color(COLOR)
-            end
-            echo separator
+          def print_score_summary(o)
+            min = o.evaluation.min_score
+            max = o.evaluation.max_score
+            echo "Score (min: #{min}, max: #{max})".ljust(40) +
+                  "#{o.score.to_i}".rjust(5) + "#{o.priority.to_i}".rjust(4)
+            echo
           end
 
           def print_code_info(o)
@@ -67,18 +67,20 @@ module Inch
           def print_role_info(role)
             name = role.class.to_s.split('::Role::').last
             score = colored_role_score(role)
-            
+
             priority = role.priority.to_s.rjust(4)
             if role.priority == 0
               priority = priority.dark
             end
-            
-            echo name.ljust(40) + score + priority
 
+            echo name.ljust(40) + score + priority
+            print_min_max_score(role)
+          end
+
+          def print_min_max_score(role)
             if role.max_score
               echo "  (set max score to #{role.max_score})"
-            end
-            if role.min_score
+            elsif role.min_score
               echo "  (set min score to #{role.min_score})"
             end
           end
@@ -98,14 +100,17 @@ module Inch
               "(#{role.potential_score.to_i})".rjust(5).yellow.dark
             else
               value = role.score.to_i
-              score = value.abs.to_s.rjust(4)
-              if value < 0
-                ("-" + score).red
-              elsif value > 0
-                ("+" + score).green
-              else
-                " " + score
-              end
+              colored_score value, value.abs.to_s.rjust(4)
+            end
+          end
+
+          def colored_score(value, score)
+            if value < 0
+              ("-" + score).red
+            elsif value > 0
+              ("+" + score).green
+            else
+              " " + score
             end
           end
 
