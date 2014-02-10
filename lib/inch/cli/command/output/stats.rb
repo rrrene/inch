@@ -46,10 +46,10 @@ module Inch
           def print_grades_by_priority
             puts 'Grade distribution by priority:'
             puts
-            PRIORITY_MAP.each do |priority_range, arrow|
+            Evaluation::PriorityRange.all.each do |priority_range|
               list = objects.select { |o| priority_range.include?(o.priority) }
               sparkline = grades_sparkline(list).to_s(' ')
-              puts "        #{arrow}   #{sparkline}  " +
+              puts "        #{priority_range.arrow}   #{sparkline}  " +
                     "#{list.size.to_s.rjust(5)} objects"
               puts
             end
@@ -73,9 +73,10 @@ module Inch
           end
 
           def print_priorities
+            arrows = Evaluation::PriorityRange.all.map(&:arrow)
             puts "Priority distribution in grades: (low to high)"
             puts
-            puts "      #{PRIORITY_MAP.values.reverse.join('      ')}"
+            puts "      #{arrows.reverse.join('      ')}"
             @grade_lists.reverse.each do |grade_list|
               print_grade_list(grade_list)
             end

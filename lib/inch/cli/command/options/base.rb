@@ -91,7 +91,7 @@ module Inch
           #
           # @return [String]
           def description_hint_arrows
-            arrows = Output::Base::PRIORITY_ARROWS.join(' ')
+            arrows = Evaluation::PriorityRange.all.map(&:arrow).join(' ')
             "Arrows (#{arrows}) hint at the importance of the object " +
               "being documented."
           end

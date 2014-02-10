@@ -89,7 +89,7 @@ module Inch
           end
 
           def priority_arrows_gte(min_priority)
-            PRIORITY_MAP.map do |range, str|
+            Evaluation::PriorityRange.all.map do |range, str|
               str if range.min >= min_priority
             end.compact
           end

@@ -37,6 +37,10 @@ module Inch
         ::Inch::Evaluation::Grade.grade(symbol, &block)
       end
 
+      def priority(symbol, &block)
+        ::Inch::Evaluation::PriorityRange.priority_range(symbol, &block)
+      end
+
       def schema(constant_name, &block)
         constant = eval("::Inch::Evaluation::#{constant_name}")
         constant.criteria(&block)

@@ -27,6 +27,31 @@ Inch::Config.run do
       bg_color  :color105
     end
 
+    priority(:N) do
+      priorities  4..99
+      arrow       "\u2191"
+    end
+
+    priority(:NE) do
+      priorities  2...4
+      arrow       "\u2197"
+    end
+
+    priority(:E) do
+      priorities  0...2
+      arrow       "\u2192"
+    end
+
+    priority(:SE) do
+      priorities  -2...0
+      arrow       "\u2198"
+    end
+
+    priority(:S) do
+      priorities  -99...-2
+      arrow       "\u2193"
+    end
+
     schema(:ConstantObject) do
       docstring           1.0
 
@@ -62,7 +87,7 @@ Inch::Config.run do
         parameters          parameters + return_type
         return_type         0.0
       end
-      
+
       if object.constructor?
         return_description  0.0
       end

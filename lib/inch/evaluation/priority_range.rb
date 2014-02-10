@@ -1,0 +1,44 @@
+module Inch
+  module Evaluation
+    class PriorityRange
+      extend Evaluation::ReadWriteMethods
+      extend Forwardable
+
+      def_delegators :priorities, :include?, :min, :max
+
+      rw_methods %w(priorities arrow)
+
+      def initialize(symbol)
+        @symbol = symbol
+      end
+
+      def update(&block)
+        instance_eval(&block)
+      end
+
+      def to_sym
+        @symbol
+      end
+
+      def to_s
+        arrow
+      end
+
+      class << self
+        attr_reader :priority_map
+
+        def all
+          @priority_map ||= {}
+          @priority_map.values
+        end
+
+        def priority_range(symbol, &block)
+          @priority_map ||= {}
+          @priority_map[symbol] ||= PriorityRange.new(symbol)
+          @priority_map[symbol].update(&block) if block
+          @priority_map[symbol]
+        end
+      end
+    end
+  end
+end

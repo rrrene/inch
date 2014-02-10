@@ -18,19 +18,10 @@ module Inch
         class Base
           include TraceHelper
 
-          PRIORITY_MAP = {
-              (4..99) => "\u2191", # north
-              (2...4) => "\u2197", # north-east
-              (0..1)  => "\u2192", # east
-              (-2..-1) => "\u2198", # south-east
-              (-99..-3) => "\u2193", # south-east
-            }
-          PRIORITY_ARROWS = PRIORITY_MAP.values
-
           def priority_arrow(priority, color = :white)
-            PRIORITY_MAP.each do |range, str|
+            Evaluation::PriorityRange.all.each do |range|
               if range.include?(priority)
-                return str.color(color).dark
+                return range.arrow.color(color).dark
               end
             end
           end

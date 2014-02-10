@@ -19,6 +19,7 @@ require_relative 'evaluation/file'
 require_relative 'evaluation/grade'
 require_relative 'evaluation/grade_list'
 require_relative 'evaluation/object_schema'
+require_relative 'evaluation/priority_range'
 
 require_relative 'evaluation/role/base'
 require_relative 'evaluation/role/missing'
