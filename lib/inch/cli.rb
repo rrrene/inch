@@ -1,4 +1,8 @@
 module Inch
+  # The CLI module is tasked with the deconstruction of CLI calls
+  # into API calls.
+  #
+  # @see Inch::API
   module CLI
     class << self
       # Returns the columns of the terminal window

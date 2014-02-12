@@ -4,6 +4,7 @@ require 'rake'
 require 'rake/tasklib'
 
 module Inch
+  # Holds all Rake tasks
   module Rake
     class Suggest < ::Rake::TaskLib
       attr_accessor :name

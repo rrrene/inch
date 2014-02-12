@@ -1,4 +1,6 @@
 module Inch
+  # The Evaluation module concerns itself with the evaluation of code objects
+  # with regard to their inline code documentation
   module Evaluation
     def self.for(code_object)
       class_for(code_object).new(code_object)

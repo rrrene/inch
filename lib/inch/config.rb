@@ -1,4 +1,7 @@
 module Inch
+  # Stores the configuration for Inch
+  #
+  # @see config/defaults.rb
   class Config
     class << self
       attr_accessor :instance
