@@ -1,4 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../../test_helper')
+require File.expand_path(File.dirname(__FILE__) + '/../../../shared/base_list')
 
 describe ::Inch::CLI::Command::List do
   before do
@@ -6,7 +7,7 @@ describe ::Inch::CLI::Command::List do
     @command = ::Inch::CLI::Command::List
   end
 
-  include BaseListTests
+  include Shared::BaseList
 
   it "should run without args" do
     out, err = capture_io do
