@@ -9,7 +9,6 @@ end
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
-require 'minitest/spec'
 require 'minitest/autorun'
 require 'bundler'
 Bundler.require
@@ -25,7 +24,6 @@ def in_fixture_path(name, &block)
   yield
   Dir.chdir old_dir
 end
-
 
 module BaseListTests
   def self.included(other)
