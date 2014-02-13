@@ -14,7 +14,7 @@ module Inch
           applicable_if :nodoc?
         end
         class InRoot < Object::InRoot
-          applicable_if :root?
+          applicable_if :in_root?
         end
 
         class Public < Object::Public

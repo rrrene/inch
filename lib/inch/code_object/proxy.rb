@@ -7,14 +7,16 @@ module Inch
       class << self
         # Returns a Proxy object for the given +code_object+
         #
-        # @param code_object [YARD::CodeObject]
+        # @param code_object [YARD::Object::Base]
         # @return [CodeObject::Proxy::Base]
         def for(code_object)
           @cache ||= {}
           if proxy_object = @cache[cache_key(code_object)]
             proxy_object
           else
-            @cache[cache_key(code_object)] = class_for(code_object).new(code_object)
+            attributes = Converter.to_hash(code_object)
+            proxy_object = class_for(code_object).new(attributes)
+            @cache[cache_key(code_object)] = proxy_object
           end
         end
 

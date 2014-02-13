@@ -59,7 +59,7 @@ module Inch
 
         # Role assigned to objects declared in the top-level namespace
         class InRoot < Base
-          applicable_if :root?
+          applicable_if :in_root?
 
           def priority
             +3

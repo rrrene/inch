@@ -6,66 +6,60 @@ module Inch
       # @abstract
       class Base
         extend Forwardable
-        include NodocHelper
-
-        # @return [YARD::CodeObjects::Base] the actual (YARD) code object
-        attr_reader :object
-
         # @return [Symbol]
         #   when objects are assigned to GradeLists, this grade is set to
         #   enable easier querying for objects of a certain grade
         attr_writer :grade
 
-        # Tags considered by wrapper methods like {#has_code_example?}
-        CONSIDERED_YARD_TAGS = %w(api example param private return)
-
-        # convenient shortcuts to (YARD) code object
-        def_delegators :object, :type, :path, :name, :namespace, :source, :source_type, :signature, :group, :dynamic, :visibility, :docstring
-
         # convenient shortcuts to evalution object
         def_delegators :evaluation, :score, :roles, :priority
 
-        # @param object [YARD::CodeObjects::Base] the actual (YARD) code object
-        def initialize(object)
-          @object = object
+        def initialize(attributes)
+          @attributes = attributes
+        end
+
+        def [](key)
+          @attributes[key]
+        end
+
+        # @return [Evaluation::Base]
+        def evaluation
+          @evaluation ||= Evaluation.for(self)
+        end
+
+        # @return [Symbol]
+        def grade
+          @grade ||= Evaluation.new_grade_lists.detect { |range|
+                range.scores.include?(score)
+              }.grade
         end
 
         def api_tag?
-          !api_tag.nil?
-        end
-
-        def api_tag
-          tag(:api) || (parent && parent.api_tag)
-        end
-
-        # To be overridden
-        # @see Proxy::NamespaceObject
-        # @return [CodeObject::Proxy::Base,nil] the child inside the current object or +nil+
-        def child(name)
-          nil
+          self[:api_tag?]
         end
 
         # To be overridden
         # @see Proxy::NamespaceObject
         # @return [Array,nil] the children of the current object or +nil+
         def children
-          nil
         end
 
-        RUBY_CORE = %w(Array Bignum BasicObject Object Module Class Complex NilClass Numeric String Float Fiber FiberError Continuation Dir File Encoding Enumerator StopIteration Enumerator::Generator Enumerator::Yielder Exception SystemExit SignalException Interrupt StandardError TypeError ArgumentError IndexError KeyError RangeError ScriptError SyntaxError LoadError NotImplementedError NameError NoMethodError RuntimeError SecurityError NoMemoryError EncodingError SystemCallError Encoding::CompatibilityError File::Stat IO Hash ENV IOError EOFError ARGF RubyVM RubyVM::InstructionSequence Math::DomainError ZeroDivisionError FloatDomainError Integer Fixnum Data TrueClass FalseClass Mutex Thread Proc LocalJumpError SystemStackError Method UnboundMethod Binding Process::Status Random Range Rational RegexpError Regexp MatchData Symbol Struct ThreadGroup ThreadError Time Encoding::UndefinedConversionError Encoding::InvalidByteSequenceError Encoding::ConverterNotFoundError Encoding::Converter RubyVM::Env) +
-                  %w(Comparable Kernel File::Constants Enumerable Errno FileTest GC ObjectSpace GC::Profiler IO::WaitReadable IO::WaitWritable Marshal Math Process Process::UID Process::GID Process::Sys Signal)
+        # @return [Boolean] +true+ if the object represents a constant
+        def constant?
+          self[:constant?]
+        end
+
         def core?
-          RUBY_CORE.include?(name.to_s)
+          self[:api_tag?]
         end
 
         # @return [Docstring]
         def docstring
-          @docstring ||= Docstring.new(object.docstring)
+          self[:docstring]
         end
 
-        # @return [Evaluation::Base]
-        def evaluation
-          @evaluation ||= Evaluation.for(self)
+        def files
+          self[:files]
         end
 
         # Returns the name of the file where the object is declared first
@@ -76,151 +70,88 @@ module Inch
           files.size > 0 ? files[0][0] : nil
         end
 
-        # @return [Symbol]
-        def grade
-          @grade ||= Evaluation.new_grade_lists.detect { |range|
-                range.scores.include?(score)
-              }.grade
-        end
-
         def has_alias?
-          !object.aliases.empty?
+          self[:has_alias?]
         end
 
         def has_children?
-          !children.empty?
+          self[:has_children?]
         end
 
         def has_code_example?
-          !tags(:example).empty? ||
-            docstring.contains_code_example?
+          self[:has_code_example?]
         end
 
         def has_doc?
-          !docstring.empty?
+          self[:has_doc?]
         end
 
         def has_multiple_code_examples?
-          if tags(:example).size > 1 || docstring.code_examples.size > 1
-            true
-          else
-            if tag = tag(:example)
-              multi_code_examples?(tag.text)
-            elsif text = docstring.code_examples.first
-              multi_code_examples?(text)
-            else
-              false
-            end
-          end
+          self[:has_multiple_code_examples?]
         end
 
         def has_unconsidered_tags?
-          !unconsidered_tags.empty?
+          self[:has_unconsidered_tags?]
         end
 
         def in_root?
-          depth == 1
-        end
-
-        # The depth of the following is 4:
-        #
-        #   Foo::Bar::Baz#initialize
-        #    ^    ^    ^      ^
-        #    1 << 2 << 3  <<  4
-        #
-        # +depth+ answers the question "how many layers of code objects are
-        # above this one?"
-        #
-        # @note top-level counts, that's why Foo has depth 1!
-        #
-        # @param i [Fixnum] a counter for recursive method calls
-        # @return [Fixnum] the depth of the object in terms of namespace
-        def depth(i = 0)
-          if parent
-            parent.depth(i+1)
-          else
-            i
-          end
+          self[:in_root?]
         end
 
         # @return [Boolean] +true+ if the object represents a method
         def method?
-          false
+          self[:method?]
         end
 
         # @return [Boolean] +true+ if the object represents a namespace
         def namespace?
-          false
+          self[:namespace?]
         end
 
         # @return [Array,nil] the parent of the current object or +nil+
         def parent
-          Proxy.for(object.parent) if object.parent
+
         end
 
         def private?
-          visibility == :private
+          self[:private?]
         end
 
         # @return [Boolean]
         #   +true+ if the object or its parent is tagged as @private
         def private_tag?
-          !private_tag.nil?
+          self[:private_tag?]
         end
 
         def private_tag
-          tag(:private) || (parent && parent.private_tag)
+          self[:private_tag?]
         end
 
         def private_api_tag?
-          api_tag && api_tag.text == 'private'
+          self[:private_api_tag?]
         end
 
         def protected?
-          visibility == :protected
+          self[:protected?]
         end
 
         def public?
-          visibility == :public
-        end
-
-        def root?
-          depth == 1
+          self[:public?]
         end
 
         # @return [Boolean] +true+ if the object has no documentation at all
         def undocumented?
-          docstring.empty? && tags.empty?
+          self[:undocumented?]
         end
 
         # @return [Array]
         #   YARD tags that are not already covered by other wrapper methods
         def unconsidered_tags
-          @unconsidered_tags ||= tags.reject do |tag|
-              CONSIDERED_YARD_TAGS.include?(tag.tag_name)
-            end
+          self[:unconsidered_tags?]
         end
 
         def inspect
           "#<#{self.class.to_s}: #{path}>"
-        end
-
-        protected
-
-        def multi_code_examples?(text)
-          text.scan(/\b(#{Regexp.escape(name)})[^_0-9\!\?]/m).size > 1
-        end
-
-        def tag(name)
-          tags(name).first
-        end
-
-        def tags(name = nil)
-          object.tags(name)
-        rescue YARD::CodeObjects::ProxyMethodError
-          # this error is raised by YARD
-          # see broken.rb in test fixtures
-          []
         end
       end
     end
