@@ -7,6 +7,25 @@ module Inch
       class Base
         attr_reader :object
 
+        class << self
+          def applicable_if(symbol = nil, &block)
+            @applicable_procs ||= {}
+            @applicable_procs[to_s] = block || symbol.to_proc
+          end
+
+          def applicable_unless(symbol = nil, &block)
+            @applicable_procs ||= {}
+            @applicable_procs[to_s] = proc do |object|
+              !(block || symbol.to_proc).call(object)
+            end
+          end
+
+          def applicable?(object)
+            @applicable_procs ||= {}
+            @applicable_procs[to_s].call(object)
+          end
+        end
+
         def initialize(object, value = nil)
           @object = object
           @value = value

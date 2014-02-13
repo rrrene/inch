@@ -2,103 +2,61 @@ module Inch
   module Evaluation
     class MethodObject < Base
       def evaluate
-        eval_doc
-        eval_code_example
-        eval_visibility
-        eval_tags
-        
-        eval_parameters
-        eval_return_type
-        eval_method
+        super
+        evaluate_parameters
+      end
+
+      protected
+
+      def relevant_roles
+        relevant_base_roles.merge(relevant_method_roles)
       end
 
       private
 
-      def eval_method
-        if object.constructor?
-          add_role Role::Method::Constructor.new(object)
-        end
-        if object.getter?
-          add_role Role::Method::Getter.new(object)
-        end
-        if object.setter?
-          add_role Role::Method::Setter.new(object)
-        end
-        if object.overridden?
-          add_role Role::Method::Overridden.new(object, object.overridden_method.score)
-        end
-        if object.has_many_lines?
-          add_role Role::Method::WithManyLines.new(object)
-        end
-        if object.bang_name?
-          add_role Role::Method::WithBangName.new(object)
-        end
-        if object.questioning_name?
-          add_role Role::Method::WithQuestioningName.new(object)
-        end
-        if object.has_alias?
-          add_role Role::Method::HasAlias.new(object)
-        end
-      end
-
-      def eval_parameters
-        if object.has_parameters?
-          eval_all_parameters
-        else
-          eval_no_parameters
-        end
-      end
-
-      def eval_no_parameters
-        if score > min_score
-          add_role Role::Method::WithoutParameters.new(object, score_for(:parameters))
-        end
-      end
-
-      def eval_all_parameters
+      def evaluate_parameters
         params = object.parameters
-        per_param = score_for(:parameters) / params.size
+        per_param = score_for_single_parameter
         params.each do |param|
-          if param.mentioned?
-            if param.wrongly_mentioned?
-              add_role Role::MethodParameter::WithWrongMention.new(param, -score_for(:parameters))
-            else
-              add_role Role::MethodParameter::WithMention.new(param, per_param * 0.5)
-            end
-          else
-            add_role Role::MethodParameter::WithoutMention.new(param, per_param * 0.5)
-          end
-          if param.typed?
-            add_role Role::MethodParameter::WithType.new(param, per_param * 0.5)
-          else
-            add_role Role::MethodParameter::WithoutType.new(param, per_param * 0.5)
-          end
-          if param.bad_name?
-            add_role Role::MethodParameter::WithBadName.new(param)
-          end
-          if param.block?
-            add_role Role::MethodParameter::Block.new(param)
-          end
-          if param.splat?
-            add_role Role::MethodParameter::Splat.new(param)
-          end
-        end
-        if object.has_many_parameters?
-          add_role Role::Method::WithManyParameters.new(object)
+          role_classes = relevant_parameter_roles(param, per_param)
+          __evaluate(param, role_classes)
         end
       end
 
-      def eval_return_type
-        if object.return_mentioned?
-          add_role Role::Method::WithReturnType.new(object, score_for(:return_type))
-        else
-          add_role Role::Method::WithoutReturnType.new(object, score_for(:return_type))
-        end
-        if object.return_described?
-          add_role Role::Method::WithReturnDescription.new(object, score_for(:return_description))
-        else
-          add_role Role::Method::WithoutReturnDescription.new(object, score_for(:return_description))
-        end
+      def relevant_method_roles
+        {
+          Role::Method::Constructor => nil,
+          Role::Method::Getter => nil,
+          Role::Method::Setter => nil,
+          Role::Method::Overridden => object.overridden? ? object.overridden_method.score : nil,
+          Role::Method::WithManyLines => nil,
+          Role::Method::WithBangName => nil,
+          Role::Method::WithQuestioningName => nil,
+          Role::Method::HasAlias => nil,
+          Role::Method::WithReturnType => score_for(:return_type),
+          Role::Method::WithoutReturnType => score_for(:return_type),
+          Role::Method::WithReturnDescription => score_for(:return_description),
+          Role::Method::WithoutReturnDescription => score_for(:return_description),
+          Role::Method::WithoutParameters => score_for(:parameters),
+          Role::Method::WithManyParameters => nil,
+        }
+      end
+
+      def relevant_parameter_roles(param, per_param)
+        {
+          Role::MethodParameter::WithWrongMention => -score_for(:parameters),
+          Role::MethodParameter::WithMention => per_param * 0.5,
+          Role::MethodParameter::WithoutMention => per_param * 0.5,
+          Role::MethodParameter::WithType => per_param * 0.5,
+          Role::MethodParameter::WithoutType => per_param * 0.5,
+          Role::MethodParameter::WithBadName => nil,
+          Role::MethodParameter::Block => nil,
+          Role::MethodParameter::Splat => nil,
+        }
+      end
+
+      def score_for_single_parameter
+        @param_score ||= score_for(:parameters) / object.parameters.size
       end
     end
   end

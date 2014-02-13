@@ -4,7 +4,11 @@ module Inch
       # Roles assigned to namespaces (classes and modules)
       module Namespace
         # Role assigned to namespaces with children
+        #
+        # @see CodeObject::Proxy::NamespaceObject#has_children?
         class WithChildren < Base
+          applicable_if :has_children?
+
           # This role doesnot assign a score.
           def score
             0
@@ -20,6 +24,8 @@ module Inch
         #
         # @see CodeObject::Proxy::NamespaceObject#has_many_children?
         class WithManyChildren < Base
+          applicable_if :has_many_children?
+
           # +priority
           def priority
             +1
@@ -30,6 +36,8 @@ module Inch
         #
         # @see CodeObject::Proxy::NamespaceObject#has_many_attributes?
         class WithManyAttributes < Base
+          applicable_if :has_many_attributes?
+
           # +priority
           def priority
             +1
@@ -38,10 +46,13 @@ module Inch
 
         # Role assigned to namespaces without any children
         class WithoutChildren < Base
+          applicable_unless :has_children?
         end
 
         # Role assigned to namespaces without any methods
         class WithoutMethods < Base
+          applicable_unless :has_methods?
+
           def priority
             -2
           end
@@ -49,6 +60,8 @@ module Inch
 
         # A 'pure' namespace has only namespaces as children
         class Pure < Base
+          applicable_if :pure_namespace?
+
           def priority
             -2
           end
@@ -60,6 +73,8 @@ module Inch
         # (the reasoning here is: just because we patch Hash does not mean
         # we need to document the Hash class itself)
         class Core < Base
+          applicable_if :core?
+
           def priority
             -7
           end

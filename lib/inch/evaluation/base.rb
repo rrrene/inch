@@ -14,6 +14,29 @@ module Inch
 
       attr_reader :min_score, :max_score
 
+      class << self
+        attr_reader :criteria_map
+
+        # Defines the weights during evaluation for different criteria
+        #
+        #   MethodObject.criteria do
+        #     docstring           0.5
+        #     parameters          0.4
+        #     return_type         0.1
+        #
+        #     if object.constructor?
+        #       parameters        0.5
+        #       return_type       0.0
+        #     end
+        #   end
+        #
+        # @return [void]
+        def criteria(&block)
+          @criteria_map ||= {}
+          @criteria_map[to_s] ||= ObjectSchema.new(&block)
+        end
+      end
+
       # @param object [CodeObject::Proxy::Base]
       def initialize(object)
         self.object = object
@@ -22,8 +45,16 @@ module Inch
       end
 
       # Evaluates the objects and assigns roles
-      # @abstract
       def evaluate
+        __evaluate(object, relevant_roles)
+      end
+
+      def __evaluate(object, role_classes)
+        role_classes.each do |role_class, score|
+          if role_class.applicable?(object)
+            add_role role_class.new(object, score)
+          end
+        end
       end
 
       # @return [Float]
@@ -60,29 +91,6 @@ module Inch
         @roles
       end
 
-      class << self
-        attr_reader :criteria_map
-
-        # Defines the weights during evaluation for different criteria
-        #
-        #   MethodObject.criteria do
-        #     docstring           0.5
-        #     parameters          0.4
-        #     return_type         0.1
-        #
-        #     if object.constructor?
-        #       parameters        0.5
-        #       return_type       0.0
-        #     end
-        #   end
-        #
-        # @return [void]
-        def criteria(&block)
-          @criteria_map ||= {}
-          @criteria_map[to_s] ||= ObjectSchema.new(&block)
-        end
-      end
-
       protected
 
       def add_role(role)
@@ -97,56 +105,35 @@ module Inch
         end
       end
 
-      def eval_visibility
-        if object.in_root?
-          add_role Role::Object::InRoot.new(object)
-        end
-        if object.public?
-          add_role Role::Object::Public.new(object)
-        end
-        if object.protected?
-          add_role Role::Object::Protected.new(object)
-        end
-        if object.private?
-          add_role Role::Object::Private.new(object)
-        end
+      def relevant_base_roles
+        {
+          Role::Object::InRoot => nil,
+          Role::Object::Public => nil,
+          Role::Object::Protected => nil,
+          Role::Object::Private => nil,
+          Role::Object::TaggedAsNodoc => nil,
+          Role::Object::WithDoc => score_for(:docstring),
+          Role::Object::WithoutDoc => score_for(:docstring),
+          Role::Object::WithCodeExample => score_for(:code_example_single),
+          Role::Object::WithMultipleCodeExamples => score_for(:code_example_multi),
+          Role::Object::WithoutCodeExample => score_for(:code_example_single),
+          Role::Object::Tagged => score_for_unconsidered_tags,
+          Role::Object::TaggedAsAPI => nil,
+          Role::Object::TaggedAsPrivateAPI => nil,
+        }
       end
 
-      def eval_doc
-        if object.has_doc?
-          add_role Role::Object::WithDoc.new(object, score_for(:docstring))
-        else
-          add_role Role::Object::WithoutDoc.new(object, score_for(:docstring))
-        end
-        if object.nodoc?
-          add_role Role::Object::TaggedAsNodoc.new(object)
-        end
+      def score_for_unconsidered_tags
+        count = object.unconsidered_tags.size
+        score_for(:unconsidered_tag) * count
       end
 
-      def eval_code_example
-        if object.has_code_example?
-          if object.has_multiple_code_examples?
-            add_role Role::Object::WithMultipleCodeExamples.new(object, score_for(:code_example_multi))
-          else
-            add_role Role::Object::WithCodeExample.new(object, score_for(:code_example_single))
-          end
-        else
-          add_role Role::Object::WithoutCodeExample.new(object, score_for(:code_example_single))
-        end
-      end
-
-      def eval_tags
-        if object.api_tag?
-          if object.private_api_tag?
-            add_role Role::Object::TaggedAsPrivateAPI.new(object)
-          else
-            add_role Role::Object::TaggedAsAPI.new(object)
-          end
-        end
-        if object.has_unconsidered_tags?
-          count = object.unconsidered_tags.size
-          add_role Role::Object::Tagged.new(object, score_for(:unconsidered_tag) * count)
-        end
+      # Returns a key-value pair of Role classes and potential scores for
+      # each role (can be nil)
+      #
+      # @return [Hash]
+      def relevant_roles
+        {}
       end
 
       def score_for(criteria_name)

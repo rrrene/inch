@@ -52,6 +52,12 @@ module Inch
           nil
         end
 
+        RUBY_CORE = %w(Array Bignum BasicObject Object Module Class Complex NilClass Numeric String Float Fiber FiberError Continuation Dir File Encoding Enumerator StopIteration Enumerator::Generator Enumerator::Yielder Exception SystemExit SignalException Interrupt StandardError TypeError ArgumentError IndexError KeyError RangeError ScriptError SyntaxError LoadError NotImplementedError NameError NoMethodError RuntimeError SecurityError NoMemoryError EncodingError SystemCallError Encoding::CompatibilityError File::Stat IO Hash ENV IOError EOFError ARGF RubyVM RubyVM::InstructionSequence Math::DomainError ZeroDivisionError FloatDomainError Integer Fixnum Data TrueClass FalseClass Mutex Thread Proc LocalJumpError SystemStackError Method UnboundMethod Binding Process::Status Random Range Rational RegexpError Regexp MatchData Symbol Struct ThreadGroup ThreadError Time Encoding::UndefinedConversionError Encoding::InvalidByteSequenceError Encoding::ConverterNotFoundError Encoding::Converter RubyVM::Env) +
+                  %w(Comparable Kernel File::Constants Enumerable Errno FileTest GC ObjectSpace GC::Profiler IO::WaitReadable IO::WaitWritable Marshal Math Process Process::UID Process::GID Process::Sys Signal)
+        def core?
+          RUBY_CORE.include?(name.to_s)
+        end
+
         # @return [Docstring]
         def docstring
           @docstring ||= Docstring.new(object.docstring)
@@ -79,6 +85,10 @@ module Inch
 
         def has_alias?
           !object.aliases.empty?
+        end
+
+        def has_children?
+          !children.empty?
         end
 
         def has_code_example?
@@ -172,6 +182,10 @@ module Inch
 
         def public?
           visibility == :public
+        end
+
+        def root?
+          depth == 1
         end
 
         # @return [Boolean] +true+ if the object has no documentation at all

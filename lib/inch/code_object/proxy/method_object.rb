@@ -7,7 +7,7 @@ module Inch
         def constructor?
           name == :initialize
         end
-        
+
         def comment_and_abbrev_source
           comments.join('') + abbrev_source
         end
@@ -71,6 +71,7 @@ module Inch
         end
 
         def overridden_method
+          return unless overridden?
           @overridden_method ||= Proxy.for(object.overridden_method)
         end
 
@@ -80,6 +81,10 @@ module Inch
 
         def return_described?
           (return_tag && !return_tag.text.empty?) || docstring.describes_return?
+        end
+
+        def return_typed?
+          return_mentioned?
         end
 
         def setter?

@@ -31,8 +31,8 @@ module Inch
           true
         end
 
-        def no_methods?
-          !children.any?(&:method?)
+        def has_methods?
+          children.any?(&:method?)
         end
 
         def pure_namespace?
