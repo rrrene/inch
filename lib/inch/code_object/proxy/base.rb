@@ -33,7 +33,7 @@ module Inch
 
         # @return [Evaluation::Base]
         def evaluation
-          @evaluation ||= Evaluation.for(self)
+          @evaluation ||= Evaluation::Proxy.for(self)
         end
 
         # @return [Symbol]
