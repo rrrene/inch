@@ -10,9 +10,6 @@ module Inch
           self[:attributes]
         end
 
-        def children
-        end
-
         MANY_ATTRIBUTES_THRESHOLD = 5
         def has_many_attributes?
           attributes.size > MANY_ATTRIBUTES_THRESHOLD

@@ -27,12 +27,12 @@ module Inch
             @codebase.objects.all
           end
 
-          def find_objects(path)
-            @codebase.objects.starting_with(path)
+          def find_objects(fullname)
+            @codebase.objects.starting_with(fullname)
           end
 
-          def find_object(path)
-            @codebase.objects.find(path)
+          def find_object(fullname)
+            @codebase.objects.find(fullname)
           end
 
           alias :all :all_objects

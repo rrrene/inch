@@ -26,7 +26,7 @@ module Inch
 
           def print_object(o)
             trace
-            trace_header(o.path, COLOR, BG_COLOR)
+            trace_header(o.fullname, COLOR, BG_COLOR)
 
             print_file_info(o, COLOR)
             print_code_info(o)
@@ -46,7 +46,7 @@ module Inch
 
           def print_code_info(o)
             if o.method?
-              o.comment_and_abbrev_source.lines.each do |line|
+              CommentAndAbbrevSource.new(o).lines.each do |line|
                 echo line.gsub(/\n$/m, '').dark
               end
               echo separator
@@ -89,7 +89,7 @@ module Inch
             if o.namespace?
               echo "Children:"
               o.children.each do |child|
-                echo "+ " + child.path.color(COLOR)
+                echo "+ " + child.fullname.color(COLOR)
               end
               echo separator
             end
@@ -120,6 +120,64 @@ module Inch
 
           def separator
             "-".color(COLOR) * (CLI::COLUMNS - 2)
+          end
+
+          class CommentAndAbbrevSource < Struct.new(:code_object)
+            extend Forwardable
+
+            def_delegators :code_object, :source, :files
+
+            def lines
+              to_s.lines
+            end
+
+            def to_s
+              comments.join('') + abbrev_source
+            end
+
+            private
+
+            def abbrev_source
+              lines = code_object.source.to_s.lines.to_a
+              if lines.size >= 5
+                indent = lines[1].scan(/^(\s+)/).flatten.join('')
+                lines = lines[0..1] +
+                        ["#{indent}# ... snip ...\n"] +
+                        lines[-2..-1]
+              end
+              lines.join('')
+            end
+
+            def comments
+              @comments ||= code_object.files.map do |declaration|
+                get_lines_up_while(declaration.filename, declaration.line_no - 1) do |line|
+                  line =~ /^\s*#/
+                end.flatten.join('')
+              end
+            end
+
+            def get_lines_up_while(filename, line_no, &block)
+              lines = []
+              line = get_line_no(filename, line_no)
+              if yield(line) && line_no > 0
+                lines << line.gsub(/^(\s+)/, '')
+                lines << get_lines_up_while(filename, line_no - 1, &block)
+              end
+              lines.reverse
+            end
+
+            # Returns a +line_number+ from a file
+            #
+            # @param filename [String]
+            # @param line_number [Fixnum]
+            # @return [String]
+            def get_line_no(filename, line_number)
+              f = File.open(filename)
+              line_number.times{f.gets}
+              result = $_
+              f.close
+              result
+            end
           end
         end
       end

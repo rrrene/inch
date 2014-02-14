@@ -13,11 +13,14 @@ module Inch
             # @return [YARD::CodeObjects::Base] the actual (YARD) code object
             attr_reader :object
 
+            # @return [String] the codebase's directory
+            attr_accessor :base_dir
+
             # Tags considered by wrapper methods like {#has_code_example?}
             CONSIDERED_YARD_TAGS = %w(api example param private return)
 
             # convenient shortcuts to (YARD) code object
-            def_delegators :object, :type, :path, :name, :namespace, :source, :source_type, :signature, :group, :dynamic, :visibility, :docstring
+            def_delegators :object, :type, :namespace, :source, :source_type, :signature, :group, :dynamic, :visibility
 
             # @param object [YARD::CodeObjects::Base] the actual (YARD) code object
             def initialize(object)
@@ -39,11 +42,15 @@ module Inch
               nil
             end
 
+            # @return [Array,nil] the full names of the children of the current object
+            def children_fullnames
+              []
+            end
+
             # To be overridden
             # @see Proxy::NamespaceObject
-            # @return [Array,nil] the children of the current object or +nil+
             def children
-              nil
+              []
             end
 
             RUBY_CORE = %w(Array Bignum BasicObject Object Module Class Complex NilClass Numeric String Float Fiber FiberError Continuation Dir File Encoding Enumerator StopIteration Enumerator::Generator Enumerator::Yielder Exception SystemExit SignalException Interrupt StandardError TypeError ArgumentError IndexError KeyError RangeError ScriptError SyntaxError LoadError NotImplementedError NameError NoMethodError RuntimeError SecurityError NoMemoryError EncodingError SystemCallError Encoding::CompatibilityError File::Stat IO Hash ENV IOError EOFError ARGF RubyVM RubyVM::InstructionSequence Math::DomainError ZeroDivisionError FloatDomainError Integer Fixnum Data TrueClass FalseClass Mutex Thread Proc LocalJumpError SystemStackError Method UnboundMethod Binding Process::Status Random Range Rational RegexpError Regexp MatchData Symbol Struct ThreadGroup ThreadError Time Encoding::UndefinedConversionError Encoding::InvalidByteSequenceError Encoding::ConverterNotFoundError Encoding::Converter RubyVM::Env) +
@@ -57,16 +64,51 @@ module Inch
               @docstring ||= Docstring.new(object.docstring)
             end
 
+            # Returns all files declaring the object in the form of an Array of
+            # Arrays containing the filename and the line number of their
+            # declaration.
+            #
+            # @example
+            #   files # => [["lib/inch.rb", 3],
+            #                ["lib/inch/cli.rb", 1],
+            #                 ["lib/inch/version.rb", 1],
+            #
+            # @return [Array<Array(String, Fixnum)>]
+            def files
+              object.files.map do |(filename, line_no)|
+                CodeLocation.new(base_dir, filename, line_no)
+              end
+            rescue ::YARD::CodeObjects::ProxyMethodError
+              # this error is raised by YARD
+              # see broken.rb in test fixtures
+              []
+            end
+
+            # CodeLocation is a utility class to find declarations of objects in files
+            class CodeLocation < Struct.new(:base_dir, :relative_path, :line_no)
+              def filename
+                File.join(base_dir, relative_path)
+              end
+            end
+
             # Returns the name of the file where the object is declared first
             # @return [String] a filename
             def filename
               # just checking the first file (which is the file where an object
               # is first declared)
-              files.size > 0 ? files[0][0] : nil
+              files.first && files.first.filename
+            end
+
+            def fullname
+              object.path
+            end
+
+            def name
+              object.name
             end
 
             def has_alias?
-              !object.aliases.empty?
+              false
             end
 
             def has_children?
@@ -135,6 +177,10 @@ module Inch
               false
             end
 
+            def parameters
+              []
+            end
+
             # @return [Array,nil] the parent of the current object or +nil+
             def parent
               YARD::Object.for(object.parent) if object.parent
@@ -175,12 +221,8 @@ module Inch
               docstring.empty? && tags.empty?
             end
 
-            # @return [Array]
-            #   YARD tags that are not already covered by other wrapper methods
-            def unconsidered_tags
-              @unconsidered_tags ||= tags.reject do |tag|
-                  CONSIDERED_YARD_TAGS.include?(tag.tag_name)
-                end
+            def unconsidered_tag_count
+              unconsidered_tags.size
             end
 
             def inspect
@@ -199,10 +241,18 @@ module Inch
 
             def tags(name = nil)
               object.tags(name)
-            rescue YARD::CodeObjects::ProxyMethodError
+            rescue ::YARD::CodeObjects::ProxyMethodError
               # this error is raised by YARD
               # see broken.rb in test fixtures
               []
+            end
+
+            # @return [Array]
+            #   YARD tags that are not already covered by other wrapper methods
+            def unconsidered_tags
+              @unconsidered_tags ||= tags.reject do |tag|
+                  CONSIDERED_YARD_TAGS.include?(tag.tag_name)
+                end
             end
           end
         end

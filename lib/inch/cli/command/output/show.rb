@@ -26,7 +26,7 @@ module Inch
 
           def print_object(o)
             trace
-            trace_header(o.path, COLOR, BG_COLOR)
+            trace_header(o.fullname, COLOR, BG_COLOR)
 
             print_file_info(o, COLOR)
             print_grade_info(o)

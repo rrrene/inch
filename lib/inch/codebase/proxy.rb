@@ -5,7 +5,8 @@ module Inch
 
       def initialize(dir = Dir.pwd, paths = nil, excluded = nil)
         @base_dir = dir
-        parse(paths, excluded)
+        provider = CodeObject::Provider.parse(dir, paths, excluded)
+        @objects = Codebase::Objects.new(provider.objects)
       end
 
       def grade_lists
@@ -16,26 +17,6 @@ module Inch
         end
         lists
       end
-
-      private
-
-      def in_path(&block)
-        old_path = Dir.pwd
-        Dir.chdir @base_dir
-        yield
-        Dir.chdir old_path
-      end
-
-      # Parses the source code of the codebase and sets +objects+
-      # @return [void]
-      def parse(paths, excluded)
-        #in_path do
-          Dir.chdir @base_dir
-          source_parser = SourceParser.run(paths, excluded)
-          @objects = Codebase::Objects.new(source_parser.yard_objects)
-        #end
-      end
-
     end
   end
 end

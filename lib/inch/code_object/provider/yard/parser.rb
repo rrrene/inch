@@ -20,18 +20,29 @@ module Inch
           def parse(dir, paths, excluded)
             old_dir = Dir.pwd
             Dir.chdir dir
-            ::YARD::Registry.clear
-            ::YARD.parse(paths || DEFAULT_PATHS, excluded || DEFAULT_EXCLUDED)
+            parse_yard_objects(paths, excluded)
+            inject_base_dir(dir)
             Dir.chdir old_dir
           end
 
           def objects
-            parsed_objects.map do |o|
+            @objects ||= parsed_objects.map do |o|
               YARD::Object.for(o)
             end
           end
 
           private
+
+          def parse_yard_objects(paths, excluded)
+            ::YARD::Registry.clear
+            ::YARD.parse(paths || DEFAULT_PATHS, excluded || DEFAULT_EXCLUDED)
+          end
+
+          def inject_base_dir(dir)
+            objects.each do |object|
+              object.base_dir = dir
+            end
+          end
 
           def parsed_objects
             ::YARD::Registry.all

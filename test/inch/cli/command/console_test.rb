@@ -37,10 +37,10 @@ describe ::Inch::CLI::Command::Console do
     out, err = capture_io do
       @prompt = @command.new.run("Foo::Bar#method_with_full_doc")
     end
-    assert @prompt.respond_to?(:all)
-    assert @prompt.respond_to?(:ff)
-    assert @prompt.respond_to?(:f)
-    assert @prompt.respond_to?(:o)
+    assert !@prompt.all.empty?
+    assert !@prompt.ff("Foo::Bar#").empty?
+    assert !@prompt.f("Foo::Bar").nil?
+    assert !@prompt.o.nil?
     refute @prompt.o.nil?
     assert_equal 1, @prompt.objects.size
   end

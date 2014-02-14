@@ -11,7 +11,7 @@ module Inch
       end
 
       # @note added to be compatible with code objects
-      def path
+      def fullname
         filename
       end
 

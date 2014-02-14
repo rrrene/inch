@@ -1,8 +1,9 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../test_helper')
+require File.expand_path(File.dirname(__FILE__) + '/../../../../test_helper')
 
-describe ::Inch::CodeObject::NodocHelper do
+describe ::Inch::CodeObject::Provider::YARD::NodocHelper do
   before do
-    @codebase = Inch::Codebase.parse(fixture_path(:simple), ["lib/**/*.rb"])
+    @provider = ::Inch::CodeObject::Provider::YARD.parse(fixture_path(:simple), ["lib/**/*.rb"], [])
+    @objects = @provider.objects
   end
 
   it "should return true for explicitly or implicitly tagged objects" do
@@ -18,7 +19,7 @@ describe ::Inch::CodeObject::NodocHelper do
       "Foo::HiddenClassViaTag",
       "Foo::HiddenClassViaTag#some_value",
     ].each do |query|
-      m = @codebase.objects.find(query)
+      m = @objects.detect { |o| o.fullname == query }
       assert m.nodoc?, "nodoc? should return true for #{query}"
     end
   end
@@ -31,7 +32,7 @@ describe ::Inch::CodeObject::NodocHelper do
       "Foo::HiddenClass::EvenMoreHiddenClass::SuddenlyVisibleClass",
       "Foo::HiddenClass::EvenMoreHiddenClass::SuddenlyVisibleClass#method_with_implicit_doc",
     ].each do |query|
-      m = @codebase.objects.find(query)
+      m = @objects.detect { |o| o.fullname == query }
       refute m.nodoc?, "nodoc? should return false for #{query}"
     end
   end

@@ -3,7 +3,13 @@ module Inch
     module Proxy
       # Proxy class for method parameters
       class MethodParameterObject
-        attr_reader :name # @return [String]
+        def initialize(attributes)
+          @attributes = attributes
+        end
+
+        def [](key)
+          @attributes[key]
+        end
 
         BAD_NAME_EXCEPTIONS = %w(id)
         BAD_NAME_THRESHOLD = 3
@@ -16,26 +22,36 @@ module Inch
 
         # @return [Boolean] +true+ if the parameter is a block
         def block?
+          self[:block?]
         end
 
         # @return [Boolean] +true+ if an additional description given?
         def described?
+          self[:described?]
         end
 
         # @return [Boolean] +true+ if the parameter is mentioned in the docs
         def mentioned?
+          self[:mentioned?]
+        end
+
+        def name
+          self[:name]
         end
 
         # @return [Boolean] +true+ if the parameter is a splat argument
         def splat?
+          self[:splat?]
         end
 
         # @return [Boolean] +true+ if the type of the parameter is defined
         def typed?
+          self[:typed?]
         end
 
         # @return [Boolean] +true+ if the parameter is mentioned in the docs, but not present in the method's signature
         def wrongly_mentioned?
+          self[:wrongly_mentioned?]
         end
 
       end

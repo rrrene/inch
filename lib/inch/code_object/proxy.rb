@@ -37,7 +37,7 @@ module Inch
         #
         # @return [String]
         def cache_key(code_object)
-          code_object.path
+          code_object.fullname
         end
       end
     end

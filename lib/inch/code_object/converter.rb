@@ -1,14 +1,27 @@
 module Inch
   module CodeObject
+    # The Converter takes code object representations from a provider and
+    # converts them into attributes hashes.
+    # These attributes can then be used to initialize a CodeObject::Proxy.
+    #
+    # @see CodeObject::Proxy.for
     module Converter
-      ATTRIBUTES = %w(
+      OBJECT_ATTRIBUTES = %w(
+        name
+        fullname
+        files
+        filename
+
+        children_fullnames
+        parent_fullname
+
         api_tag?
         attributes
         bang_name?
         constant?
         constructor?
+        depth
         docstring
-        files
         getter?
         has_alias?
         has_children?
@@ -17,8 +30,10 @@ module Inch
         has_multiple_code_examples?
         has_unconsidered_tags?
         method?
+        nodoc?
         namespace?
         overridden?
+        overridden_method_fullname
         parameters
         private?
         private_api_tag?
@@ -32,16 +47,40 @@ module Inch
         in_root?
         setter?
         source
-        unconsidered_tags?
+        unconsidered_tag_count
         undocumented?
+        visibility
         ).map(&:to_sym)
 
+      PARAMETER_ATTRIBUTES = %w(
+        name
+        block?
+        described?
+        mentioned?
+        splat?
+        typed?
+        wrongly_mentioned?
+        ).map(&:to_sym)
+
+      # Returns an attributes Hash for a given code object
+      #
+      # @param o [Provider::YARD::Object::Base]
+      # @return [Hash]
       def self.to_hash(o)
         attributes = {}
-        ATTRIBUTES.each do |name|
+        OBJECT_ATTRIBUTES.each do |name|
           if o.respond_to?(name)
             attributes[name] = o.method(name).call
           end
+        end
+        attributes[:parameters] = o.parameters.map do |parameter|
+          hash = {}
+          PARAMETER_ATTRIBUTES.each do |pname|
+            if parameter.respond_to?(pname)
+              hash[pname] = parameter.method(pname).call
+            end
+          end
+          hash
         end
         attributes
       end

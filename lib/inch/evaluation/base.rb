@@ -124,7 +124,7 @@ module Inch
       end
 
       def score_for_unconsidered_tags
-        count = object.unconsidered_tags.size
+        count = object.unconsidered_tag_count
         score_for(:unconsidered_tag) * count
       end
 

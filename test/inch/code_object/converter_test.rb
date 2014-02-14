@@ -6,6 +6,10 @@ describe ::Inch::CodeObject::Converter do
       "Foo::Bar"
     end
 
+    def parameters
+      []
+    end
+
     def public?
       false
     end

@@ -6,27 +6,12 @@ module Inch
           # a namespace object can have methods and other namespace objects
           # inside itself (e.g. classes and modules)
           class NamespaceObject < Base
-            def child(name)
-              if children
-                children.detect { |child| child.name == name }
-              end
+            def attributes
+              object.class_attributes.values + object.instance_attributes.values
             end
 
-            def children
-              object.children.map do |o|
-                YARD::Object.for(o)
-              end
-            end
-
-            MANY_ATTRIBUTES_THRESHOLD = 5
-            def has_many_attributes?
-              n = object.class_attributes.size + object.instance_attributes.size
-              n > MANY_ATTRIBUTES_THRESHOLD
-            end
-
-            MANY_CHILDREN_THRESHOLD = 20
-            def has_many_children?
-              children.size > MANY_CHILDREN_THRESHOLD
+            def children_fullnames
+              children.map(&:fullname)
             end
 
             def namespace?
@@ -40,6 +25,20 @@ module Inch
             def pure_namespace?
               children.all?(&:namespace?)
             end
+
+            # called by MethodObject#getter?
+            def child(name)
+              if children
+                children.detect { |child| child.name == name }
+              end
+            end
+
+            def children
+              object.children.map do |o|
+                YARD::Object.for(o)
+              end
+            end
+
           end
         end
       end

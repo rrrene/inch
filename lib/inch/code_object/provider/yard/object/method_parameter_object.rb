@@ -7,7 +7,7 @@ module Inch
           class MethodParameterObject
             attr_reader :name # @return [String]
 
-            # @param method [Inch::CodeObject::Proxy::MethodObject] the method the parameter belongs_to
+            # @param method [YARD::Object::MethodObject] the method the parameter belongs to
             # @param name [String] the name of the parameter
             # @param tag [YARD::Tags::Tag] the Tag object for the parameter
             # @param in_signature [Boolean] +true+ if the method's signature contains the parameter

@@ -63,7 +63,7 @@ module Inch
             trace
 
             files.each do |f|
-              trace edged(FILE_COLOR, f.path.color(FILE_COLOR))
+              trace edged(FILE_COLOR, f.fullname.color(FILE_COLOR))
             end
             trace
           end
@@ -78,7 +78,7 @@ module Inch
                 grade_objects.each do |o|
                   grade = o.grade.to_s.ljust(2).color(r.color)
                   priority = o.priority
-                  trace edged(r.color, " #{grade} #{priority_arrow(priority, r.color)}  #{o.path}")
+                  trace edged(r.color, " #{grade} #{priority_arrow(priority, r.color)}  #{o.fullname}")
                 end
               end
             end

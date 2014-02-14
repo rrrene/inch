@@ -35,8 +35,14 @@ module Inch
           end
         end
 
+        def parameter(name)
+          parameters.detect { |p| p.name == name.to_s }
+        end
+
         def parameters
-          self[:parameters]
+          @parameters ||= self[:parameters].map do |param_attr|
+            MethodParameterObject.new(param_attr)
+          end
         end
 
         def overridden?
@@ -44,7 +50,7 @@ module Inch
         end
 
         def overridden_method
-
+          @overridden_method ||= object_lookup.find(self[:overridden_method_fullname])
         end
 
         def return_mentioned?

@@ -69,27 +69,9 @@ module Inch
           #
           # @return [Array<String>]
           def declarations
-            @declarations ||= files.map do |(filename, line_no)|
-              get_line_no(filename, line_no)
+            @declarations ||= files.map do |f|
+              get_line_no(f.filename, f.line_no)
             end
-          end
-
-          # Returns all files declaring the object in the form of an Array of
-          # Arrays containing the filename and the line number of their
-          # declaration.
-          #
-          # @example
-          #   files # => [["lib/inch.rb", 3],
-          #                ["lib/inch/cli.rb", 1],
-          #                 ["lib/inch/version.rb", 1],
-          #
-          # @return [Array<Array(String, Fixnum)>]
-          def files
-            object.files
-          rescue YARD::CodeObjects::ProxyMethodError
-            # this error is raised by YARD
-            # see broken.rb in test fixtures
-            []
           end
 
           # Returns a +line_number+ from a file

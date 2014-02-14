@@ -1,7 +1,7 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../test_helper')
+require File.expand_path(File.dirname(__FILE__) + '/../../../../test_helper')
 
-describe ::Inch::CodeObject::Docstring do
-
+describe ::Inch::CodeObject::Provider::YARD::Docstring do
+  let(:described_class) { ::Inch::CodeObject::Provider::YARD::Docstring }
 
   #
   # loose TomDoc compatibility
@@ -20,7 +20,7 @@ param3 - Optional String mode (defaults to nil)
 
 Returns Language or nil.
 DOC
-    docstring = ::Inch::CodeObject::Docstring.new(text)
+    docstring = described_class.new(text)
     assert docstring.mentions_parameter?(:param1)
     assert docstring.mentions_parameter?(:param2)
     assert docstring.mentions_parameter?(:param3)
@@ -45,7 +45,7 @@ Examples
 
 Returns the Lexer or nil if none was found.
 DOC
-    docstring = ::Inch::CodeObject::Docstring.new(text)
+    docstring = described_class.new(text)
     assert docstring.mentions_parameter?(:param1)
     assert docstring.describes_parameter?(:param1)
     refute docstring.mentions_parameter?(:alias)
@@ -68,7 +68,7 @@ Examples
 
 Returns the Lexer or nil if none was found.
 DOC
-    docstring = ::Inch::CodeObject::Docstring.new(text)
+    docstring = described_class.new(text)
     assert docstring.mentions_parameter?(:param1)
     assert docstring.describes_parameter?(:param1)
     refute docstring.mentions_parameter?(:alias)
@@ -89,7 +89,7 @@ text = <<-DOC
 Just because format_html is mentioned here, does not mean
 the first parameter is mentioned.
 DOC
-    docstring = ::Inch::CodeObject::Docstring.new(text)
+    docstring = described_class.new(text)
     refute docstring.mentions_parameter?(:format)
     refute docstring.contains_code_example?
   end
@@ -100,7 +100,7 @@ text = <<-DOC
 Just because format is mentioned here, does not mean
 the first parameter is meant.
 DOC
-    docstring = ::Inch::CodeObject::Docstring.new(text)
+    docstring = described_class.new(text)
     refute docstring.mentions_parameter?(:format)
     refute docstring.contains_code_example?
   end
@@ -123,7 +123,7 @@ param1::
 == Returns:
 A string in the specified format.
 DOC
-    docstring = ::Inch::CodeObject::Docstring.new(text)
+    docstring = described_class.new(text)
     refute docstring.contains_code_example?
   end
 
@@ -138,7 +138,7 @@ Params:
 +param2+:: +Proc+ object that takes a pipe object as first and only param (may be nil)
 +param3+:: +Proc+ object that takes a pipe object as first and only param (may be nil)
 DOC
-    docstring = ::Inch::CodeObject::Docstring.new(text)
+    docstring = described_class.new(text)
     assert docstring.contains_code_example?
     assert docstring.mentions_parameter?(:param1)
     assert docstring.mentions_parameter?(:param2)
@@ -156,7 +156,7 @@ the first parameter is mentioned.
   method_with_code_example() # => some value
   method_with_missing_param_doc(param1, param2, param3)
 DOC
-    docstring = ::Inch::CodeObject::Docstring.new(text)
+    docstring = described_class.new(text)
     assert docstring.contains_code_example?
     assert_equal 1, docstring.code_examples.size
   end
@@ -174,7 +174,7 @@ param1::
 == Returns:
 A string in the specified format.
 DOC
-    docstring = ::Inch::CodeObject::Docstring.new(text)
+    docstring = described_class.new(text)
     assert docstring.contains_code_example?
     assert_equal 1, docstring.code_examples.size
     assert docstring.mentions_parameter?(:param1)
@@ -199,7 +199,7 @@ param1::
 == Returns:
 A string in the specified format.
 DOC
-    docstring = ::Inch::CodeObject::Docstring.new(text)
+    docstring = described_class.new(text)
     assert docstring.contains_code_example?
     assert_equal 2, docstring.code_examples.size
     assert docstring.code_examples.last.index("create_index! 2")
