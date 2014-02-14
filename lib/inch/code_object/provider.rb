@@ -11,13 +11,13 @@ module Inch
     # conventions et al. follow certain rules. These objects are then again
     # converted into CodeObject::Proxy::Base objects that form the codebase:
     #
-    #                ::YARD::CodeObject
-    #                       ↓
-    #   ::Inch::CodeObject::Provider::YARD::Object::Base
-    #                       ↓
-    #                     (Hash)
-    #                       ↓
-    #           ::Inch::CodeObject::Proxy::Base
+    #                        ::YARD::CodeObject
+    #                               ↓
+    #           ::Inch::CodeObject::Provider::YARD::Object::Base
+    #                               ↓
+    #                             (Hash)
+    #                               ↓
+    #                   ::Inch::CodeObject::Proxy::Base
     #
     #
     module Provider
