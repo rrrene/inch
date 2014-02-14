@@ -7,6 +7,14 @@ module Foo
   def method_with_wrong_param_tag(e)
 
   end
+
+  # The problem here is that the @param tag does not describe the parameter
+  #
+  # @param [Encoding] e
+  # @return [String]
+  def method_with_empty_param_tag_text(e)
+
+  end
 end
 
 module YardError
