@@ -1,7 +1,10 @@
 module Inch
   module Codebase
+    # ObjectsFilter can be used to filter a list of objects by given a set of
+    # given +options+
     class ObjectsFilter
       attr_reader :options
+
       def initialize(list, options)
         @list = list
         @options = options
@@ -24,8 +27,7 @@ module Inch
       def filter_namespaces
         if options.namespaces == :only
           @list = @list.select(&:namespace?)
-        end
-        if options.namespaces == :none
+        elsif options.namespaces == :none
           @list = @list.reject(&:namespace?)
         end
       end
@@ -33,8 +35,7 @@ module Inch
       def filter_undocumented
         if options.undocumented == :only
           @list = @list.select(&:undocumented?)
-        end
-        if options.undocumented == :none
+        elsif options.undocumented == :none
           @list = @list.reject(&:undocumented?)
         end
       end
