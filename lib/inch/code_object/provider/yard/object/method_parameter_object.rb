@@ -60,7 +60,7 @@ module Inch
             private
 
             def described_by_tag?
-              @tag && !@tag.text.empty?
+              @tag && @tag.text && !@tag.text.empty?
             end
 
             def described_by_docstring?
