@@ -1,7 +1,9 @@
-require "inch/version"
+require 'inch/version'
 
 module Inch
 end
+
+require 'forwardable'
 
 require_relative 'inch/api'
 require_relative 'inch/core_ext'
