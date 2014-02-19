@@ -27,8 +27,8 @@ module Inch
             # @return [Class]
             def class_for(yard_object)
               class_name = yard_object.class.to_s.split('::').last
-              eval("::Inch::CodeObject::Provider::YARD::Object::#{class_name}")
-            rescue
+              const_get(class_name)
+            rescue NameError
               Base
             end
 

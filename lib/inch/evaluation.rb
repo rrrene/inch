@@ -10,7 +10,7 @@ module Inch
 
     def self.class_for(code_object)
       class_name = code_object.class.to_s.split('::').last
-      eval(class_name)
+      const_get(class_name)
     end
   end
 end

@@ -45,7 +45,7 @@ module Inch
       end
 
       def schema(constant_name, &block)
-        constant = eval("::Inch::Evaluation::Proxy::#{constant_name}")
+        constant = ::Inch::Evaluation::Proxy.const_get(constant_name)
         constant.criteria(&block)
       end
     end
