@@ -21,6 +21,7 @@ module Inch
           proxy
         end
         @list = list
+        index_by_fullname
         # the @list has to be set for the priority sorting
         # since the priority needs the object_lookup, which
         # in turn depends on @list - it's a crazy world
@@ -45,7 +46,7 @@ module Inch
       # @param fullname [String] partial fullname/name of an object
       # @return [CodeObject::Proxy::Base]
       def find(fullname)
-        all.detect { |o| o.fullname == fullname }
+        @by_fullname[fullname]
       end
 
       # Returns all objects where the +fullname+ starts_with the given
@@ -67,6 +68,15 @@ module Inch
       # @return [void]
       def filter!(options)
         @list = ObjectsFilter.new(all, options).objects
+        index_by_fullname
+      end
+
+      private
+
+      def index_by_fullname
+        @by_fullname = @list.map.with_object({}) do |object, index|
+          index[object.fullname] = object
+        end
       end
     end
   end

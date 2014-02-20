@@ -70,14 +70,14 @@ module Inch
         attributes = {}
         OBJECT_ATTRIBUTES.each do |name|
           if o.respond_to?(name)
-            attributes[name] = o.method(name).call
+            attributes[name] = o.public_send(name)
           end
         end
         attributes[:parameters] = o.parameters.map do |parameter|
           hash = {}
           PARAMETER_ATTRIBUTES.each do |pname|
             if parameter.respond_to?(pname)
-              hash[pname] = parameter.method(pname).call
+              hash[pname] = parameter.public_send(pname)
             end
           end
           hash

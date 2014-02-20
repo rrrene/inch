@@ -27,7 +27,7 @@ module Inch
 
       # @return [Module]
       def self.provider_for(type)
-        eval("::Inch::CodeObject::Provider::#{type}")
+        const_get(type)
       end
     end
   end

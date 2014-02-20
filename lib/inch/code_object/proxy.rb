@@ -28,9 +28,7 @@ module Inch
         # @return [Class]
         def class_for(code_object)
           class_name = code_object.class.to_s.split('::').last
-          eval("::Inch::CodeObject::Proxy::#{class_name}")
-        rescue
-          Base
+          const_get(class_name)
         end
 
         # Returns a cache key for the given +code_object+
