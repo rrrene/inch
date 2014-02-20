@@ -30,7 +30,7 @@ module Inch
             @files = files
 
             if objects.empty?
-              # TODO: show hint
+              display_no_objects_hint
             else
               display_list
               display_files
@@ -82,6 +82,15 @@ module Inch
                 end
               end
             end
+          end
+
+          def display_no_objects_hint
+            hint = if @options.pedantic
+              "Even by my standards."
+            else
+              "Try --pedantic to be excessively concerned with minor details and rules."
+            end
+            trace "Nothing to suggest.".color(:green) + " #{hint}"
           end
 
           def min_priority_arrows

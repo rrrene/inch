@@ -45,7 +45,7 @@ describe ::Inch::CLI::Command::Suggest do
     #assert out.empty?, "there should be no output"
     #assert err.empty?, "there should be no errors"
   end
-  
+
   it "should run with --objects switch" do
     out, err = capture_io do
       @command.run("lib/**/*.rb", "app/**/*.rb", "--objects=30")
@@ -80,4 +80,25 @@ describe ::Inch::CLI::Command::Suggest do
     assert_match /inch\ \d\.\d\.\d/, out
     assert err.empty?, "there should be no errors"
   end
+
+  # Edge case: Really good codebase
+
+  it "should run without args on really good fixture" do
+    out, err = capture_io do
+      Dir.chdir fixture_path(:really_good)
+      @command.run()
+    end
+    refute out.empty?, "there should be some output"
+    assert err.empty?, "there should be no errors"
+  end
+
+  it "should run with --pedantic switch" do
+    out, err = capture_io do
+      Dir.chdir fixture_path(:really_good)
+      @command.run("--pedantic")
+    end
+    refute out.empty?, "there should be some output"
+    assert err.empty?, "there should be no errors"
+  end
+
 end
