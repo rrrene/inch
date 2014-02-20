@@ -13,6 +13,11 @@ module Inch
   end
 end
 
+require 'logger'
+require 'yard'
+
+log.level = ::Logger::UNKNOWN # basically disable YARD's logging
+
 require_relative 'yard/parser'
 require_relative 'yard/docstring'
 require_relative 'yard/nodoc_helper'
