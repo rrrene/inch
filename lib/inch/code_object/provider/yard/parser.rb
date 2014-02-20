@@ -7,6 +7,8 @@ module Inch
           DEFAULT_PATHS     = ["app/**/*.rb", "lib/**/*.rb"]
           DEFAULT_EXCLUDED  = []
 
+          IGNORE_TYPES      = [:macro]
+
           # Helper method to parse an instance with the given +args+
           #
           # @see #parse
@@ -27,8 +29,8 @@ module Inch
 
           def objects
             @objects ||= parsed_objects.map do |o|
-              YARD::Object.for(o)
-            end
+              YARD::Object.for(o) unless IGNORE_TYPES.include?(o.type)
+            end.compact
           end
 
           private
