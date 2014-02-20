@@ -73,7 +73,7 @@ module Inch
 
       def all_filenames(objects)
         codebase.objects.map do |o|
-          o.files.map(&:first)
+          o.files.map(&:filename)
         end.flatten
       end
 

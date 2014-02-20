@@ -40,6 +40,10 @@ module Inch
 
           private
 
+          def base_dir
+            "#{Dir.pwd}/"
+          end
+
           def display_distribution
             sparkline = grades_sparkline(@relevant_objects).to_s(' ')
             puts "Grade distribution (undocumented, C, B, A):  " + sparkline
@@ -62,8 +66,9 @@ module Inch
             trace "You might want to look at these files:"
             trace
 
-            files.each do |f|
-              trace edged(FILE_COLOR, f.fullname.color(FILE_COLOR))
+            files.each do |file|
+              filename = file.fullname.gsub(base_dir, '')
+              trace edged(FILE_COLOR, filename.color(FILE_COLOR))
             end
             trace
           end
