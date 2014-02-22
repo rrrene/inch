@@ -25,7 +25,7 @@ module Inch
           arg =~ /^\-/ && !VALID_YARD_SWITCHES.include?(arg)
         end
 
-        debug "Sending args to YARD:\n" \
+        ui.debug "Sending args to YARD:\n" \
               "  args: #{dupped_args}"
 
         wrapper.parse_arguments(*dupped_args)

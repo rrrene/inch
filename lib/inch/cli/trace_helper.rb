@@ -1,44 +1,15 @@
 # encoding: utf-8
 
+require 'inch/utils/ui'
+
 module Inch
   module CLI
+    # Adds a method called +ui+, that can be used to output messages to the
+    # user.
     module TraceHelper
-      def debug(msg)
-        return unless ENV['DEBUG']
-        msg.to_s.lines.each do |line|
-          trace edged :dark, line.gsub(/\n$/,'').dark
-        end
+      def ui
+        @ui ||= Inch::Utils::UI.new
       end
-
-      # Writes the given +text+ to stdout
-      # @param text [String]
-      # @return [void]
-      def trace(text = "")
-        puts text
-      end
-
-      def trace_header(text, color, bg_color = nil)
-        trace header(text, color, bg_color)
-        trace if !use_color?
-      end
-
-      private
-
-      def edged(color, msg, edge = "┃ ")
-        edge.color(color) + msg
-      end
-
-      def header(text, color, bg_color = nil)
-        bg_color ||= "intense_#{color}"
-        bar = " #{text}".ljust(CLI::COLUMNS-1)
-                .on_color(bg_color).color(:color16)
-        "#".color(color).on_color(color) + bar
-      end
-
-      def use_color?
-        Term::ANSIColor::coloring?
-      end
-
     end
   end
 end

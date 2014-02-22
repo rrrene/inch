@@ -44,7 +44,7 @@ module Inch
       end
 
       self.commands = {}
-      
+
       # Convenience method to create a new CommandParser and call {#run}
       # @return (see #run)
       def self.run(*args)
@@ -69,12 +69,12 @@ module Inch
       end
 
       def list_commands
-        trace "Usage: inch <command> [options]"
-        trace
-        trace "Commands:"
+        ui.trace "Usage: inch <command> [options]"
+        ui.trace
+        ui.trace "Commands:"
         commands.keys.sort_by {|k| k.to_s }.each do |command_name|
           command = commands[command_name].new
-          trace "  %-8s %s" % [command_name, command.description]
+          ui.trace "  %-8s %s" % [command_name, command.description]
         end
       end
 

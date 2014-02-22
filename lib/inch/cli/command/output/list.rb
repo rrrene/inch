@@ -23,16 +23,16 @@ module Inch
               if range.objects.empty?
                 # pass
               else
-                trace
-                trace_header(range.label, range.color, range.bg_color)
+                ui.trace
+                ui.header(range.label, range.color, range.bg_color)
                 display_grade_list(range)
               end
             end
 
             if @omitted > 0
-              trace
-              trace "This output omitted #{@omitted} objects. ".dark +
-                "Use `--all` to display all objects.".dark
+              ui.trace
+              ui.trace "This output omitted #{@omitted} objects. ".dark +
+                  "Use `--all` to display all objects.".dark
             end
           end
 
@@ -55,7 +55,7 @@ module Inch
           end
 
           def echo(color, msg)
-            trace edged(color, msg)
+            ui.edged(color, msg)
           end
 
           def result(object, color)

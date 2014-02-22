@@ -62,15 +62,15 @@ module Inch
           end
 
           def display_files
-            trace
-            trace "You might want to look at these files:"
-            trace
+            ui.trace
+            ui.trace "You might want to look at these files:"
+            ui.trace
 
             files.each do |file|
               filename = file.fullname.gsub(base_dir, '')
-              trace edged(FILE_COLOR, filename.color(FILE_COLOR))
+              ui.edged(FILE_COLOR, filename.color(FILE_COLOR))
             end
-            trace
+            ui.trace
           end
 
           def display_list
@@ -78,12 +78,12 @@ module Inch
               r = grade_list(grade)
               grade_objects = objects.select { |o| o.grade == r.grade }
               unless grade_objects.empty?
-                trace
-                trace_header(RANGE_LABELS[r.grade.to_sym], r.color, r.bg_color)
+                ui.trace
+                ui.header(RANGE_LABELS[r.grade.to_sym], r.color, r.bg_color)
                 grade_objects.each do |o|
                   grade = o.grade.to_s.ljust(2).color(r.color)
                   priority = o.priority
-                  trace edged(r.color, " #{grade} #{priority_arrow(priority, r.color)}  #{o.fullname}")
+                  ui.sub(" #{grade} #{priority_arrow(priority, r.color)}  #{o.fullname}")
                 end
               end
             end
@@ -95,7 +95,7 @@ module Inch
             else
               "Try --pedantic to be excessively concerned with minor details and rules."
             end
-            trace "Nothing to suggest.".color(:green) + " #{hint}"
+            ui.trace "Nothing to suggest.".color(:green) + " #{hint}"
           end
 
           def min_priority_arrows

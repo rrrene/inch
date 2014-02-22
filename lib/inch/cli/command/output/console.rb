@@ -42,11 +42,11 @@ module Inch
 
 
           def run
-            trace
-            trace_header("Welcome to Inch's console", COLOR, BG_COLOR)
-            trace edged(COLOR, @options.usage)
+            ui.trace
+            ui.header("Welcome to Inch's console", COLOR, BG_COLOR)
+            ui.sub @options.usage
             @options.descriptions.each do |line|
-              trace edged(COLOR, line)
+              ui.sub line
             end
             run_pry
           end

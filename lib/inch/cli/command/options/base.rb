@@ -129,11 +129,11 @@ module Inch
               Term::ANSIColor::coloring = v
             end
             opts.on_tail('-v', '--version', 'Show version.') do
-              trace "inch #{Inch::VERSION}"
+              ui.trace "inch #{Inch::VERSION}"
               exit
             end
             opts.on_tail('-h', '--help', 'Show this help.') do
-              trace opts
+              ui.trace opts
               exit
             end
           end
@@ -143,9 +143,9 @@ module Inch
           # @param msg [String,nil] optional, message to be displayed
           # @return [void]
           def kill(msg = nil)
-            warn usage
-            warn msg.red unless msg.nil?
-            warn "Try `--help' for more information."
+            ui.warn usage
+            ui.warn msg.red unless msg.nil?
+            ui.warn "Try `--help' for more information."
             exit 1
           end
 
@@ -173,7 +173,7 @@ module Inch
           # @param [OptionParser::ParseError] err the exception raised by the
           #   option parser
           def unrecognized_option(err)
-            trace "Unrecognized/#{err.message}".red
+            ui.warn "Unrecognized/#{err.message}".red
           end
         end
       end
