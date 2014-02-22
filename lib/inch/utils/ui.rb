@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Inch
   module Utils
     class UI
