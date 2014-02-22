@@ -25,6 +25,10 @@ module Inch
             # @param object [YARD::CodeObjects::Base] the actual (YARD) code object
             def initialize(object)
               @object = object
+              @__depth = __depth
+              @__api_tag = __api_tag
+              @__parent = __parent
+              @__private_tag = __private_tag
             end
 
             def api_tag?
@@ -32,7 +36,7 @@ module Inch
             end
 
             def api_tag
-              tag(:api) || (parent && parent.api_tag)
+              @__api_tag
             end
 
             # To be overridden
@@ -100,11 +104,11 @@ module Inch
             end
 
             def fullname
-              object.path
+              @fullname ||= object.path
             end
 
             def name
-              object.name
+              @name ||= object.name
             end
 
             def has_alias?
@@ -159,12 +163,8 @@ module Inch
             #
             # @param i [Fixnum] a counter for recursive method calls
             # @return [Fixnum] the depth of the object in terms of namespace
-            def depth(i = 0)
-              if parent
-                parent.depth(i+1)
-              else
-                i
-              end
+            def depth
+              @__depth
             end
 
             # @return [Boolean] +true+ if the object represents a method
@@ -183,6 +183,10 @@ module Inch
 
             # @return [Array,nil] the parent of the current object or +nil+
             def parent
+              @__parent
+            end
+
+            def __parent
               YARD::Object.for(object.parent) if object.parent
             end
 
@@ -197,7 +201,7 @@ module Inch
             end
 
             def private_tag
-              tag(:private) || (parent && parent.private_tag)
+              @__private_tag
             end
 
             def private_api_tag?
@@ -254,6 +258,25 @@ module Inch
                   CONSIDERED_YARD_TAGS.include?(tag.tag_name)
                 end
             end
+
+            def __depth(i = 0)
+              if parent
+                parent.__depth(i+1)
+              else
+                i
+              end
+            end
+
+            private
+
+            def __api_tag
+              tag(:api) || (parent && parent.api_tag)
+            end
+
+            def __private_tag
+              tag(:private) || (parent && parent.private_tag)
+            end
+
           end
         end
       end

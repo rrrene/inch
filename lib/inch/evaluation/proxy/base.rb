@@ -50,41 +50,24 @@ module Inch
           __evaluate(object, relevant_roles)
         end
 
-        def __evaluate(object, role_classes)
-          role_classes.each do |role_class, score|
-            if role_class.applicable?(object)
-              add_role role_class.new(object, score)
-            end
-          end
-        end
-
-        # @return [Float]
+        # @return [Float] the max score that is assignable to +object+
         def max_score
-          arr = @roles.map(&:max_score).compact
-          [MAX_SCORE].concat(arr).min
+          @__max_score = __max_score
         end
 
-        # @return [Float]
+        # @return [Float] the min score that is assignable to +object+
         def min_score
-          arr = @roles.map(&:min_score).compact
-          [MIN_SCORE].concat(arr).max
+          @__min_score = __min_score
         end
 
-        # @return [Float]
+        # @return [Float] the final score for +object+
         def score
-          value = @roles.inject(0) { |sum,r| sum + r.score.to_f }
-          if value < min_score
-            min_score
-          elsif value > max_score
-            max_score
-          else
-            value
-          end
+          @__score ||= __score
         end
 
-        # @return [Fixnum]
+        # @return [Fixnum] the priority for +object+
         def priority
-          @roles.inject(0) { |sum,r| sum + r.priority.to_i }
+          @__priority ||= __priority
         end
 
         # @return [Array<Evaluation::Role::Base>]
@@ -139,6 +122,43 @@ module Inch
 
         def score_for(criteria_name)
           criteria.send(criteria_name) * MAX_SCORE
+        end
+
+        def __evaluate(object, role_classes)
+          role_classes.each do |role_class, score|
+            if role_class.applicable?(object)
+              add_role role_class.new(object, score)
+            end
+          end
+        end
+
+        # @return [Float] the max score that is assignable to +object+
+        def __max_score
+          arr = @roles.map(&:max_score).compact
+          [MAX_SCORE].concat(arr).min
+        end
+
+        # @return [Float] the max score that is assignable to +object+
+        def __min_score
+          arr = @roles.map(&:min_score).compact
+          [MIN_SCORE].concat(arr).max
+        end
+
+        # @return [Float]
+        def __score
+          value = @roles.inject(0) { |sum,r| sum + r.score.to_f }
+          if value < min_score
+            min_score
+          elsif value > max_score
+            max_score
+          else
+            value
+          end
+        end
+
+        # @return [Fixnum]
+        def __priority
+          @roles.inject(0) { |sum,r| sum + r.priority.to_i }
         end
       end
     end

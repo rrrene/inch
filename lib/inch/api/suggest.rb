@@ -99,7 +99,7 @@ module Inch
       end
 
       def relevant_objects
-        select_by_priority(codebase.objects, @options.object_min_priority)
+        @relevant_objects ||= select_by_priority(codebase.objects, @options.object_min_priority)
       end
 
       def relevant_priorities
