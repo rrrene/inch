@@ -75,7 +75,6 @@ module Inch
         #
         # @note top-level counts, that's why Foo has depth 1!
         #
-        # @param i [Fixnum] a counter for recursive method calls
         # @return [Fixnum] the depth of the object in terms of namespace
         def depth
           self[:depth]

@@ -173,6 +173,15 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     assert m.score > 0
   end
 
+  def test_depth
+    m = @codebase.objects.find("#root_method")
+    assert_equal 1, m.depth
+    m = @codebase.objects.find("InchTest#getter")
+    assert_equal 2, m.depth
+    m = @codebase.objects.find("Foo::Bar#method_without_doc")
+    assert_equal 3, m.depth
+  end
+
   def test_getter
     m = @codebase.objects.find("InchTest#getter")
     assert m.getter?, "should be a getter"

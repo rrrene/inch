@@ -25,7 +25,6 @@ module Inch
             # @param object [YARD::CodeObjects::Base] the actual (YARD) code object
             def initialize(object)
               @object = object
-              @__depth = __depth
               @__api_tag = __api_tag
               @__parent = __parent
               @__private_tag = __private_tag
@@ -161,10 +160,9 @@ module Inch
             #
             # @note top-level counts, that's why Foo has depth 1!
             #
-            # @param i [Fixnum] a counter for recursive method calls
             # @return [Fixnum] the depth of the object in terms of namespace
             def depth
-              @__depth
+              @__depth ||= __depth
             end
 
             # @return [Boolean] +true+ if the object represents a method
