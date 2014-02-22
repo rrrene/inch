@@ -1,4 +1,4 @@
-# Inch [![Build Status](https://travis-ci.org/rrrene/inch.png)](https://travis-ci.org/rrrene/inch)
+# Inch [![Build Status](https://travis-ci.org/rrrene/inch.png)](https://travis-ci.org/rrrene/inch) [![Code Climate](https://codeclimate.com/github/rrrene/inch.png)](https://codeclimate.com/github/rrrene/inch) [![Inline docs](http://inch-pages.github.io/github/rrrene/inch.png)](https://inch-pages.github.io/github/rrrene/inch)
 
 `inch` gives you hints where to improve your docs. One Inch at a time.
 
@@ -8,7 +8,7 @@ Take a look at the [project page with screenshots (live and in full color)](http
 
 `inch` is a little bit like Code Climate, but for your inline code documentation (and not a webservice).
 
-It is a command-line utility that suggests places in your codebase where documentation can be improved. 
+It is a command-line utility that suggests places in your codebase where documentation can be improved.
 
 If there are no inline-docs yet, `inch` can tell you where to start.
 
@@ -61,20 +61,20 @@ end
 Inch will suggest that the docs could be improved:
 
     # Properly documented, could be improved:
-    
+
     ┃  B  ↑  Foo#complicated
-    
+
     # Undocumented:
-    
+
     ┃  U  ↑  Foo
     ┃  U  ↗  Foo#filename
-    
+
     You might want to look at these files:
-    
+
     ┃ lib/foo.rb
-    
+
     Grade distribution (undocumented, C, B, A):  █  ▁ ▄ ▄
-    
+
     Only considering priority objects: ↑ ↗ →  (use `--help` for options).
 
 
@@ -144,9 +144,9 @@ This tells you three things:
 * There are still undocumented methods.
 
 Inch does not really tell you what to do from here. It suggests objects and
-files that could be improved to get a better rating, but that is all. This 
+files that could be improved to get a better rating, but that is all. This
 way, it is perfectly reasonable to leave parts of your codebase
-undocumented. 
+undocumented.
 
 Instead of reporting
 
