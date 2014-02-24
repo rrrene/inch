@@ -220,7 +220,7 @@ module Inch
 
             # @return [Boolean] +true+ if the object has no documentation at all
             def undocumented?
-              docstring.empty? && tags.empty?
+              object.docstring.all.empty?
             end
 
             def unconsidered_tag_count

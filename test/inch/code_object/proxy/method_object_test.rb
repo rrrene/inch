@@ -9,7 +9,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   def test_transitive_tags_dont_matter
     m = @codebase.objects.find("InchTest::Deprecated::ClassMethods")
     assert_equal 0, m.score
-    # assert m.undocumented? # TODO: implement
+    assert m.undocumented?
   end
 
   def test_method_without_doc
