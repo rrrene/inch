@@ -38,9 +38,9 @@ module Inch
 
             def parameters
               @parameters ||= all_parameter_names.map do |name|
-                in_signature = signature_parameter_names.include?(name)
-                tag = parameter_tag(name)
-                MethodParameterObject.new(self, name, tag, in_signature)
+                signature_name = in_signature(name)
+                tag = parameter_tag(name) || parameter_tag(signature_name)
+                MethodParameterObject.new(self, name, signature_name, tag)
               end
             end
 
@@ -87,7 +87,8 @@ module Inch
             def all_parameter_names
               names = signature_parameter_names
               names.concat parameter_tags.map(&:name)
-              names.compact.uniq
+              names.map { |name| name.gsub(/[\*\&]/, '') }
+                .compact.uniq
             end
 
             def implicit_docstring?
@@ -99,6 +100,11 @@ module Inch
               else
                 false
               end
+            end
+
+            def in_signature(name)
+              possible_names = [name, "*#{name}", "&#{name}"]
+              (signature_parameter_names & possible_names).first
             end
 
             def signature_parameter_names

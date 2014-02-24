@@ -223,4 +223,10 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     refute m.getter?
     assert m.setter?, "should be a setter"
   end
+
+  def test_splat_parameter_notation
+    m1 = @codebase.objects.find("Foo#method_with_splat_parameter")
+    m2 = @codebase.objects.find("Foo#method_with_splat_parameter2")
+    assert_equal m1.score, m2.score
+  end
 end

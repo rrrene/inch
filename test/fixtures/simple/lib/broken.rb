@@ -13,7 +13,20 @@ module Foo
   # @param [Encoding] e
   # @return [String]
   def method_with_empty_param_tag_text(e)
+  end
 
+  # The problem here is that ...
+  #
+  # @param *names [Array]
+  # @return [String]
+  def method_with_splat_parameter(*names)
+  end
+
+  # The problem here is that ...
+  #
+  # @param names [Array]
+  # @return [String]
+  def method_with_splat_parameter2(*names)
   end
 end
 

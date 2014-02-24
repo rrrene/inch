@@ -9,9 +9,9 @@ module Inch
 
             # @param method [YARD::Object::MethodObject] the method the parameter belongs to
             # @param name [String] the name of the parameter
+            # @param in_signature [String] how the parameter is noted in the method's signature
             # @param tag [YARD::Tags::Tag] the Tag object for the parameter
-            # @param in_signature [Boolean] +true+ if the method's signature contains the parameter
-            def initialize(method, name, tag, in_signature)
+            def initialize(method, name, in_signature, tag)
               @method = method
               @name = name
               @tag = tag
@@ -29,7 +29,7 @@ module Inch
 
             # @return [Boolean] +true+ if the parameter is a block
             def block?
-              name =~ /^\&/
+              @in_signature.to_s =~ /^\&/
             end
 
             # @return [Boolean] +true+ if an additional description given?
@@ -44,7 +44,7 @@ module Inch
 
             # @return [Boolean] +true+ if the parameter is a splat argument
             def splat?
-              name =~ /^\*/
+              @in_signature.to_s =~ /^\*/
             end
 
             # @return [Boolean] +true+ if the type of the parameter is defined

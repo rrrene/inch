@@ -53,7 +53,6 @@ module Inch
         def wrongly_mentioned?
           self[:wrongly_mentioned?]
         end
-
       end
     end
   end
