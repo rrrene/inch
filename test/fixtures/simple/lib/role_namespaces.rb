@@ -41,6 +41,14 @@ module InchTest
   module PureNamespace
   end
 
+  # Some deprecated stuff
+  # @since 0.1.0
+  # @deprecated
+  module Deprecated
+    module ClassMethods
+    end
+  end
+
   # @deprecated
   # @see PureNamespace
   module ManyChildren

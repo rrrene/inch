@@ -17,7 +17,7 @@ module Inch
             attr_accessor :base_dir
 
             # Tags considered by wrapper methods like {#has_code_example?}
-            CONSIDERED_YARD_TAGS = %w(api example param private return)
+            CONSIDERED_YARD_TAGS = %w(api example param private return since)
 
             # convenient shortcuts to (YARD) code object
             def_delegators :object, :type, :namespace, :source, :source_type, :signature, :group, :dynamic, :visibility

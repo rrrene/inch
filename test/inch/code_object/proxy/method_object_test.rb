@@ -6,6 +6,12 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     @codebase = Inch::Codebase.parse(fixture_path(:simple), ["lib/**/*.rb"])
   end
 
+  def test_transitive_tags_dont_matter
+    m = @codebase.objects.find("InchTest::Deprecated::ClassMethods")
+    assert_equal 0, m.score
+    assert m.undocumented?
+  end
+
   def test_method_without_doc
     m = @codebase.objects.find("Foo::Bar#method_without_doc")
     refute m.has_doc?
