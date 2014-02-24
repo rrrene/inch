@@ -87,8 +87,7 @@ module Inch
             def all_parameter_names
               names = signature_parameter_names
               names.concat parameter_tags.map(&:name)
-              names.map { |name| name.gsub(/[\*\&]/, '') }
-                .compact.uniq
+              names.compact.map { |name| name.gsub(/[\*\&]/, '') }.uniq
             end
 
             def implicit_docstring?
