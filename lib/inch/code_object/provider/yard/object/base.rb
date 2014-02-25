@@ -220,7 +220,7 @@ module Inch
 
             # @return [Boolean] +true+ if the object has no documentation at all
             def undocumented?
-              object.docstring.all.empty?
+              original_docstring.empty?
             end
 
             def unconsidered_tag_count
@@ -235,6 +235,10 @@ module Inch
 
             def multi_code_examples?(text)
               text.scan(/\b(#{Regexp.escape(name)})[^_0-9\!\?]/m).size > 1
+            end
+
+            def original_docstring
+              object.docstring.all
             end
 
             def tag(name)
