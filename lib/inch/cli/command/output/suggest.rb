@@ -103,9 +103,9 @@ module Inch
           end
 
           def priority_arrows_gte(min_priority)
-            Evaluation::PriorityRange.all.map do |range, str|
-              str if range.min >= min_priority
-            end.compact
+            Evaluation::PriorityRange.all.select do |priority_range|
+              priority_range.priorities.min >= min_priority
+            end
           end
 
           def grade_list(grade_symbol)
