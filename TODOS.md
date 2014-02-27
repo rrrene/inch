@@ -7,3 +7,4 @@
   (realized via the @overload tag in YARD)
 
 * Add an option to suppress :nodoc: from output
+* Add a role for TaggedAsDeprecated
