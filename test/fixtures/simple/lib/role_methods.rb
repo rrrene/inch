@@ -83,6 +83,15 @@ module InchTest
   end
   public :public_method
 
+  # @raise [ArgumentError] every time!
+  def raising_method_with_comment
+    raise ArgumentError
+  end
+
+  def raising_method
+    raise ArgumentError
+  end
+
   def public_method
   end
 

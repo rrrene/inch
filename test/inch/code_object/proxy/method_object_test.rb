@@ -12,6 +12,18 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     assert m.undocumented?
   end
 
+  def test_raising_method_with_comment
+    m = @codebase.objects.find("InchTest#raising_method_with_comment")
+    assert m.score > 0
+    refute m.undocumented?
+  end
+
+  def test_raising_method
+    m = @codebase.objects.find("InchTest#raising_method")
+    assert_equal 0, m.score
+    assert m.undocumented?
+  end
+
   def test_tagged_as_private
     %w( InchTest#method_with_private_tag
         InchTest#private_method_with_tomdoc).each do |fullname|

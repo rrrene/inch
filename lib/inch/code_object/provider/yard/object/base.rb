@@ -259,6 +259,7 @@ module Inch
             #   YARD tags that are not already covered by other wrapper methods
             def unconsidered_tags
               @unconsidered_tags ||= tags.reject do |tag|
+                (tag.tag_name == "raise" && tag.text.empty?) ||
                   CONSIDERED_YARD_TAGS.include?(tag.tag_name)
                 end
             end
