@@ -103,7 +103,7 @@ module Inch
             Role::Object::WithoutCodeExample => score_for(:code_example_single),
             Role::Object::Tagged => score_for_unconsidered_tags,
             Role::Object::TaggedAsAPI => nil,
-            Role::Object::TaggedAsPrivateAPI => nil,
+            Role::Object::TaggedAsInternalAPI => nil,
           }
         end
 

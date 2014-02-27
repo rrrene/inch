@@ -12,6 +12,14 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     assert m.undocumented?
   end
 
+  def test_tagged_as_internal_api
+    %w( InchTest#internal_api_with_yard
+        InchTest#internal_api_with_tomdoc).each do |fullname|
+      m = @codebase.objects.find(fullname)
+      assert m.tagged_as_internal_api?
+    end
+  end
+
   def test_method_without_doc
     m = @codebase.objects.find("Foo::Bar#method_without_doc")
     refute m.has_doc?

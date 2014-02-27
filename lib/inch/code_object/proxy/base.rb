@@ -167,8 +167,8 @@ module Inch
           self[:private_tag?]
         end
 
-        def private_api_tag?
-          self[:private_api_tag?]
+        def tagged_as_internal_api?
+          self[:tagged_as_internal_api?]
         end
 
         def protected?

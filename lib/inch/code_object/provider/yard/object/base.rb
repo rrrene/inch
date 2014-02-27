@@ -68,15 +68,9 @@ module Inch
             end
 
             # Returns all files declaring the object in the form of an Array of
-            # Arrays containing the filename and the line number of their
-            # declaration.
+            # Arrays containing the location of their declaration.
             #
-            # @example
-            #   files # => [["lib/inch.rb", 3],
-            #                ["lib/inch/cli.rb", 1],
-            #                 ["lib/inch/version.rb", 1],
-            #
-            # @return [Array<Array(String, Fixnum)>]
+            # @return [Array<CodeLocation>]
             def files
               object.files.map do |(filename, line_no)|
                 CodeLocation.new(base_dir, filename, line_no)
@@ -202,8 +196,8 @@ module Inch
               @__private_tag
             end
 
-            def private_api_tag?
-              api_tag && api_tag.text == 'private'
+            def tagged_as_internal_api?
+              private_api_tag? || docstring.describes_internal_api?
             end
 
             def protected?
@@ -239,6 +233,10 @@ module Inch
 
             def original_docstring
               object.docstring.all
+            end
+
+            def private_api_tag?
+              api_tag && api_tag.text == 'private'
             end
 
             def tag(name)

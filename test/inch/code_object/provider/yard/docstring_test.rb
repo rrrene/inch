@@ -10,7 +10,7 @@ describe ::Inch::CodeObject::Provider::YARD::Docstring do
 
   it "should notice things in tomdoc style docs" do
 text = <<-DOC
-Public: Detects the Language of the blob.
+Internal: Detects the Language of the blob.
 
 param1 - String filename
 param2 - String blob data. A block also maybe passed in for lazy
@@ -21,6 +21,7 @@ param3 - Optional String mode (defaults to nil)
 Returns Language or nil.
 DOC
     docstring = described_class.new(text)
+    assert docstring.describes_internal_api?
     assert docstring.mentions_parameter?(:param1)
     assert docstring.mentions_parameter?(:param2)
     assert docstring.mentions_parameter?(:param3)

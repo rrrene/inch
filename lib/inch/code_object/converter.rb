@@ -36,7 +36,7 @@ module Inch
         overridden_method_fullname
         parameters
         private?
-        private_api_tag?
+        tagged_as_internal_api?
         private_tag?
         protected?
         public?

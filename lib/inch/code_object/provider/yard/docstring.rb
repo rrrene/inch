@@ -7,6 +7,10 @@ module Inch
             @text = text.to_s
           end
 
+          def describes_internal_api?
+            first_line =~ /^Internal\:\ .+/
+          end
+
           def empty?
             @text.strip.empty?
           end
@@ -32,11 +36,21 @@ module Inch
           end
 
           def mentions_return?
-            @text.lines.to_a.last =~ /^Returns\ /
+            last_line =~ /^Returns\ /
           end
 
           def describes_return?
-            @text.lines.to_a.last =~ /^Returns\ (\w+\s){2,}/
+            last_line =~ /^Returns\ (\w+\s){2,}/
+          end
+
+          private
+
+          def first_line
+            @first_line ||= @text.lines.to_a.first
+          end
+
+          def last_line
+            @last_line ||= @text.lines.to_a.last
           end
 
           def parse_code_examples
@@ -56,8 +70,6 @@ module Inch
             code_examples << example if example
             code_examples.delete_if(&:empty?).map(&:join)
           end
-
-          private
 
           def mention_parameter_patterns(name)
             [
