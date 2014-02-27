@@ -163,10 +163,13 @@ module Inch
 
         # @return [Boolean]
         #   +true+ if the object or its parent is tagged as @private
-        def private_tag?
-          self[:private_tag?]
+        def tagged_as_private?
+          self[:tagged_as_private?]
         end
 
+        # @return [Boolean]
+        #   +true+ if the object or its parent is tagged as part of an
+        #   internal api
         def tagged_as_internal_api?
           self[:tagged_as_internal_api?]
         end

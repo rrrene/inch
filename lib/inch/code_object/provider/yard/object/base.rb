@@ -186,18 +186,12 @@ module Inch
               visibility == :private
             end
 
-            # @return [Boolean]
-            #   +true+ if the object or its parent is tagged as @private
-            def private_tag?
-              !private_tag.nil?
-            end
-
-            def private_tag
-              @__private_tag
-            end
-
             def tagged_as_internal_api?
               private_api_tag? || docstring.describes_internal_api?
+            end
+
+            def tagged_as_private?
+              private_tag? || docstring.describes_private_object?
             end
 
             def protected?
@@ -233,6 +227,16 @@ module Inch
 
             def original_docstring
               object.docstring.all
+            end
+
+            # @return [Boolean]
+            #   +true+ if the object or its parent is tagged as @private
+            def private_tag?
+              !private_tag.nil?
+            end
+
+            def private_tag
+              @__private_tag
             end
 
             def private_api_tag?

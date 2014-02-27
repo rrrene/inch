@@ -10,7 +10,7 @@ module Inch
           # @note Doesnot recognize ":startdoc:" and ":stopdoc:"
           #
           def nodoc?
-            private_tag? || nodoc_comment?
+            tagged_as_private? || nodoc_comment?
           end
 
           NO_DOC_REGEX = /#\s*\:nodoc\:/

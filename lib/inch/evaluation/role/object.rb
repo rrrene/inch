@@ -57,6 +57,18 @@ module Inch
           end
         end
 
+        # Role assigned to objects explicitly or implicitly tagged to be
+        # private.
+        #
+        # @see CodeObject::NodocHelper
+        class TaggedAsPrivate < Base
+          applicable_if :tagged_as_private?
+
+          def priority
+            -5
+          end
+        end
+
         # Role assigned to objects declared in the top-level namespace
         class InRoot < Base
           applicable_if :in_root?

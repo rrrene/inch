@@ -12,8 +12,16 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     assert m.undocumented?
   end
 
+  def test_tagged_as_private
+    %w( InchTest#method_with_private_tag
+        InchTest#private_method_with_tomdoc).each do |fullname|
+      m = @codebase.objects.find(fullname)
+      assert m.tagged_as_private?
+    end
+  end
+
   def test_tagged_as_internal_api
-    %w( InchTest#internal_api_with_yard
+    %w( InchTest#private_api_with_yard
         InchTest#internal_api_with_tomdoc).each do |fullname|
       m = @codebase.objects.find(fullname)
       assert m.tagged_as_internal_api?

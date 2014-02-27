@@ -11,6 +11,10 @@ module Inch
             first_line =~ /^Internal\:\ .+/
           end
 
+          def describes_private_object?
+            first_line =~ /^Private\:\ .+/
+          end
+
           def empty?
             @text.strip.empty?
           end

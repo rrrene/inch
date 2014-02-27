@@ -100,10 +100,14 @@ module InchTest
   end
 
   # @api private
-  def internal_api_with_yard
+  def private_api_with_yard
   end
 
   # Internal: Normalize the filename.
   def internal_api_with_tomdoc
+  end
+
+  # Private: Normalize the filename.
+  def private_method_with_tomdoc
   end
 end

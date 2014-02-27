@@ -28,7 +28,7 @@ describe ::Inch::API::Filter do
   it "should work with option: visibility == :private" do
     @options = {:visibility => [:private]}
     @context = ::Inch::API::Filter.new @codebase, @options
-    assert @context.objects.all? { |o| o.private? || o.private_tag? }
+    assert @context.objects.all? { |o| o.private? || o.tagged_as_private? }
   end
 
   it "should work with option: namespaces == :only" do

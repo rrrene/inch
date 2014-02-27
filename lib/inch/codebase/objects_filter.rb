@@ -52,7 +52,7 @@ module Inch
         end
         if !options.visibility.include?(:private)
           @list = @list.reject do |o|
-            o.private_tag?
+            o.tagged_as_private?
           end
         end
       end

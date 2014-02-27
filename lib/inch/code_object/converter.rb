@@ -37,7 +37,7 @@ module Inch
         parameters
         private?
         tagged_as_internal_api?
-        private_tag?
+        tagged_as_private?
         protected?
         public?
         questioning_name?
