@@ -58,8 +58,8 @@ module Inch
 
       def update_files(files)
         return if files.nil?
-        include_files expand_files(files["included"])
-        exclude_files expand_files(files["excluded"])
+        include_files expand_files(files["included"]) if files["included"]
+        exclude_files expand_files(files["excluded"]) if files["excluded"]
       end
     end
   end
