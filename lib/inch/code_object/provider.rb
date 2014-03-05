@@ -21,8 +21,8 @@ module Inch
     #
     #
     module Provider
-      def self.parse(dir, paths, excluded, type = :YARD)
-        provider_for(type).parse(dir, paths, excluded)
+      def self.parse(dir, config = Inch::Config.codebase, type = :YARD)
+        provider_for(type).parse(dir, config)
       end
 
       # @return [Module]

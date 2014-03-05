@@ -1,6 +1,11 @@
 Inch::Config.run do
   # development!
 
+  codebase do
+    include_files ["lib/**/*.rb", "app/**/*.rb"]
+    exclude_files []
+  end
+
   evaluation do
     grade(:A) do
       scores    80..100

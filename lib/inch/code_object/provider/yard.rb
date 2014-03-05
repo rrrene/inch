@@ -4,8 +4,8 @@ module Inch
       # Parses the source tree (using YARD)
       module YARD
 
-        def self.parse(dir, paths, excluded)
-          Parser.parse(dir, paths, excluded)
+        def self.parse(dir, config = Inch::Config.codebase)
+          Parser.parse(dir, config)
         end
 
       end

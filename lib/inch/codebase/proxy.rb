@@ -16,8 +16,8 @@ module Inch
         lists
       end
 
-      def self.parse(dir = Dir.pwd, paths = nil, excluded = nil)
-        provider = CodeObject::Provider.parse(dir, paths, excluded)
+      def self.parse(dir = Dir.pwd, config = Inch::Config.codebase)
+        provider = CodeObject::Provider.parse(dir, config)
         new(provider)
       end
     end

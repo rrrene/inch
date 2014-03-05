@@ -3,7 +3,6 @@ require File.expand_path(File.dirname(__FILE__) + '/../../../test_helper')
 describe ::Inch::CodeObject::Proxy::MethodObject do
   before do
     @codebase = test_codebase(:simple)
-    #@codebase = Inch::Codebase.parse(fixture_path(:simple), ["lib/**/*.rb"])
     @objects = @codebase.objects
   end
 

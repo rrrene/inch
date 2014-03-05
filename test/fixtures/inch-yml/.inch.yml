@@ -1,0 +1,5 @@
+files:
+  included:
+    - foo/**/*.rb
+  excluded:
+    - foo/vendor/**/*.rb

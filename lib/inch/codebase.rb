@@ -5,11 +5,12 @@ module Inch
     # Parses a codebase
     #
     # @param dir [String]
-    # @param paths [Array<String>]
-    # @param excluded [Array<String>]
+    # @param config [Inch::Config::Codebase,nil]
     # @return [Codebase::Proxy]
-    def self.parse(dir, paths = nil, excluded = nil)
-      Proxy.parse(dir, paths, excluded)
+    def self.parse(dir, config = nil)
+      config ||= Config.codebase.clone
+      config.update_via_yaml(dir)
+      Proxy.parse(dir, config)
     end
   end
 end

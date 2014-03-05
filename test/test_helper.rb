@@ -22,7 +22,7 @@ module Inch
 
       def object_provider(name)
         self.object_providers ||= {}
-        self.object_providers[name] ||= ::Inch::CodeObject::Provider.parse(fixture_path(name), ["lib/**/*.rb"], [])
+        self.object_providers[name] ||= ::Inch::CodeObject::Provider.parse(fixture_path(name))
       end
     end
   end

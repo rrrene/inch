@@ -4,7 +4,7 @@ describe ::Inch::CodeObject::Provider::YARD do
   let(:described_class) { ::Inch::CodeObject::Provider::YARD }
 
   it "should parse" do
-    provider = described_class.parse(fixture_path(:simple), ["lib/**/*.rb"], [])
+    provider = described_class.parse(fixture_path(:simple))
     assert !provider.objects.empty?
   end
 
