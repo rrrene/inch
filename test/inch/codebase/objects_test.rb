@@ -2,9 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../test_helper')
 
 describe ::Inch::Codebase::Objects do
   before do
-    dir = fixture_path(:simple)
-    paths = ["lib/**/*.rb"]
-    @codebase = Inch::Codebase::Proxy.new dir, paths
+    @codebase = test_codebase(:simple)
     @objects = @codebase.objects
   end
 

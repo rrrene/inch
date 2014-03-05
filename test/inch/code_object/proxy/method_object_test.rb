@@ -2,24 +2,25 @@ require File.expand_path(File.dirname(__FILE__) + '/../../../test_helper')
 
 describe ::Inch::CodeObject::Proxy::MethodObject do
   before do
-    Dir.chdir fixture_path(:simple)
-    @codebase = Inch::Codebase.parse(fixture_path(:simple), ["lib/**/*.rb"])
+    @codebase = test_codebase(:simple)
+    #@codebase = Inch::Codebase.parse(fixture_path(:simple), ["lib/**/*.rb"])
+    @objects = @codebase.objects
   end
 
   def test_transitive_tags_dont_matter
-    m = @codebase.objects.find("InchTest::Deprecated::ClassMethods")
+    m = @objects.find("InchTest::Deprecated::ClassMethods")
     assert_equal 0, m.score
     assert m.undocumented?
   end
 
   def test_raising_method_with_comment
-    m = @codebase.objects.find("InchTest#raising_method_with_comment")
+    m = @objects.find("InchTest#raising_method_with_comment")
     assert m.score > 0
     refute m.undocumented?
   end
 
   def test_raising_method
-    m = @codebase.objects.find("InchTest#raising_method")
+    m = @objects.find("InchTest#raising_method")
     assert_equal 0, m.score
     assert m.undocumented?
   end
@@ -27,7 +28,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   def test_tagged_as_private
     %w( InchTest#method_with_private_tag
         InchTest#private_method_with_tomdoc).each do |fullname|
-      m = @codebase.objects.find(fullname)
+      m = @objects.find(fullname)
       assert m.tagged_as_private?
     end
   end
@@ -35,13 +36,13 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   def test_tagged_as_internal_api
     %w( InchTest#private_api_with_yard
         InchTest#internal_api_with_tomdoc).each do |fullname|
-      m = @codebase.objects.find(fullname)
+      m = @objects.find(fullname)
       assert m.tagged_as_internal_api?
     end
   end
 
   def test_method_without_doc
-    m = @codebase.objects.find("Foo::Bar#method_without_doc")
+    m = @objects.find("Foo::Bar#method_without_doc")
     refute m.has_doc?
     refute m.has_parameters?
     refute m.return_mentioned?
@@ -51,7 +52,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   end
 
   def test_method_with_missing_param_doc
-    m = @codebase.objects.find("Foo::Bar#method_with_missing_param_doc")
+    m = @objects.find("Foo::Bar#method_with_missing_param_doc")
     assert m.has_doc?
     assert m.has_parameters?
     assert m.return_mentioned?
@@ -68,7 +69,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   end
 
   def test_method_with_wrong_doc
-    m = @codebase.objects.find("Foo::Bar#method_with_wrong_doc")
+    m = @objects.find("Foo::Bar#method_with_wrong_doc")
     assert m.has_doc?
     assert m.has_parameters?
     assert m.return_mentioned?
@@ -91,7 +92,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   end
 
   def test_method_with_full_doc
-    m = @codebase.objects.find("Foo::Bar#method_with_full_doc")
+    m = @objects.find("Foo::Bar#method_with_full_doc")
     assert m.has_doc?
     assert m.has_parameters?
     assert m.return_mentioned?
@@ -108,7 +109,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   end
 
   def test_method_without_params_or_return_type
-    m = @codebase.objects.find("Foo::Bar#method_without_params_or_return_type")
+    m = @objects.find("Foo::Bar#method_without_params_or_return_type")
     assert m.has_doc?
     refute m.has_parameters?
     refute m.return_mentioned?
@@ -117,7 +118,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   end
 
   def test_method_without_docstring
-    m = @codebase.objects.find("Foo::Bar#method_without_docstring")
+    m = @objects.find("Foo::Bar#method_without_docstring")
     refute m.has_doc?
     assert m.has_parameters?
     assert m.return_mentioned?
@@ -126,7 +127,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   end
 
   def test_method_without_params_or_docstring
-    m = @codebase.objects.find("Foo::Bar#method_without_params_or_docstring")
+    m = @objects.find("Foo::Bar#method_without_params_or_docstring")
     refute m.has_doc?
     refute m.has_parameters?
     assert m.return_mentioned?
@@ -135,7 +136,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   end
 
   def test_method_with_rdoc_doc
-    m = @codebase.objects.find("Foo::Bar#method_with_rdoc_doc")
+    m = @objects.find("Foo::Bar#method_with_rdoc_doc")
     assert m.has_doc?
     assert m.has_parameters?
     p = m.parameter(:param1)
@@ -146,7 +147,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   end
 
   def test_method_with_other_rdoc_doc
-    m = @codebase.objects.find("Foo::Bar#method_with_other_rdoc_doc")
+    m = @objects.find("Foo::Bar#method_with_other_rdoc_doc")
     assert m.has_doc?
     assert m.has_parameters?
     p = m.parameter(:param1)
@@ -161,7 +162,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   end
 
   def test_method_with_unstructured_doc
-    m = @codebase.objects.find("Foo::Bar#method_with_unstructured_doc")
+    m = @objects.find("Foo::Bar#method_with_unstructured_doc")
     assert m.has_doc?
     assert m.has_parameters?
     p = m.parameter(:param1)
@@ -172,7 +173,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   end
 
   def test_method_with_unstructured_doc_missing_params
-    m = @codebase.objects.find("Foo::Bar#method_with_unstructured_doc_missing_params")
+    m = @objects.find("Foo::Bar#method_with_unstructured_doc_missing_params")
     assert m.has_doc?
     assert m.has_parameters?
     p = m.parameter(:format)
@@ -183,7 +184,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   end
 
   def test_question_mark_method
-    m = @codebase.objects.find("InchTest#question_mark_method?")
+    m = @objects.find("InchTest#question_mark_method?")
     refute m.has_doc?
     refute m.has_parameters?
 
@@ -191,7 +192,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   end
 
   def test_question_mark_method_with_description
-    m = @codebase.objects.find("InchTest#question_mark_method_with_description?")
+    m = @objects.find("InchTest#question_mark_method_with_description?")
     refute m.has_doc?
     refute m.has_parameters?
 
@@ -200,7 +201,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   end
 
   def test_method_with_description_and_parameters
-    m = @codebase.objects.find("InchTest#method_with_description_and_parameters?")
+    m = @objects.find("InchTest#method_with_description_and_parameters?")
     refute m.has_doc?
     assert m.has_parameters?
 
@@ -208,59 +209,59 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   end
 
   def test_depth
-    m = @codebase.objects.find("#root_method")
+    m = @objects.find("#root_method")
     assert_equal 1, m.depth
-    m = @codebase.objects.find("InchTest#getter")
+    m = @objects.find("InchTest#getter")
     assert_equal 2, m.depth
-    m = @codebase.objects.find("Foo::Bar#method_without_doc")
+    m = @objects.find("Foo::Bar#method_without_doc")
     assert_equal 3, m.depth
   end
 
   def test_getter
-    m = @codebase.objects.find("InchTest#getter")
+    m = @objects.find("InchTest#getter")
     assert m.getter?, "should be a getter"
     refute m.setter?
   end
 
   def test_setter
-    m = @codebase.objects.find("InchTest#attr_setter=")
+    m = @objects.find("InchTest#attr_setter=")
     refute m.getter?
     assert m.setter?, "should be a setter"
   end
 
   def test_setter2
-    m = @codebase.objects.find("InchTest#manual_setter=")
+    m = @objects.find("InchTest#manual_setter=")
     refute m.getter?
     assert m.setter?, "should be a setter"
   end
 
   def test_manual_getset
-    m = @codebase.objects.find("InchTest#manual_getset")
+    m = @objects.find("InchTest#manual_getset")
     assert m.getter?, "should be a getter"
     refute m.setter?
   end
 
   def test_manual_getset2
-    m = @codebase.objects.find("InchTest#manual_getset=")
+    m = @objects.find("InchTest#manual_getset=")
     refute m.getter?
     assert m.setter?, "should be a setter"
   end
 
   def test_attr_getset
-    m = @codebase.objects.find("InchTest#attr_getset")
+    m = @objects.find("InchTest#attr_getset")
     assert m.getter?, "should be a getter"
     refute m.setter?
   end
 
   def test_attr_getset2
-    m = @codebase.objects.find("InchTest#attr_getset=")
+    m = @objects.find("InchTest#attr_getset=")
     refute m.getter?
     assert m.setter?, "should be a setter"
   end
 
   def test_splat_parameter_notation
-    m1 = @codebase.objects.find("Foo#method_with_splat_parameter")
-    m2 = @codebase.objects.find("Foo#method_with_splat_parameter2")
+    m1 = @objects.find("Foo#method_with_splat_parameter")
+    m2 = @objects.find("Foo#method_with_splat_parameter2")
     assert_equal m1.score, m2.score
   end
 end

@@ -9,7 +9,7 @@ module Inch
     # @param excluded [Array<String>]
     # @return [Codebase::Proxy]
     def self.parse(dir, paths = nil, excluded = nil)
-      Proxy.new(dir, paths, excluded)
+      Proxy.parse(dir, paths, excluded)
     end
   end
 end

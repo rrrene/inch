@@ -2,8 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../test_helper')
 
 describe ::Inch::API::Stats do
   before do
-    @dir = fixture_path(:simple)
-    @codebase = ::Inch::Codebase.parse(@dir)
+    @codebase = test_codebase(:simple)
   end
 
   it "should work" do
