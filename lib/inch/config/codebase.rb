@@ -47,8 +47,9 @@ module Inch
 
       def expand_files(files)
         files.map do |f|
-          if f =~ /[\*\{]/
-            Dir[f]
+          case f
+          when String
+            f =~ /[\*\{]/ ? Dir[f] : f
           else
             f
           end

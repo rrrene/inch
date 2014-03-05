@@ -3,3 +3,5 @@ files:
     - foo/**/*.rb
   excluded:
     - foo/vendor/**/*.rb
+    # or
+    - !ruby/regexp /vendor/
