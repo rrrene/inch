@@ -78,6 +78,33 @@ Inch will suggest that the docs could be improved:
     Only considering priority objects: ↑ ↗ →  (use `--help` for options).
 
 
+
+## Configuration
+
+By default, Inch looks into `{app,lib}/**/*.rb` for Ruby source files. You can customize this by either passing the desired files to the executable:
+
+    $ inch suggest plugins/**/*.rb
+
+or by creating a file named `.inch.yml` in your project directory:
+
+```yaml
+files:
+  # define files included in the analysis (defaults to ["{app,lib}/**/*.rb"])
+  included:
+    - plugins/**/*.rb
+  # define files excluded from the analysis (defaults to [])
+  excluded:
+    # you can use file paths
+    - plugins/vendor/sparkr/sparkr.rb
+    # or globs
+    - plugins/vendor/**/*.rb
+    # or regular expressions
+    - !ruby/regexp /vendor/
+```
+
+As you would expect, `included` sets an array of included files (or globs) and `excluded` sets an array of files, globs or regexes of files to exclude from the evaluation.
+
+
 ## Philosophy
 
 Inch was created to help people document their code, therefore it may be more important to look at **what it does not** do than at what it does.
