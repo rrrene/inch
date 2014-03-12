@@ -263,4 +263,15 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     m2 = @objects.find("Foo#method_with_splat_parameter2")
     assert_equal m1.score, m2.score
   end
+
+  def test_overloading1
+    list = []
+    list << @objects.find("Overloading#rgb")
+    list << @objects.find("Overloading#rgba")
+    list << @objects.find("Overloading#change_color")
+    list << @objects.find("Overloading#mix")
+    list.each do |m|
+      assert_equal 100, m.score.to_i
+    end
+  end
 end
