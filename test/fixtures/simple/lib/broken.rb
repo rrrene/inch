@@ -96,8 +96,7 @@ module Overloading
   #   change-color(#102030, $blue: 5) => #102005
   #   change-color(#102030, $red: 120, $blue: 5) => #782005
   #   change-color(hsl(25, 100%, 80%), $lightness: 40%, $alpha: 0.8) => hsla(25, 100%, 40%, 0.8)
-  # @overload change_color($color, [$red], [$green], [$blue], [$hue],
-  #   [$saturation], [$lightness], [$alpha])
+  # @overload change_color($color, [$red], [$green], [$blue], [$hue], [$saturation], [$lightness], [$alpha])
   # @param $color [Sass::Script::Value::Color]
   # @param $red [Sass::Script::Value::Number] The new red component for the
   #   color, within 0 and 255 inclusive
@@ -143,6 +142,17 @@ module Overloading
   # @raise [ArgumentError] if `$weight` is out of bounds or any parameter is
   #   the wrong type
   def mix(color1, color2, weight = 50)
+  end
+
+  # Retrieve all hooks of a given name, or all hooks if name.nil?
+  # @overload hooks(name)
+  #   Retrieve all hooks of a given name
+  #   @param name [Symbol]
+  #   @return [Array<#call>]
+  # @overload hooks()
+  #   Retrieve all hooks
+  #   @return [Hash<Symbol,Array<#call>>]
+  def hooks(name = nil)
   end
 end
 

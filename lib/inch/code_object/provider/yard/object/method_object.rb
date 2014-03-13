@@ -36,10 +36,15 @@ module Inch
               true
             end
 
+            def overloaded?
+            end
+
             def parameters
               @parameters ||= all_parameter_names.map do |name|
                 signature_name = in_signature(name)
-                tag = parameter_tag(name) || parameter_tag(signature_name)
+                tag = parameter_tag(name) || parameter_tag(signature_name) ||
+                        overload_tag_with_parameter(name)
+
                 MethodParameterObject.new(self, name, signature_name, tag)
               end
             end
@@ -106,8 +111,35 @@ module Inch
               (signature_parameter_names & possible_names).first
             end
 
+            def normalize_parameter_name(name)
+              # remove leading and trailing brackets
+              # (sometimes used to indicate optional parameters in overload
+              # signatures)
+              name.gsub(/[\[\]]/, '')
+            end
+
+            def overload_tags
+              object.tags(:overload)
+            end
+
+            # Returns all parameter names from all overload signatures.
+            # @todo analyse each signature on its own
+            def overloaded_parameter_names
+              overload_tags.map do |tag|
+                tag.parameters.map do |parameter|
+                  normalize_parameter_name(parameter[0])
+                end
+              end.flatten
+            end
+
+            def overload_tag_with_parameter(name)
+              overload_tags.detect do |tag|
+                tag.parameters.map(&:first).include?(name)
+              end
+            end
+
             def signature_parameter_names
-              object.parameters.map(&:first)
+              object.parameters.map(&:first) + overloaded_parameter_names
             end
 
             def parameter_tag(param_name)
