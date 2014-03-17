@@ -11,8 +11,6 @@ module Inch
         # @return [CodeObject::Proxy::Base]
         attr_accessor :object
 
-        attr_reader :min_score, :max_score
-
         class << self
           attr_reader :criteria_map
 
