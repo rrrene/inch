@@ -23,7 +23,7 @@ module Inch
       end
 
       def suggest
-        CLI::Command::Suggest.run(*@args)
+        ::Inch::CLI::Command::Suggest.run(*@args)
       end
     end
   end
