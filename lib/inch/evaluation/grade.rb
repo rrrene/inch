@@ -1,5 +1,7 @@
 module Inch
   module Evaluation
+    # Grades are human-friendly representations of scores.
+    #
     class Grade
       extend Utils::ReadWriteMethods
 
@@ -9,14 +11,20 @@ module Inch
         @symbol = symbol
       end
 
+      # Updates the grade's configuration with the given block
+      #
+      # @param block [Proc]
+      # @return [void]
       def update(&block)
         instance_eval(&block)
       end
 
+      # @return [Symbol] the grade as a symbol (e.g. +:A+)
       def to_sym
         @symbol
       end
 
+      # @return [String] the grade as a string (e.g. "A")
       def to_s
         @symbol.to_s
       end

@@ -3,11 +3,15 @@ require 'forwardable'
 module Inch
   module CodeObject
     module Proxy
+      # This is the base class for code object proxies.
+      # Code object proxies are via an attributes Hash and provide all methods
+      # necessary for the evaluation of its documentation.
+      #
       # @abstract
       class Base
         extend Forwardable
 
-        # @return [Symbol]
+        # @return [Grade]
         #   when objects are assigned to GradeLists, this grade is set to
         #   enable easier querying for objects of a certain grade
         attr_writer :grade
