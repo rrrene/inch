@@ -10,14 +10,8 @@ module Inch
         # @param code_object [YARD::Object::Base]
         # @return [CodeObject::Proxy::Base]
         def for(code_object)
-          @cache ||= {}
-          if proxy_object = @cache[cache_key(code_object)]
-            proxy_object
-          else
-            attributes = Converter.to_hash(code_object)
-            proxy_object = class_for(code_object).new(attributes)
-            @cache[cache_key(code_object)] = proxy_object
-          end
+          attributes = Converter.to_hash(code_object)
+          proxy_object = class_for(code_object).new(attributes)
         end
 
         private
@@ -29,13 +23,6 @@ module Inch
         def class_for(code_object)
           class_name = code_object.class.to_s.split('::').last
           const_get(class_name)
-        end
-
-        # Returns a cache key for the given +code_object+
-        #
-        # @return [String]
-        def cache_key(code_object)
-          code_object.fullname
         end
       end
     end
