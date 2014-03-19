@@ -6,6 +6,10 @@ module Inch
         #
         module Object
           class << self
+            def clear_cache
+              @cache = {}
+            end
+
             # Returns a Proxy object for the given +yard_object+
             #
             # @param yard_object [YARD::CodeObject]

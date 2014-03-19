@@ -37,6 +37,7 @@ module Inch
           private
 
           def parse_yard_objects(paths, excluded)
+            YARD::Object.clear_cache
             ::YARD::Registry.clear
             ::YARD.parse(paths, excluded)
           end
