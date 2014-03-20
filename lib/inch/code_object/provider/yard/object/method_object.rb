@@ -31,10 +31,6 @@ module Inch
               super && !implicit_docstring?
             end
 
-            def has_alias?
-              !object.aliases.empty?
-            end
-
             def method?
               true
             end

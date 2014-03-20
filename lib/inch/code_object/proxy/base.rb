@@ -124,7 +124,7 @@ module Inch
         end
 
         def has_alias?
-          self[:has_alias?]
+          !self[:aliases_fullnames].empty?
         end
 
         def has_children?

@@ -114,10 +114,6 @@ module Inch
               @name ||= object.name
             end
 
-            def has_alias?
-              false
-            end
-
             def has_children?
               !children.empty?
             end

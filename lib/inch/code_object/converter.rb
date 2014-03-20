@@ -25,7 +25,6 @@ module Inch
         depth
         docstring
         getter?
-        has_alias?
         has_children?
         has_code_example?
         has_doc?
