@@ -6,6 +6,22 @@ module Inch
           @a, @b = codebase1, codebase2
         end
 
+        def added_objects
+          comparisons.select(&:added?)
+        end
+
+        def improved_objects
+          comparisons.select(&:improved?)
+        end
+
+        def degraded_objects
+          comparisons.select(&:degraded?)
+        end
+
+        def removed_objects
+          comparisons.select(&:removed?)
+        end
+
         def comparisons
           __objects_names.map do |fullname|
             object1 = @a.objects.find(fullname)

@@ -2,9 +2,6 @@ module Inch
   module CLI
     module Command
       module Options
-        # Abstract base class for CLI options concerning lists of objects
-        #
-        # @abstract Subclass and override #set_options
         class BaseList < Base
           include API::Options::Filter::DefaultAttributeValues
 

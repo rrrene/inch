@@ -2,10 +2,12 @@ module Inch
   module API
     module Compare
       class CodeObjects
+        attr_reader :before, :after
+        
         def initialize(object1, object2)
-          @a, @b = object1, object2
-          if @a.object_id == @b.object_id
-            raise "@a and @b are identical ruby objects. this is bad."
+          @before, @after = object1, object2
+          if @before.object_id == @after.object_id
+            raise "@before and @after are identical ruby objects. this is bad."
           end
         end
 
@@ -14,36 +16,40 @@ module Inch
         end
 
         def fullname
-          (@a || @b).fullname
+          (@before || @after).fullname
         end
 
         def grade
-          @b.grade
+          @after.grade
         end
 
 
         def added?
-          @a.nil? && !@b.nil?
+          @before.nil? && !@after.nil?
+        end
+
+        def degraded?
+          changed? && @before.score.to_i > @after.score.to_i
         end
 
         def improved?
-          changed? && @a.score.to_i < @b.score.to_i
+          changed? && @before.score.to_i < @after.score.to_i
         end
 
         def present?
-          @a && @b
+          @before && @after
         end
 
         def removed?
-          !@a.nil? && @b.nil?
+          !@before.nil? && @after.nil?
         end
 
         def unchanged?
-          present? && @a.score.to_i == @b.score.to_i
+          present? && @before.score.to_i == @after.score.to_i
         end
 
         def scores
-          [@a.score.to_i, @b.score.to_i]
+          [@before.score.to_i, @after.score.to_i]
         end
       end
     end
