@@ -2,6 +2,7 @@
 *.rbc
 .bundle
 .config
+.inch
 .yardoc
 Gemfile.lock
 InstalledFiles
