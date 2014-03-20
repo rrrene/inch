@@ -264,6 +264,12 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     assert_equal m1.score, m2.score
   end
 
+  def test_alias_method
+    m1 = @objects.find("InchTest#_aliased_method")
+    m2 = @objects.find("InchTest#_alias_method")
+    assert_equal m1.score, m2.score
+  end
+
   def test_overloading1
     list = []
     list << @objects.find("Overloading#rgb")

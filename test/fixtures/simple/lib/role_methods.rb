@@ -95,7 +95,6 @@ module InchTest
   def public_method
   end
 
-
   def protected_method
   end
   protected :protected_method
@@ -119,4 +118,10 @@ module InchTest
   # Private: Normalize the filename.
   def private_method_with_tomdoc
   end
+
+  # @return [Boolean] something funny
+  def _aliased_method
+  end
+  alias _alias_method _aliased_method
+
 end
