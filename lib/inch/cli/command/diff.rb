@@ -17,12 +17,26 @@ module Inch
         end
 
         def run(*args)
-          head_rev = git(work_dir, "rev-parse HEAD").strip
-          @codebase_old = codebase_for(head_rev)
-          @codebase_new = Codebase.parse(work_dir)
-          @compare = API::Compare::Codebases.new(@codebase_old, @codebase_new)
+          @options.parse(args)
+          @options.verify
+
+          parse_codebases
 
           Output::Console.new(@options, @compare)
+        end
+
+        private
+
+        def parse_codebases
+          before_rev = revisions[0]
+          after_rev  = revisions[1]
+          @codebase_old = codebase_for(before_rev)
+          @codebase_new = if after_rev.nil?
+              Codebase.parse(work_dir)
+            else
+              codebase_for(after_rev)
+            end
+          @compare = API::Compare::Codebases.new(@codebase_old, @codebase_new)
         end
 
         def codebase_for(revision)
@@ -68,6 +82,14 @@ module Inch
           out = `git #{command}`
           Dir.chdir old_pwd
           out
+        end
+
+        def revisions
+          @revisions ||= @options.revisions.map do |rev|
+            if rev
+              git(work_dir, "rev-parse #{rev}").strip
+            end
+          end
         end
 
         def work_dir
