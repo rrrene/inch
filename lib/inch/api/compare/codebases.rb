@@ -1,0 +1,33 @@
+module Inch
+  module API
+    module Compare
+      class Codebases
+        def initialize(codebase1, codebase2)
+          @a, @b = codebase1, codebase2
+        end
+
+        def comparisons
+          __objects_names.map do |fullname|
+            object1 = @a.objects.find(fullname)
+            object2 = @b.objects.find(fullname)
+            Compare::CodeObjects.new(object1, object2)
+          end
+        end
+
+        def find(fullname)
+          comparisons.detect do |comparison|
+            comparison.fullname == fullname
+          end
+        end
+
+        private
+
+        def __objects_names
+          fullnames = @a.objects.all.map(&:fullname) +
+                    @b.objects.all.map(&:fullname)
+          fullnames.uniq
+        end
+      end
+    end
+  end
+end

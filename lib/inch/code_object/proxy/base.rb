@@ -24,7 +24,7 @@ module Inch
         # convenient shortcuts to evalution object
         def_delegators :evaluation, :score, :roles, :priority
 
-        def initialize(attributes)
+        def initialize(attributes = {})
           @attributes = attributes
         end
 
@@ -212,6 +212,16 @@ module Inch
 
         def visibility
           self[:visibility]
+        end
+
+        # Used to persist the code object
+        def marshal_dump
+          @attributes
+        end
+
+        # Used to load a persisted code object
+        def marshal_load(attributes)
+          @attributes = attributes
         end
 
         def inspect
