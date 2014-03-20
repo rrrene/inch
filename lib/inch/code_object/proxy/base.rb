@@ -65,7 +65,7 @@ module Inch
         end
 
         def core?
-          self[:api_tag?]
+          self[:core?]
         end
 
         # The depth of the following is 4:
