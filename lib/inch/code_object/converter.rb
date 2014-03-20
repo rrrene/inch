@@ -16,6 +16,8 @@ module Inch
         parent_fullname
 
         api_tag?
+        aliased_object_fullname
+        aliases_fullnames
         attributes
         bang_name?
         constant?

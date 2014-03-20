@@ -101,6 +101,7 @@ module Inch
             Role::Object::TaggedAsAPI => nil,
             Role::Object::TaggedAsInternalAPI => nil,
             Role::Object::TaggedAsPrivate => nil,
+            Role::Object::Alias => object.alias? ? object.aliased_object.score : nil,
           }
         end
 

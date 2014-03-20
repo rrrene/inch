@@ -5,13 +5,16 @@ module Inch
         module Object
           # Proxy class for methods
           class MethodObject < Base
-
-            def constructor?
-              name == :initialize
+            def aliases_fullnames
+              object.aliases.map(&:path)
             end
 
             def bang_name?
               name =~ /\!$/
+            end
+
+            def constructor?
+              name == :initialize
             end
 
             def getter?

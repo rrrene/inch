@@ -30,6 +30,16 @@ module Inch
               @__private_tag = __private_tag
             end
 
+            # Returns the fullname of the object that the current object
+            # is an alias for
+            attr_accessor :aliased_object_fullname
+
+            # Returns the fullnames of the objects that are aliases
+            # for the current object
+            def aliases_fullnames
+              []
+            end
+
             def api_tag?
               !api_tag.nil?
             end

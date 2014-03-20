@@ -3,6 +3,18 @@ module Inch
     module Role
       # Roles assigned to all objects
       module Object
+        # Role assigned to objects that are aliases.
+        #
+        class Alias < Base
+          applicable_if :alias?
+
+          def priority
+            # not sure about this yet,
+            # but aliases should not show up high in the reports
+            -7
+          end
+        end
+
         # Role assigned to objects with a describing comment (docstring)
         class WithDoc < Base
           applicable_if :has_doc?
