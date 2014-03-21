@@ -34,7 +34,7 @@ module Inch
             ui.trace rev_hint
             ui.trace
             ui.trace "Format: grade (before -> after), priority, and name. " \
-                      "Try `--help' for more information.".dark
+                      "Try `--help' for options.".dark
           end
 
           private
