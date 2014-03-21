@@ -20,7 +20,8 @@ module Inch
               "",
               "Example: " + "$ inch diff HEAD^..HEAD".cyan,
               "",
-              description_hint_grades
+              description_hint_grades,
+              description_hint_arrows
             ]
           end
 

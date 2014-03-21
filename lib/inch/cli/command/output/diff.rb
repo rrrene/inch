@@ -30,9 +30,11 @@ module Inch
                 puts_degraded compare.before, compare.after
               end
             end
-
             ui.trace
-            ui.trace "#{rev_hint} Try `--help' for more information.".dark
+            ui.trace rev_hint
+            ui.trace
+            ui.trace "Format: grade (before -> after), priority, and name. " \
+                      "Try `--help' for more information.".dark
           end
 
           private
@@ -40,15 +42,14 @@ module Inch
           def puts_added(o)
             grade = colored_grade(o)
             priority = o.priority
-            change = "  +  ".dark + grade
+            change = "  +  ".dark + grade + "  " + priority_arrow(o.priority)
             ui.sub(" #{change}  #{o.fullname}")
           end
 
           def puts_improved(before, o)
             before_grade = colored_grade(before)
             grade = colored_grade(o)
-            priority = o.priority
-            change = before_grade + " -> ".dark + grade
+            change = before_grade + " -> ".dark + grade + "  " + priority_arrow(o.priority)
             ui.sub(" #{change}  #{o.fullname}")
           end
           alias :puts_degraded :puts_improved
@@ -65,14 +66,14 @@ module Inch
 
           def rev_hint
             if @options.since_last_commit?
-              "These are the changes since your last commit."
+              "Showing changes since your last commit."
             elsif @options.since_last_push?
-              "These are the changes since you last pushed."
+              "Showing changes since you last pushed."
             else
               revisions = @options.revisions
               before_rev = revisions[0]
               after_rev = revisions[1] || "now"
-              "These are the changes between #{before_rev} and #{after_rev}."
+              "Showing changes between #{before_rev} and #{after_rev}."
             end
           end
         end
