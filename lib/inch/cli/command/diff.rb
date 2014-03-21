@@ -22,7 +22,7 @@ module Inch
 
           parse_codebases
 
-          Output::Console.new(@options, @compare)
+          Output::Diff.new(@options, @compare)
         end
 
         private

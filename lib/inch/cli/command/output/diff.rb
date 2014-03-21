@@ -2,7 +2,7 @@ module Inch
   module CLI
     module Command
       module Output
-        class Console < Base
+        class Diff < Base
           extend Forwardable
 
           attr_reader :comparer
