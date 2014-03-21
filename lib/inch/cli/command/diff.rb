@@ -20,61 +20,13 @@ module Inch
           @options.parse(args)
           @options.verify
 
-          parse_codebases
+          before_rev, after_rev = revisions[0], revisions[1]
+          diff = API::Diff.new(work_dir, before_rev, after_rev)
 
-          Output::Diff.new(@options, @compare)
+          Output::Diff.new(@options, diff.comparer)
         end
 
         private
-
-        def parse_codebases
-          before_rev = revisions[0]
-          after_rev  = revisions[1]
-          @codebase_old = codebase_for(before_rev)
-          @codebase_new = if after_rev.nil?
-              Codebase.parse(work_dir)
-            else
-              codebase_for(after_rev)
-            end
-          @compare = API::Compare::Codebases.new(@codebase_old, @codebase_new)
-        end
-
-        def codebase_for(revision)
-          if cached = codebase_from_cache(revision)
-            cached
-          else
-            codebase = codebase_from_copy(work_dir, revision)
-            filename = Codebase::Serializer.filename(revision)
-            Codebase::Serializer.save(codebase, filename)
-            codebase
-          end
-        end
-
-        def codebase_from_cache(revision)
-          filename = Codebase::Serializer.filename(revision)
-          if File.exist?(filename)
-            Codebase::Serializer.load(filename)
-          end
-        end
-
-        def codebase_from_copy(original_dir, revision)
-          codebase = nil
-          Dir.mktmpdir do |tmp_dir|
-            new_dir = copy_work_dir(original_dir, tmp_dir)
-            git_reset(new_dir, revision)
-            codebase = Codebase.parse(new_dir)
-          end
-          codebase
-        end
-
-        def copy_work_dir(original_dir, tmp_dir)
-          git tmp_dir, "clone #{original_dir}"
-          File.join(tmp_dir, File.basename(original_dir))
-        end
-
-        def git_reset(dir, revision = nil)
-          git dir, "reset --hard #{revision}"
-        end
 
         def git(dir, command)
           old_pwd = Dir.pwd
@@ -84,6 +36,7 @@ module Inch
           out
         end
 
+        # @return [Array<String>] the revisions passed in the command_line
         def revisions
           @revisions ||= @options.revisions.map do |rev|
             if rev
