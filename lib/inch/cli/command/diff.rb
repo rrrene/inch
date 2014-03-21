@@ -13,7 +13,7 @@ module Inch
         end
 
         def usage
-          'Usage: inch diff [options]'
+          'Usage: inch diff [REV..[REV]] [options]'
         end
 
         def run(*args)

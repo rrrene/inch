@@ -10,6 +10,7 @@ module Inch
           # @param options [Options::Diff]
           # @param comparer [API::Compare::Codebases]
           def initialize(options, comparer)
+            @options = options
             @comparer = comparer
 
             ui.trace
@@ -29,6 +30,9 @@ module Inch
                 puts_degraded compare.before, compare.after
               end
             end
+
+            ui.trace
+            ui.trace "#{rev_hint} Try `--help' for more information.".dark
           end
 
           private
@@ -57,6 +61,19 @@ module Inch
           def grade_list(grade_symbol)
             @grade_lists ||= Evaluation.new_grade_lists
             @grade_lists.detect { |r| r.grade.to_sym == grade_symbol }
+          end
+
+          def rev_hint
+            if @options.since_last_commit?
+              "These are the changes since your last commit."
+            elsif @options.since_last_push?
+              "These are the changes since you last pushed."
+            else
+              revisions = @options.revisions
+              before_rev = revisions[0]
+              after_rev = revisions[1] || "now"
+              "These are the changes between #{before_rev} and #{after_rev}."
+            end
           end
         end
       end

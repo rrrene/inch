@@ -1,8 +1,12 @@
+require 'inch/utils/shell_helper'
+
 module Inch
   module API
     # Returns a Compare::Codebases object for two revisions of the same
     # codebase
     class Diff
+      include Utils::ShellHelper
+
       attr_reader :codebase_old
       attr_reader :codebase_new
       attr_reader :comparer
@@ -60,14 +64,6 @@ module Inch
 
       def git_reset(dir, revision = nil)
         git dir, "reset --hard #{revision}"
-      end
-
-      def git(dir, command)
-        old_pwd = Dir.pwd
-        Dir.chdir dir
-        out = `git #{command}`
-        Dir.chdir old_pwd
-        out
       end
 
     end
