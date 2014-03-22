@@ -13,20 +13,35 @@ module Inch
             @options = options
             @comparer = comparer
 
-            ui.trace
-            ui.header("Added or improved:", :green)
-            @comparer.added_objects.each do |compare|
-              object = compare.after
-              puts_added object
+            added    = @comparer.added_objects
+            improved = @comparer.improved_objects
+            degraded = @comparer.degraded_objects
+
+            if added.empty? && improved.empty? && degraded.empty?
+              ui.trace "No changes."
+            else
+              show(added, improved, degraded)
             end
-            @comparer.improved_objects.each do |compare|
-              puts_improved compare.before, compare.after
+          end
+
+          private
+
+          def show(added, improved, degraded)
+            if !(added.empty? && improved.empty?)
+              ui.trace
+              ui.header("Added or improved:", :green)
+              added.each do |compare|
+                puts_added compare.after
+              end
+              improved.each do |compare|
+                puts_improved compare.before, compare.after
+              end
             end
 
-            if !@comparer.degraded_objects.empty?
+            if !degraded.empty?
               ui.trace
               ui.header("Degraded:", :red)
-              @comparer.degraded_objects.each do |compare|
+              degraded.each do |compare|
                 puts_degraded compare.before, compare.after
               end
             end
@@ -36,8 +51,6 @@ module Inch
             ui.trace "Format: grade (before -> after), priority, and name. " \
                       "Try `--help' for options.".dark
           end
-
-          private
 
           def puts_added(o)
             grade = colored_grade(o)
