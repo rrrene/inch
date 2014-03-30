@@ -200,6 +200,10 @@ module Inch
           self[:source]
         end
 
+        def type
+          self.class.to_s.gsub(/Object$/, '')
+        end
+
         # @return [Boolean] +true+ if the object has no documentation at all
         def undocumented?
           self[:undocumented?]
