@@ -74,7 +74,7 @@ module Inch
           end
 
           def result_numbers(object, color)
-            score = object.score.to_i.to_s
+            score = object.score.to_s
             score = score.rjust(3).color(color)
             priority = object.priority
             "#{score}  #{priority}  #{object.fullname}"

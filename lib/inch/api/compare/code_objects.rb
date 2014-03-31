@@ -29,11 +29,11 @@ module Inch
         end
 
         def degraded?
-          changed? && @before.score.to_i > @after.score.to_i
+          changed? && @before.score > @after.score
         end
 
         def improved?
-          changed? && @before.score.to_i < @after.score.to_i
+          changed? && @before.score < @after.score
         end
 
         def present?
@@ -45,11 +45,11 @@ module Inch
         end
 
         def unchanged?
-          present? && @before.score.to_i == @after.score.to_i
+          present? && @before.score == @after.score
         end
 
         def scores
-          [@before.score.to_i, @after.score.to_i]
+          [@before.score, @after.score]
         end
       end
     end

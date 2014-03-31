@@ -109,8 +109,8 @@ module Inch
           def __scores
             hash = {}
             @objects.sort_by(&:score).each do |o|
-              hash[o.score.to_i] ||= 0
-              hash[o.score.to_i] += 1
+              hash[o.score] ||= 0
+              hash[o.score] += 1
             end
             hash
           end

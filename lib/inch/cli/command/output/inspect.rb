@@ -40,7 +40,7 @@ module Inch
             min = o.evaluation.min_score
             max = o.evaluation.max_score
             echo "Score (min: #{min}, max: #{max})".ljust(40) +
-                  "#{o.score.to_i}".rjust(5) + "#{o.priority.to_i}".rjust(4)
+                  "#{o.score}".rjust(5) + "#{o.priority.to_i}".rjust(4)
             echo
           end
 
@@ -97,9 +97,9 @@ module Inch
 
           def colored_role_score(role)
             if role.potential_score
-              "(#{role.potential_score.to_i})".rjust(5).yellow.dark
+              "(#{role.potential_score})".rjust(5).yellow.dark
             else
-              value = role.score.to_i
+              value = role.score
               colored_score value, value.abs.to_s.rjust(4)
             end
           end

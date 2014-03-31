@@ -56,7 +56,7 @@ module Inch
           @__min_score = __min_score
         end
 
-        # @return [Float] the final score for +object+
+        # @return [Fixnum] the final score for +object+
         def score
           @__score ||= __score
         end
@@ -144,7 +144,7 @@ module Inch
 
         # @return [Float]
         def __score
-          value = @roles.inject(0) { |sum,r| sum + r.score.to_f }
+          value = @roles.inject(0) { |sum,r| sum + r.score.to_f }.to_i
           if value < min_score
             min_score
           elsif value > max_score
