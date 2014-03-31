@@ -6,6 +6,8 @@ module Inch
   module CLI
     module Command
       class Diff < Base
+        include Utils::ShellHelper
+
         register_command_as :diff
 
         def description
@@ -27,14 +29,6 @@ module Inch
         end
 
         private
-
-        def git(dir, command)
-          old_pwd = Dir.pwd
-          Dir.chdir dir
-          out = `git #{command}`
-          Dir.chdir old_pwd
-          out
-        end
 
         # @return [Array<String>] the revisions passed in the command_line
         def revisions

@@ -28,10 +28,9 @@ module Inch
 
       def update_via_yaml(dir)
         if yaml = self.class.yaml(dir)
-          old_dir = Dir.pwd
-          Dir.chdir dir
-          update_files yaml["files"]
-          Dir.chdir old_dir
+          Dir.chdir(dir) do
+            update_files yaml["files"]
+          end
         end
       end
 

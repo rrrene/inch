@@ -2,11 +2,9 @@ module Inch
   module Utils
     module ShellHelper
       def git(dir, command)
-        old_pwd = Dir.pwd
-        Dir.chdir dir
-        out = sh("git #{command}")
-        Dir.chdir old_pwd
-        out
+        Dir.chdir(dir) do
+          out = sh("git #{command}")
+        end
       end
 
       def sh(command)

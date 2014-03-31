@@ -20,11 +20,10 @@ module Inch
           # @param config [Inch::Config::Codebase] configuration for codebase
           # @return [void]
           def parse(dir, config)
-            old_dir = Dir.pwd
-            Dir.chdir dir
-            parse_yard_objects(config.included_files, config.excluded_files)
-            inject_base_dir(dir)
-            Dir.chdir old_dir
+            Dir.chdir(dir) do
+              parse_yard_objects(config.included_files, config.excluded_files)
+              inject_base_dir(dir)
+            end
           end
 
           # @return [Array<YARD::Object::Base>]
