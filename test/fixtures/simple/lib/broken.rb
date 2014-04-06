@@ -49,6 +49,7 @@ module Overloading
   # @raise [ArgumentError] if any parameter is the wrong type or out of bounds
   def rgb(red, green, blue)
   end
+
   # Creates a {Sass::Script::Value::Color Color} from red, green, blue, and
   # alpha values.
   # @see #rgb
@@ -153,6 +154,21 @@ module Overloading
   #   Retrieve all hooks
   #   @return [Hash<Symbol,Array<#call>>]
   def hooks(name = nil)
+  end
+
+  # @overload identifiers(*identifiers)
+  #
+  #   Sets the identifiers for this class.
+  #
+  #   @param [Array<Symbol>] identifiers A list of identifiers to assign to
+  #     this class.
+  #
+  #   @return [void]
+  #
+  # @overload identifiers
+  #
+  #   @return [Array<Symbol>] The identifiers for this class
+  def identifiers(*identifiers)
   end
 end
 

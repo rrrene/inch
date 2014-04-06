@@ -28,22 +28,19 @@ module Inch
             end
 
             def has_doc?
-              super && !implicit_docstring?
+              super && !implicit_docstring? || overload_tags.any? { |t| !t.docstring.empty? }
             end
 
             def method?
               true
             end
 
-            def overloaded?
-            end
-
             def parameters
               @parameters ||= all_parameter_names.map do |name|
                 signature_name = in_signature(name)
                 tag = parameter_tag(name) || parameter_tag(signature_name) ||
-                        overload_tag_with_parameter(name)
-
+                        param_tag_in_overload_tags(name) ||
+                        param_tag_in_overload_tags(signature_name)
                 MethodParameterObject.new(self, name, signature_name, tag)
               end
             end
@@ -67,11 +64,12 @@ module Inch
             end
 
             def return_mentioned?
-              !!return_tag || docstring.mentions_return?
+              !return_tags.empty? || docstring.mentions_return?
             end
 
             def return_described?
-              (return_tag && !return_tag.text.empty?) || docstring.describes_return?
+              return_tags.any? { |t| !t.text.empty? } ||
+                docstring.describes_return?
             end
 
             def return_typed?
@@ -131,9 +129,15 @@ module Inch
               end.flatten
             end
 
-            def overload_tag_with_parameter(name)
-              overload_tags.detect do |tag|
-                tag.parameters.map(&:first).include?(name)
+            def param_tag_in_overload_tags(name)
+              overload_tags.map do |overload_tag|
+                find_param_tag(overload_tag, name)
+              end.first
+            end
+
+            def find_param_tag(overload_tag, name)
+              overload_tag.tags(:param).detect do |param_tag|
+                param_tag.name == name
               end
             end
 
@@ -151,8 +155,14 @@ module Inch
               object.tags(:param)
             end
 
-            def return_tag
-              object.tags(:return).first
+            def return_tags
+              object.tags(:return) + overloaded_return_tags
+            end
+
+            def overloaded_return_tags
+              overload_tags.map do |overload_tag|
+                overload_tag.tag(:return)
+              end.compact
             end
           end
         end

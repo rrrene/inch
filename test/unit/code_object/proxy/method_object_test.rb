@@ -277,6 +277,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     list << @objects.find("Overloading#change_color")
     list << @objects.find("Overloading#mix")
     list << @objects.find("Overloading#hooks")
+    list << @objects.find("Overloading#identifiers")
     list.each do |m|
       assert_equal 100, m.score, "#{m.fullname} did not get 100"
     end
