@@ -2,9 +2,9 @@
 
 ## 0.4.0
 
-* new diff command
-* better support for YARD's @overload tag
-* several bugfixes (as always)
+- new diff command
+- better support for YARD's @overload tag
+- several bugfixes (as always)
 
 ## 0.3.3
 
