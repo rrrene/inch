@@ -123,7 +123,7 @@ module Inch
             # @todo analyse each signature on its own
             def overloaded_parameter_names
               overload_tags.map do |tag|
-                tag.parameters.map do |parameter|
+                Array(tag.parameters).map do |parameter|
                   normalize_parameter_name(parameter[0])
                 end
               end.flatten

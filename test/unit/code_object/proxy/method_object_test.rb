@@ -282,4 +282,9 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
       assert_equal 100, m.score, "#{m.fullname} did not get 100"
     end
   end
+
+  def test_overloading_with_bad_doc
+    m = @objects.find("Overloading#missing_param_names")
+    refute m.has_doc? # it may be mentioned in the docs, but it's malformed.
+  end
 end
