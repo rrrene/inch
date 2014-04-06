@@ -170,6 +170,15 @@ module Overloading
   #   @return [Array<Symbol>] The identifiers for this class
   def identifiers(*identifiers)
   end
+
+  # @overload missing_param_names
+  #
+  #
+  #   @param [Array<Symbol>] This param is not given in the overload above.
+  #
+  #   @return [void]
+  def missing_param_names(*identifiers)
+  end
 end
 
 module YardError
