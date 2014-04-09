@@ -33,6 +33,7 @@ module Inch
         method?
         nodoc?
         namespace?
+        original_docstring
         overridden?
         overridden_method_fullname
         parameters

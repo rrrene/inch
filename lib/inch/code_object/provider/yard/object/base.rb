@@ -175,6 +175,11 @@ module Inch
               false
             end
 
+            # @return [String] the documentation comments
+            def original_docstring
+              object.docstring.all.to_s
+            end
+
             def parameters
               []
             end
@@ -229,11 +234,6 @@ module Inch
 
             def multi_code_examples?(text)
               text.scan(/\b(#{Regexp.escape(name)})[^_0-9\!\?]/m).size > 1
-            end
-
-            # @return [String] the documentation comments
-            def original_docstring
-              object.docstring.all.to_s
             end
 
             # @return [Boolean]
