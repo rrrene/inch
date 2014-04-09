@@ -7,6 +7,7 @@ module Inch
 
           COLOR = :color198     # magenta-ish
           BG_COLOR = :color207  # magenta-ish
+          COMMENT_COLOR = :dark
           LJUST = 20
 
           def initialize(options, objects)
@@ -47,7 +48,7 @@ module Inch
           def print_code_info(o)
             if o.method?
               CommentAndAbbrevSource.new(o).lines.each do |line|
-                echo line.gsub(/\n$/m, '').dark
+                echo line.gsub(/\n$/m, '').color(COMMENT_COLOR)
               end
               echo separator
             end
@@ -149,34 +150,9 @@ module Inch
             end
 
             def comments
-              @comments ||= code_object.files.map do |declaration|
-                get_lines_up_while(declaration.filename, declaration.line_no - 1) do |line|
-                  line =~ /^\s*#/
-                end.flatten.join('')
+              code_object.original_docstring.lines.map do |line|
+                "# #{line}"
               end
-            end
-
-            def get_lines_up_while(filename, line_no, &block)
-              lines = []
-              line = get_line_no(filename, line_no)
-              if yield(line) && line_no > 0
-                lines << line.gsub(/^(\s+)/, '')
-                lines << get_lines_up_while(filename, line_no - 1, &block)
-              end
-              lines.reverse
-            end
-
-            # Returns a +line_number+ from a file
-            #
-            # @param filename [String]
-            # @param line_number [Fixnum]
-            # @return [String]
-            def get_line_no(filename, line_number)
-              f = File.open(filename)
-              line_number.times{f.gets}
-              result = $_
-              f.close
-              result
             end
           end
         end

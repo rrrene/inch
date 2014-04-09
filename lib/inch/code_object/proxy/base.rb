@@ -161,6 +161,10 @@ module Inch
           self[:namespace?]
         end
 
+        def original_docstring
+          self[:original_docstring]
+        end
+
         # @return [Boolean] +true+ if the object was tagged not to be documented
         def nodoc?
           self[:nodoc?]
