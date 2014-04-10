@@ -1,6 +1,12 @@
 # Changelog
 
 
+## 0.4.2
+
+- The 'inspect' command now shows the original docstring provided by the
+  YARD object provider instead of parsing the string itself
+
+
 ## 0.4.1
 
 - Bugfix regarding @overload tags (thanks @cbeer)
