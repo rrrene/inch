@@ -7,13 +7,14 @@ module Inch
     class << self
       # Returns the columns of the terminal window
       # (defaults to 80)
+      # @param default [Fixnum] default value for columns
       # @return [Fixnum]
-      def get_term_columns
+      def get_term_columns(default = 80)
         str = `stty size`
         rows_cols = str.split(' ').map(&:to_i)
-        rows_cols[1]
+        rows_cols[1] || default
       rescue
-        80
+        default
       end
     end
     COLUMNS = get_term_columns
