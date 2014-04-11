@@ -12,7 +12,7 @@ module Inch
       def get_term_columns(default = 80)
         str = `stty size`
         rows_cols = str.split(' ').map(&:to_i)
-        rows_cols[1] || default
+        rows_cols[1] || default
       rescue
         default
       end
