@@ -20,7 +20,7 @@ module Inch
             CONSIDERED_YARD_TAGS = %w(api example param private return since)
 
             # convenient shortcuts to (YARD) code object
-            def_delegators :object, :type, :namespace, :source, :source_type, :signature, :group, :dynamic, :visibility
+            def_delegators :object, :type, :namespace, :source, :source_type, :group, :dynamic, :visibility
 
             # @param object [YARD::CodeObjects::Base] the actual (YARD) code object
             def initialize(object)
@@ -227,7 +227,7 @@ module Inch
             end
 
             def inspect
-              "#<#{self.class.to_s}: #{path}>"
+              "#<#{self.class.to_s}: #{fullname}>"
             end
 
             protected
