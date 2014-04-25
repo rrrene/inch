@@ -278,6 +278,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     list << @objects.find("Overloading#mix")
     list << @objects.find("Overloading#hooks")
     list << @objects.find("Overloading#identifiers")
+    list << @objects.find("Overloading#params_only_in_overloads")
     list.each do |m|
       assert_equal 100, m.score, "#{m.fullname} did not get 100"
     end
@@ -286,5 +287,20 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   def test_overloading_with_bad_doc
     m = @objects.find("Overloading#missing_param_names")
     refute m.has_doc? # it may be mentioned in the docs, but it's malformed.
+  end
+
+  def test_overloading_with_bad_doc
+    m = @objects.find("Overloading#params_only_in_overloads")
+    roles = m.roles.map(&:class)
+    bad_roles = [
+      Inch::Evaluation::Role::Object::WithoutCodeExample,
+      Inch::Evaluation::Role::Method::WithoutReturnType,
+      Inch::Evaluation::Role::Method::WithoutReturnDescription,
+      Inch::Evaluation::Role::MethodParameter::WithoutMention,
+      Inch::Evaluation::Role::MethodParameter::WithoutType,
+    ]
+    bad_roles.each do |role|
+      refute roles.include?(role), "Should not assign #{role}"
+    end
   end
 end
