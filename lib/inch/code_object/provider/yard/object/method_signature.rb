@@ -17,7 +17,7 @@ module Inch
               @parameters ||= all_parameter_names.map do |name|
                 signature_name = in_signature(name)
                 tag = parameter_tag(name) || parameter_tag(signature_name)
-                MethodParameterObject.new(self, name, signature_name, tag)
+                MethodParameterObject.new(method, name, signature_name, tag)
               end
             end
 
@@ -38,7 +38,18 @@ module Inch
             #private
 
             def all_parameter_names
-              parameter_tags.map(&:name)
+              all_names = all_signature_parameter_names + parameter_tags.map(&:name)
+              all_names.map do |name|
+                normalize_parameter_name(name) if name
+              end.compact.uniq
+            end
+
+            def all_signature_parameter_names
+              if tag?
+                tag_or_method.parameters.map(&:first)
+              else
+                yard_object.parameters.map(&:first)
+              end
             end
 
             def docstring
@@ -56,7 +67,17 @@ module Inch
             # @return [String]
             def in_signature(name)
               possible_names = [name, "*#{name}", "&#{name}"]
-              (all_parameter_names & possible_names).first
+              (all_signature_parameter_names & possible_names).first
+            end
+
+            # Removes block, splat symbols, dollar sign,
+            # leading and trailing brackets from a given +name+
+            # (sometimes used to indicate optional parameters in overload
+            # signatures).
+            # @param name [String] parameter name
+            # @return [String]
+            def normalize_parameter_name(name)
+              name.gsub(/[\&\*\$\[\]]/, '')
             end
 
             def parameter_tag(param_name)

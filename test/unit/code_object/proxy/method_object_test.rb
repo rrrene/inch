@@ -259,8 +259,12 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
   end
 
   def test_splat_parameter_notation
+    # it should assign the same score whether the parameter is
+    # described with or without the splat (*) operator
     m1 = @objects.find("Foo#method_with_splat_parameter")
     m2 = @objects.find("Foo#method_with_splat_parameter2")
+    assert_equal 1, m1.parameters.size
+    assert_equal 1, m2.parameters.size
     assert_equal m1.score, m2.score
   end
 
@@ -294,8 +298,6 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     roles = m.roles.map(&:class)
     bad_roles = [
       Inch::Evaluation::Role::Object::WithoutCodeExample,
-      Inch::Evaluation::Role::Method::WithoutReturnType,
-      Inch::Evaluation::Role::Method::WithoutReturnDescription,
       Inch::Evaluation::Role::MethodParameter::WithoutMention,
       Inch::Evaluation::Role::MethodParameter::WithoutType,
     ]

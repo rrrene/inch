@@ -9,7 +9,12 @@ describe ::Inch::CodeObject::Provider::YARD::Parser do
 
   it "should work for Overloading#params_only_in_overloads" do
     m = @objects.detect { |o| o.fullname == 'Overloading#params_only_in_overloads' }
+
+    assert m.has_code_example?
+
     refute m.signatures.empty?
+    assert_equal 3, m.signatures.size
+    assert_equal 2, m.parameters.size # at this moment, this counts all parameters in all overloaded signatures
 
     signature = m.signatures[0]
     assert_equal "params_only_in_overloads(user_options = {})", signature.signature
@@ -31,4 +36,17 @@ describe ::Inch::CodeObject::Provider::YARD::Parser do
     assert signature.has_code_example?
     refute signature.has_doc?
   end
+
+  it "should work" do
+    m = @objects.detect { |o| o.fullname == 'Foo::Bar#method_with_unstructured_doc' }
+    assert_equal 1, m.signatures.size
+    assert_equal 1, m.parameters.size
+  end
+
+  it "should work 2" do
+    m = @objects.detect { |o| o.fullname == 'Foo#method_with_splat_parameter' }
+    assert_equal 1, m.signatures.size
+    assert_equal 1, m.parameters.size
+  end
+
 end

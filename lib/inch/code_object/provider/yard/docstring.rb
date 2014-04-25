@@ -28,12 +28,14 @@ module Inch
           end
 
           def describes_parameter?(name)
+            return false if name.nil?
             describe_parameter_regexps(name).any? do |pattern|
               @text.index(pattern)
             end
           end
 
           def mentions_parameter?(name)
+            return false if name.nil?
             mention_parameter_regexps(name).any? do |pattern|
               @text.index(pattern)
             end
