@@ -29,8 +29,12 @@ module Inch
               end
             end
 
+            def has_code_example?
+              super || signatures.any? { |s| s.has_code_example? }
+            end
+
             def has_doc?
-              super && !implicit_docstring? || signatures.any? { |t| t.has_doc? }
+              super && !implicit_docstring? || signatures.any? { |s| s.has_doc? }
             end
 
             def method?
@@ -77,8 +81,14 @@ module Inch
             end
 
             def signatures
-              [self, *overload_tags].map do |tag_or_self|
-                MethodSignature.new(self, tag_or_self)
+              base = MethodSignature.new(self, nil)
+              overloaded = overload_tags.map do |tag|
+                MethodSignature.new(self, tag)
+              end
+              if overloaded.any? { |s| s.same?(base) }
+                overloaded
+              else
+                [base] + overloaded
               end
             end
 

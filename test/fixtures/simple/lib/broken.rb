@@ -180,13 +180,13 @@ module Overloading
   def missing_param_names(*identifiers)
   end
 
-  # Creates a Hello OpenFlow message.
+  # Tests that the default signature can be overloaded by tags
   #
-  # @overload params_only_in_overloads()
+  # @overload params_also_in_overloads()
   #   @example
   #     Hello.new
   #
-  # @overload params_only_in_overloads(transaction_id)
+  # @overload params_also_in_overloads(transaction_id)
   #   @example
   #     Hello.new(123)
   #   @param [Number] transaction_id
@@ -199,6 +199,29 @@ module Overloading
   # @param [Hash] user_options the options to create a message with.
   # @option user_options [Number] :transaction_id
   # @option user_options [Number] :xid an alias to transaction_id.
+  def params_also_in_overloads(user_options = {})
+  end
+
+  # Tests that the default signature can be present as an overload tag.
+  #
+  # @overload params_only_in_overloads()
+  #   @example
+  #     Hello.new
+  #
+  # @overload params_only_in_overloads(transaction_id)
+  #   @example
+  #     Hello.new(123)
+  #   @param [Number] transaction_id
+  #     An unsigned 32-bit integer number associated with this
+  #     message. If not specified, an auto-generated value is set.
+  #
+  # @overload params_only_in_overloads(user_options)
+  #   @example
+  #     Hello.new(transaction_id: 123)
+  #     Hello.new(xid: 123)
+  #   @param [Hash] user_options the options to create a message with.
+  #   @option user_options [Number] :transaction_id
+  #   @option user_options [Number] :xid an alias to transaction_id.
   def params_only_in_overloads(user_options = {})
   end
 end

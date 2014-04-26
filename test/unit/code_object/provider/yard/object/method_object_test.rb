@@ -7,34 +7,62 @@ describe ::Inch::CodeObject::Provider::YARD::Parser do
     @objects = @parser.objects
   end
 
-  it "should work for Overloading#params_only_in_overloads" do
-    m = @objects.detect { |o| o.fullname == 'Overloading#params_only_in_overloads' }
+  it "should work for Overloading#params_also_in_overloads" do
+    m = @objects.detect { |o| o.fullname == 'Overloading#params_also_in_overloads' }
 
     assert m.has_code_example?
 
-    refute m.signatures.empty?
     assert_equal 3, m.signatures.size
     assert_equal 2, m.parameters.size # at this moment, this counts all parameters in all overloaded signatures
 
     signature = m.signatures[0]
-    assert_equal "params_only_in_overloads(user_options = {})", signature.signature
+    assert_equal "params_also_in_overloads(user_options = {})", signature.signature
     assert_equal 1, signature.parameters.size
     refute signature.parameter(:user_options).nil?
     assert signature.has_code_example?
     assert signature.has_doc?
 
     signature = m.signatures[1]
-    assert_equal "params_only_in_overloads()", signature.signature
+    assert_equal "params_also_in_overloads()", signature.signature
     assert signature.parameters.empty?, "Should have been empty: #{signature.parameters.inspect}"
     assert signature.has_code_example?
     refute signature.has_doc?
 
     signature = m.signatures[2]
+    assert_equal "params_also_in_overloads(transaction_id)", signature.signature
+    assert_equal 1, signature.parameters.size
+    refute signature.parameter(:transaction_id).nil?
+    assert signature.has_code_example?
+    refute signature.has_doc?
+  end
+
+  it "should work for Overloading#params_only_in_overloads" do
+    m = @objects.detect { |o| o.fullname == 'Overloading#params_only_in_overloads' }
+
+    assert m.has_code_example?
+
+    assert_equal 3, m.signatures.size
+    assert_equal 2, m.parameters.size # at this moment, this counts all parameters in all overloaded signatures
+
+    signature = m.signatures[0]
+    assert_equal "params_only_in_overloads()", signature.signature
+    assert signature.parameters.empty?, "Should have been empty: #{signature.parameters.inspect}"
+    assert signature.has_code_example?
+    refute signature.has_doc?
+
+    signature = m.signatures[1]
     assert_equal "params_only_in_overloads(transaction_id)", signature.signature
     assert_equal 1, signature.parameters.size
     refute signature.parameter(:transaction_id).nil?
     assert signature.has_code_example?
     refute signature.has_doc?
+
+    signature = m.signatures[2]
+    assert_equal "params_only_in_overloads(user_options)", signature.signature
+    assert_equal 1, signature.parameters.size
+    refute signature.parameter(:user_options).nil?
+    assert signature.has_code_example?
+    #assert signature.has_doc?
   end
 
   it "should work" do

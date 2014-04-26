@@ -4,9 +4,30 @@ module Inch
       module YARD
         module Object
           # Utility class to describe (overloaded) method signatures
-          class MethodSignature < Struct.new(:method, :tag_or_method)
+          class MethodSignature < Struct.new(:method, :yard_tag)
+            attr_reader :method, :yard_tag
+
+            # @param method [Provider::YARD::Object::MethodObject]
+            # @param method [::YARD::Tags::Tag,nil] if nil, the method's normal signature is used
+            def initialize(method, yard_tag = nil)
+              @method = method
+              @yard_tag = yard_tag
+            end
+
+            def all_signature_parameter_names
+              if tag?
+                yard_tag.parameters.map(&:first)
+              else
+                yard_object.parameters.map(&:first)
+              end
+            end
+
             def has_code_example?
-              !yard_object.tags(:example).empty?
+              if tag?
+                !yard_tag.tags(:example).empty?
+              else
+                !yard_object.tags(:example).empty?
+              end
             end
 
             def has_doc?
@@ -25,17 +46,24 @@ module Inch
               parameters.detect { |p| p.name == name.to_s }
             end
 
+            # Returns +true+ if the other signature is identical to self
+            # @param other [MethodSignature]
+            # @return [Boolean]
+            def same?(other)
+              all_signature_parameter_names == other.all_signature_parameter_names
+            end
+
             # Returns the actual signature of the method.
             # @return [String]
             def signature
               if tag?
-                tag_or_method.signature
+                yard_tag.signature
               else
                 yard_object.signature.gsub(/^(def\ )/, '')
               end
             end
 
-            #private
+            private
 
             def all_parameter_names
               all_names = all_signature_parameter_names + parameter_tags.map(&:name)
@@ -44,17 +72,9 @@ module Inch
               end.compact.uniq
             end
 
-            def all_signature_parameter_names
-              if tag?
-                tag_or_method.parameters.map(&:first)
-              else
-                yard_object.parameters.map(&:first)
-              end
-            end
-
             def docstring
               if tag?
-                tag_or_method.docstring
+                yard_tag.docstring
               else
                 yard_object.docstring
               end
@@ -88,18 +108,18 @@ module Inch
 
             def parameter_tags
               if tag?
-                tag_or_method.tags(:param)
+                @yard_tag.tags(:param)
               else
                 yard_object.tags(:param)
               end
             end
 
             def tag?
-              tag_or_method.respond_to?(:signature)
+              !yard_tag.nil?
             end
 
             def yard_object
-              tag_or_method.object
+              method.object
             end
           end
         end
