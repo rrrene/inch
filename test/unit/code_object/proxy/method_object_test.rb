@@ -272,6 +272,22 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     assert_equal 0, m.score
   end
 
+  def test_struct_getset
+    m = @objects.find("InchTest::StructGetSet#struct_getset")
+    assert m.getter?, "should be a getter"
+    refute m.setter?
+    refute m.has_doc?
+    assert_equal 0, m.score
+  end
+
+  def test_struct_getset2
+    m = @objects.find("InchTest::StructGetSet#struct_getset=")
+    refute m.getter?
+    assert m.setter?, "should be a setter"
+    refute m.has_doc?
+    assert_equal 0, m.score
+  end
+
   def test_splat_parameter_notation
     # it should assign the same score whether the parameter is
     # described with or without the splat (*) operator

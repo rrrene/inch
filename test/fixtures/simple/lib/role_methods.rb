@@ -2,6 +2,8 @@ def root_method
 end
 
 module InchTest
+  StructGetSet = Struct.new(:struct_getset)
+
   attr_accessor :attr_getset
 
   def manual_getset
