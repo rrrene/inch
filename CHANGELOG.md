@@ -1,6 +1,12 @@
 # Changelog
 
 
+## 0.4.3
+
+- Fixed a bug where the 'show' command did not properly recognize overloaded
+  method signatures
+
+
 ## 0.4.2
 
 - The 'inspect' command now shows the original docstring provided by the
