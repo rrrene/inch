@@ -220,30 +220,40 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     m = @objects.find("InchTest#getter")
     assert m.getter?, "should be a getter"
     refute m.setter?
+    refute m.has_doc?
+    assert_equal 0, m.score
   end
 
   def test_setter
     m = @objects.find("InchTest#attr_setter=")
     refute m.getter?
     assert m.setter?, "should be a setter"
+    refute m.has_doc?
+    assert_equal 0, m.score
   end
 
   def test_setter2
     m = @objects.find("InchTest#manual_setter=")
     refute m.getter?
     assert m.setter?, "should be a setter"
+    refute m.has_doc?
+    assert_equal 0, m.score
   end
 
   def test_manual_getset
     m = @objects.find("InchTest#manual_getset")
     assert m.getter?, "should be a getter"
     refute m.setter?
+    refute m.has_doc?
+    assert_equal 0, m.score
   end
 
   def test_manual_getset2
     m = @objects.find("InchTest#manual_getset=")
     refute m.getter?
     assert m.setter?, "should be a setter"
+    refute m.has_doc?
+    assert_equal 0, m.score
   end
 
   def test_attr_getset
@@ -251,6 +261,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     assert m.getter?, "should be a getter"
     refute m.setter?
     refute m.has_doc?
+    assert_equal 0, m.score
   end
 
   def test_attr_getset2
@@ -258,6 +269,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     refute m.getter?
     assert m.setter?, "should be a setter"
     refute m.has_doc?
+    assert_equal 0, m.score
   end
 
   def test_splat_parameter_notation
