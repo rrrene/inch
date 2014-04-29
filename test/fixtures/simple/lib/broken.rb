@@ -28,6 +28,12 @@ module Foo
   # @return [String]
   def method_with_splat_parameter2(*names)
   end
+
+  # The problem here is that the @return tag does not have brackets
+  #
+  # @return   HasH
+  def method_with_wrong_return_tag
+  end
 end
 
 module Overloading
