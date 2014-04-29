@@ -224,6 +224,25 @@ module Overloading
   #   @option user_options [Number] :xid an alias to transaction_id.
   def params_only_in_overloads(user_options = {})
   end
+
+  # Tests that the default signature can be present as an overload tag.
+  #
+  # @overload params_only_in_overloads()
+  #   @example
+  #     Hello.new
+  #
+  # @overload params_only_in_overloads(transaction_id)
+  #   @example
+  #     Hello.new(123)
+  #
+  # @example
+  #   Hello.new(transaction_id: 123)
+  #   Hello.new(xid: 123)
+  # @param [Hash] user_options the options to create a message with.
+  # @option user_options [Number] :transaction_id
+  # @option user_options [Number] :xid an alias to transaction_id.
+  def one_param_missing_in_overload(user_options = {})
+  end
 end
 
 module YardError

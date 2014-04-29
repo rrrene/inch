@@ -7,6 +7,16 @@ require 'bundler'
 Bundler.require
 require 'inch'
 
+def assert_roles(object, expected, unexpected)
+  roles = object.roles.map(&:class)
+  unexpected.each do |role|
+    refute roles.include?(role), "Should not assign #{role}"
+  end
+  expected.each do |role|
+    assert roles.include?(role), "Should assign #{role}"
+  end
+end
+
 def fixture_path(name)
   File.join(File.dirname(__FILE__), "fixtures", name.to_s)
 end

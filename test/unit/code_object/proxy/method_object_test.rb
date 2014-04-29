@@ -295,14 +295,23 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
 
   def test_overloading_with_bad_doc
     m = @objects.find("Overloading#params_only_in_overloads")
-    roles = m.roles.map(&:class)
-    bad_roles = [
+    unexpected_roles = [
       Inch::Evaluation::Role::Object::WithoutCodeExample,
       Inch::Evaluation::Role::MethodParameter::WithoutMention,
       Inch::Evaluation::Role::MethodParameter::WithoutType,
     ]
-    bad_roles.each do |role|
-      refute roles.include?(role), "Should not assign #{role}"
-    end
+    assert_roles m, [], unexpected_roles
+  end
+
+  def test_overloading_with_half_bad_doc
+    m = @objects.find("Overloading#one_param_missing_in_overload")
+    unexpected_roles = [
+      Inch::Evaluation::Role::Object::WithoutCodeExample,
+    ]
+    expected_roles = [
+      Inch::Evaluation::Role::MethodParameter::WithoutMention,
+      Inch::Evaluation::Role::MethodParameter::WithoutType,
+    ]
+    assert_roles m, expected_roles, unexpected_roles
   end
 end
