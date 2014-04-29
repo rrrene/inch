@@ -49,6 +49,10 @@ module Inch
             last_line =~ /^Returns\ (\w+\s){2,}/
           end
 
+          def to_s
+            @text
+          end
+
           private
 
           def first_line

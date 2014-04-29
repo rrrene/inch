@@ -250,12 +250,14 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     m = @objects.find("InchTest#attr_getset")
     assert m.getter?, "should be a getter"
     refute m.setter?
+    refute m.has_doc?
   end
 
   def test_attr_getset2
     m = @objects.find("InchTest#attr_getset=")
     refute m.getter?
     assert m.setter?, "should be a setter"
+    refute m.has_doc?
   end
 
   def test_splat_parameter_notation
