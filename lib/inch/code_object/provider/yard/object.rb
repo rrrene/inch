@@ -50,10 +50,10 @@ module Inch
   end
 end
 
-require_relative 'object/base'
-require_relative 'object/namespace_object'
-require_relative 'object/class_object'
-require_relative 'object/constant_object'
-require_relative 'object/method_object'
-require_relative 'object/method_parameter_object'
-require_relative 'object/module_object'
+require 'inch/code_object/provider/yard/object/base'
+require 'inch/code_object/provider/yard/object/namespace_object'
+require 'inch/code_object/provider/yard/object/class_object'
+require 'inch/code_object/provider/yard/object/constant_object'
+require 'inch/code_object/provider/yard/object/method_object'
+require 'inch/code_object/provider/yard/object/method_parameter_object'
+require 'inch/code_object/provider/yard/object/module_object'

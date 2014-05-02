@@ -51,7 +51,7 @@ require 'yard'
 
 log.level = ::Logger::UNKNOWN # basically disable YARD's logging
 
-require_relative 'yard/parser'
-require_relative 'yard/docstring'
-require_relative 'yard/nodoc_helper'
-require_relative 'yard/object'
+require 'inch/code_object/provider/yard/parser'
+require 'inch/code_object/provider/yard/docstring'
+require 'inch/code_object/provider/yard/nodoc_helper'
+require 'inch/code_object/provider/yard/object'

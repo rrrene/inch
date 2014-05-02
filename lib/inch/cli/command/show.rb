@@ -1,5 +1,5 @@
-require_relative 'options/show'
-require_relative 'output/show'
+require 'inch/cli/command/options/show'
+require 'inch/cli/command/output/show'
 
 module Inch
   module CLI

@@ -1,2 +1,2 @@
 require 'inch'
-require_relative 'rake/suggest'
+require 'inch/rake/suggest'

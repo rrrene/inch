@@ -1,6 +1,6 @@
 require 'pry'
-require_relative 'options/console'
-require_relative 'output/console'
+require 'inch/cli/command/options/console'
+require 'inch/cli/command/output/console'
 
 module Inch
   module CLI

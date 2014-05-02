@@ -1,2 +1,2 @@
-require_relative 'compare/code_objects'
-require_relative 'compare/codebases'
+require 'inch/api/compare/code_objects'
+require 'inch/api/compare/codebases'

@@ -20,5 +20,5 @@ module Inch
   end
 end
 
-require_relative 'config/base'
-require_relative 'config/codebase'
+require 'inch/config/base'
+require 'inch/config/codebase'

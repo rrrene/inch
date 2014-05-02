@@ -1,5 +1,5 @@
-require_relative 'options/stats'
-require_relative 'output/stats'
+require 'inch/cli/command/options/stats'
+require 'inch/cli/command/output/stats'
 
 module Inch
   module CLI

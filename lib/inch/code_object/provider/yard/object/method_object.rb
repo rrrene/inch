@@ -1,4 +1,4 @@
-require_relative 'method_signature'
+require 'inch/code_object/provider/yard/object/method_signature'
 
 module Inch
   module CodeObject

@@ -1,5 +1,5 @@
-require_relative 'options/list'
-require_relative 'output/list'
+require 'inch/cli/command/options/list'
+require 'inch/cli/command/output/list'
 
 module Inch
   module CLI
