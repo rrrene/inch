@@ -1,5 +1,5 @@
-require_relative 'options/inspect'
-require_relative 'output/inspect'
+require 'inch/cli/command/options/inspect'
+require 'inch/cli/command/output/inspect'
 
 module Inch
   module CLI

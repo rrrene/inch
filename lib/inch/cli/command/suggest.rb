@@ -1,5 +1,5 @@
-require_relative 'options/suggest'
-require_relative 'output/suggest'
+require 'inch/cli/command/options/suggest'
+require 'inch/cli/command/output/suggest'
 
 module Inch
   module CLI

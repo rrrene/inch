@@ -29,10 +29,10 @@ module Inch
   end
 end
 
-require_relative 'proxy/base'
-require_relative 'proxy/namespace_object'
-require_relative 'proxy/class_object'
-require_relative 'proxy/constant_object'
-require_relative 'proxy/method_object'
-require_relative 'proxy/method_parameter_object'
-require_relative 'proxy/module_object'
+require 'inch/code_object/proxy/base'
+require 'inch/code_object/proxy/namespace_object'
+require 'inch/code_object/proxy/class_object'
+require 'inch/code_object/proxy/constant_object'
+require 'inch/code_object/proxy/method_object'
+require 'inch/code_object/proxy/method_parameter_object'
+require 'inch/code_object/proxy/module_object'

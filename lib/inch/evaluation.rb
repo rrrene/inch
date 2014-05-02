@@ -15,20 +15,20 @@ module Inch
   end
 end
 
-require_relative 'utils/read_write_methods'
+require 'inch/utils/read_write_methods'
 
-require_relative 'evaluation/file'
-require_relative 'evaluation/grade'
-require_relative 'evaluation/grade_list'
-require_relative 'evaluation/object_schema'
-require_relative 'evaluation/priority_range'
+require 'inch/evaluation/file'
+require 'inch/evaluation/grade'
+require 'inch/evaluation/grade_list'
+require 'inch/evaluation/object_schema'
+require 'inch/evaluation/priority_range'
 
-require_relative 'evaluation/role/base'
-require_relative 'evaluation/role/missing'
-require_relative 'evaluation/role/object'
-require_relative 'evaluation/role/method'
-require_relative 'evaluation/role/method_parameter'
-require_relative 'evaluation/role/namespace'
-require_relative 'evaluation/role/constant'
+require 'inch/evaluation/role/base'
+require 'inch/evaluation/role/missing'
+require 'inch/evaluation/role/object'
+require 'inch/evaluation/role/method'
+require 'inch/evaluation/role/method_parameter'
+require 'inch/evaluation/role/namespace'
+require 'inch/evaluation/role/constant'
 
-require_relative 'evaluation/proxy'
+require 'inch/evaluation/proxy'

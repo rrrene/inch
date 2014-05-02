@@ -21,9 +21,9 @@ module Inch
   end
 end
 
-require_relative 'cli/arguments'
-require_relative 'cli/sparkline_helper'
-require_relative 'cli/trace_helper'
-require_relative 'cli/yardopts_helper'
+require 'inch/cli/arguments'
+require 'inch/cli/sparkline_helper'
+require 'inch/cli/trace_helper'
+require 'inch/cli/yardopts_helper'
 
-require_relative 'cli/command'
+require 'inch/cli/command'

@@ -1,6 +1,6 @@
 require 'pry'
-require_relative 'options/diff'
-require_relative 'output/diff'
+require 'inch/cli/command/options/diff'
+require 'inch/cli/command/output/diff'
 
 module Inch
   module CLI

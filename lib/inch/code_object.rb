@@ -3,6 +3,6 @@ module Inch
   end
 end
 
-require_relative 'code_object/converter'
-require_relative 'code_object/provider'
-require_relative 'code_object/proxy'
+require 'inch/code_object/converter'
+require 'inch/code_object/provider'
+require 'inch/code_object/proxy'
