@@ -3,7 +3,7 @@
 
 ## 0.4.5
 
-- Fix a warning regarding re-initialized constants related to require_relative (thanks @jfelchner)
+- Fixes a warning regarding re-initialized constants related to require_relative (thanks @jfelchner)
 
 
 ## 0.4.4
@@ -14,7 +14,7 @@
 
 ## 0.4.3
 
-- Fixed a bug where the 'show' command did not properly recognize overloaded
+- Fixes a bug where the 'show' command did not properly recognize overloaded
   method signatures
 
 
