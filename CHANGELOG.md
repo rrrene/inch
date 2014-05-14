@@ -1,6 +1,11 @@
 # Changelog
 
 
+## 0.4.6
+
+- Do not count @yield tag if it is auto-assigned via YARD
+
+
 ## 0.4.5
 
 - Fixes a warning regarding re-initialized constants related to require_relative (thanks @jfelchner)
