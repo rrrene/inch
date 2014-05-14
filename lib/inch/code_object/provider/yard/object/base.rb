@@ -18,6 +18,7 @@ module Inch
 
             # Tags considered by wrapper methods like {#has_code_example?}
             CONSIDERED_YARD_TAGS = %w(api example param private return since)
+            AUTO_GENERATED_TAG_NAMES = %w(raise yield)
 
             # convenient shortcuts to (YARD) code object
             def_delegators :object, :type, :namespace, :source, :source_type, :group, :dynamic, :visibility
@@ -266,7 +267,7 @@ module Inch
             #   YARD tags that are not already covered by other wrapper methods
             def unconsidered_tags
               @unconsidered_tags ||= tags.reject do |tag|
-                (tag.tag_name == "raise" && tag.text.empty?) ||
+                auto_generated_tag?(tag) ||
                   CONSIDERED_YARD_TAGS.include?(tag.tag_name)
                 end
             end
@@ -289,6 +290,10 @@ module Inch
               tag(:private) || (parent && parent.private_tag)
             end
 
+            def auto_generated_tag?(tag)
+              tag.text.to_s.empty? &&
+                AUTO_GENERATED_TAG_NAMES.include?(tag.tag_name)
+            end
           end
         end
       end
