@@ -24,6 +24,12 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     assert m.undocumented?
   end
 
+  def test_yielding_method
+    m = @objects.find("InchTest#yielding_method")
+    assert_equal 0, m.score
+    assert m.undocumented?
+  end
+
   def test_tagged_as_private
     %w( InchTest#method_with_private_tag
         InchTest#private_method_with_tomdoc).each do |fullname|

@@ -28,6 +28,10 @@ module InchTest
   def block_method(&block)
   end
 
+  def yielding_method
+    yield true if block_given?
+  end
+
   def question_mark_method?
     if true
       bang_method!
