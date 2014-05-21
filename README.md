@@ -18,7 +18,7 @@ If there are no inline-docs yet, `inch` can tell you where to start.
 
 Add this line to your application's Gemfile:
 
-    gem 'inch'
+    gem 'inch', require: false
 
 And then execute:
 
