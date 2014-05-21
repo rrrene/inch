@@ -8,7 +8,7 @@ module Inch
               "",
               "Provides a PRY based REPL to inspect objects.",
               "",
-              "Example: " + "$ inch console lib/**/*.rb Foo::Bar#initialize".cyan,
+              "Example: " + "$ inch console lib/**/*.rb Foo::Bar#initialize".color(:cyan),
               "",
               "Shortcut commands on the prompt are:",
               "",

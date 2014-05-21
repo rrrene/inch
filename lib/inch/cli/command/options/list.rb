@@ -10,7 +10,7 @@ module Inch
               "",
               "Lists objects that can be improved regarding their documentation ordered by their grade.",
               "",
-              "Example: " + "$ inch list lib/**/*.rb --all".cyan,
+              "Example: " + "$ inch list lib/**/*.rb --all".color(:cyan),
               "",
               description_hint_grades,
               description_hint_arrows

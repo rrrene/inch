@@ -18,7 +18,7 @@ module Inch
               "Shows changes in documentation between two revisions " \
                 "(defaults to last commit against current)",
               "",
-              "Example: " + "$ inch diff HEAD^..HEAD".cyan,
+              "Example: " + "$ inch diff HEAD^..HEAD".color(:cyan),
               "",
               description_hint_grades,
               description_hint_arrows
