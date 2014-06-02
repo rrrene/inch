@@ -84,7 +84,7 @@ module Inch
             line_number.times{f.gets}
             result = $_
             f.close
-            result
+            result.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
           end
         end
       end
