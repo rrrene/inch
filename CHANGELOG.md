@@ -1,6 +1,12 @@
 # Changelog
 
 
+## 0.5.0 (pre)
+
+- CLI classes must be required seperately from now on
+- external data read by NoDocHelper is encoded as UTF-8
+
+
 ## 0.4.6
 
 - Do not count @yield tag if it is auto-assigned via YARD
