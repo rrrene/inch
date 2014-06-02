@@ -10,7 +10,6 @@ require 'inch/core_ext'
 require 'inch/codebase'
 require 'inch/code_object'
 require 'inch/evaluation'
-require 'inch/cli'
 
 require 'inch/config'
 require File.join(File.dirname(__FILE__), '..', 'config', 'defaults.rb')

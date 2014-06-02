@@ -18,5 +18,6 @@ end
 $LOAD_PATH.unshift(find_lib_path)
 
 require 'inch'
+require 'inch/cli'
 
 Inch::CLI::CommandParser.run(*ARGV)

@@ -6,6 +6,7 @@ require 'minitest/autorun'
 require 'bundler'
 Bundler.require
 require 'inch'
+require 'inch/cli'
 
 def assert_roles(object, expected, unexpected)
   roles = object.roles.map(&:class)
