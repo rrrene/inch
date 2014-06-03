@@ -1,4 +1,4 @@
-# Inch [![Build Status](https://travis-ci.org/rrrene/inch.png)](https://travis-ci.org/rrrene/inch) [![Code Climate](https://codeclimate.com/github/rrrene/inch.png)](https://codeclimate.com/github/rrrene/inch) [![Inline docs](http://inch-pages.github.io/github/rrrene/inch.png)](http://inch-pages.github.io/github/rrrene/inch)
+# Inch [![Build Status](https://travis-ci.org/rrrene/inch.png)](https://travis-ci.org/rrrene/inch) [![Code Climate](https://codeclimate.com/github/rrrene/inch.png)](https://codeclimate.com/github/rrrene/inch) [![Inline docs](http://inch-ci.org/github/rrrene/inch.png)](http://inch-ci.org/github/rrrene/inch)
 
 `inch` gives you hints where to improve your docs. One Inch at a time.
 
