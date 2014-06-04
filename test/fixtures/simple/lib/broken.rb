@@ -34,9 +34,33 @@ module Foo
   # @return   HasH
   def method_with_wrong_return_tag
   end
+
+  # Redirect to the given URL
+  # @param url [String] the destination URL
+  # @param status [Fixnum] the http code
+  def method_with_named_parameter(url, status: 302)
+  end
 end
 
 module Overloading
+  # @overload many_overloads(&block)
+  # @overload many_overloads(scope, &block)
+  #   @param scope [Symbol] `:example`, `:context`, or `:suite` (defaults to `:example`)
+  # @overload many_overloads(scope, conditions, &block)
+  #   @param scope [Symbol] `:example`, `:context`, or `:suite` (defaults to `:example`)
+  #   @param conditions [Hash]
+  #     constrains this hook to examples matching these conditions e.g.
+  #     `many_overloads(:example, :ui => true) { ... }` will only run with examples or
+  #     groups declared with `:ui => true`.
+  # @overload many_overloads(conditions, &block)
+  #   @param conditions [Hash]
+  #     constrains this hook to examples matching these conditions e.g.
+  #     `many_overloads(:example, :ui => true) { ... }` will only run with examples or
+  #     groups declared with `:ui => true`.
+  def many_overloads(*args, &block)
+    hooks.register :append, :before, *args, &block
+  end
+
   # Creates a {Sass::Script::Value::Color Color} object from red, green, and
   # blue values.
   #

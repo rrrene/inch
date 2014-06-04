@@ -18,6 +18,16 @@ def assert_roles(object, expected, unexpected)
   end
 end
 
+def count_roles(object, role_class, object_name = nil)
+  find_roles(object, role_class, object_name).size
+end
+
+def find_roles(object, role_class, object_name = nil)
+  object.roles.select do |r|
+    r.class == role_class && (object_name.nil? || r.object.name == object_name)
+  end
+end
+
 def fixture_path(name)
   File.join(File.dirname(__FILE__), "fixtures", name.to_s)
 end

@@ -329,6 +329,13 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     refute m.has_doc? # it may be mentioned in the docs, but it's malformed.
   end
 
+  def test_overloading_with_many_overloads
+    m = @objects.find("Overloading#many_overloads")
+    assert_equal 1, count_roles(m, Inch::Evaluation::Role::Method::WithoutReturnDescription)
+    assert_equal 1, count_roles(m, Inch::Evaluation::Role::Method::WithoutReturnType)
+    assert_equal 1, count_roles(m, Inch::Evaluation::Role::MethodParameter::WithoutMention, 'block')
+  end
+
   def test_overloading_with_bad_doc
     m = @objects.find("Overloading#params_only_in_overloads")
     unexpected_roles = [
@@ -349,5 +356,14 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
       Inch::Evaluation::Role::MethodParameter::WithoutType,
     ]
     assert_roles m, expected_roles, unexpected_roles
+  end
+
+  def test_documenting_named_parameters
+    m = @objects.find("Foo#method_with_named_parameter")
+    unexpected_roles = [
+      Inch::Evaluation::Role::MethodParameter::WithoutMention,
+      Inch::Evaluation::Role::MethodParameter::WithoutType,
+    ]
+    assert_roles m, [], unexpected_roles
   end
 end
