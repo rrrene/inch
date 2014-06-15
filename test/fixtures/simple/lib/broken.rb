@@ -42,6 +42,13 @@ module Foo
   end
 end
 
+# Representation of attributes of a user in the database
+#
+# @!attribute email
+#   @return [String] E-mail address (from Devise)
+class Attributes
+end
+
 module Overloading
   # @overload many_overloads(&block)
   # @overload many_overloads(scope, &block)
