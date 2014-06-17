@@ -329,15 +329,27 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     refute m.has_doc? # it may be mentioned in the docs, but it's malformed.
   end
 
-  def test_attrbiute_directive_on_reader
+  def test_attribute_directive_on_reader
     m = @objects.find("Attributes#email")
-    assert m.has_doc?
+    refute_equal 0, m.score
     refute m.undocumented?
   end
 
-  def test_attrbiute_directive_on_writer
+  def test_attribute_directive_on_writer
     m = @objects.find("Attributes#email=")
-    assert m.has_doc?
+    refute_equal 0, m.score
+    refute m.undocumented?
+  end
+
+  def test_attr_accessor_on_reader
+    m = @objects.find("Attributes#username")
+    refute_equal 0, m.score
+    refute m.undocumented?
+  end
+
+  def test_attr_accessor_on_writer
+    m = @objects.find("Attributes#username=")
+    refute_equal 0, m.score
     refute m.undocumented?
   end
 

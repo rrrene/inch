@@ -47,6 +47,8 @@ end
 # @!attribute email
 #   @return [String] E-mail address (from Devise)
 class Attributes
+  # @return [String] Username (from Devise)
+  attr_accessor :username
 end
 
 module Overloading
