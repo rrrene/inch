@@ -61,7 +61,7 @@ module Inch
 
           def grade(score)
             grade_lists ||= Evaluation.new_grade_lists
-            r = grade_lists.detect { |r| r.scores.include?(score) }
+            r = grade_lists.detect { |v| v.scores.include?(score) }
             "#{r.grade} - #{r.label}".color(r.color)
           end
         end
