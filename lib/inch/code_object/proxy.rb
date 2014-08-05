@@ -11,7 +11,7 @@ module Inch
         # @return [CodeObject::Proxy::Base]
         def for(code_object)
           attributes = Converter.to_hash(code_object)
-          proxy_object = class_for(code_object).new(attributes)
+          class_for(code_object).new(attributes)
         end
 
         private

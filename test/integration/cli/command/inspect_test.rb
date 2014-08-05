@@ -53,14 +53,14 @@ describe ::Inch::CLI::Command::Inspect do
   end
 
   it "should output colored information" do
-    out, err = capture_io do
+    out, _err = capture_io do
       @command.run("Foo::Bar#")
     end
     refute_equal out.uncolor, out, "should be colored"
   end
 
   it "should output uncolored information when asked" do
-    out, err = capture_io do
+    out, _err = capture_io do
       @command.run("Foo::Bar#", "--no-color")
     end
     assert_equal out.uncolor, out, "should not be colored"

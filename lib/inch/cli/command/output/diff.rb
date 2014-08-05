@@ -54,7 +54,6 @@ module Inch
 
           def puts_added(o)
             grade = colored_grade(o)
-            priority = o.priority
             change = "  +  ".dark + grade + "  " + priority_arrow(o.priority)
             ui.sub(" #{change}  #{o.fullname}")
           end

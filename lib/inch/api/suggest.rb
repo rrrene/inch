@@ -60,7 +60,7 @@ module Inch
 
       def files_sorted_by_importance
         list = all_filenames(relevant_objects).uniq.map do |filename|
-          f = Evaluation::File.for(filename, relevant_objects)
+          Evaluation::File.for(filename, relevant_objects)
         end
 
         priority_list = list.select do |f|

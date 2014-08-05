@@ -3,7 +3,7 @@ module Shared
     extend Minitest::Spec::DSL
 
     it "should give error when run with --unknown-switch" do
-      out, err = capture_io do
+      _out, _err = capture_io do
         assert_raises(SystemExit) { @command.run("lib/foo.rb", "--unknown-switch") }
       end
     end

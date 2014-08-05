@@ -7,7 +7,7 @@ describe ::Inch::CLI::Command do
   end
 
   it "should run without visibility switches" do
-    out, err = capture_io do
+    out, _err = capture_io do
       @command.run("--all")
     end
     refute out.empty?, "there should be some output"
@@ -18,7 +18,7 @@ describe ::Inch::CLI::Command do
   end
 
   it "should run with --no-protected switch" do
-    out, err = capture_io do
+    out, _err = capture_io do
       @command.run("--all", "--no-protected")
     end
     refute out.empty?, "there should be some output"
@@ -29,7 +29,7 @@ describe ::Inch::CLI::Command do
   end
 
   it "should run with --no-public switch" do
-    out, err = capture_io do
+    out, _err = capture_io do
       @command.run(*%w|--all --no-public|)
     end
     refute out.empty?, "there should be some output"
@@ -40,7 +40,7 @@ describe ::Inch::CLI::Command do
   end
 
   it "should run with --no-public --no-protected switch" do
-    out, err = capture_io do
+    out, _err = capture_io do
       @command.run(*%w|--all --no-public --no-protected|)
     end
     assert out.empty?, "there should be no output"
@@ -51,7 +51,7 @@ describe ::Inch::CLI::Command do
   end
 
   it "should run with --no-public --no-protected --private switch" do
-    out, err = capture_io do
+    out, _err = capture_io do
       @command.run(*%w|--all --no-public --no-protected --private|)
     end
     refute out.empty?, "there should be some output"
@@ -62,7 +62,7 @@ describe ::Inch::CLI::Command do
   end
 
   it "should run with --no-public switch" do
-    out, err = capture_io do
+    out, _err = capture_io do
       @command.run(*%w|--all --no-public|)
     end
     refute out.empty?, "there should be some output"
@@ -73,7 +73,7 @@ describe ::Inch::CLI::Command do
   end
 
   it "should run with --no-protected switch" do
-    out, err = capture_io do
+    out, _err = capture_io do
       @command.run(*%w|--all --no-protected|)
     end
     refute out.empty?, "there should be some output"

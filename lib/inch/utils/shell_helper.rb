@@ -3,7 +3,7 @@ module Inch
     module ShellHelper
       def git(dir, command)
         Dir.chdir(dir) do
-          out = sh("git #{command}")
+          sh("git #{command}")
         end
       end
 
