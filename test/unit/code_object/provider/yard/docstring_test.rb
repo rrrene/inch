@@ -115,6 +115,12 @@ DOC
     assert docstring.describes_return?
   end
 
+  it "should understand 'Returns ...' with a visibility modifier in front of it" do
+    text = "Public: Returns the Integer color."
+    docstring = described_class.new(text)
+    assert docstring.mentions_return?
+    assert docstring.describes_return?
+  end
 
   #
   # PARAMETER MENTIONS
@@ -132,7 +138,7 @@ DOC
   end
 
 
-  it "should work 2" do
+  it "should work 2 if correct" do
 text = <<-DOC
 Just because format is mentioned here, does not mean
 the first parameter is meant.

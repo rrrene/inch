@@ -42,12 +42,12 @@ module Inch
           end
 
           def mentions_return?
-            last_line =~ /^Returns\ /
+            last_line =~ /^#{tomdoc_modifiers}Returns\ /
           end
 
           def describes_return?
-            last_line =~ /^Returns\ (\w+\s){2,}/i ||
-              last_line =~ /^Returns\ (nil|nothing)\.*/i
+            last_line =~ /^#{tomdoc_modifiers}Returns\ (\w+\s){2,}/i ||
+              last_line =~ /^#{tomdoc_modifiers}Returns\ (nil|nothing)\.*/i
           end
 
           def to_s
@@ -121,6 +121,10 @@ module Inch
                 /\W#{r}\W/
               end
             end
+          end
+
+          def tomdoc_modifiers
+            /((Public|Private|Internal)\:\ )*/
           end
         end
       end
