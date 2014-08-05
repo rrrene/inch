@@ -43,8 +43,8 @@ module Inch
         # @return [Symbol]
         def grade
           @grade ||= Evaluation.new_grade_lists.detect { |range|
-                range.scores.include?(score)
-              }.grade
+            range.scores.include?(score)
+          }.grade
         end
 
         # @return [Boolean] if the current object is an alias for something else

@@ -269,7 +269,7 @@ module Inch
               @unconsidered_tags ||= tags.reject do |tag|
                 auto_generated_tag?(tag) ||
                   CONSIDERED_YARD_TAGS.include?(tag.tag_name)
-                end
+              end
             end
 
             def __depth(i = 0)
