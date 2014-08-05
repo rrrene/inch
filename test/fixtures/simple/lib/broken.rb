@@ -1,4 +1,7 @@
 module Foo
+  # Determines :class_variable
+  @@class_variable = {Ace: 11, Jack: 10, Queen: 10, King: 10}
+
   # The problem here is that the @param tag is not given the name of the
   # parameter it documents.
   #

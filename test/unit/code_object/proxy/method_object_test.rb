@@ -417,5 +417,12 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
       m = @objects.find("Foo::Bar#method_without_doc")
       assert_equal 3, m.depth
     end
+
+    it "should recognize docs on class variables" do
+      m = @objects.find("Foo::@@class_variable")
+      assert m.has_doc?
+      refute m.undocumented?
+      assert_equal 100, m.score
+    end
   end
 end
