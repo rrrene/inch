@@ -8,7 +8,8 @@ module Inch
       attr_accessor :excluded
 
       VALID_YARD_SWITCHES = %w(--private --no-private --protected --no-public
-          --plugin --load --safe --yardopts --no-yardopts --document --no-document)
+                               --plugin --load --safe --yardopts --no-yardopts
+                               --document --no-document)
 
       # Parses the option and gracefully handles invalid switches
       #
