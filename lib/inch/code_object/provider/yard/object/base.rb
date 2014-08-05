@@ -228,7 +228,7 @@ module Inch
             end
 
             def inspect
-              "#<#{self.class.to_s}: #{fullname}>"
+              "#<#{self.class}: #{fullname}>"
             end
 
             protected
