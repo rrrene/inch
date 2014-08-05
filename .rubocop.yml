@@ -1,0 +1,12 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Include:
+    - '**/*.gemspec'
+    - '**/Gemfile'
+    - '**/Rakefile'
+  Exclude:
+    - 'test/fixtures/**/*'
+
+Style/Encoding:
+  Enabled: true
