@@ -32,6 +32,7 @@ end
 require 'inch/code_object/proxy/base'
 require 'inch/code_object/proxy/namespace_object'
 require 'inch/code_object/proxy/class_object'
+require 'inch/code_object/proxy/class_variable_object'
 require 'inch/code_object/proxy/constant_object'
 require 'inch/code_object/proxy/method_object'
 require 'inch/code_object/proxy/method_parameter_object'

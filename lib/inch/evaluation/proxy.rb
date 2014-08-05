@@ -20,6 +20,7 @@ end
 require 'inch/evaluation/proxy/base'
 require 'inch/evaluation/proxy/namespace_object'
 require 'inch/evaluation/proxy/class_object'
+require 'inch/evaluation/proxy/class_variable_object'
 require 'inch/evaluation/proxy/constant_object'
 require 'inch/evaluation/proxy/method_object'
 require 'inch/evaluation/proxy/module_object'

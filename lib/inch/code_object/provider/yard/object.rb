@@ -53,6 +53,7 @@ end
 require 'inch/code_object/provider/yard/object/base'
 require 'inch/code_object/provider/yard/object/namespace_object'
 require 'inch/code_object/provider/yard/object/class_object'
+require 'inch/code_object/provider/yard/object/class_variable_object'
 require 'inch/code_object/provider/yard/object/constant_object'
 require 'inch/code_object/provider/yard/object/method_object'
 require 'inch/code_object/provider/yard/object/method_parameter_object'

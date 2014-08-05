@@ -64,6 +64,13 @@ Inch::Config.run do
       unconsidered_tag    0.2
     end
 
+    schema(:ClassVariableObject) do
+      docstring           1.0
+
+      # optional:
+      unconsidered_tag    0.2
+    end
+
     schema(:ClassObject) do
       docstring           1.0
 

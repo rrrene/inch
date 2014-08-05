@@ -30,5 +30,6 @@ require 'inch/evaluation/role/method'
 require 'inch/evaluation/role/method_parameter'
 require 'inch/evaluation/role/namespace'
 require 'inch/evaluation/role/constant'
+require 'inch/evaluation/role/class_variable'
 
 require 'inch/evaluation/proxy'
