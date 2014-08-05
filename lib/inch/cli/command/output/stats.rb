@@ -64,7 +64,7 @@ module Inch
             end
 
             sparkline = Sparkr::Sparkline.new(priorities.values)
-            sparkline.format do |tick, count, index|
+            sparkline.format do |tick, _count, index|
               tick.color( PRIORITY_COLORS[index] )
             end
             puts "  #{grade_list.grade}:  " + sparkline.to_s(' ') +

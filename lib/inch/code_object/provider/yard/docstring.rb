@@ -67,7 +67,7 @@ module Inch
           def parse_code_examples
             code_examples = []
             example = nil
-            @text.lines.each_with_index do |line, index|
+            @text.lines.each do |line|
               if line =~/^\s*+$/
                 code_examples << example if example
                 example = []

@@ -44,7 +44,7 @@ module Inch
             opts.on("-n", "--objects [COUNT]", "Show COUNT objects") do |count|
               @object_count = count.to_i
             end
-            opts.on("--pedantic", "Be excessively concerned with minor details and rules") do |count|
+            opts.on("--pedantic", "Be excessively concerned with minor details and rules") do
               # all objects are considered a priority
               @object_min_priority = -99
               # only objects with the highest score are omitted from the list

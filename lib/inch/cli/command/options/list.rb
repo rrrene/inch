@@ -19,7 +19,7 @@ module Inch
 
           def list_options(opts)
             super
-            opts.on("--numbers", "Show numbers instead of grades and arrows") do |depth|
+            opts.on("--numbers", "Show numbers instead of grades and arrows") do
               @numbers = true
             end
           end

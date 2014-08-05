@@ -18,7 +18,7 @@ describe ::Inch::Codebase::Objects do
 
   it "should support iteration" do
     sum = 0
-    @objects.each do |o|
+    @objects.each do
       sum += 1
     end
     assert_equal @objects.size, sum

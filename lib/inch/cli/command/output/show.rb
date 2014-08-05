@@ -42,7 +42,7 @@ module Inch
             if o.roles.empty?
               echo "No roles assigned.".dark
             else
-              o.roles.each_with_index do |role, index|
+              o.roles.each do |role|
                 if role.suggestion
                   echo "+".color(COLOR) + " #{role.suggestion}"
                 end
