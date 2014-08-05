@@ -79,6 +79,42 @@ DOC
     assert docstring.describes_return?
   end
 
+  it "should understand 'Returns nil.'" do
+text = <<-DOC
+[...]
+Returns nil.
+DOC
+    docstring = described_class.new(text)
+    assert docstring.describes_return?
+  end
+
+  it "should understand 'Returns nil.' without fullstop and in lowercase" do
+text = <<-DOC
+[...]
+returns nil
+DOC
+    docstring = described_class.new(text)
+    assert docstring.describes_return?
+  end
+
+  it "should understand 'Returns nothing.'" do
+text = <<-DOC
+[...]
+Returns nothing.
+DOC
+    docstring = described_class.new(text)
+    assert docstring.describes_return?
+  end
+
+  it "should understand 'Returns nothing.' without fullstop and in lowercase" do
+text = <<-DOC
+[...]
+returns nothing
+DOC
+    docstring = described_class.new(text)
+    assert docstring.describes_return?
+  end
+
 
   #
   # PARAMETER MENTIONS

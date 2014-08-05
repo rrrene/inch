@@ -46,7 +46,8 @@ module Inch
           end
 
           def describes_return?
-            last_line =~ /^Returns\ (\w+\s){2,}/
+            last_line =~ /^Returns\ (\w+\s){2,}/i ||
+              last_line =~ /^Returns\ (nil|nothing)\.*/i
           end
 
           def to_s
