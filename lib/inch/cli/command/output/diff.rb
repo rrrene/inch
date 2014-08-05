@@ -64,7 +64,7 @@ module Inch
             change = before_grade + " -> ".dark + grade + "  " + priority_arrow(o.priority)
             ui.sub(" #{change}  #{o.fullname}")
           end
-          alias :puts_degraded :puts_improved
+          alias_method :puts_degraded, :puts_improved
 
           def colored_grade(o)
             r = grade_list(o.grade.to_sym)

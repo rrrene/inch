@@ -38,7 +38,7 @@ module Inch
         def name
           self[:name]
         end
-        alias fullname name
+        alias_method :fullname, :name
 
         # @return [Boolean] +true+ if the parameter is a splat argument
         def splat?

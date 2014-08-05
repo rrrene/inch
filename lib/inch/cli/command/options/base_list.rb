@@ -11,7 +11,7 @@ module Inch
           attribute :depth
 
           attribute :show_all, false
-          alias :show_all? :show_all
+          alias_method :show_all?, :show_all
 
           def parse(args)
             opts = OptionParser.new
