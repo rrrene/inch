@@ -54,10 +54,10 @@ module Inch
           def priority_filter_hint
             arrows = min_priority_arrows
             pretext = if @options.pedantic
-              "Considering priority objects: #{arrows}"
-            else
-              "Only considering priority objects: #{arrows}"
-            end
+                        "Considering priority objects: #{arrows}"
+                      else
+                        "Only considering priority objects: #{arrows}"
+                      end
             "#{pretext}  (use `--help` for options).".dark
           end
 
@@ -91,10 +91,10 @@ module Inch
 
           def display_no_objects_hint
             hint = if @options.pedantic
-              "Even by my standards."
-            else
-              "Try --pedantic to be excessively concerned with minor details and rules."
-            end
+                     "Even by my standards."
+                   else
+                     "Try --pedantic to be excessively concerned with minor details and rules."
+                   end
             ui.trace "Nothing to suggest.".color(:green) + " #{hint}"
           end
 

@@ -20,10 +20,10 @@ module Inch
         @work_dir = dir
         @codebase_old = codebase_for(before_rev)
         @codebase_new = if after_rev.nil?
-            Codebase.parse(work_dir)
-          else
-            codebase_for(after_rev)
-          end
+                          Codebase.parse(work_dir)
+                        else
+                          codebase_for(after_rev)
+                        end
         @comparer = API::Compare::Codebases.new(@codebase_old, @codebase_new)
       end
 
