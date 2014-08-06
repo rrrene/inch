@@ -10,7 +10,7 @@ describe ::Inch::CLI::Command::Options::BaseList do
     assert @options.undocumented.nil?
     assert @options.depth.nil?
   end
-  
+
   it "should run parse twice without affecting the second run" do
     @options = ::Inch::CLI::Command::Options::BaseList.new
     @options.parse(["--no-public", "--no-protected", "--private"])

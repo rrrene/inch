@@ -3,7 +3,7 @@ module Inch
     module Compare
       class CodeObjects
         attr_reader :before, :after
-        
+
         def initialize(object1, object2)
           @before, @after = object1, object2
           if @before.object_id == @after.object_id
