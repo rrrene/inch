@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Inch::VERSION
   spec.authors       = ["René Föhring"]
   spec.email         = ["rf@bamaru.de"]
-  spec.summary       = %q(Documentation measurement tool for Ruby)
-  spec.description   = %q(Documentation measurement tool for Ruby, based on YARD.)
+  spec.summary       = "Documentation measurement tool for Ruby"
+  spec.description   = "Documentation measurement tool for Ruby, based on YARD."
   spec.homepage      = "http://trivelop.de/inch/"
   spec.license       = "MIT"
 
