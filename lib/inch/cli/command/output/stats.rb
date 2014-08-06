@@ -123,7 +123,6 @@ module Inch
             end
             hash
           end
-
         end
       end
     end

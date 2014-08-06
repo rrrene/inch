@@ -3,7 +3,6 @@ module Inch
     module Provider
       module YARD
         module NodocHelper
-
           # Returns true if the code object is somehow marked not to be
           # documented.
           #

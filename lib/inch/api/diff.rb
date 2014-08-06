@@ -65,7 +65,6 @@ module Inch
       def git_reset(dir, revision = nil)
         git dir, "reset --hard #{revision}"
       end
-
     end
   end
 end

@@ -79,7 +79,6 @@ module Inch
             priority = object.priority
             "#{score}  #{priority}  #{object.fullname}"
           end
-
         end
       end
     end

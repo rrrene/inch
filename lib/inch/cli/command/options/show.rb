@@ -3,7 +3,6 @@ module Inch
     module Command
       module Options
         class Show < BaseObject
-
           def descriptions
             [
               "",

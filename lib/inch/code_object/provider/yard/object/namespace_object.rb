@@ -38,7 +38,6 @@ module Inch
                 YARD::Object.for(o)
               end
             end
-
           end
         end
       end

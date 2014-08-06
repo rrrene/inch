@@ -18,7 +18,6 @@ module Inch
               "o".ljust(5) + " returns the code object for OBJECT_NAME (if present)",
             ]
           end
-
         end
       end
     end
