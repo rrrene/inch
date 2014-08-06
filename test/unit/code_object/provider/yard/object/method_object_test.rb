@@ -62,7 +62,7 @@ describe ::Inch::CodeObject::Provider::YARD::Parser do
     assert_equal 1, signature.parameters.size
     refute signature.parameter(:user_options).nil?
     assert signature.has_code_example?
-    #assert signature.has_doc?
+    # assert signature.has_doc?
   end
 
   it "should work" do

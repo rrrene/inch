@@ -42,8 +42,8 @@ describe ::Inch::CLI::Command::Suggest do
     end
     # TODO: not sure what should actually happen here:
     #   no output or error message?
-    #assert out.empty?, "there should be no output"
-    #assert err.empty?, "there should be no errors"
+    # assert out.empty?, "there should be no output"
+    # assert err.empty?, "there should be no errors"
   end
 
   it "should run with --objects switch" do
