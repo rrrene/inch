@@ -19,4 +19,3 @@ require 'inch/codebase/proxy'
 require 'inch/codebase/objects'
 require 'inch/codebase/objects_filter'
 require 'inch/codebase/serializer'
-

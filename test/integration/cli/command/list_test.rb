@@ -62,4 +62,3 @@ describe ::Inch::CLI::Command::List do
     assert err.empty?, "there should be no errors"
   end
 end
-
