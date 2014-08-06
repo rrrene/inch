@@ -10,3 +10,6 @@ AllCops:
 
 Style/Encoding:
   Enabled: true
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
