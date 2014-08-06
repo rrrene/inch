@@ -274,7 +274,7 @@ module Inch
 
             def __depth(i = 0)
               if parent
-                parent.__depth(i+1)
+                parent.__depth(i + 1)
               else
                 i
               end

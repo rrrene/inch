@@ -68,10 +68,10 @@ module Inch
             code_examples = []
             example = nil
             @text.lines.each do |line|
-              if line =~/^\s*+$/
+              if line =~ /^\s*+$/
                 code_examples << example if example
                 example = []
-              elsif line =~/^\ {2,}\S+/
+              elsif line =~ /^\ {2,}\S+/
                 example << line if example
               else
                 code_examples << example if example

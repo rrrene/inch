@@ -61,7 +61,7 @@ module Inch
 
       def __header(text, color, bg_color = nil)
         bg_color ||= "intense_#{color}"
-        bar = " #{text}".ljust(CLI::COLUMNS-1)
+        bar = " #{text}".ljust(CLI::COLUMNS - 1)
                 .on_color(bg_color).color(:color16)
         "#".color(color).on_color(color) + bar
       end
