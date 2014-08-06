@@ -12,7 +12,7 @@ module Inch
       def debug(msg)
         return unless ENV['DEBUG']
         msg.to_s.lines.each do |line|
-          trace edged :dark, line.gsub(/\n$/,'').dark
+          trace edged :dark, line.gsub(/\n$/, '').dark
         end
       end
 

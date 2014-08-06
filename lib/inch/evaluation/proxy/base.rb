@@ -144,7 +144,7 @@ module Inch
 
         # @return [Float]
         def __score
-          value = @roles.reduce(0) { |sum,r| sum + r.score.to_f }.to_i
+          value = @roles.reduce(0) { |sum, r| sum + r.score.to_f }.to_i
           if value < min_score
             min_score
           elsif value > max_score
@@ -156,7 +156,7 @@ module Inch
 
         # @return [Fixnum]
         def __priority
-          @roles.reduce(0) { |sum,r| sum + r.priority.to_i }
+          @roles.reduce(0) { |sum, r| sum + r.priority.to_i }
         end
       end
     end
