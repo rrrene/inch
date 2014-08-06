@@ -46,7 +46,7 @@ module Inch
             end
 
             def parameter(name)
-              parameters.detect { |p| p.name == name.to_s }
+              parameters.find { |p| p.name == name.to_s }
             end
 
             def overridden?

@@ -46,7 +46,7 @@ module Inch
               object.base_dir = dir
 
               object.aliases_fullnames.each do |fullname|
-                _alias = objects.detect { |o| o.fullname == fullname }
+                _alias = objects.find { |o| o.fullname == fullname }
                 _alias.aliased_object_fullname = object.fullname
               end
             end

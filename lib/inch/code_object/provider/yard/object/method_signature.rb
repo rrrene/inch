@@ -43,7 +43,7 @@ module Inch
             # @param name [String,Symbol]
             # @return [MethodParameterObject]
             def parameter(name)
-              parameters.detect { |p| p.name == name.to_s }
+              parameters.find { |p| p.name == name.to_s }
             end
 
             # Returns +true+ if the other signature is identical to self
@@ -94,7 +94,7 @@ module Inch
             end
 
             def parameter_tag(param_name)
-              parameter_tags.detect do |tag|
+              parameter_tags.find do |tag|
                 tag.name == param_name
               end
             end

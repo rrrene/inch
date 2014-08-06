@@ -73,7 +73,7 @@ module Inch
 
           def grade_list(grade_symbol)
             @grade_lists ||= Evaluation.new_grade_lists
-            @grade_lists.detect { |r| r.grade.to_sym == grade_symbol }
+            @grade_lists.find { |r| r.grade.to_sym == grade_symbol }
           end
 
           def rev_hint

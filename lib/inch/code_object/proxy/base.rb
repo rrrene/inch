@@ -42,7 +42,7 @@ module Inch
 
         # @return [Symbol]
         def grade
-          @grade ||= Evaluation.new_grade_lists.detect do |range|
+          @grade ||= Evaluation.new_grade_lists.find do |range|
             range.scores.include?(score)
           end.grade
         end

@@ -12,10 +12,10 @@ describe ::Inch::CodeObject::Provider::YARD do
     fullname = "Foo#b"
 
     provider1 = described_class.parse(fixture_path(:diff1))
-    object1 = provider1.objects.detect { |o| o.fullname == fullname }
+    object1 = provider1.objects.find { |o| o.fullname == fullname }
 
     provider2 = described_class.parse(fixture_path(:diff2))
-    object2 = provider2.objects.detect { |o| o.fullname == fullname }
+    object2 = provider2.objects.find { |o| o.fullname == fullname }
 
     refute object1.nil?
     refute object2.nil?

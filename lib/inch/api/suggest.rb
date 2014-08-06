@@ -87,7 +87,7 @@ module Inch
       end
 
       def grade_list(grade_symbol)
-        grade_lists.detect { |r| r.grade.to_sym == grade_symbol }
+        grade_lists.find { |r| r.grade.to_sym == grade_symbol }
       end
 
       def select_by_priority(list, min_priority)

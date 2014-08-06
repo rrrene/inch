@@ -8,7 +8,7 @@ describe ::Inch::CodeObject::Provider::YARD::Parser do
   end
 
   it "should work for Overloading#params_also_in_overloads" do
-    m = @objects.detect { |o| o.fullname == 'Overloading#params_also_in_overloads' }
+    m = @objects.find { |o| o.fullname == 'Overloading#params_also_in_overloads' }
 
     assert m.has_code_example?
 
@@ -37,7 +37,7 @@ describe ::Inch::CodeObject::Provider::YARD::Parser do
   end
 
   it "should work for Overloading#params_only_in_overloads" do
-    m = @objects.detect { |o| o.fullname == 'Overloading#params_only_in_overloads' }
+    m = @objects.find { |o| o.fullname == 'Overloading#params_only_in_overloads' }
 
     assert m.has_code_example?
 
@@ -66,13 +66,13 @@ describe ::Inch::CodeObject::Provider::YARD::Parser do
   end
 
   it "should work" do
-    m = @objects.detect { |o| o.fullname == 'Foo::Bar#method_with_unstructured_doc' }
+    m = @objects.find { |o| o.fullname == 'Foo::Bar#method_with_unstructured_doc' }
     assert_equal 1, m.signatures.size
     assert_equal 1, m.parameters.size
   end
 
   it "should work 2" do
-    m = @objects.detect { |o| o.fullname == 'Foo#method_with_splat_parameter' }
+    m = @objects.find { |o| o.fullname == 'Foo#method_with_splat_parameter' }
     assert_equal 1, m.signatures.size
     assert_equal 1, m.parameters.size
   end

@@ -19,7 +19,7 @@ describe ::Inch::CodeObject::Provider::YARD::NodocHelper do
       "Foo::HiddenClassViaTag",
       "Foo::HiddenClassViaTag#some_value",
     ].each do |query|
-      m = @objects.detect { |o| o.fullname == query }
+      m = @objects.find { |o| o.fullname == query }
       assert m.nodoc?, "nodoc? should return true for #{query}"
     end
   end
@@ -32,7 +32,7 @@ describe ::Inch::CodeObject::Provider::YARD::NodocHelper do
       "Foo::HiddenClass::EvenMoreHiddenClass::SuddenlyVisibleClass",
       "Foo::HiddenClass::EvenMoreHiddenClass::SuddenlyVisibleClass#method_with_implicit_doc",
     ].each do |query|
-      m = @objects.detect { |o| o.fullname == query }
+      m = @objects.find { |o| o.fullname == query }
       refute m.nodoc?, "nodoc? should return false for #{query}"
     end
   end
