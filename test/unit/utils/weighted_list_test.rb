@@ -19,7 +19,7 @@ describe ::Inch::Utils::WeightedList do
     expected = expected_counts.map.with_index do |num, index|
       (1..num).map { |i| :"#{elements[index]}#{i}" }
     end
-    return list, expected
+    [list, expected]
   end
 
   it "should work if elements are exact" do
