@@ -78,15 +78,14 @@ module Inch
             @options.grades_to_display.map do |grade|
               r = grade_list(grade)
               grade_objects = objects.select { |o| o.grade == r.grade }
-              unless grade_objects.empty?
-                ui.trace
-                ui.header(RANGE_LABELS[r.grade.to_sym], r.color, r.bg_color)
-                grade_objects.each do |o|
-                  grade = o.grade.to_s.ljust(2).color(r.color)
-                  priority = o.priority
-                  ui.sub(" #{grade} #{priority_arrow(priority, r.color)}  " \
-                         "#{o.fullname}")
-                end
+              next if grade_objects.empty?
+              ui.trace
+              ui.header(RANGE_LABELS[r.grade.to_sym], r.color, r.bg_color)
+              grade_objects.each do |o|
+                grade = o.grade.to_s.ljust(2).color(r.color)
+                priority = o.priority
+                ui.sub(" #{grade} #{priority_arrow(priority, r.color)}  " \
+                       "#{o.fullname}")
               end
             end
           end

@@ -71,16 +71,14 @@ module Inch
       def self.to_hash(o)
         attributes = {}
         OBJECT_ATTRIBUTES.each do |name|
-          if o.respond_to?(name)
-            attributes[name] = o.public_send(name)
-          end
+          next unless o.respond_to?(name)
+          attributes[name] = o.public_send(name)
         end
         attributes[:parameters] = o.parameters.map do |parameter|
           hash = {}
           PARAMETER_ATTRIBUTES.each do |pname|
-            if parameter.respond_to?(pname)
-              hash[pname] = parameter.public_send(pname)
-            end
+            next unless parameter.respond_to?(pname)
+            hash[pname] = parameter.public_send(pname)
           end
           hash
         end

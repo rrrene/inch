@@ -43,9 +43,8 @@ module Inch
               echo "No roles assigned.".dark
             else
               o.roles.each do |role|
-                if role.suggestion
-                  echo "+".color(COLOR) + " #{role.suggestion}"
-                end
+                next unless role.suggestion
+                echo "+".color(COLOR) + " #{role.suggestion}"
               end
             end
             echo separator

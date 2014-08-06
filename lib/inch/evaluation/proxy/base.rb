@@ -130,9 +130,8 @@ module Inch
 
         def __evaluate(object, role_classes)
           role_classes.each do |role_class, score|
-            if role_class.applicable?(object)
-              add_role role_class.new(object, score)
-            end
+            next unless role_class.applicable?(object)
+            add_role role_class.new(object, score)
           end
         end
 

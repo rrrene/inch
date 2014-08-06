@@ -33,9 +33,8 @@ module Inch
         # @return [Array<String>] the revisions passed in the command_line
         def revisions
           @revisions ||= @options.revisions.map do |rev|
-            if rev
-              git(work_dir, "rev-parse #{rev}").strip
-            end
+            next unless rev
+            git(work_dir, "rev-parse #{rev}").strip
           end
         end
 
