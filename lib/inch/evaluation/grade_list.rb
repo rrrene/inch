@@ -6,8 +6,8 @@ module Inch
     class GradeList < Struct.new(:grade)
       extend Forwardable
 
-      def_delegators :grade, :scores, :label, :color, :bg_color,
-                              :to_s, :to_sym
+      def_delegators :grade,
+                     :scores, :label, :color, :bg_color, :to_s, :to_sym
 
       # Returns code_objects that received a score with the defined +scores+
       attr_reader :objects
