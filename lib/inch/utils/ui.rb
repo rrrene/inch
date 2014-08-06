@@ -45,7 +45,7 @@ module Inch
       def header(text, color, bg_color = nil)
         @current_header_color = color
         trace __header(text, color, bg_color)
-        trace if !use_color?
+        trace unless use_color?
       end
 
       # @return [Boolean] true if the UI uses coloring

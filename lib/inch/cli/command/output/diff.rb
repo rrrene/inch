@@ -27,7 +27,7 @@ module Inch
           private
 
           def show(added, improved, degraded)
-            if !(added.empty? && improved.empty?)
+            unless added.empty? && improved.empty?
               ui.trace
               ui.header("Added or improved:", :green)
               added.each do |compare|
@@ -38,7 +38,7 @@ module Inch
               end
             end
 
-            if !degraded.empty?
+            unless degraded.empty?
               ui.trace
               ui.header("Degraded:", :red)
               degraded.each do |compare|

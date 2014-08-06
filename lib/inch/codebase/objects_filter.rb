@@ -50,7 +50,7 @@ module Inch
         @list = @list.select do |o|
           options.visibility.include?(o.visibility)
         end
-        if !options.visibility.include?(:private)
+        unless options.visibility.include?(:private)
           @list = @list.reject do |o|
             o.tagged_as_private?
           end
