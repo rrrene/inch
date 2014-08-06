@@ -72,7 +72,7 @@ module Inch
         ui.trace "Usage: inch <command> [options]"
         ui.trace
         ui.trace "Commands:"
-        commands.keys.sort_by {|k| k.to_s }.each do |command_name|
+        commands.keys.sort_by { |k| k.to_s }.each do |command_name|
           command = commands[command_name].new
           ui.trace format("  %-8s %s", command_name, command.description)
         end
