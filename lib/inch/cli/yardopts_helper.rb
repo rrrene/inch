@@ -18,7 +18,7 @@ module Inch
       #   array will be modified.
       # @return [void]
       def parse_yardopts_options(opts, args)
-        wrapper = YardoptsWrapper.new()
+        wrapper = YardoptsWrapper.new
 
         dupped_args = args.dup
         dupped_args.delete("--help")
@@ -36,7 +36,7 @@ module Inch
       end
 
       def yardopts_options(opts)
-        wrapper = YardoptsWrapper.new()
+        wrapper = YardoptsWrapper.new
         wrapper.add_yardoc_options(opts)
       end
 

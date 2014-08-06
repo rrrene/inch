@@ -8,7 +8,7 @@ describe ::Inch::CLI::Command::Inspect do
 
   it "should warn and exit when run without args" do
     out, err = capture_io do
-      assert_raises(SystemExit) { @command.run() }
+      assert_raises(SystemExit) { @command.run }
     end
     assert out.empty?, "there should be no output"
     refute err.empty?, "there should be some error message"

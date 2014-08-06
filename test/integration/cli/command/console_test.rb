@@ -23,7 +23,7 @@ describe ::Inch::CLI::Command::Console do
 
   it "should run without args" do
     _out, _err = capture_io do
-      @prompt = @command.new.run()
+      @prompt = @command.new.run
     end
     assert @prompt.respond_to?(:all)
     assert @prompt.respond_to?(:ff)

@@ -8,7 +8,7 @@ describe ::Inch::CLI::CommandParser do
 
   it "should run without args" do
     out, err = capture_io do
-      @command = @command_parser.run()
+      @command = @command_parser.run
     end
     refute out.empty?, "there should be some output"
     assert err.empty?, "there should be no errors"

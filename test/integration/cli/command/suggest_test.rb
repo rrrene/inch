@@ -8,7 +8,7 @@ describe ::Inch::CLI::Command::Suggest do
 
   it "should run without args" do
     out, err = capture_io do
-      @command.run()
+      @command.run
     end
     refute out.empty?, "there should be some output"
     assert err.empty?, "there should be no errors"
@@ -86,7 +86,7 @@ describe ::Inch::CLI::Command::Suggest do
   it "should run without args on really good fixture" do
     out, err = capture_io do
       Dir.chdir fixture_path(:really_good)
-      @command.run()
+      @command.run
     end
     refute out.empty?, "there should be some output"
     assert err.empty?, "there should be no errors"

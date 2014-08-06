@@ -9,7 +9,7 @@ describe ::Inch::CLI::YardoptsHelper do
 
   it "should run without args" do
     out, err = capture_io do
-      @command.run()
+      @command.run
     end
     refute out.empty?, "there should be some output"
     assert err.empty?, "there should be no errors"
