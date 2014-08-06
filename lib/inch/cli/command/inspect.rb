@@ -1,5 +1,5 @@
-require 'inch/cli/command/options/inspect'
-require 'inch/cli/command/output/inspect'
+require "inch/cli/command/options/inspect"
+require "inch/cli/command/output/inspect"
 
 module Inch
   module CLI
@@ -8,11 +8,11 @@ module Inch
         register_command_as :inspect
 
         def description
-          'Inspects an object'
+          "Inspects an object"
         end
 
         def usage
-          'Usage: inch inspect [paths] OBJECT_NAME [[OBJECT_NAME2] ...] [options]'
+          "Usage: inch inspect [paths] OBJECT_NAME [[OBJECT_NAME2] ...] [options]"
         end
 
         def run(*args)

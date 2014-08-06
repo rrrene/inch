@@ -1,4 +1,4 @@
-require 'sparkr'
+require "sparkr"
 
 module Inch
   module CLI
@@ -45,7 +45,7 @@ module Inch
           end
 
           def display_distribution
-            sparkline = grades_sparkline(@relevant_objects).to_s(' ')
+            sparkline = grades_sparkline(@relevant_objects).to_s(" ")
             puts "Grade distribution (undocumented, C, B, A):  " + sparkline
             puts
             puts priority_filter_hint
@@ -67,7 +67,7 @@ module Inch
             ui.trace
 
             files.each do |file|
-              filename = file.fullname.gsub(base_dir, '')
+              filename = file.fullname.gsub(base_dir, "")
               ui.edged(FILE_COLOR, filename.color(FILE_COLOR))
             end
             ui.trace
@@ -99,7 +99,7 @@ module Inch
           end
 
           def min_priority_arrows
-            priority_arrows_gte(@options.object_min_priority).join(' ')
+            priority_arrows_gte(@options.object_min_priority).join(" ")
           end
 
           def priority_arrows_gte(min_priority)

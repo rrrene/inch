@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../test_helper')
+require File.expand_path(File.dirname(__FILE__) + "/../../test_helper")
 
 describe ::Inch::CodeObject::Provider do
   it "should parse all objects" do

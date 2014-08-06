@@ -23,7 +23,7 @@ module Inch
         sparkline = Sparkr::Sparkline.new(list)
         sparkline.format do |tick, _count, index|
           t = tick.color(grade_lists[index].color)
-          index == 0 ? t + ' ' : t
+          index == 0 ? t + " " : t
         end
       end
     end

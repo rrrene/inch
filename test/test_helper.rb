@@ -1,12 +1,12 @@
-require 'simplecov'
+require "simplecov"
 
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
 
-require 'minitest/autorun'
-require 'bundler'
+require "minitest/autorun"
+require "bundler"
 Bundler.require
-require 'inch'
-require 'inch/cli'
+require "inch"
+require "inch/cli"
 
 def assert_roles(object, expected, unexpected)
   roles = object.roles.map(&:class)

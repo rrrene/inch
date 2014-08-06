@@ -1,4 +1,4 @@
-require 'forwardable'
+require "forwardable"
 
 module Inch
   module CodeObject
@@ -248,7 +248,7 @@ module Inch
             end
 
             def private_api_tag?
-              api_tag && api_tag.text == 'private'
+              api_tag && api_tag.text == "private"
             end
 
             def tag(name)

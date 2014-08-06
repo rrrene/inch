@@ -10,7 +10,7 @@ module Inch
       def self.save(codebase, filename)
         content = Marshal.dump(codebase)
         FileUtils.mkdir_p(File.dirname(filename))
-        File.open(filename, 'wb') { |file| file.write(content) }
+        File.open(filename, "wb") { |file| file.write(content) }
       end
 
       def self.load(filename)

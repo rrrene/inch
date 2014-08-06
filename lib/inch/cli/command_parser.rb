@@ -55,7 +55,7 @@ module Inch
       # argument.
       # @return [Command::Base]
       def run(*args)
-        if ['--help', '-h'].include?(args.join)
+        if ["--help", "-h"].include?(args.join)
           list_commands
         else
           run_command(*args)

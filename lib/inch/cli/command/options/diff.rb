@@ -1,4 +1,4 @@
-require 'inch/utils/shell_helper'
+require "inch/utils/shell_helper"
 
 module Inch
   module CLI

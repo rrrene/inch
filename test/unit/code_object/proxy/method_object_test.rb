@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../../test_helper')
+require File.expand_path(File.dirname(__FILE__) + "/../../../test_helper")
 
 describe ::Inch::CodeObject::Proxy::MethodObject do
   before do
@@ -305,7 +305,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
       m = @objects.find("Overloading#many_overloads")
       assert_equal 1, count_roles(m, Inch::Evaluation::Role::Method::WithoutReturnDescription)
       assert_equal 1, count_roles(m, Inch::Evaluation::Role::Method::WithoutReturnType)
-      assert_equal 1, count_roles(m, Inch::Evaluation::Role::MethodParameter::WithoutMention, 'block')
+      assert_equal 1, count_roles(m, Inch::Evaluation::Role::MethodParameter::WithoutMention, "block")
     end
 
     it "should work if @param tags are only present in the @overload tags, but not on the actual method" do

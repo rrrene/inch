@@ -84,7 +84,7 @@ module Inch
         end
 
         def object_type
-          object.class.to_s.split('::').last.gsub(/Object$/, '').downcase
+          object.class.to_s.split("::").last.gsub(/Object$/, "").downcase
         end
       end
     end

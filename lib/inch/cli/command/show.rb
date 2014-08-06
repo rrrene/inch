@@ -1,5 +1,5 @@
-require 'inch/cli/command/options/show'
-require 'inch/cli/command/output/show'
+require "inch/cli/command/options/show"
+require "inch/cli/command/output/show"
 
 module Inch
   module CLI
@@ -8,11 +8,11 @@ module Inch
         register_command_as :show
 
         def description
-          'Shows an object with its results'
+          "Shows an object with its results"
         end
 
         def usage
-          'Usage: inch show [paths] OBJECT_NAME [[OBJECT_NAME2] ...] [options]'
+          "Usage: inch show [paths] OBJECT_NAME [[OBJECT_NAME2] ...] [options]"
         end
 
         def run(*args)

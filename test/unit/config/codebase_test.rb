@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../test_helper')
+require File.expand_path(File.dirname(__FILE__) + "/../../test_helper")
 
 describe ::Inch::Config::Codebase do
   it "should parse .inch.yml" do

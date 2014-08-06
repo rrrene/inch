@@ -56,7 +56,7 @@ module Inch
             # Returns the actual signature of the method.
             # @return [String]
             def signature
-              relevant_object.signature.gsub(/^(def\ )/, '')
+              relevant_object.signature.gsub(/^(def\ )/, "")
             end
 
             private
@@ -90,7 +90,7 @@ module Inch
             # @param name [String] parameter name
             # @return [String]
             def normalize_parameter_name(name)
-              name.gsub(/[\&\*\$\[\]]/, '')
+              name.gsub(/[\&\*\$\[\]]/, "")
             end
 
             def parameter_tag(param_name)

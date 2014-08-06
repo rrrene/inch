@@ -1,4 +1,4 @@
-require 'inch/evaluation/proxy/base'
+require "inch/evaluation/proxy/base"
 
 module Inch
   module API

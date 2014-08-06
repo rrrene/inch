@@ -1,5 +1,5 @@
-require 'json'
-require 'yaml'
+require "json"
+require "yaml"
 
 module Inch
   module CLI
@@ -31,24 +31,24 @@ module Inch
             print_grades_by_priority
             print_priorities
             puts
-            puts 'Try `--format json|yaml` for raw numbers.'.dark
+            puts "Try `--format json|yaml` for raw numbers.".dark
           end
 
           def print_grades
-            sparkline = grade_lists_sparkline(@grade_lists).to_s(' ')
+            sparkline = grade_lists_sparkline(@grade_lists).to_s(" ")
             puts
-            puts 'Grade distribution: (undocumented, C, B, A)'
+            puts "Grade distribution: (undocumented, C, B, A)"
             puts
             puts "  Overall:  #{sparkline}  #{objects.size.to_s.rjust(5)} objects"
             puts
           end
 
           def print_grades_by_priority
-            puts 'Grade distribution by priority:'
+            puts "Grade distribution by priority:"
             puts
             Evaluation::PriorityRange.all.each do |priority_range|
               list = objects.select { |o| priority_range.include?(o.priority) }
-              sparkline = grades_sparkline(list).to_s(' ')
+              sparkline = grades_sparkline(list).to_s(" ")
               puts "        #{priority_range.arrow}   #{sparkline}  " \
                     "#{list.size.to_s.rjust(5)} objects"
               puts
@@ -67,7 +67,7 @@ module Inch
             sparkline.format do |tick, _count, index|
               tick.color(PRIORITY_COLORS[index])
             end
-            puts "  #{grade_list.grade}:  " + sparkline.to_s(' ') +
+            puts "  #{grade_list.grade}:  " + sparkline.to_s(" ") +
                   " #{grade_list.objects.size.to_s.rjust(5)} objects"
             puts
           end
@@ -76,7 +76,7 @@ module Inch
             arrows = Evaluation::PriorityRange.all.map(&:arrow)
             puts "Priority distribution in grades: (low to high)"
             puts
-            puts "      #{arrows.reverse.join('      ')}"
+            puts "      #{arrows.reverse.join("      ")}"
             @grade_lists.reverse.each do |grade_list|
               print_grade_list(grade_list)
             end
@@ -92,9 +92,9 @@ module Inch
 
           def stats_hash
             {
-              'grade_lists' => __grade_lists,
-              'scores' => __scores,
-              'priorities' => __priorities
+              "grade_lists" => __grade_lists,
+              "scores" => __scores,
+              "priorities" => __priorities
             }
           end
 

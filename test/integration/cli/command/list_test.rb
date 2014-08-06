@@ -1,5 +1,5 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../../test_helper')
-require File.expand_path(File.dirname(__FILE__) + '/../../../shared/base_list')
+require File.expand_path(File.dirname(__FILE__) + "/../../../test_helper")
+require File.expand_path(File.dirname(__FILE__) + "/../../../shared/base_list")
 
 describe ::Inch::CLI::Command::List do
   before do

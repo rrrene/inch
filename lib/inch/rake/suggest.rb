@@ -1,7 +1,7 @@
 # encoding: utf-8
 
-require 'rake'
-require 'rake/tasklib'
+require "rake"
+require "rake/tasklib"
 
 module Inch
   # Holds all Rake tasks

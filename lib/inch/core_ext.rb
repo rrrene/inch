@@ -1,1 +1,1 @@
-require 'inch/core_ext/string'
+require "inch/core_ext/string"

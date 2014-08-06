@@ -60,7 +60,7 @@ module Inch
         end
 
         def initialize
-          name = self.class.to_s.split('::').last
+          name = self.class.to_s.split("::").last
           options_class = Command::Options.const_get(name)
           @options = options_class.new
           @options.usage = usage
