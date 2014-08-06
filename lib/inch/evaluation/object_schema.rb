@@ -13,7 +13,7 @@ module Inch
         code_example_single
         code_example_multi
         unconsidered_tag
-        )
+      )
 
       attr_reader :object
 

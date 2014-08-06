@@ -52,7 +52,7 @@ module Inch
         unconsidered_tag_count
         undocumented?
         visibility
-        ).map(&:to_sym)
+      ).map(&:to_sym)
 
       PARAMETER_ATTRIBUTES = %w(
         name
@@ -62,7 +62,7 @@ module Inch
         splat?
         typed?
         wrongly_mentioned?
-        ).map(&:to_sym)
+      ).map(&:to_sym)
 
       # Returns an attributes Hash for a given code object
       #
