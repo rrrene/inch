@@ -89,7 +89,7 @@ module Inch
         # @note Override with implementation
         # @param *args [Array<String>]
         def run(*args)
-          raise NotImplementedError
+          fail NotImplementedError
         end
 
         # Returns a description of the command's usage pattern
