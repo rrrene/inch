@@ -11,10 +11,10 @@ module Inch
 
           FILE_COLOR = :dark # TODO: store all colors somewhere
           RANGE_LABELS = {
-            :A => "Nearly perfect:",
-            :B => "Properly documented, could be improved:",
-            :C => "Not properly documented:",
-            :U => "Undocumented:",
+            A: "Nearly perfect:",
+            B: "Properly documented, could be improved:",
+            C: "Not properly documented:",
+            U: "Undocumented:",
           }
 
           # @param options [Command::Options::Suggest]

@@ -13,10 +13,10 @@ describe ::Inch::API::Suggest do
   end
 
   it "should work with option: object_count" do
-    @options = {:object_count => 10}
+    @options = {object_count: 10}
     @context = ::Inch::API::Suggest.new @codebase, @options
 
-    @options2 = {:object_count => 20}
+    @options2 = {object_count: 20}
     @context2 = ::Inch::API::Suggest.new @codebase, @options2
 
     assert_equal 10, @context.objects.size
