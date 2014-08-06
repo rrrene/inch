@@ -1,6 +1,7 @@
 module Inch
   module CLI
-    # CommandParser parses a command-line arguments to decide which Command to run.
+    # CommandParser parses a command-line arguments to decide which Command to
+    # run.
     #
     # The basic form translates this shell command
     #

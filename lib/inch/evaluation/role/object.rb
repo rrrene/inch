@@ -53,8 +53,8 @@ module Inch
         end
 
         # Role assigned to objects explicitly or implicitly tagged to be part
-        # of an API. If the API is 'private'/'internal' TaggedAsInternalAPI is assigned
-        # instead.
+        # of an API. If the API is 'private'/'internal' TaggedAsInternalAPI is
+        # assigned instead.
         class TaggedAsAPI < Base
           applicable_if :api_tag?
         end

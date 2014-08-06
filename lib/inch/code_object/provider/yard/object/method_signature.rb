@@ -12,7 +12,8 @@ module Inch
             def initialize(method, yard_tag = nil)
               @method = method
               @yard_tag = yard_tag
-              @docstring = Provider::YARD::Docstring.new(relevant_object.docstring)
+              @docstring =
+                Provider::YARD::Docstring.new(relevant_object.docstring)
             end
 
             def all_signature_parameter_names
@@ -50,7 +51,8 @@ module Inch
             # @param other [MethodSignature]
             # @return [Boolean]
             def same?(other)
-              all_signature_parameter_names == other.all_signature_parameter_names
+              all_signature_parameter_names ==
+                other.all_signature_parameter_names
             end
 
             # Returns the actual signature of the method.
@@ -62,7 +64,8 @@ module Inch
             private
 
             def all_parameter_names
-              all_names = all_signature_parameter_names + parameter_tags.map(&:name)
+              all_names = all_signature_parameter_names +
+                parameter_tags.map(&:name)
               all_names.map do |name|
                 normalize_parameter_name(name) if name
               end.compact.uniq

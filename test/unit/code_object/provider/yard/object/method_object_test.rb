@@ -3,12 +3,15 @@ require File.expand_path(File.dirname(__FILE__) + "/../../../../../test_helper")
 describe ::Inch::CodeObject::Provider::YARD::Parser do
   before do
     @config = Inch::Config.codebase
-    @parser = ::Inch::CodeObject::Provider::YARD::Parser.parse(fixture_path(:simple), @config)
+    @parser = ::Inch::CodeObject::Provider::YARD::Parser.parse(
+      fixture_path(:simple), @config)
     @objects = @parser.objects
   end
 
   it "should work for Overloading#params_also_in_overloads" do
-    m = @objects.find { |o| o.fullname == "Overloading#params_also_in_overloads" }
+    m = @objects.find do |o|
+      o.fullname == "Overloading#params_also_in_overloads"
+    end
 
     assert m.has_code_example?
 
@@ -16,7 +19,8 @@ describe ::Inch::CodeObject::Provider::YARD::Parser do
     assert_equal 2, m.parameters.size # at this moment, this counts all parameters in all overloaded signatures
 
     signature = m.signatures[0]
-    assert_equal "params_also_in_overloads(user_options = {})", signature.signature
+    assert_equal "params_also_in_overloads(user_options = {})",
+                 signature.signature
     assert_equal 1, signature.parameters.size
     refute signature.parameter(:user_options).nil?
     assert signature.has_code_example?
@@ -24,7 +28,8 @@ describe ::Inch::CodeObject::Provider::YARD::Parser do
 
     signature = m.signatures[1]
     assert_equal "params_also_in_overloads()", signature.signature
-    assert signature.parameters.empty?, "Should have been empty: #{signature.parameters.inspect}"
+    assert signature.parameters.empty?,
+           "Should have been empty: #{signature.parameters.inspect}"
     assert signature.has_code_example?
     refute signature.has_doc?
 
@@ -37,7 +42,9 @@ describe ::Inch::CodeObject::Provider::YARD::Parser do
   end
 
   it "should work for Overloading#params_only_in_overloads" do
-    m = @objects.find { |o| o.fullname == "Overloading#params_only_in_overloads" }
+    m = @objects.find do |o|
+      o.fullname == "Overloading#params_only_in_overloads"
+    end
 
     assert m.has_code_example?
 
@@ -46,7 +53,8 @@ describe ::Inch::CodeObject::Provider::YARD::Parser do
 
     signature = m.signatures[0]
     assert_equal "params_only_in_overloads()", signature.signature
-    assert signature.parameters.empty?, "Should have been empty: #{signature.parameters.inspect}"
+    assert signature.parameters.empty?,
+           "Should have been empty: #{signature.parameters.inspect}"
     assert signature.has_code_example?
     refute signature.has_doc?
 
@@ -66,7 +74,9 @@ describe ::Inch::CodeObject::Provider::YARD::Parser do
   end
 
   it "should work" do
-    m = @objects.find { |o| o.fullname == "Foo::Bar#method_with_unstructured_doc" }
+    m = @objects.find do |o|
+      o.fullname == "Foo::Bar#method_with_unstructured_doc"
+    end
     assert_equal 1, m.signatures.size
     assert_equal 1, m.parameters.size
   end

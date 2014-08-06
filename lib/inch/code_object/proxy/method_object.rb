@@ -50,7 +50,8 @@ module Inch
         end
 
         def overridden_method
-          @overridden_method ||= object_lookup.find(self[:overridden_method_fullname])
+          @overridden_method ||=
+            object_lookup.find(self[:overridden_method_fullname])
         end
 
         def return_mentioned?

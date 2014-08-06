@@ -19,7 +19,8 @@ module Inch
               if proxy_object = @cache[cache_key(yard_object)]
                 proxy_object
               else
-                @cache[cache_key(yard_object)] = class_for(yard_object).new(yard_object)
+                @cache[cache_key(yard_object)] =
+                  class_for(yard_object).new(yard_object)
               end
             end
 

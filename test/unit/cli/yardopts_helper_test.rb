@@ -56,7 +56,8 @@ describe ::Inch::CLI::YardoptsHelper do
     end
     refute out.empty?, "there should be some output"
     assert_match /\bUsage\b.+list/, out
-    # assert_match /\b\-\-\[no\-\]yardopts\b/, out, "--[no-]yardopts should be mentioned"
+    # assert_match /\b\-\-\[no\-\]yardopts\b/, out,
+    #              "--[no-]yardopts should be mentioned"
     assert err.empty?, "there should be no errors"
   end
 end

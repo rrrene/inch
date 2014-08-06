@@ -303,9 +303,12 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
 
     it "should work with several overload tags on the same method" do
       m = @objects.find("Overloading#many_overloads")
-      assert_equal 1, count_roles(m, Inch::Evaluation::Role::Method::WithoutReturnDescription)
-      assert_equal 1, count_roles(m, Inch::Evaluation::Role::Method::WithoutReturnType)
-      assert_equal 1, count_roles(m, Inch::Evaluation::Role::MethodParameter::WithoutMention, "block")
+      assert_equal 1, count_roles(
+        m, Inch::Evaluation::Role::Method::WithoutReturnDescription)
+      assert_equal 1, count_roles(
+        m, Inch::Evaluation::Role::Method::WithoutReturnType)
+      assert_equal 1, count_roles(
+        m, Inch::Evaluation::Role::MethodParameter::WithoutMention, "block")
     end
 
     it "should work if @param tags are only present in the @overload tags, but not on the actual method" do

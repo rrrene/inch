@@ -67,7 +67,8 @@ module Inch
             relevant_priorities.include?(f.priority)
         end
 
-        Codebase::Objects.sort_by_priority(priority_list.empty? ? list : priority_list)
+        Codebase::Objects.sort_by_priority(
+          priority_list.empty? ? list : priority_list)
       end
 
       def all_filenames(objects)
@@ -98,7 +99,8 @@ module Inch
       end
 
       def relevant_objects
-        @relevant_objects ||= select_by_priority(codebase.objects, @options.object_min_priority)
+        @relevant_objects ||= select_by_priority(codebase.objects,
+                                                 @options.object_min_priority)
       end
 
       def relevant_priorities

@@ -49,10 +49,13 @@ module Inch
               @show_all = true
             end
 
-            opts.on("--only-namespaces", "Only show namespaces (classes, modules)") do
+            opts.on("--only-namespaces",
+                    "Only show namespaces (classes, modules)") do
               @namespaces = :only
             end
-            opts.on("--no-namespaces", "Only show namespace children (methods, constants, attributes)") do
+            opts.on("--no-namespaces",
+                    "Only show namespace children (methods, constants, " \
+                    "attributes)") do
               @namespaces = :none
             end
 
@@ -73,7 +76,9 @@ module Inch
               @undocumented = :none
             end
 
-            opts.on("--depth [DEPTH]", "Only show objects up to a given DEPTH in the class tree") do |depth|
+            opts.on("--depth [DEPTH]",
+                    "Only show objects up to a given DEPTH " \
+                    "in the class tree") do |depth|
               @depth = depth.to_i
             end
           end

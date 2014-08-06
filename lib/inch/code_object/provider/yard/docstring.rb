@@ -105,10 +105,11 @@ module Inch
           end
 
           def describe_parameter_regexps(name)
-            same_line_regexps = mention_parameter_patterns(name).map do |pattern|
-              r = pattern.is_a?(Regexp) ? pattern : Regexp.escape(pattern)
-              /^#{r}\s?\S+/
-            end
+            same_line_regexps =
+              mention_parameter_patterns(name).map do |pattern|
+                r = pattern.is_a?(Regexp) ? pattern : Regexp.escape(pattern)
+                /^#{r}\s?\S+/
+              end
             same_line_regexps + describe_parameter_extra_regexps(name)
           end
 

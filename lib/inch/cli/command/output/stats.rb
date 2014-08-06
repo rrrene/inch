@@ -39,7 +39,8 @@ module Inch
             puts
             puts "Grade distribution: (undocumented, C, B, A)"
             puts
-            puts "  Overall:  #{sparkline}  #{objects.size.to_s.rjust(5)} objects"
+            puts "  Overall:  #{sparkline}  #{objects.size.to_s.rjust(5)} " \
+              "objects"
             puts
           end
 

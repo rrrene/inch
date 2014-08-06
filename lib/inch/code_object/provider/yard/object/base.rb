@@ -21,7 +21,9 @@ module Inch
             AUTO_GENERATED_TAG_NAMES = %w(raise yield)
 
             # convenient shortcuts to (YARD) code object
-            def_delegators :object, :type, :namespace, :source, :source_type, :group, :dynamic, :visibility
+            def_delegators :object,
+                           :type, :namespace, :source, :source_type, :group,
+                           :dynamic, :visibility
 
             # @param object [YARD::CodeObjects::Base] the actual (YARD) code object
             def initialize(object)
@@ -67,8 +69,29 @@ module Inch
               []
             end
 
-            RUBY_CORE = %w(Array Bignum BasicObject Object Module Class Complex NilClass Numeric String Float Fiber FiberError Continuation Dir File Encoding Enumerator StopIteration Enumerator::Generator Enumerator::Yielder Exception SystemExit SignalException Interrupt StandardError TypeError ArgumentError IndexError KeyError RangeError ScriptError SyntaxError LoadError NotImplementedError NameError NoMethodError RuntimeError SecurityError NoMemoryError EncodingError SystemCallError Encoding::CompatibilityError File::Stat IO Hash ENV IOError EOFError ARGF RubyVM RubyVM::InstructionSequence Math::DomainError ZeroDivisionError FloatDomainError Integer Fixnum Data TrueClass FalseClass Mutex Thread Proc LocalJumpError SystemStackError Method UnboundMethod Binding Process::Status Random Range Rational RegexpError Regexp MatchData Symbol Struct ThreadGroup ThreadError Time Encoding::UndefinedConversionError Encoding::InvalidByteSequenceError Encoding::ConverterNotFoundError Encoding::Converter RubyVM::Env) +
-                      %w(Comparable Kernel File::Constants Enumerable Errno FileTest GC ObjectSpace GC::Profiler IO::WaitReadable IO::WaitWritable Marshal Math Process Process::UID Process::GID Process::Sys Signal)
+            RUBY_CORE = %w(
+              Array Bignum BasicObject Object Module Class Complex NilClass
+              Numeric String Float Fiber FiberError Continuation Dir File
+              Encoding Enumerator StopIteration Enumerator::Generator
+              Enumerator::Yielder Exception SystemExit SignalException Interrupt
+              StandardError TypeError ArgumentError IndexError KeyError
+              RangeError ScriptError SyntaxError LoadError NotImplementedError
+              NameError NoMethodError RuntimeError SecurityError NoMemoryError
+              EncodingError SystemCallError Encoding::CompatibilityError
+              File::Stat IO Hash ENV IOError EOFError ARGF RubyVM
+              RubyVM::InstructionSequence Math::DomainError ZeroDivisionError
+              FloatDomainError Integer Fixnum Data TrueClass FalseClass Mutex
+              Thread Proc LocalJumpError SystemStackError Method UnboundMethod
+              Binding Process::Status Random Range Rational RegexpError Regexp
+              MatchData Symbol Struct ThreadGroup ThreadError Time
+              Encoding::UndefinedConversionError
+              Encoding::InvalidByteSequenceError
+              Encoding::ConverterNotFoundError Encoding::Converter RubyVM::Env
+
+              Comparable Kernel File::Constants Enumerable Errno FileTest GC
+              ObjectSpace GC::Profiler IO::WaitReadable IO::WaitWritable Marshal
+              Math Process Process::UID Process::GID Process::Sys Signal
+            )
             def core?
               RUBY_CORE.include?(name.to_s)
             end
@@ -92,7 +115,8 @@ module Inch
               []
             end
 
-            # CodeLocation is a utility class to find declarations of objects in files
+            # CodeLocation is a utility class to find declarations of objects in
+            # files
             class CodeLocation < Struct.new(:base_dir, :relative_path, :line_no)
               def filename
                 File.join(base_dir, relative_path)

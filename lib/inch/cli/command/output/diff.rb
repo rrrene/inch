@@ -61,7 +61,8 @@ module Inch
           def puts_improved(before, o)
             before_grade = colored_grade(before)
             grade = colored_grade(o)
-            change = before_grade + " -> ".dark + grade + "  " + priority_arrow(o.priority)
+            change = before_grade + " -> ".dark + grade + "  " +
+              priority_arrow(o.priority)
             ui.sub(" #{change}  #{o.fullname}")
           end
           alias_method :puts_degraded, :puts_improved

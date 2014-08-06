@@ -4,7 +4,9 @@ module Shared
 
     it "should give error when run with --unknown-switch" do
       _out, _err = capture_io do
-        assert_raises(SystemExit) { @command.run("lib/foo.rb", "--unknown-switch") }
+        assert_raises(SystemExit) do
+          @command.run("lib/foo.rb", "--unknown-switch")
+        end
       end
     end
 

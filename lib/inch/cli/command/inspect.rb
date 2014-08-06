@@ -12,7 +12,8 @@ module Inch
         end
 
         def usage
-          "Usage: inch inspect [paths] OBJECT_NAME [[OBJECT_NAME2] ...] [options]"
+          "Usage: inch inspect [paths] OBJECT_NAME [[OBJECT_NAME2] ...] " \
+            "[options]"
         end
 
         def run(*args)

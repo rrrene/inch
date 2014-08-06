@@ -29,15 +29,22 @@ module Inch
             Role::Method::Constructor => nil,
             Role::Method::Getter => nil,
             Role::Method::Setter => nil,
-            Role::Method::Overridden => object.overridden? ? object.overridden_method.score : nil,
+            Role::Method::Overridden =>
+              if object.overridden?
+                object.overridden_method.score
+              else
+                nil
+              end,
             Role::Method::WithManyLines => nil,
             Role::Method::WithBangName => nil,
             Role::Method::WithQuestioningName => nil,
             Role::Method::HasAlias => nil,
             Role::Method::WithReturnType => score_for(:return_type),
             Role::Method::WithoutReturnType => score_for(:return_type),
-            Role::Method::WithReturnDescription => score_for(:return_description),
-            Role::Method::WithoutReturnDescription => score_for(:return_description),
+            Role::Method::WithReturnDescription =>
+              score_for(:return_description),
+            Role::Method::WithoutReturnDescription =>
+              score_for(:return_description),
             Role::Method::WithoutParameters => score_for(:parameters),
             Role::Method::WithManyParameters => nil
           }

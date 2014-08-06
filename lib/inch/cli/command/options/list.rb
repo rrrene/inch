@@ -8,7 +8,8 @@ module Inch
           def descriptions
             [
               "",
-              "Lists objects that can be improved regarding their documentation ordered by their grade.",
+              "Lists objects that can be improved regarding their " \
+                "documentation ordered by their grade.",
               "",
               "Example: " + "$ inch list lib/**/*.rb --all".color(:cyan),
               "",

@@ -22,7 +22,8 @@ module Inch
           # @param objects_to_display [Array<CodeObject::Proxy::Base>]
           # @param grade_lists [Array<Evaluation::GradeList>]
           # @param files [Array<Evaluation::File>]
-          def initialize(options, relevant_objects, objects_to_display, grade_lists, files)
+          def initialize(options, relevant_objects, objects_to_display,
+                         grade_lists, files)
             @options = options
             @objects = objects_to_display
             @relevant_objects = relevant_objects
@@ -83,7 +84,8 @@ module Inch
                 grade_objects.each do |o|
                   grade = o.grade.to_s.ljust(2).color(r.color)
                   priority = o.priority
-                  ui.sub(" #{grade} #{priority_arrow(priority, r.color)}  #{o.fullname}")
+                  ui.sub(" #{grade} #{priority_arrow(priority, r.color)}  " \
+                         "#{o.fullname}")
                 end
               end
             end
@@ -93,7 +95,8 @@ module Inch
             hint = if @options.pedantic
                      "Even by my standards."
                    else
-                     "Try --pedantic to be excessively concerned with minor details and rules."
+                     "Try --pedantic to be excessively concerned with minor " \
+                       "details and rules."
                    end
             ui.trace "Nothing to suggest.".color(:green) + " #{hint}"
           end

@@ -95,13 +95,19 @@ module Inch
             Role::Object::WithDoc => score_for(:docstring),
             Role::Object::WithoutDoc => score_for(:docstring),
             Role::Object::WithCodeExample => score_for(:code_example_single),
-            Role::Object::WithMultipleCodeExamples => score_for(:code_example_multi),
+            Role::Object::WithMultipleCodeExamples =>
+              score_for(:code_example_multi),
             Role::Object::WithoutCodeExample => score_for(:code_example_single),
             Role::Object::Tagged => score_for_unconsidered_tags,
             Role::Object::TaggedAsAPI => nil,
             Role::Object::TaggedAsInternalAPI => nil,
             Role::Object::TaggedAsPrivate => nil,
-            Role::Object::Alias => object.alias? ? object.aliased_object.score : nil
+            Role::Object::Alias =>
+              if object.alias?
+                object.aliased_object.score
+              else
+                nil
+              end
           }
         end
 
