@@ -49,7 +49,7 @@ module Inch
             Evaluation::PriorityRange.all.each do |priority_range|
               list = objects.select { |o| priority_range.include?(o.priority) }
               sparkline = grades_sparkline(list).to_s(' ')
-              puts "        #{priority_range.arrow}   #{sparkline}  " +
+              puts "        #{priority_range.arrow}   #{sparkline}  " \
                     "#{list.size.to_s.rjust(5)} objects"
               puts
             end

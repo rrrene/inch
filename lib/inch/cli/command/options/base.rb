@@ -92,7 +92,7 @@ module Inch
           # @return [String]
           def description_hint_arrows
             arrows = Evaluation::PriorityRange.all.map(&:arrow).join(' ')
-            "Arrows (#{arrows}) hint at the importance of the object " +
+            "Arrows (#{arrows}) hint at the importance of the object " \
               "being documented."
           end
 
@@ -102,7 +102,7 @@ module Inch
           # @return [String]
           def description_hint_grades
             grades = Evaluation::Grade.all
-            "School grades (#{grades.join(', ')}) are assigned and " +
+            "School grades (#{grades.join(', ')}) are assigned and " \
               "displayed with each object."
           end
 
