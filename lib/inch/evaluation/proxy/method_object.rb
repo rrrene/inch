@@ -39,7 +39,7 @@ module Inch
             Role::Method::WithReturnDescription => score_for(:return_description),
             Role::Method::WithoutReturnDescription => score_for(:return_description),
             Role::Method::WithoutParameters => score_for(:parameters),
-            Role::Method::WithManyParameters => nil,
+            Role::Method::WithManyParameters => nil
           }
         end
 
@@ -52,7 +52,7 @@ module Inch
             Role::MethodParameter::WithoutType => per_param * 0.5,
             Role::MethodParameter::WithBadName => nil,
             Role::MethodParameter::Block => nil,
-            Role::MethodParameter::Splat => nil,
+            Role::MethodParameter::Splat => nil
           }
         end
 

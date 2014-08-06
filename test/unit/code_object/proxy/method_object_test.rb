@@ -313,7 +313,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
       unexpected_roles = [
         Inch::Evaluation::Role::Object::WithoutCodeExample,
         Inch::Evaluation::Role::MethodParameter::WithoutMention,
-        Inch::Evaluation::Role::MethodParameter::WithoutType,
+        Inch::Evaluation::Role::MethodParameter::WithoutType
       ]
       assert_roles m, [], unexpected_roles
     end
@@ -321,11 +321,11 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     it "should work with one param missing in the overload tag" do
       m = @objects.find("Overloading#one_param_missing_in_overload")
       unexpected_roles = [
-        Inch::Evaluation::Role::Object::WithoutCodeExample,
+        Inch::Evaluation::Role::Object::WithoutCodeExample
       ]
       expected_roles = [
         Inch::Evaluation::Role::MethodParameter::WithoutMention,
-        Inch::Evaluation::Role::MethodParameter::WithoutType,
+        Inch::Evaluation::Role::MethodParameter::WithoutType
       ]
       assert_roles m, expected_roles, unexpected_roles
     end
@@ -337,7 +337,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
       m = @objects.find("Foo#method_with_named_parameter")
       unexpected_roles = [
         Inch::Evaluation::Role::MethodParameter::WithoutMention,
-        Inch::Evaluation::Role::MethodParameter::WithoutType,
+        Inch::Evaluation::Role::MethodParameter::WithoutType
       ]
       assert_roles m, [], unexpected_roles
     end

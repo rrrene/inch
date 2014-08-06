@@ -15,7 +15,7 @@ module Inch
               "all".ljust(5) + " returns all code objects",
               "f".ljust(5) + " finds an object by its path",
               "ff".ljust(5) + " finds all objects given a partial path",
-              "o".ljust(5) + " returns the code object for OBJECT_NAME (if present)",
+              "o".ljust(5) + " returns the code object for OBJECT_NAME (if present)"
             ]
           end
         end

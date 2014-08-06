@@ -14,7 +14,7 @@ module Inch
             A: "Nearly perfect:",
             B: "Properly documented, could be improved:",
             C: "Not properly documented:",
-            U: "Undocumented:",
+            U: "Undocumented:"
           }
 
           # @param options [Command::Options::Suggest]

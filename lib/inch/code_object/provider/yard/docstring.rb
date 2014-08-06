@@ -97,7 +97,7 @@ module Inch
             [
               "#{name}::",
               "+#{name}+::",
-              "<tt>#{name}</tt>::",
+              "<tt>#{name}</tt>::"
             ].map do |pattern|
               r = pattern.is_a?(Regexp) ? pattern : Regexp.escape(pattern)
               /#{r}\n\ {2,}.+/m
