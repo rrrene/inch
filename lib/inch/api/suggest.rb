@@ -19,7 +19,6 @@ module Inch
         filter_objects_to_display
       end
 
-
       # @return [Array] all the objects that match +@options+
       def all_objects
         relevant_objects

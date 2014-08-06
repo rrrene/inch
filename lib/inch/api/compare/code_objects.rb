@@ -23,7 +23,6 @@ module Inch
           @after.grade
         end
 
-
         def added?
           @before.nil? && !@after.nil?
         end

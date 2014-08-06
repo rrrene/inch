@@ -7,7 +7,6 @@ describe ::Inch::CodeObject::Provider::YARD::Docstring do
   # loose TomDoc compatibility
   #
 
-
   it "should notice things in tomdoc style docs" do
 text = <<-DOC
 Internal: Detects the Language of the blob.
@@ -126,7 +125,6 @@ DOC
   # PARAMETER MENTIONS
   #
 
-
   it "should work 2" do
 text = <<-DOC
 Just because format_html is mentioned here, does not mean
@@ -136,7 +134,6 @@ DOC
     refute docstring.mentions_parameter?(:format)
     refute docstring.contains_code_example?
   end
-
 
   it "should work 2 if correct" do
 text = <<-DOC
@@ -148,12 +145,9 @@ DOC
     refute docstring.contains_code_example?
   end
 
-
-
   #
   # CODE EXAMPLES
   #
-
 
   it "should work 3" do
 text = <<-DOC

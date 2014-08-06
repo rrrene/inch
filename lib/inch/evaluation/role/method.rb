@@ -46,7 +46,6 @@ module Inch
           end
         end
 
-
         # Role assigned to methods with many lines
         #
         # @see CodeObject::Proxy::MethodObject#has_many_lines?

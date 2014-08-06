@@ -40,7 +40,6 @@ module Inch
           alias_method :f, :find_object
           alias_method :o, :object
 
-
           def run
             ui.trace
             ui.header("Welcome to Inch's console", COLOR, BG_COLOR)

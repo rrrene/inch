@@ -43,7 +43,6 @@ module Shared
       assert_match /\bFoo::Bar#/, out
     end
 
-
     it "should run with --only-undocumented switch" do
       skip
       out, err = capture_io do

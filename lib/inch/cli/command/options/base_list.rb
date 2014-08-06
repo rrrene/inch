@@ -37,7 +37,6 @@ module Inch
 
           protected
 
-
           # Sets all list related options for the current Options object
           #
           # @param opts [OptionParser]
