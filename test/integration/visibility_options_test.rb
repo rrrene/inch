@@ -30,7 +30,7 @@ describe ::Inch::CLI::Command do
 
   it "should run with --no-public switch" do
     out, _err = capture_io do
-      @command.run(*%w|--all --no-public|)
+      @command.run(*%w(--all --no-public))
     end
     refute out.empty?, "there should be some output"
     refute_match /\bFoo#public_method\b/, out
@@ -41,7 +41,7 @@ describe ::Inch::CLI::Command do
 
   it "should run with --no-public --no-protected switch" do
     out, _err = capture_io do
-      @command.run(*%w|--all --no-public --no-protected|)
+      @command.run(*%w(--all --no-public --no-protected))
     end
     assert out.empty?, "there should be no output"
     refute_match /\bFoo#public_method\b/, out
@@ -52,7 +52,7 @@ describe ::Inch::CLI::Command do
 
   it "should run with --no-public --no-protected --private switch" do
     out, _err = capture_io do
-      @command.run(*%w|--all --no-public --no-protected --private|)
+      @command.run(*%w(--all --no-public --no-protected --private))
     end
     refute out.empty?, "there should be some output"
     refute_match /\bFoo#public_method\b/, out
@@ -63,7 +63,7 @@ describe ::Inch::CLI::Command do
 
   it "should run with --no-public switch" do
     out, _err = capture_io do
-      @command.run(*%w|--all --no-public|)
+      @command.run(*%w(--all --no-public))
     end
     refute out.empty?, "there should be some output"
     refute_match /\bFoo#public_method\b/, out
@@ -74,7 +74,7 @@ describe ::Inch::CLI::Command do
 
   it "should run with --no-protected switch" do
     out, _err = capture_io do
-      @command.run(*%w|--all --no-protected|)
+      @command.run(*%w(--all --no-protected))
     end
     refute out.empty?, "there should be some output"
     assert_match /\bFoo#public_method\b/, out

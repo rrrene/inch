@@ -20,13 +20,13 @@ describe ::Inch::CLI::Command::List do
   end
 
   it "should run with --no-private switch" do
-    out = %x|#{@command} --format json|
+    out = %x(#{@command} --format json)
     refute out.empty?, "there should be some output"
     assert_parsed_output JSON[out]
   end
 
   it "should run with --no-protected switch" do
-    out = %x|#{@command} --format yaml|
+    out = %x(#{@command} --format yaml)
     refute out.empty?, "there should be some output"
     assert_parsed_output YAML.load(out)
   end
