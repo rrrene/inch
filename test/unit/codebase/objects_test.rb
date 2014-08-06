@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../test_helper')
+require File.expand_path(File.dirname(__FILE__) + "/../../test_helper")
 
 describe ::Inch::Codebase::Objects do
   before do
@@ -18,7 +18,7 @@ describe ::Inch::Codebase::Objects do
 
   it "should support iteration" do
     sum = 0
-    @objects.each do |o|
+    @objects.each do
       sum += 1
     end
     assert_equal @objects.size, sum

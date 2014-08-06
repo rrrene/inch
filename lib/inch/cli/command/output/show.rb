@@ -42,10 +42,9 @@ module Inch
             if o.roles.empty?
               echo "No roles assigned.".dark
             else
-              o.roles.each_with_index do |role, index|
-                if role.suggestion
-                  echo "+".color(COLOR) + " #{role.suggestion}"
-                end
+              o.roles.each do |role|
+                next unless role.suggestion
+                echo "+".color(COLOR) + " #{role.suggestion}"
               end
             end
             echo separator
@@ -61,7 +60,7 @@ module Inch
 
           def grade(score)
             grade_lists ||= Evaluation.new_grade_lists
-            r = grade_lists.detect { |r| r.scores.include?(score) }
+            r = grade_lists.find { |v| v.scores.include?(score) }
             "#{r.grade} - #{r.label}".color(r.color)
           end
         end

@@ -33,4 +33,4 @@ module Inch
   end
 end
 
-require 'inch/code_object/provider/yard'
+require "inch/code_object/provider/yard"

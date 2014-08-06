@@ -67,11 +67,11 @@ module Inch
           def parse_code_examples
             code_examples = []
             example = nil
-            @text.lines.each_with_index do |line, index|
-              if line =~/^\s*+$/
+            @text.lines.each do |line|
+              if line =~ /^\s*+$/
                 code_examples << example if example
                 example = []
-              elsif line =~/^\ {2,}\S+/
+              elsif line =~ /^\ {2,}\S+/
                 example << line if example
               else
                 code_examples << example if example
@@ -97,7 +97,7 @@ module Inch
             [
               "#{name}::",
               "+#{name}+::",
-              "<tt>#{name}</tt>::",
+              "<tt>#{name}</tt>::"
             ].map do |pattern|
               r = pattern.is_a?(Regexp) ? pattern : Regexp.escape(pattern)
               /#{r}\n\ {2,}.+/m
@@ -105,10 +105,11 @@ module Inch
           end
 
           def describe_parameter_regexps(name)
-            same_line_regexps = mention_parameter_patterns(name).map do |pattern|
-              r = pattern.is_a?(Regexp) ? pattern : Regexp.escape(pattern)
-              /^#{r}\s?\S+/
-            end
+            same_line_regexps =
+              mention_parameter_patterns(name).map do |pattern|
+                r = pattern.is_a?(Regexp) ? pattern : Regexp.escape(pattern)
+                /^#{r}\s?\S+/
+              end
             same_line_regexps + describe_parameter_extra_regexps(name)
           end
 

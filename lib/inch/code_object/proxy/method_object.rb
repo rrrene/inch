@@ -36,7 +36,7 @@ module Inch
         end
 
         def parameter(name)
-          parameters.detect { |p| p.name == name.to_s }
+          parameters.find { |p| p.name == name.to_s }
         end
 
         def parameters
@@ -50,7 +50,8 @@ module Inch
         end
 
         def overridden_method
-          @overridden_method ||= object_lookup.find(self[:overridden_method_fullname])
+          @overridden_method ||=
+            object_lookup.find(self[:overridden_method_fullname])
         end
 
         def return_mentioned?

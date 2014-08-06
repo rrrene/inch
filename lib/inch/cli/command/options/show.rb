@@ -3,11 +3,11 @@ module Inch
     module Command
       module Options
         class Show < BaseObject
-
           def descriptions
             [
               "",
-              "Example: " + "$ inch show lib/**/*.rb Foo::Bar#initialize".color(:cyan),
+              "Example: " +
+                "$ inch show lib/**/*.rb Foo::Bar#initialize".color(:cyan),
               "",
               "Shows one or more objects in detail.",
               description_hint_grades,

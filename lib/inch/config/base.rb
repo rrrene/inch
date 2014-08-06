@@ -4,7 +4,6 @@ module Inch
   # @see config/defaults.rb
   class Config
     class Base
-
       def update(&block)
         instance_eval(&block)
       end

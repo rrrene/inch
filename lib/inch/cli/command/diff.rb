@@ -1,6 +1,6 @@
-require 'pry'
-require 'inch/cli/command/options/diff'
-require 'inch/cli/command/output/diff'
+require "pry"
+require "inch/cli/command/options/diff"
+require "inch/cli/command/output/diff"
 
 module Inch
   module CLI
@@ -11,11 +11,11 @@ module Inch
         register_command_as :diff
 
         def description
-          'Shows a diff'
+          "Shows a diff"
         end
 
         def usage
-          'Usage: inch diff [REV..[REV]] [options]'
+          "Usage: inch diff [REV..[REV]] [options]"
         end
 
         def run(*args)
@@ -33,9 +33,8 @@ module Inch
         # @return [Array<String>] the revisions passed in the command_line
         def revisions
           @revisions ||= @options.revisions.map do |rev|
-            if rev
-              git(work_dir, "rev-parse #{rev}").strip
-            end
+            next unless rev
+            git(work_dir, "rev-parse #{rev}").strip
           end
         end
 

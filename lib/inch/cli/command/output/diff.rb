@@ -27,7 +27,7 @@ module Inch
           private
 
           def show(added, improved, degraded)
-            if !(added.empty? && improved.empty?)
+            unless added.empty? && improved.empty?
               ui.trace
               ui.header("Added or improved:", :green)
               added.each do |compare|
@@ -38,7 +38,7 @@ module Inch
               end
             end
 
-            if !degraded.empty?
+            unless degraded.empty?
               ui.trace
               ui.header("Degraded:", :red)
               degraded.each do |compare|
@@ -54,7 +54,6 @@ module Inch
 
           def puts_added(o)
             grade = colored_grade(o)
-            priority = o.priority
             change = "  +  ".dark + grade + "  " + priority_arrow(o.priority)
             ui.sub(" #{change}  #{o.fullname}")
           end
@@ -62,10 +61,11 @@ module Inch
           def puts_improved(before, o)
             before_grade = colored_grade(before)
             grade = colored_grade(o)
-            change = before_grade + " -> ".dark + grade + "  " + priority_arrow(o.priority)
+            change = before_grade + " -> ".dark + grade + "  " +
+              priority_arrow(o.priority)
             ui.sub(" #{change}  #{o.fullname}")
           end
-          alias :puts_degraded :puts_improved
+          alias_method :puts_degraded, :puts_improved
 
           def colored_grade(o)
             r = grade_list(o.grade.to_sym)
@@ -74,7 +74,7 @@ module Inch
 
           def grade_list(grade_symbol)
             @grade_lists ||= Evaluation.new_grade_lists
-            @grade_lists.detect { |r| r.grade.to_sym == grade_symbol }
+            @grade_lists.find { |r| r.grade.to_sym == grade_symbol }
           end
 
           def rev_hint

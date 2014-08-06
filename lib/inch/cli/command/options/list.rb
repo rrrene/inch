@@ -8,7 +8,8 @@ module Inch
           def descriptions
             [
               "",
-              "Lists objects that can be improved regarding their documentation ordered by their grade.",
+              "Lists objects that can be improved regarding their " \
+                "documentation ordered by their grade.",
               "",
               "Example: " + "$ inch list lib/**/*.rb --all".color(:cyan),
               "",
@@ -19,7 +20,7 @@ module Inch
 
           def list_options(opts)
             super
-            opts.on("--numbers", "Show numbers instead of grades and arrows") do |depth|
+            opts.on("--numbers", "Show numbers instead of grades and arrows") do
               @numbers = true
             end
           end

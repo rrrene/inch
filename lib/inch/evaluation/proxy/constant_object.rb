@@ -10,7 +10,7 @@ module Inch
             Role::Constant::WithoutDoc => score_for(:docstring),
             Role::Constant::TaggedAsNodoc => nil,
             Role::Constant::Public => nil,
-            Role::Constant::Private => nil,
+            Role::Constant::Private => nil
           }
         end
       end

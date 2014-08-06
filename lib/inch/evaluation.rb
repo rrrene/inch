@@ -9,27 +9,27 @@ module Inch
     private
 
     def self.class_for(code_object)
-      class_name = code_object.class.to_s.split('::').last
+      class_name = code_object.class.to_s.split("::").last
       const_get(class_name)
     end
   end
 end
 
-require 'inch/utils/read_write_methods'
+require "inch/utils/read_write_methods"
 
-require 'inch/evaluation/file'
-require 'inch/evaluation/grade'
-require 'inch/evaluation/grade_list'
-require 'inch/evaluation/object_schema'
-require 'inch/evaluation/priority_range'
+require "inch/evaluation/file"
+require "inch/evaluation/grade"
+require "inch/evaluation/grade_list"
+require "inch/evaluation/object_schema"
+require "inch/evaluation/priority_range"
 
-require 'inch/evaluation/role/base'
-require 'inch/evaluation/role/missing'
-require 'inch/evaluation/role/object'
-require 'inch/evaluation/role/method'
-require 'inch/evaluation/role/method_parameter'
-require 'inch/evaluation/role/namespace'
-require 'inch/evaluation/role/constant'
-require 'inch/evaluation/role/class_variable'
+require "inch/evaluation/role/base"
+require "inch/evaluation/role/missing"
+require "inch/evaluation/role/object"
+require "inch/evaluation/role/method"
+require "inch/evaluation/role/method_parameter"
+require "inch/evaluation/role/namespace"
+require "inch/evaluation/role/constant"
+require "inch/evaluation/role/class_variable"
 
-require 'inch/evaluation/proxy'
+require "inch/evaluation/proxy"

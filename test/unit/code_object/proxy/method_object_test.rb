@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../../test_helper')
+require File.expand_path(File.dirname(__FILE__) + "/../../../test_helper")
 
 describe ::Inch::CodeObject::Proxy::MethodObject do
   before do
@@ -275,7 +275,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     it "should work as a writer" do
       m = @objects.find("Attributes#email=")
       refute_equal 0, m.score
-      #refute m.undocumented?
+      # refute m.undocumented?
       # NOTE: this is undocumented since there is no original_docstring
     end
   end
@@ -303,9 +303,12 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
 
     it "should work with several overload tags on the same method" do
       m = @objects.find("Overloading#many_overloads")
-      assert_equal 1, count_roles(m, Inch::Evaluation::Role::Method::WithoutReturnDescription)
-      assert_equal 1, count_roles(m, Inch::Evaluation::Role::Method::WithoutReturnType)
-      assert_equal 1, count_roles(m, Inch::Evaluation::Role::MethodParameter::WithoutMention, 'block')
+      assert_equal 1, count_roles(
+        m, Inch::Evaluation::Role::Method::WithoutReturnDescription)
+      assert_equal 1, count_roles(
+        m, Inch::Evaluation::Role::Method::WithoutReturnType)
+      assert_equal 1, count_roles(
+        m, Inch::Evaluation::Role::MethodParameter::WithoutMention, "block")
     end
 
     it "should work if @param tags are only present in the @overload tags, but not on the actual method" do
@@ -313,7 +316,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
       unexpected_roles = [
         Inch::Evaluation::Role::Object::WithoutCodeExample,
         Inch::Evaluation::Role::MethodParameter::WithoutMention,
-        Inch::Evaluation::Role::MethodParameter::WithoutType,
+        Inch::Evaluation::Role::MethodParameter::WithoutType
       ]
       assert_roles m, [], unexpected_roles
     end
@@ -321,11 +324,11 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
     it "should work with one param missing in the overload tag" do
       m = @objects.find("Overloading#one_param_missing_in_overload")
       unexpected_roles = [
-        Inch::Evaluation::Role::Object::WithoutCodeExample,
+        Inch::Evaluation::Role::Object::WithoutCodeExample
       ]
       expected_roles = [
         Inch::Evaluation::Role::MethodParameter::WithoutMention,
-        Inch::Evaluation::Role::MethodParameter::WithoutType,
+        Inch::Evaluation::Role::MethodParameter::WithoutType
       ]
       assert_roles m, expected_roles, unexpected_roles
     end
@@ -337,7 +340,7 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
       m = @objects.find("Foo#method_with_named_parameter")
       unexpected_roles = [
         Inch::Evaluation::Role::MethodParameter::WithoutMention,
-        Inch::Evaluation::Role::MethodParameter::WithoutType,
+        Inch::Evaluation::Role::MethodParameter::WithoutType
       ]
       assert_roles m, [], unexpected_roles
     end

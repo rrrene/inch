@@ -60,7 +60,7 @@ module Inch
         end
 
         def initialize
-          name = self.class.to_s.split('::').last
+          name = self.class.to_s.split("::").last
           options_class = Command::Options.const_get(name)
           @options = options_class.new
           @options.usage = usage
@@ -89,7 +89,7 @@ module Inch
         # @note Override with implementation
         # @param *args [Array<String>]
         def run(*args)
-          raise NotImplementedError
+          fail NotImplementedError
         end
 
         # Returns a description of the command's usage pattern

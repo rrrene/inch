@@ -95,13 +95,19 @@ module Inch
             Role::Object::WithDoc => score_for(:docstring),
             Role::Object::WithoutDoc => score_for(:docstring),
             Role::Object::WithCodeExample => score_for(:code_example_single),
-            Role::Object::WithMultipleCodeExamples => score_for(:code_example_multi),
+            Role::Object::WithMultipleCodeExamples =>
+              score_for(:code_example_multi),
             Role::Object::WithoutCodeExample => score_for(:code_example_single),
             Role::Object::Tagged => score_for_unconsidered_tags,
             Role::Object::TaggedAsAPI => nil,
             Role::Object::TaggedAsInternalAPI => nil,
             Role::Object::TaggedAsPrivate => nil,
-            Role::Object::Alias => object.alias? ? object.aliased_object.score : nil,
+            Role::Object::Alias =>
+              if object.alias?
+                object.aliased_object.score
+              else
+                nil
+              end
           }
         end
 
@@ -124,9 +130,8 @@ module Inch
 
         def __evaluate(object, role_classes)
           role_classes.each do |role_class, score|
-            if role_class.applicable?(object)
-              add_role role_class.new(object, score)
-            end
+            next unless role_class.applicable?(object)
+            add_role role_class.new(object, score)
           end
         end
 
@@ -144,7 +149,7 @@ module Inch
 
         # @return [Float]
         def __score
-          value = @roles.inject(0) { |sum,r| sum + r.score.to_f }.to_i
+          value = @roles.reduce(0) { |sum, r| sum + r.score.to_f }.to_i
           if value < min_score
             min_score
           elsif value > max_score
@@ -156,7 +161,7 @@ module Inch
 
         # @return [Fixnum]
         def __priority
-          @roles.inject(0) { |sum,r| sum + r.priority.to_i }
+          @roles.reduce(0) { |sum, r| sum + r.priority.to_i }
         end
       end
     end

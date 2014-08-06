@@ -1,4 +1,4 @@
-require 'optparse'
+require "optparse"
 
 module Inch
   module CLI
@@ -20,9 +20,7 @@ module Inch
 
           def priority_arrow(priority, color = :white)
             Evaluation::PriorityRange.all.each do |range|
-              if range.include?(priority)
-                return range.arrow.color(color).dark
-              end
+              return range.arrow.color(color).dark if range.include?(priority)
             end
           end
 

@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../../test_helper')
+require File.expand_path(File.dirname(__FILE__) + "/../../../test_helper")
 
 class MockPrivateRole < ::Inch::Evaluation::Role::Base
   applicable_if :private?

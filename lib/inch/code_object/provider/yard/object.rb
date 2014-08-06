@@ -19,7 +19,8 @@ module Inch
               if proxy_object = @cache[cache_key(yard_object)]
                 proxy_object
               else
-                @cache[cache_key(yard_object)] = class_for(yard_object).new(yard_object)
+                @cache[cache_key(yard_object)] =
+                  class_for(yard_object).new(yard_object)
               end
             end
 
@@ -30,7 +31,7 @@ module Inch
             # @param yard_object [YARD::CodeObject]
             # @return [Class]
             def class_for(yard_object)
-              class_name = yard_object.class.to_s.split('::').last
+              class_name = yard_object.class.to_s.split("::").last
               const_get(class_name)
             rescue NameError
               Base
@@ -50,11 +51,11 @@ module Inch
   end
 end
 
-require 'inch/code_object/provider/yard/object/base'
-require 'inch/code_object/provider/yard/object/namespace_object'
-require 'inch/code_object/provider/yard/object/class_object'
-require 'inch/code_object/provider/yard/object/class_variable_object'
-require 'inch/code_object/provider/yard/object/constant_object'
-require 'inch/code_object/provider/yard/object/method_object'
-require 'inch/code_object/provider/yard/object/method_parameter_object'
-require 'inch/code_object/provider/yard/object/module_object'
+require "inch/code_object/provider/yard/object/base"
+require "inch/code_object/provider/yard/object/namespace_object"
+require "inch/code_object/provider/yard/object/class_object"
+require "inch/code_object/provider/yard/object/class_variable_object"
+require "inch/code_object/provider/yard/object/constant_object"
+require "inch/code_object/provider/yard/object/method_object"
+require "inch/code_object/provider/yard/object/method_parameter_object"
+require "inch/code_object/provider/yard/object/module_object"

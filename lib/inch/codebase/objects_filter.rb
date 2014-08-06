@@ -41,16 +41,14 @@ module Inch
       end
 
       def filter_depth
-        if options.depth
-          @list = @list.select { |o| o.depth <= options.depth }
-        end
+        @list = @list.select { |o| o.depth <= options.depth } if options.depth
       end
 
       def filter_visibility
         @list = @list.select do |o|
           options.visibility.include?(o.visibility)
         end
-        if !options.visibility.include?(:private)
+        unless options.visibility.include?(:private)
           @list = @list.reject do |o|
             o.tagged_as_private?
           end

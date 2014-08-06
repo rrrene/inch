@@ -33,10 +33,10 @@ module Inch
 
         def read(options_or_hash, name)
           value = if options_or_hash.is_a?(Hash)
-            options_or_hash[name]
-          else
-            options_or_hash.send(name)
-          end
+                    options_or_hash[name]
+                  else
+                    options_or_hash.send(name)
+                  end
           instance_variable_set("@#{name}", value)
         end
       end

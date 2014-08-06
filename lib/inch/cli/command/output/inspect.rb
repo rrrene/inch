@@ -48,7 +48,7 @@ module Inch
           def print_code_info(o)
             if o.method?
               CommentAndAbbrevSource.new(o).lines.each do |line|
-                echo line.gsub(/\n$/m, '').color(COMMENT_COLOR)
+                echo line.gsub(/\n$/m, "").color(COMMENT_COLOR)
               end
               echo separator
             end
@@ -66,13 +66,11 @@ module Inch
           end
 
           def print_role_info(role)
-            name = role.class.to_s.split('::Role::').last
+            name = role.class.to_s.split("::Role::").last
             score = colored_role_score(role)
 
             priority = role.priority.to_s.rjust(4)
-            if role.priority == 0
-              priority = priority.dark
-            end
+            priority = priority.dark if role.priority == 0
 
             echo name.ljust(40) + score + priority
             print_min_max_score(role)
@@ -133,7 +131,7 @@ module Inch
             end
 
             def to_s
-              comments.join('') + abbrev_source
+              comments.join("") + abbrev_source
             end
 
             private
@@ -141,12 +139,12 @@ module Inch
             def abbrev_source
               lines = code_object.source.to_s.lines.to_a
               if lines.size >= 5
-                indent = lines[1].scan(/^(\s+)/).flatten.join('')
+                indent = lines[1].scan(/^(\s+)/).flatten.join("")
                 lines = lines[0..1] +
                         ["#{indent}# ... snip ...\n"] +
                         lines[-2..-1]
               end
-              lines.join('')
+              lines.join("")
             end
 
             def comments

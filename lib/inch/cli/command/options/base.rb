@@ -1,4 +1,4 @@
-require 'optparse'
+require "optparse"
 
 module Inch
   module CLI
@@ -91,8 +91,8 @@ module Inch
           #
           # @return [String]
           def description_hint_arrows
-            arrows = Evaluation::PriorityRange.all.map(&:arrow).join(' ')
-            "Arrows (#{arrows}) hint at the importance of the object " +
+            arrows = Evaluation::PriorityRange.all.map(&:arrow).join(" ")
+            "Arrows (#{arrows}) hint at the importance of the object " \
               "being documented."
           end
 
@@ -102,7 +102,7 @@ module Inch
           # @return [String]
           def description_hint_grades
             grades = Evaluation::Grade.all
-            "School grades (#{grades.join(', ')}) are assigned and " +
+            "School grades (#{grades.join(", ")}) are assigned and " \
               "displayed with each object."
           end
 
@@ -126,13 +126,13 @@ module Inch
             opts.separator ""
             opts.separator "Other options:"
             opts.on("--[no-]color", "Run without color") do |v|
-              Term::ANSIColor::coloring = v
+              Term::ANSIColor.coloring = v
             end
-            opts.on_tail('-v', '--version', 'Show version.') do
+            opts.on_tail("-v", "--version", "Show version.") do
               ui.trace "inch #{Inch::VERSION}"
               exit
             end
-            opts.on_tail('-h', '--help', 'Show this help.') do
+            opts.on_tail("-h", "--help", "Show this help.") do
               ui.trace opts
               exit
             end
@@ -165,7 +165,7 @@ module Inch
           # Resets the command-line interface before each run
           def reset
             # color is enabled by default, can be turned of by switch --no-color
-            Term::ANSIColor::coloring = true
+            Term::ANSIColor.coloring = true
           end
 
           # Callback when an unrecognize option is parsed

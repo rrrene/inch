@@ -11,7 +11,7 @@ module Inch
         # @return [CodeObject::Proxy::Base]
         def for(code_object)
           attributes = Converter.to_hash(code_object)
-          proxy_object = class_for(code_object).new(attributes)
+          class_for(code_object).new(attributes)
         end
 
         private
@@ -21,7 +21,7 @@ module Inch
         # @param code_object [YARD::CodeObject]
         # @return [Class]
         def class_for(code_object)
-          class_name = code_object.class.to_s.split('::').last
+          class_name = code_object.class.to_s.split("::").last
           const_get(class_name)
         end
       end
@@ -29,11 +29,11 @@ module Inch
   end
 end
 
-require 'inch/code_object/proxy/base'
-require 'inch/code_object/proxy/namespace_object'
-require 'inch/code_object/proxy/class_object'
-require 'inch/code_object/proxy/class_variable_object'
-require 'inch/code_object/proxy/constant_object'
-require 'inch/code_object/proxy/method_object'
-require 'inch/code_object/proxy/method_parameter_object'
-require 'inch/code_object/proxy/module_object'
+require "inch/code_object/proxy/base"
+require "inch/code_object/proxy/namespace_object"
+require "inch/code_object/proxy/class_object"
+require "inch/code_object/proxy/class_variable_object"
+require "inch/code_object/proxy/constant_object"
+require "inch/code_object/proxy/method_object"
+require "inch/code_object/proxy/method_parameter_object"
+require "inch/code_object/proxy/module_object"

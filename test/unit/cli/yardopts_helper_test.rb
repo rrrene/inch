@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../test_helper')
+require File.expand_path(File.dirname(__FILE__) + "/../../test_helper")
 
 describe ::Inch::CLI::YardoptsHelper do
   before do
@@ -9,7 +9,7 @@ describe ::Inch::CLI::YardoptsHelper do
 
   it "should run without args" do
     out, err = capture_io do
-      @command.run()
+      @command.run
     end
     refute out.empty?, "there should be some output"
     assert err.empty?, "there should be no errors"
@@ -56,7 +56,8 @@ describe ::Inch::CLI::YardoptsHelper do
     end
     refute out.empty?, "there should be some output"
     assert_match /\bUsage\b.+list/, out
-    #assert_match /\b\-\-\[no\-\]yardopts\b/, out, "--[no-]yardopts should be mentioned"
+    # assert_match /\b\-\-\[no\-\]yardopts\b/, out,
+    #              "--[no-]yardopts should be mentioned"
     assert err.empty?, "there should be no errors"
   end
 end

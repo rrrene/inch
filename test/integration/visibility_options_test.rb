@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../test_helper')
+require File.expand_path(File.dirname(__FILE__) + "/../test_helper")
 
 describe ::Inch::CLI::Command do
   before do
@@ -7,7 +7,7 @@ describe ::Inch::CLI::Command do
   end
 
   it "should run without visibility switches" do
-    out, err = capture_io do
+    out, _err = capture_io do
       @command.run("--all")
     end
     refute out.empty?, "there should be some output"
@@ -18,7 +18,7 @@ describe ::Inch::CLI::Command do
   end
 
   it "should run with --no-protected switch" do
-    out, err = capture_io do
+    out, _err = capture_io do
       @command.run("--all", "--no-protected")
     end
     refute out.empty?, "there should be some output"
@@ -29,8 +29,8 @@ describe ::Inch::CLI::Command do
   end
 
   it "should run with --no-public switch" do
-    out, err = capture_io do
-      @command.run(*%w|--all --no-public|)
+    out, _err = capture_io do
+      @command.run(*%w(--all --no-public))
     end
     refute out.empty?, "there should be some output"
     refute_match /\bFoo#public_method\b/, out
@@ -40,8 +40,8 @@ describe ::Inch::CLI::Command do
   end
 
   it "should run with --no-public --no-protected switch" do
-    out, err = capture_io do
-      @command.run(*%w|--all --no-public --no-protected|)
+    out, _err = capture_io do
+      @command.run(*%w(--all --no-public --no-protected))
     end
     assert out.empty?, "there should be no output"
     refute_match /\bFoo#public_method\b/, out
@@ -51,8 +51,8 @@ describe ::Inch::CLI::Command do
   end
 
   it "should run with --no-public --no-protected --private switch" do
-    out, err = capture_io do
-      @command.run(*%w|--all --no-public --no-protected --private|)
+    out, _err = capture_io do
+      @command.run(*%w(--all --no-public --no-protected --private))
     end
     refute out.empty?, "there should be some output"
     refute_match /\bFoo#public_method\b/, out
@@ -62,8 +62,8 @@ describe ::Inch::CLI::Command do
   end
 
   it "should run with --no-public switch" do
-    out, err = capture_io do
-      @command.run(*%w|--all --no-public|)
+    out, _err = capture_io do
+      @command.run(*%w(--all --no-public))
     end
     refute out.empty?, "there should be some output"
     refute_match /\bFoo#public_method\b/, out
@@ -73,8 +73,8 @@ describe ::Inch::CLI::Command do
   end
 
   it "should run with --no-protected switch" do
-    out, err = capture_io do
-      @command.run(*%w|--all --no-protected|)
+    out, _err = capture_io do
+      @command.run(*%w(--all --no-protected))
     end
     refute out.empty?, "there should be some output"
     assert_match /\bFoo#public_method\b/, out

@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../../test_helper')
+require File.expand_path(File.dirname(__FILE__) + "/../../../test_helper")
 
 describe ::Inch::CLI::Command::Inspect do
   before do
@@ -8,7 +8,7 @@ describe ::Inch::CLI::Command::Inspect do
 
   it "should warn and exit when run without args" do
     out, err = capture_io do
-      assert_raises(SystemExit) { @command.run() }
+      assert_raises(SystemExit) { @command.run }
     end
     assert out.empty?, "there should be no output"
     refute err.empty?, "there should be some error message"
@@ -33,7 +33,6 @@ describe ::Inch::CLI::Command::Inspect do
     assert err.empty?, "there should be no errors"
   end
 
-
   it "should output some info when run with a definitive object name" do
     out, err = capture_io do
       @command.run("Foo::Qux")
@@ -53,14 +52,14 @@ describe ::Inch::CLI::Command::Inspect do
   end
 
   it "should output colored information" do
-    out, err = capture_io do
+    out, _err = capture_io do
       @command.run("Foo::Bar#")
     end
     refute_equal out.uncolor, out, "should be colored"
   end
 
   it "should output uncolored information when asked" do
-    out, err = capture_io do
+    out, _err = capture_io do
       @command.run("Foo::Bar#", "--no-color")
     end
     assert_equal out.uncolor, out, "should not be colored"

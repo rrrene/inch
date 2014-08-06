@@ -18,7 +18,7 @@ module Inch
             Role::Namespace::WithChildren => nil,
             Role::Namespace::WithManyChildren => nil,
             Role::Namespace::WithoutMethods => nil,
-            Role::Namespace::Pure => nil,
+            Role::Namespace::Pure => nil
           }
         end
       end

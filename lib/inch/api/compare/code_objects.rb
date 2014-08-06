@@ -3,11 +3,11 @@ module Inch
     module Compare
       class CodeObjects
         attr_reader :before, :after
-        
+
         def initialize(object1, object2)
           @before, @after = object1, object2
           if @before.object_id == @after.object_id
-            raise "@before and @after are identical ruby objects. this is bad."
+            fail "@before and @after are identical ruby objects. this is bad."
           end
         end
 
@@ -22,7 +22,6 @@ module Inch
         def grade
           @after.grade
         end
-
 
         def added?
           @before.nil? && !@after.nil?

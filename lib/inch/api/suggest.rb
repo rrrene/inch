@@ -1,4 +1,4 @@
-require 'inch/utils/weighted_list'
+require "inch/utils/weighted_list"
 
 module Inch
   module API
@@ -18,7 +18,6 @@ module Inch
       def objects
         filter_objects_to_display
       end
-
 
       # @return [Array] all the objects that match +@options+
       def all_objects
@@ -52,15 +51,13 @@ module Inch
 
         list = Codebase::Objects.sort_by_priority(weighted_list.to_a.flatten)
 
-        if list.size > object_count
-          list = list[0...object_count]
-        end
+        list = list[0...object_count] if list.size > object_count
         list
       end
 
       def files_sorted_by_importance
         list = all_filenames(relevant_objects).uniq.map do |filename|
-          f = Evaluation::File.for(filename, relevant_objects)
+          Evaluation::File.for(filename, relevant_objects)
         end
 
         priority_list = list.select do |f|
@@ -68,7 +65,8 @@ module Inch
             relevant_priorities.include?(f.priority)
         end
 
-        Codebase::Objects.sort_by_priority(priority_list.empty? ? list : priority_list)
+        Codebase::Objects.sort_by_priority(
+          priority_list.empty? ? list : priority_list)
       end
 
       def all_filenames(objects)
@@ -87,7 +85,7 @@ module Inch
       end
 
       def grade_list(grade_symbol)
-        grade_lists.detect { |r| r.grade.to_sym == grade_symbol }
+        grade_lists.find { |r| r.grade.to_sym == grade_symbol }
       end
 
       def select_by_priority(list, min_priority)
@@ -99,7 +97,8 @@ module Inch
       end
 
       def relevant_objects
-        @relevant_objects ||= select_by_priority(codebase.objects, @options.object_min_priority)
+        @relevant_objects ||= select_by_priority(codebase.objects,
+                                                 @options.object_min_priority)
       end
 
       def relevant_priorities

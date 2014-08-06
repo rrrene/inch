@@ -26,9 +26,11 @@ module Inch
           def descriptions
             [
               "",
-              "Suggests objects and files that can be improved regarding their documentation.",
+              "Suggests objects and files that can be improved regarding " \
+                "their documentation.",
               "",
-              "Example: " + "$ inch suggest lib/**/*.rb --pedantic".color(:cyan),
+              "Example: " +
+                "$ inch suggest lib/**/*.rb --pedantic".color(:cyan),
               "",
               description_hint_grades,
               description_hint_arrows
@@ -44,7 +46,8 @@ module Inch
             opts.on("-n", "--objects [COUNT]", "Show COUNT objects") do |count|
               @object_count = count.to_i
             end
-            opts.on("--pedantic", "Be excessively concerned with minor details and rules") do |count|
+            opts.on("--pedantic",
+                    "Be excessively concerned with minor details and rules") do
               # all objects are considered a priority
               @object_min_priority = -99
               # only objects with the highest score are omitted from the list

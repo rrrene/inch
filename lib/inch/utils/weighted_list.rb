@@ -74,9 +74,8 @@ module Inch
           target_count = @max_counts[index]
           @list[index].concat sublist[0...target_count]
 
-          if sublist.size < target_count
-            missing += target_count - sublist.size
-          end
+          next unless sublist.size < target_count
+          missing += target_count - sublist.size
         end
         missing
       end

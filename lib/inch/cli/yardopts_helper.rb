@@ -8,7 +8,8 @@ module Inch
       attr_accessor :excluded
 
       VALID_YARD_SWITCHES = %w(--private --no-private --protected --no-public
-          --plugin --load --safe --yardopts --no-yardopts --document --no-document)
+                               --plugin --load --safe --yardopts --no-yardopts
+                               --document --no-document)
 
       # Parses the option and gracefully handles invalid switches
       #
@@ -17,7 +18,7 @@ module Inch
       #   array will be modified.
       # @return [void]
       def parse_yardopts_options(opts, args)
-        wrapper = YardoptsWrapper.new()
+        wrapper = YardoptsWrapper.new
 
         dupped_args = args.dup
         dupped_args.delete("--help")
@@ -35,7 +36,7 @@ module Inch
       end
 
       def yardopts_options(opts)
-        wrapper = YardoptsWrapper.new()
+        wrapper = YardoptsWrapper.new
         wrapper.add_yardoc_options(opts)
       end
 

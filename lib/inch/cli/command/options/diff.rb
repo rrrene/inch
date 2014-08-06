@@ -1,4 +1,4 @@
-require 'inch/utils/shell_helper'
+require "inch/utils/shell_helper"
 
 module Inch
   module CLI
@@ -59,10 +59,12 @@ module Inch
             opts.separator ""
             opts.separator "Diff options:"
 
-            opts.on("--since-last-commit", "Run diff against last commit (default)") do |count|
+            opts.on("--since-last-commit",
+                    "Run diff against last commit (default)") do
               @before_rev = "HEAD"
             end
-            opts.on("-p", "--since-last-push", "Run diff against last pushed commit") do |count|
+            opts.on("-p", "--since-last-push",
+                    "Run diff against last pushed commit") do
               @before_rev = get_pushed_rev
               @since_last_push = true
             end

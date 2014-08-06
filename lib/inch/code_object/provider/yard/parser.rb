@@ -11,7 +11,7 @@ module Inch
           # @see #parse
           # @return [CodeObject::Provider::YARD::Parser] the instance that ran
           def self.parse(*args)
-            parser = self.new
+            parser = new
             parser.parse(*args)
             parser
           end
@@ -46,7 +46,7 @@ module Inch
               object.base_dir = dir
 
               object.aliases_fullnames.each do |fullname|
-                _alias = objects.detect { |o| o.fullname == fullname }
+                _alias = objects.find { |o| o.fullname == fullname }
                 _alias.aliased_object_fullname = object.fullname
               end
             end

@@ -52,7 +52,7 @@ module Inch
         unconsidered_tag_count
         undocumented?
         visibility
-        ).map(&:to_sym)
+      ).map(&:to_sym)
 
       PARAMETER_ATTRIBUTES = %w(
         name
@@ -62,7 +62,7 @@ module Inch
         splat?
         typed?
         wrongly_mentioned?
-        ).map(&:to_sym)
+      ).map(&:to_sym)
 
       # Returns an attributes Hash for a given code object
       #
@@ -71,16 +71,14 @@ module Inch
       def self.to_hash(o)
         attributes = {}
         OBJECT_ATTRIBUTES.each do |name|
-          if o.respond_to?(name)
-            attributes[name] = o.public_send(name)
-          end
+          next unless o.respond_to?(name)
+          attributes[name] = o.public_send(name)
         end
         attributes[:parameters] = o.parameters.map do |parameter|
           hash = {}
           PARAMETER_ATTRIBUTES.each do |pname|
-            if parameter.respond_to?(pname)
-              hash[pname] = parameter.public_send(pname)
-            end
+            next unless parameter.respond_to?(pname)
+            hash[pname] = parameter.public_send(pname)
           end
           hash
         end

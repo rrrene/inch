@@ -10,9 +10,9 @@ module Inch
       end
 
       def debug(msg)
-        return unless ENV['DEBUG']
+        return unless ENV["DEBUG"]
         msg.to_s.lines.each do |line|
-          trace edged :dark, line.gsub(/\n$/,'').dark
+          trace edged :dark, line.gsub(/\n$/, "").dark
         end
       end
 
@@ -45,12 +45,12 @@ module Inch
       def header(text, color, bg_color = nil)
         @current_header_color = color
         trace __header(text, color, bg_color)
-        trace if !use_color?
+        trace unless use_color?
       end
 
       # @return [Boolean] true if the UI uses coloring
       def use_color?
-        Term::ANSIColor::coloring?
+        Term::ANSIColor.coloring?
       end
 
       private
@@ -61,7 +61,7 @@ module Inch
 
       def __header(text, color, bg_color = nil)
         bg_color ||= "intense_#{color}"
-        bar = " #{text}".ljust(CLI::COLUMNS-1)
+        bar = " #{text}".ljust(CLI::COLUMNS - 1)
                 .on_color(bg_color).color(:color16)
         "#".color(color).on_color(color) + bar
       end

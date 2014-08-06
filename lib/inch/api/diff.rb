@@ -1,4 +1,4 @@
-require 'inch/utils/shell_helper'
+require "inch/utils/shell_helper"
 
 module Inch
   module API
@@ -20,10 +20,10 @@ module Inch
         @work_dir = dir
         @codebase_old = codebase_for(before_rev)
         @codebase_new = if after_rev.nil?
-            Codebase.parse(work_dir)
-          else
-            codebase_for(after_rev)
-          end
+                          Codebase.parse(work_dir)
+                        else
+                          codebase_for(after_rev)
+                        end
         @comparer = API::Compare::Codebases.new(@codebase_old, @codebase_new)
       end
 
@@ -42,9 +42,7 @@ module Inch
 
       def codebase_from_cache(revision)
         filename = Codebase::Serializer.filename(revision)
-        if File.exist?(filename)
-          Codebase::Serializer.load(filename)
-        end
+        Codebase::Serializer.load(filename) if File.exist?(filename)
       end
 
       def codebase_from_copy(original_dir, revision)
@@ -65,7 +63,6 @@ module Inch
       def git_reset(dir, revision = nil)
         git dir, "reset --hard #{revision}"
       end
-
     end
   end
 end

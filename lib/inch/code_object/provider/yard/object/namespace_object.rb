@@ -28,9 +28,7 @@ module Inch
 
             # called by MethodObject#getter?
             def child(name)
-              if children
-                children.detect { |child| child.name == name }
-              end
+              children.find { |child| child.name == name } if children
             end
 
             def children
@@ -38,7 +36,6 @@ module Inch
                 YARD::Object.for(o)
               end
             end
-
           end
         end
       end

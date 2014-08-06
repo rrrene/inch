@@ -35,11 +35,10 @@ module Inch
             @codebase.objects.find(fullname)
           end
 
-          alias :all :all_objects
-          alias :ff :find_objects
-          alias :f :find_object
-          alias :o :object
-
+          alias_method :all, :all_objects
+          alias_method :ff, :find_objects
+          alias_method :f, :find_object
+          alias_method :o, :object
 
           def run
             ui.trace

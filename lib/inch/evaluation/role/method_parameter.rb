@@ -67,7 +67,8 @@ module Inch
           applicable_if :wrongly_mentioned?
 
           def suggestion
-            "The parameter '#{object.name}' seems not to be part of the signature."
+            "The parameter '#{object.name}' seems not to be part of the " \
+              "signature."
           end
 
           def priority

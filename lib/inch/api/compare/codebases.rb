@@ -31,7 +31,7 @@ module Inch
         end
 
         def find(fullname)
-          comparisons.detect do |comparison|
+          comparisons.find do |comparison|
             comparison.fullname == fullname
           end
         end

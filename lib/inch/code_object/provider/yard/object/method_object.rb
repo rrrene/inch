@@ -1,4 +1,4 @@
-require 'inch/code_object/provider/yard/object/method_signature'
+require "inch/code_object/provider/yard/object/method_signature"
 
 module Inch
   module CodeObject
@@ -46,7 +46,7 @@ module Inch
             end
 
             def parameter(name)
-              parameters.detect { |p| p.name == name.to_s }
+              parameters.find { |p| p.name == name.to_s }
             end
 
             def overridden?
@@ -66,14 +66,16 @@ module Inch
             # Returns +true+ if a return value is described by it's type or
             # mentioned in the docstring (e.g. "Returns a String").
             def return_mentioned?
-              return_tags.any? { |t| !t.types.nil? && !t.types.empty? && !YARD.implicit_tag?(t, self) } ||
-                docstring.mentions_return? && !implicit_docstring?
+              return_tags.any? do |t|
+                !t.types.nil? && !t.types.empty? && !YARD.implicit_tag?(t, self)
+              end || docstring.mentions_return? && !implicit_docstring?
             end
 
             # Returns +true+ if a return value is described by words.
             def return_described?
-              return_tags.any? { |t| !t.text.empty? && !YARD.implicit_tag?(t, self) } ||
-                docstring.describes_return? && !implicit_docstring?
+              return_tags.any? do |t|
+                !t.text.empty? && !YARD.implicit_tag?(t, self)
+              end || docstring.describes_return? && !implicit_docstring?
             end
 
             def return_typed?
@@ -109,16 +111,14 @@ module Inch
             def attributed_return_tags
               if setter? && object.tags(:return).empty?
                 method = corresponding_getter
-                if method
-                  return method.object.tags(:return)
-                end
+                return method.object.tags(:return) if method
               end
               []
             end
 
             # @return [MethodObject,nil]
             def corresponding_getter
-              clean_name = name.to_s.gsub(/(\=)$/, '')
+              clean_name = name.to_s.gsub(/(\=)$/, "")
               parent.child(clean_name.to_sym)
             end
 

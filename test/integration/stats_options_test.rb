@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../test_helper')
+require File.expand_path(File.dirname(__FILE__) + "/../test_helper")
 
 #
 # These format tests also broke things in the regular testsuite.
@@ -20,13 +20,13 @@ describe ::Inch::CLI::Command::List do
   end
 
   it "should run with --no-private switch" do
-    out = %x|#{@command} --format json|
+    out = `#{@command} --format json`
     refute out.empty?, "there should be some output"
     assert_parsed_output JSON[out]
   end
 
   it "should run with --no-protected switch" do
-    out = %x|#{@command} --format yaml|
+    out = `#{@command} --format yaml`
     refute out.empty?, "there should be some output"
     assert_parsed_output YAML.load(out)
   end

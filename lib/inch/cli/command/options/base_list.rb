@@ -11,7 +11,7 @@ module Inch
           attribute :depth
 
           attribute :show_all, false
-          alias :show_all? :show_all
+          alias_method :show_all?, :show_all
 
           def parse(args)
             opts = OptionParser.new
@@ -37,7 +37,6 @@ module Inch
 
           protected
 
-
           # Sets all list related options for the current Options object
           #
           # @param opts [OptionParser]
@@ -50,10 +49,13 @@ module Inch
               @show_all = true
             end
 
-            opts.on("--only-namespaces", "Only show namespaces (classes, modules)") do
+            opts.on("--only-namespaces",
+                    "Only show namespaces (classes, modules)") do
               @namespaces = :only
             end
-            opts.on("--no-namespaces", "Only show namespace children (methods, constants, attributes)") do
+            opts.on("--no-namespaces",
+                    "Only show namespace children (methods, constants, " \
+                    "attributes)") do
               @namespaces = :none
             end
 
@@ -74,7 +76,9 @@ module Inch
               @undocumented = :none
             end
 
-            opts.on("--depth [DEPTH]", "Only show objects up to a given DEPTH in the class tree") do |depth|
+            opts.on("--depth [DEPTH]",
+                    "Only show objects up to a given DEPTH " \
+                    "in the class tree") do |depth|
               @depth = depth.to_i
             end
           end

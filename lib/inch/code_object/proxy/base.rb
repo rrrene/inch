@@ -1,4 +1,4 @@
-require 'forwardable'
+require "forwardable"
 
 module Inch
   module CodeObject
@@ -42,9 +42,9 @@ module Inch
 
         # @return [Symbol]
         def grade
-          @grade ||= Evaluation.new_grade_lists.detect { |range|
-                range.scores.include?(score)
-              }.grade
+          @grade ||= Evaluation.new_grade_lists.find do |range|
+            range.scores.include?(score)
+          end.grade
         end
 
         # @return [Boolean] if the current object is an alias for something else
@@ -54,7 +54,7 @@ module Inch
 
         # @return [CodeObject::Proxy::Base] the object the current object is an alias of
         def aliased_object
-          object_lookup.find( self[:aliased_object_fullname] )
+          object_lookup.find(self[:aliased_object_fullname])
         end
 
         # @return [Boolean] +true+ if the object has an @api tag
@@ -172,7 +172,7 @@ module Inch
 
         # @return [CodeObject::Proxy::Base,nil] the parent of the current object or +nil+
         def parent
-          object_lookup.find( self[:parent_fullname] )
+          object_lookup.find(self[:parent_fullname])
         end
 
         def private?
@@ -205,7 +205,7 @@ module Inch
         end
 
         def type
-          self.class.to_s.gsub(/Object$/, '')
+          self.class.to_s.gsub(/Object$/, "")
         end
 
         # @return [Boolean] +true+ if the object has no documentation at all
@@ -233,7 +233,7 @@ module Inch
         end
 
         def inspect
-          "#<#{self.class.to_s}: #{fullname}>"
+          "#<#{self.class}: #{fullname}>"
         end
       end
     end

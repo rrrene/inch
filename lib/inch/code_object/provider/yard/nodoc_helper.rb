@@ -3,7 +3,6 @@ module Inch
     module Provider
       module YARD
         module NodocHelper
-
           # Returns true if the code object is somehow marked not to be
           # documented.
           #
@@ -81,10 +80,11 @@ module Inch
           # @return [String]
           def get_line_no(filename, line_number)
             f = File.open(filename)
-            line_number.times{f.gets}
+            line_number.times { f.gets }
             result = $_
             f.close
-            result.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
+            result.encode("UTF-8", "binary",
+                          invalid: :replace, undef: :replace, replace: "")
           end
         end
       end

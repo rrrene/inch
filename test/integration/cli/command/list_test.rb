@@ -1,5 +1,5 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../../test_helper')
-require File.expand_path(File.dirname(__FILE__) + '/../../../shared/base_list')
+require File.expand_path(File.dirname(__FILE__) + "/../../../test_helper")
+require File.expand_path(File.dirname(__FILE__) + "/../../../shared/base_list")
 
 describe ::Inch::CLI::Command::List do
   before do
@@ -11,7 +11,7 @@ describe ::Inch::CLI::Command::List do
 
   it "should run without args" do
     out, err = capture_io do
-      @command.run()
+      @command.run
     end
     refute out.empty?, "there should be some output"
     assert err.empty?, "there should be no errors"
@@ -62,4 +62,3 @@ describe ::Inch::CLI::Command::List do
     assert err.empty?, "there should be no errors"
   end
 end
-

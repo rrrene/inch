@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../../test_helper')
+require File.expand_path(File.dirname(__FILE__) + "/../../../test_helper")
 
 class Inch::CLI::Command::Output::Console
   def run_pry
@@ -22,8 +22,8 @@ describe ::Inch::CLI::Command::Console do
   end
 
   it "should run without args" do
-    out, err = capture_io do
-      @prompt = @command.new.run()
+    _out, _err = capture_io do
+      @prompt = @command.new.run
     end
     assert @prompt.respond_to?(:all)
     assert @prompt.respond_to?(:ff)
@@ -34,7 +34,7 @@ describe ::Inch::CLI::Command::Console do
   end
 
   it "should run with a definitive object name" do
-    out, err = capture_io do
+    _out, _err = capture_io do
       @prompt = @command.new.run("Foo::Bar#method_with_full_doc")
     end
     assert !@prompt.all.empty?
@@ -46,7 +46,7 @@ describe ::Inch::CLI::Command::Console do
   end
 
   it "should run with a partial name" do
-    out, err = capture_io do
+    _out, _err = capture_io do
       @prompt = @command.new.run("Foo::Bar#")
     end
     assert @prompt.respond_to?(:all)

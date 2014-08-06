@@ -1,6 +1,7 @@
 module Inch
   module CLI
-    # CommandParser parses a command-line arguments to decide which Command to run.
+    # CommandParser parses a command-line arguments to decide which Command to
+    # run.
     #
     # The basic form translates this shell command
     #
@@ -55,7 +56,7 @@ module Inch
       # argument.
       # @return [Command::Base]
       def run(*args)
-        if ['--help', '-h'].include?(args.join)
+        if ["--help", "-h"].include?(args.join)
           list_commands
         else
           run_command(*args)
@@ -72,9 +73,9 @@ module Inch
         ui.trace "Usage: inch <command> [options]"
         ui.trace
         ui.trace "Commands:"
-        commands.keys.sort_by {|k| k.to_s }.each do |command_name|
+        commands.keys.sort_by { |k| k.to_s }.each do |command_name|
           command = commands[command_name].new
-          ui.trace "  %-8s %s" % [command_name, command.description]
+          ui.trace format("  %-8s %s", command_name, command.description)
         end
       end
 
@@ -87,7 +88,7 @@ module Inch
         else
           possible_command_name = args.first.to_sym
 
-          if commands.has_key?(possible_command_name)
+          if commands.key?(possible_command_name)
             command_name = possible_command_name
             args.shift
           else
