@@ -41,9 +41,7 @@ module Inch
       end
 
       def filter_depth
-        if options.depth
-          @list = @list.select { |o| o.depth <= options.depth }
-        end
+        @list = @list.select { |o| o.depth <= options.depth } if options.depth
       end
 
       def filter_visibility

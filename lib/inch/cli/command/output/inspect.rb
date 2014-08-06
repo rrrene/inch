@@ -70,9 +70,7 @@ module Inch
             score = colored_role_score(role)
 
             priority = role.priority.to_s.rjust(4)
-            if role.priority == 0
-              priority = priority.dark
-            end
+            priority = priority.dark if role.priority == 0
 
             echo name.ljust(40) + score + priority
             print_min_max_score(role)

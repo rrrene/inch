@@ -42,9 +42,7 @@ module Inch
 
       def codebase_from_cache(revision)
         filename = Codebase::Serializer.filename(revision)
-        if File.exist?(filename)
-          Codebase::Serializer.load(filename)
-        end
+        Codebase::Serializer.load(filename) if File.exist?(filename)
       end
 
       def codebase_from_copy(original_dir, revision)

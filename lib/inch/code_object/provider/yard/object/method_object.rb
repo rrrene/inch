@@ -111,9 +111,7 @@ module Inch
             def attributed_return_tags
               if setter? && object.tags(:return).empty?
                 method = corresponding_getter
-                if method
-                  return method.object.tags(:return)
-                end
+                return method.object.tags(:return) if method
               end
               []
             end

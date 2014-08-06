@@ -28,9 +28,7 @@ module Inch
 
             # called by MethodObject#getter?
             def child(name)
-              if children
-                children.find { |child| child.name == name }
-              end
+              children.find { |child| child.name == name } if children
             end
 
             def children

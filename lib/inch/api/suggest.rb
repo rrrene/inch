@@ -51,9 +51,7 @@ module Inch
 
         list = Codebase::Objects.sort_by_priority(weighted_list.to_a.flatten)
 
-        if list.size > object_count
-          list = list[0...object_count]
-        end
+        list = list[0...object_count] if list.size > object_count
         list
       end
 
