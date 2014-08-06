@@ -65,7 +65,7 @@ module Inch
 
             sparkline = Sparkr::Sparkline.new(priorities.values)
             sparkline.format do |tick, _count, index|
-              tick.color( PRIORITY_COLORS[index] )
+              tick.color(PRIORITY_COLORS[index])
             end
             puts "  #{grade_list.grade}:  " + sparkline.to_s(' ') +
                   " #{grade_list.objects.size.to_s.rjust(5)} objects"

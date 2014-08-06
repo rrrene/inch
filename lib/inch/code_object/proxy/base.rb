@@ -54,7 +54,7 @@ module Inch
 
         # @return [CodeObject::Proxy::Base] the object the current object is an alias of
         def aliased_object
-          object_lookup.find( self[:aliased_object_fullname] )
+          object_lookup.find(self[:aliased_object_fullname])
         end
 
         # @return [Boolean] +true+ if the object has an @api tag
@@ -172,7 +172,7 @@ module Inch
 
         # @return [CodeObject::Proxy::Base,nil] the parent of the current object or +nil+
         def parent
-          object_lookup.find( self[:parent_fullname] )
+          object_lookup.find(self[:parent_fullname])
         end
 
         def private?
