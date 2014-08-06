@@ -87,7 +87,7 @@ module Inch
         else
           possible_command_name = args.first.to_sym
 
-          if commands.has_key?(possible_command_name)
+          if commands.key?(possible_command_name)
             command_name = possible_command_name
             args.shift
           else
