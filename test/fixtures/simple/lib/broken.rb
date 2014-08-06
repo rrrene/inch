@@ -20,13 +20,6 @@ module Foo
 
   # The problem here is that ...
   #
-  # @param *names [Array]
-  # @return [String]
-  def method_with_splat_parameter(*names)
-  end
-
-  # The problem here is that ...
-  #
   # @param names [Array]
   # @return [String]
   def method_with_splat_parameter2(*names)
@@ -38,20 +31,12 @@ module Foo
   def method_with_wrong_return_tag
   end
 
-  # Redirect to the given URL
-  # @param url [String] the destination URL
-  # @param status [Fixnum] the http code
-  def method_with_named_parameter(url, status: 302)
+  # The problem here is that ...
+  #
+  # @param *names [Array]
+  # @return [String]
+  def method_with_splat_parameter(*names)
   end
-end
-
-# Representation of attributes of a user in the database
-#
-# @!attribute email
-#   @return [String] E-mail address (from Devise)
-class Attributes
-  # @return [String] Username (from Devise)
-  attr_accessor :username
 end
 
 module Overloading
