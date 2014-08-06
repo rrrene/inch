@@ -50,7 +50,7 @@ module Inch
 
       # @return [Boolean] true if the UI uses coloring
       def use_color?
-        Term::ANSIColor::coloring?
+        Term::ANSIColor.coloring?
       end
 
       private

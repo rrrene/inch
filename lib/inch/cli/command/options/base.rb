@@ -126,7 +126,7 @@ module Inch
             opts.separator ""
             opts.separator "Other options:"
             opts.on("--[no-]color", "Run without color") do |v|
-              Term::ANSIColor::coloring = v
+              Term::ANSIColor.coloring = v
             end
             opts.on_tail('-v', '--version', 'Show version.') do
               ui.trace "inch #{Inch::VERSION}"
@@ -165,7 +165,7 @@ module Inch
           # Resets the command-line interface before each run
           def reset
             # color is enabled by default, can be turned of by switch --no-color
-            Term::ANSIColor::coloring = true
+            Term::ANSIColor.coloring = true
           end
 
           # Callback when an unrecognize option is parsed
