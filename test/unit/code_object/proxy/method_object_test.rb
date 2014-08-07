@@ -129,6 +129,18 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
       assert m.score
     end
 
+    it "should handle yet other RDoc styles" do
+      m = @objects.find("Foo::Bar#method_with_yet_another_rdoc_doc")
+      assert m.has_doc?
+      assert m.has_parameters?
+      p = m.parameter(:param1)
+      assert p.mentioned?         # mentioned in docs, correctly
+      p = m.parameter(:param2)
+      assert p.mentioned?         # mentioned in docs, correctly
+
+      assert m.score
+    end
+
     it "should handle unstructured doc styles" do
       m = @objects.find("Foo::Bar#method_with_unstructured_doc")
       assert m.has_doc?
@@ -340,6 +352,17 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
       skip unless RUBY_VERSION =~ /^2/
 
       m = @objects.find("Foo#method_with_named_parameter")
+      unexpected_roles = [
+        Inch::Evaluation::Role::MethodParameter::WithoutMention,
+        Inch::Evaluation::Role::MethodParameter::WithoutType
+      ]
+      assert_roles m, [], unexpected_roles
+    end
+
+    it "should recognize indented parameter documentation" do
+      skip # YARD cannot parse this
+
+      m = @objects.find("Foo#method_with_indented_param_tag")
       unexpected_roles = [
         Inch::Evaluation::Role::MethodParameter::WithoutMention,
         Inch::Evaluation::Role::MethodParameter::WithoutType

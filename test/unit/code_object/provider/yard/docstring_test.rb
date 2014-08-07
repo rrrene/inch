@@ -185,6 +185,40 @@ Params:
     assert docstring.describes_parameter?(:param3)
   end
 
+  it "should recognize several parameter notations 1" do
+    text = <<-DOC
+Params:
++param1<String>+:: param1 line string to be executed by the system
++param2<String,nil>+:: +Proc+ object that takes a pipe object as first and only param (may be nil)
++param3<String|Class>+:: +Proc+ object that takes a pipe object as first and only param (may be nil)
+    DOC
+    docstring = described_class.new(text)
+    assert docstring.contains_code_example?
+    assert docstring.mentions_parameter?(:param1)
+    assert docstring.mentions_parameter?(:param2)
+    assert docstring.mentions_parameter?(:param3)
+    assert docstring.describes_parameter?(:param1)
+    assert docstring.describes_parameter?(:param2)
+    assert docstring.describes_parameter?(:param3)
+  end
+
+  it "should recognize several parameter notations 2" do
+    text = <<-DOC
+Params:
+param1<String>:: param1 line string to be executed by the system
+param2<String,nil>:: +Proc+ object that takes a pipe object as first and only param (may be nil)
+param3<String|Class>:: +Proc+ object that takes a pipe object as first and only param (may be nil)
+    DOC
+    docstring = described_class.new(text)
+    assert docstring.contains_code_example?
+    assert docstring.mentions_parameter?(:param1)
+    assert docstring.mentions_parameter?(:param2)
+    assert docstring.mentions_parameter?(:param3)
+    assert docstring.describes_parameter?(:param1)
+    assert docstring.describes_parameter?(:param2)
+    assert docstring.describes_parameter?(:param3)
+  end
+
   it "should work with code example 2" do
     text = <<-DOC
 Just because format_html is mentioned here, does not mean

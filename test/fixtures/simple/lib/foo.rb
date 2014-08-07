@@ -72,6 +72,23 @@ module Foo
     def method_with_other_rdoc_doc(param1, param2, param3)
     end
 
+    # Injects text right after the class definition. Since it depends on
+    # insert_into_file, it's reversible.
+    #
+    # ==== Parameters
+    # param1<String>:: path of the file to be changed
+    # param2<String|Class>:: the class to be manipulated
+    #
+    # ==== Examples
+    #
+    #   inject_into_class "app/controllers/application_controller.rb", ApplicationController, "  filter_parameter :password\n"
+    #
+    #   inject_into_class "app/controllers/application_controller.rb", ApplicationController do
+    #     "  filter_parameter :password\n"
+    #   end
+    def method_with_yet_another_rdoc_doc(param1, param2)
+    end
+
     # An example of a method that takes a parameter (+param1+)
     # and does nothing. But the previous sentence mentions said
     # parameter.

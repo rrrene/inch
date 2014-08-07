@@ -37,6 +37,13 @@ module Foo
   # @return [String]
   def method_with_splat_parameter(*names)
   end
+
+  # Initializes a new Connection instance
+  #   @param [Hash<Symbol, >] params One or more optional params
+  #     @option params [String] :body Default text to be sent over a socket. Only used if :body absent in Connection#request params
+  #     @option params [Hash<Symbol, String>] :headers The default headers to supply in a request. Only used if params[:headers] is not supplied to Connection#request
+  def method_with_indented_param_tag(params = {})
+  end
 end
 
 module Overloading
