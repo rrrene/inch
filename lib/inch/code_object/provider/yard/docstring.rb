@@ -82,15 +82,27 @@ module Inch
             code_examples.delete_if(&:empty?).map(&:join)
           end
 
-          def mention_parameter_patterns(name)
-            [
-              "+#{name}+",
-              "+#{name}+::",
-              "<tt>#{name}</tt>",
-              "<tt>#{name}</tt>::",
-              "#{name}::",
-              /^#{Regexp.escape(name)}\ \-\ /
-            ]
+          # Returns patterns in which method parameters are mentioned
+          # in inline docs.
+          #
+          # @param _name [String] the name of the method parameter
+          # @return [Array<Regexp>]
+          def mention_parameter_patterns(_name)
+            name = Regexp.escape(_name)
+            type = /<[^>]+>/
+            arr = [
+              name,
+              /#{name}#{type}/ # matches "param1<String,nil>"
+            ].map do |expr|
+              [
+                /#{expr}\:\:/,            # param1::
+                /\+#{expr}\+/,            # +param1+
+                /\+#{expr}\+\:\:/,        # +param1+::
+                /<tt>#{expr}<\/tt>/,      # <tt>param1</tt>
+                /<tt>#{expr}<\/tt>\:\:/,  # <tt>param1</tt>::
+                /^#{expr}\ \-\ /          # param1 -
+              ]
+            end.flatten
           end
 
           def describe_parameter_extra_regexps(name)
