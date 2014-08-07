@@ -37,6 +37,7 @@ module Inch
           end
 
           attribute :usage, ""    # usage description for the command
+          attribute :language, "ruby"    # the programming language
           attribute :paths, []    # the paths of the to-be-analysed sources
           attribute :excluded, [] # paths to be excluded from the analysis
 
@@ -131,6 +132,9 @@ module Inch
             opts.on_tail("-v", "--version", "Show version.") do
               ui.trace "inch #{Inch::VERSION}"
               exit
+            end
+            opts.on_tail("-l", "--language [LANGUAGE]", "Set language (ruby|nodejs).") do |language|
+              @language = language
             end
             opts.on_tail("-h", "--help", "Show this help.") do
               ui.trace opts

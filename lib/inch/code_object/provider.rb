@@ -21,7 +21,8 @@ module Inch
     #
     #
     module Provider
-      def self.parse(dir, config = Inch::Config.codebase, type = :YARD)
+      def self.parse(dir, config = Inch::Config.codebase)
+        type = type_for(config.language)
         provider_for(type).parse(dir, config)
       end
 
@@ -29,8 +30,21 @@ module Inch
       def self.provider_for(type)
         const_get(type)
       end
+
+      # Returns the name of a provider module responsible for the
+      # given +language+.
+      #
+      # @param language [String]
+      # @return [Symbol]
+      def self.type_for(language)
+        {
+          'ruby' => :YARD,
+          'nodejs' => :JSDoc
+        }[language.to_s]
+      end
     end
   end
 end
 
 require "inch/code_object/provider/yard"
+require "inch/code_object/provider/jsdoc"

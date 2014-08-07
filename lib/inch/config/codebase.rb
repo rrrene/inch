@@ -2,14 +2,16 @@ module Inch
   class Config
     # Stores the configuration for an individual single codebase
     class Codebase
+      attr_reader :language
       attr_reader :included_files
       attr_reader :excluded_files
 
       YAML_FILE = ".inch.yml"
 
-      def initialize(included = nil, excluded = nil)
+      def initialize(included = nil, excluded = nil, language = :ruby)
         @included_files = included || []
         @excluded_files = excluded || []
+        @language = language
       end
 
       # Returns the contents of +dir+/.inch.yml, if present.
@@ -29,6 +31,7 @@ module Inch
       def update_via_yaml(dir)
         if yaml = self.class.yaml(dir)
           Dir.chdir(dir) do
+            update_language yaml["language"]
             update_files yaml["files"]
           end
         end
@@ -59,6 +62,11 @@ module Inch
         return if files.nil?
         include_files expand_files(files["included"]) if files["included"]
         exclude_files expand_files(files["excluded"]) if files["excluded"]
+      end
+
+      def update_language(language)
+        return if language.nil?
+        @language = language
       end
     end
   end
