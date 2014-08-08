@@ -55,6 +55,31 @@ Returns the Lexer or nil if none was found.
     assert docstring.describes_return?
   end
 
+  it "should notice multi-line returns in tomdoc style docs" do
+    text = <<-DOC
+Public: Look up Language by one of its aliases.
+
+Returns the Lexer or nil
+  if none was found.
+    DOC
+    docstring = described_class.new(text)
+    assert docstring.mentions_return?
+    assert docstring.describes_return?
+  end
+
+  it "should notice multi-line returns in tomdoc style docs 2" do
+    text = <<-DOC
+Public: Look up Language by one of its aliases.
+
+Returns the Lexer or nil
+  if none
+  was found.
+    DOC
+    docstring = described_class.new(text)
+    assert docstring.mentions_return?
+    assert docstring.describes_return?
+  end
+
   it "should notice things in tomdoc style docs 3" do
     text = <<-DOC
 Public: Look up Language by one of its aliases.

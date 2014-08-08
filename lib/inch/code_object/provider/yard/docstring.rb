@@ -42,12 +42,16 @@ module Inch
           end
 
           def mentions_return?
-            last_line =~ /^#{tomdoc_modifiers}Returns\ /
+            last_lines.any? do |line|
+              line =~ /^#{tomdoc_modifiers}Returns\ /
+            end
           end
 
           def describes_return?
-            last_line =~ /^#{tomdoc_modifiers}Returns\ (\w+\s){2,}/i ||
-              last_line =~ /^#{tomdoc_modifiers}Returns\ (nil|nothing)\.*/i
+            last_lines.any? do |line|
+              line =~ /^#{tomdoc_modifiers}Returns\ (\w+\s){2,}/i ||
+                line =~ /^#{tomdoc_modifiers}Returns\ (nil|nothing)\.*/i
+            end
           end
 
           def to_s
@@ -60,8 +64,18 @@ module Inch
             @first_line ||= @text.lines.to_a.first
           end
 
-          def last_line
-            @last_line ||= @text.lines.to_a.last
+          # Returns the last lines of the docstring.
+          # @return [Array<String>] the last line and, if the last line(s) is indented,
+          #   the last unindented line
+          def last_lines
+            @last_lines ||= begin
+              list = []
+              @text.lines.to_a.reverse.each do |line|
+                list << line
+                break if line =~ /^\S/
+              end
+              list.reverse
+            end
           end
 
           def parse_code_examples
