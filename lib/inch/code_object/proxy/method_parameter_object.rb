@@ -14,7 +14,8 @@ module Inch
         BAD_NAME_EXCEPTIONS = %w(id)
         BAD_NAME_THRESHOLD = 3
 
-        # @return [Boolean] +true+ if the name of the parameter is uncommunicative
+        # @return [Boolean] +true+ if the name of the parameter is
+        #   uncommunicative
         def bad_name?
           return false if BAD_NAME_EXCEPTIONS.include?(name)
           name.size < BAD_NAME_THRESHOLD || name =~ /[0-9]$/
@@ -50,7 +51,8 @@ module Inch
           self[:typed?]
         end
 
-        # @return [Boolean] +true+ if the parameter is mentioned in the docs, but not present in the method's signature
+        # @return [Boolean] +true+ if the parameter is mentioned in the docs,
+        #   but not present in the method's signature
         def wrongly_mentioned?
           self[:wrongly_mentioned?]
         end

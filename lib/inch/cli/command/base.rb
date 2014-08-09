@@ -87,8 +87,8 @@ module Inch
         #
         # @abstract
         # @note Override with implementation
-        # @param *args [Array<String>]
-        def run(*args)
+        # @param *_args [Array<String>]
+        def run(*_args)
           fail NotImplementedError
         end
 

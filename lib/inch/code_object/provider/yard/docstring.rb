@@ -65,8 +65,8 @@ module Inch
           end
 
           # Returns the last lines of the docstring.
-          # @return [Array<String>] the last line and, if the last line(s) is indented,
-          #   the last unindented line
+          # @return [Array<String>] the last line and, if the last line(s) is
+          #   indented, the last unindented line
           def last_lines
             @last_lines ||= begin
               list = []
@@ -99,14 +99,14 @@ module Inch
           # Returns patterns in which method parameters are mentioned
           # in inline docs.
           #
-          # @param _name [String] the name of the method parameter
+          # @param name [String] the name of the method parameter
           # @return [Array<Regexp>]
-          def mention_parameter_patterns(_name)
-            name = Regexp.escape(_name)
+          def mention_parameter_patterns(name)
+            escaped_name = Regexp.escape(name)
             type = /<[^>]+>/
-            arr = [
-              name,
-              /#{name}#{type}/ # matches "param1<String,nil>"
+            [
+              escaped_name,
+              /#{escaped_name}#{type}/ # matches "param1<String,nil>"
             ].map do |expr|
               [
                 /#{expr}\:\:/,            # param1::

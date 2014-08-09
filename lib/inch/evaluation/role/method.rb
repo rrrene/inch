@@ -32,7 +32,8 @@ module Inch
           end
         end
 
-        # Role assigned to methods where the return value is decribed in the docs
+        # Role assigned to methods where the return value is decribed in the
+        # docs
         class WithReturnDescription < Base
           applicable_if :return_described?
         end

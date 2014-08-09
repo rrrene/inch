@@ -163,7 +163,8 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
       assert m.score
     end
 
-    it "should handle methods (without parameters) that have only a docstring (text comment)" do
+    it "should handle methods (without parameters) that have only a docstring" \
+       " (text comment)" do
       m = @objects.find("Foo::Bar#method_without_params_or_return_type")
       assert m.has_doc?
       refute m.has_parameters?
@@ -215,7 +216,8 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
       assert_equal 0, m.score
     end
 
-    it "should recognize a getter in a getter/setter pair defined via attr_accessor" do
+    it "should recognize a getter in a getter/setter pair defined via" \
+       " attr_accessor" do
       m = @objects.find("InchTest#attr_getset")
       assert m.getter?, "should be a getter"
       refute m.setter?
@@ -223,7 +225,8 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
       assert_equal 0, m.score
     end
 
-    it "should recognize a setter in a getter/setter pair defined via attr_accessor" do
+    it "should recognize a setter in a getter/setter pair defined via" \
+       " attr_accessor" do
       m = @objects.find("InchTest#attr_getset=")
       refute m.getter?
       assert m.setter?, "should be a setter"
@@ -247,13 +250,15 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
       assert_equal 0, m.score
     end
 
-    it "should recognize docs on a getter in a getter/setter pair defined via attr_accessor" do
+    it "should recognize docs on a getter in a getter/setter pair defined via" \
+       " attr_accessor" do
       m = @objects.find("Attributes#username")
       refute_equal 0, m.score
       refute m.undocumented?
     end
 
-    it "should recognize docs on a setter in a getter/setter pair defined via attr_accessor" do
+    it "should recognize docs on a setter in a getter/setter pair defined via" \
+       " attr_accessor" do
       m = @objects.find("Attributes#username=")
       refute_equal 0, m.score
       refute m.undocumented?
@@ -324,7 +329,8 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
         m, Inch::Evaluation::Role::MethodParameter::WithoutMention, "block")
     end
 
-    it "should work if @param tags are only present in the @overload tags, but not on the actual method" do
+    it "should work if @param tags are only present in the @overload tags," \
+       " but not on the actual method" do
       m = @objects.find("Overloading#params_only_in_overloads")
       unexpected_roles = [
         Inch::Evaluation::Role::Object::WithoutCodeExample,
@@ -430,7 +436,8 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
       assert m.score >= 50 # TODO: don't use magic numbers
     end
 
-    it "should recognize question mark methods with description and parameters" do
+    it "should recognize question mark methods with description and" \
+       " parameters" do
       m = @objects.find("InchTest#method_with_description_and_parameters?")
       refute m.has_doc?
       assert m.has_parameters?
