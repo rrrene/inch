@@ -156,9 +156,9 @@ module Inch
               if tags(:example).size > 1 || docstring.code_examples.size > 1
                 true
               else
-                if tag = tag(:example)
+                if (tag = tag(:example))
                   multi_code_examples?(tag.text)
-                elsif text = docstring.code_examples.first
+                elsif (text = docstring.code_examples.first)
                   multi_code_examples?(text)
                 else
                   false

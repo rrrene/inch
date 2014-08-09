@@ -27,7 +27,7 @@ module Inch
       end
 
       def update_via_yaml(dir)
-        if yaml = self.class.yaml(dir)
+        if (yaml = self.class.yaml(dir))
           Dir.chdir(dir) do
             update_files yaml["files"]
           end

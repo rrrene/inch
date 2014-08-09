@@ -28,10 +28,10 @@ module Inch
       # @param args [Array<String>]
       # @return [void]
       def parse(args)
-        if first_non_file = args.find_index { |e| !glob_or_file?(e) }
+        if (first_non_file = args.find_index { |e| !glob_or_file?(e) })
           @files = args[0...first_non_file]
           rest = args[first_non_file..-1]
-          if first_switch = rest.find_index { |e| switch?(e) }
+          if (first_switch = rest.find_index { |e| switch?(e) })
             @object_names = rest[0...first_switch]
             @switches = rest[first_switch..-1]
           else
