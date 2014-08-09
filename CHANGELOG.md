@@ -1,11 +1,15 @@
 # Changelog
 
 
-## 0.5.0 (pre)
+## 0.4.7
 
 - CLI classes must be required seperately from now on
 - external data read by NoDocHelper is encoded as UTF-8
-
+- YARD's attribute directive is now interpreted correctly
+- Docs are now evaluated for class variables as well
+- TomDoc support has been improved
+- Method parameter name recognition has been improved for RDoc style comments
+- Compliance with the Ruby Style Guide has been improved (thanks @yous)
 
 ## 0.4.6
 
