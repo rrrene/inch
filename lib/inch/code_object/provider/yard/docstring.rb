@@ -104,7 +104,7 @@ module Inch
           def mention_parameter_patterns(_name)
             name = Regexp.escape(_name)
             type = /<[^>]+>/
-            arr = [
+            [
               name,
               /#{name}#{type}/ # matches "param1<String,nil>"
             ].map do |expr|
