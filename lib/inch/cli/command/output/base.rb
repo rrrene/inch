@@ -24,9 +24,9 @@ module Inch
             end
           end
 
-          def print_file_info(o, _color)
+          def print_file_info(o, color)
             o.files.each do |f|
-              echo "-> #{f.filename}:#{f.line_no}".color(_color)
+              echo "-> #{f.filename}:#{f.line_no}".color(color)
             end
             echo separator
           end

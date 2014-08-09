@@ -1,10 +1,10 @@
 module Inch
   module CLI
     module SparklineHelper
-      def grade_lists_sparkline(_grade_lists)
-        grade_lists = _grade_lists.reverse
-        list = grade_lists.map { |r| r.objects.size }
-        __sparkline(list, grade_lists)
+      def grade_lists_sparkline(grade_lists)
+        new_grade_lists = grade_lists.reverse
+        list = new_grade_lists.map { |r| r.objects.size }
+        __sparkline(list, new_grade_lists)
       end
 
       def grades_sparkline(objects)
