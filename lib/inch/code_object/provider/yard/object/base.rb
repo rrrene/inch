@@ -52,7 +52,7 @@ module Inch
             # To be overridden
             # @see Proxy::NamespaceObject
             # @return [CodeObject::Proxy::Base,nil] the child inside the current object or +nil+
-            def child(name)
+            def child(_name)
               nil
             end
 

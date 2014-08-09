@@ -13,7 +13,7 @@ class MockPublicRole < ::Inch::Evaluation::Role::Base
 end
 
 class MockIndifferentRole < ::Inch::Evaluation::Role::Base
-  def self.applicable?(object)
+  def self.applicable?(_object)
     true
   end
 end
