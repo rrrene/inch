@@ -25,7 +25,8 @@ module Inch
                            :type, :namespace, :source, :source_type, :group,
                            :dynamic, :visibility
 
-            # @param object [YARD::CodeObjects::Base] the actual (YARD) code object
+            # @param object [YARD::CodeObjects::Base] the actual (YARD) code
+            #   object
             def initialize(object)
               @object = object
               @api_tag = __api_tag
@@ -51,12 +52,14 @@ module Inch
 
             # To be overridden
             # @see Proxy::NamespaceObject
-            # @return [CodeObject::Proxy::Base,nil] the child inside the current object or +nil+
+            # @return [CodeObject::Proxy::Base,nil] the child inside the current
+            #   object or +nil+
             def child(_name)
               nil
             end
 
-            # @return [Array,nil] the full names of the children of the current object
+            # @return [Array,nil] the full names of the children of the current
+            #   object
             def children_fullnames
               []
             end

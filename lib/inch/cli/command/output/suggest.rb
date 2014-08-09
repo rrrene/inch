@@ -18,7 +18,8 @@ module Inch
           }
 
           # @param options [Command::Options::Suggest]
-          # @param relevant_objects [Array<CodeObject::Proxy::Base>] the objects meeting the criteria defined in +options+
+          # @param relevant_objects [Array<CodeObject::Proxy::Base>] the objects
+          #   meeting the criteria defined in +options+
           # @param objects_to_display [Array<CodeObject::Proxy::Base>]
           # @param grade_lists [Array<Evaluation::GradeList>]
           # @param files [Array<Evaluation::File>]

@@ -65,8 +65,8 @@ module Inch
           end
 
           # Returns the last lines of the docstring.
-          # @return [Array<String>] the last line and, if the last line(s) is indented,
-          #   the last unindented line
+          # @return [Array<String>] the last line and, if the last line(s) is
+          #   indented, the last unindented line
           def last_lines
             @last_lines ||= begin
               list = []

@@ -7,9 +7,11 @@ module Inch
           class MethodParameterObject
             attr_reader :name # @return [String]
 
-            # @param method [YARD::Object::MethodObject] the method the parameter belongs to
+            # @param method [YARD::Object::MethodObject] the method the
+            #   parameter belongs to
             # @param name [String] the name of the parameter
-            # @param in_signature [String] how the parameter is noted in the method's signature
+            # @param in_signature [String] how the parameter is noted in the
+            #   method's signature
             # @param tag [YARD::Tags::Tag] the Tag object for the parameter
             def initialize(method, name, in_signature, tag)
               @method = method
@@ -21,7 +23,8 @@ module Inch
             BAD_NAME_EXCEPTIONS = %w(id)
             BAD_NAME_THRESHOLD = 3
 
-            # @return [Boolean] +true+ if the name of the parameter is uncommunicative
+            # @return [Boolean] +true+ if the name of the parameter is
+            #   uncommunicative
             def bad_name?
               return false if BAD_NAME_EXCEPTIONS.include?(name)
               name.size < BAD_NAME_THRESHOLD || name =~ /[0-9]$/
@@ -52,7 +55,8 @@ module Inch
               @tag && @tag.types && !@tag.types.empty?
             end
 
-            # @return [Boolean] +true+ if the parameter is mentioned in the docs, but not present in the method's signature
+            # @return [Boolean] +true+ if the parameter is mentioned in the
+            #   docs, but not present in the method's signature
             def wrongly_mentioned?
               mentioned? && !@in_signature
             end
