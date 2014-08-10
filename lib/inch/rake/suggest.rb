@@ -2,6 +2,7 @@
 
 require "rake"
 require "rake/tasklib"
+require "inch/cli"
 
 module Inch
   # Holds all Rake tasks
