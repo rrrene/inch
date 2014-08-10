@@ -1,6 +1,11 @@
 # Changelog
 
 
+## 0.4.8
+
+- Fix a bug related to "CLI classes must be required seperately from now on"
+  Note to self: read own CHANGELOG more carefully in the future
+
 ## 0.4.7
 
 - CLI classes must be required seperately from now on
