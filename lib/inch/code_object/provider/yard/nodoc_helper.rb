@@ -81,7 +81,7 @@ module Inch
           def get_line_no(filename, line_number)
             f = File.open(filename)
             line_number.times { f.gets }
-            result = $LAST_READ_LINE
+            result = $_ # LAST_READ_LINE
             f.close
             result.encode("UTF-8", "binary",
                           invalid: :replace, undef: :replace, replace: "")
