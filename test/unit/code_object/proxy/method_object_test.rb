@@ -99,6 +99,15 @@ describe ::Inch::CodeObject::Proxy::MethodObject do
       refute m.has_doc?
       refute m.has_parameters?
       assert m.return_mentioned?
+      refute m.return_described?
+
+      assert m.score
+    end
+
+    it "should handle unusable return value when only @return [void] is given" do
+      m = @objects.find("Foo::Bar#method_without_usable_return_value")
+      assert m.return_mentioned?
+      assert m.return_described?
 
       assert m.score
     end

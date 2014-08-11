@@ -73,9 +73,8 @@ module Inch
 
             # Returns +true+ if a return value is described by words.
             def return_described?
-              return_tags.any? do |t|
-                !t.text.empty? && !YARD.implicit_tag?(t, self)
-              end || docstring.describes_return? && !implicit_docstring?
+              return_described_via_tag? ||
+                docstring.describes_return? && !implicit_docstring?
             end
 
             def return_typed?
@@ -144,6 +143,19 @@ module Inch
               object.tags(:return) +
                 overloaded_return_tags +
                   attributed_return_tags
+            end
+
+            # Returns +true+ if a return value is described by words.
+            def return_described_via_tag?
+              return_tags.any? do |t|
+                return_tag_describes_unusable_value?(t) ||
+                  !t.text.empty? && !YARD.implicit_tag?(t, self)
+              end
+            end
+
+            def return_tag_describes_unusable_value?(t)
+              return if t.types.nil?
+              t.types.size == 1 && %w(void nil nothing).include?(t.types.first)
             end
           end
         end
