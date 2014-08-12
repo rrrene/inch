@@ -50,7 +50,7 @@ module Inch
       class << self
         def for(filename, objects)
           @cache ||= {}
-          if file = @cache[filename]
+          if (file = @cache[filename])
             file
           else
             @cache[filename] = new(filename, objects)

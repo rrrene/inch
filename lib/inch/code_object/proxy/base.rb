@@ -52,7 +52,8 @@ module Inch
           !aliased_object.nil?
         end
 
-        # @return [CodeObject::Proxy::Base] the object the current object is an alias of
+        # @return [CodeObject::Proxy::Base] the object the current object is an
+        #   alias of
         def aliased_object
           object_lookup.find(self[:aliased_object_fullname])
         end
@@ -170,7 +171,8 @@ module Inch
           self[:nodoc?]
         end
 
-        # @return [CodeObject::Proxy::Base,nil] the parent of the current object or +nil+
+        # @return [CodeObject::Proxy::Base,nil] the parent of the current object
+        #   or +nil+
         def parent
           object_lookup.find(self[:parent_fullname])
         end

@@ -16,7 +16,7 @@ module Inch
             # @return [Provider::YARD::Object]
             def for(yard_object)
               @cache ||= {}
-              if proxy_object = @cache[cache_key(yard_object)]
+              if (proxy_object = @cache[cache_key(yard_object)])
                 proxy_object
               else
                 @cache[cache_key(yard_object)] =

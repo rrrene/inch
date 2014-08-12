@@ -25,12 +25,13 @@ module Inch
                            :type, :namespace, :source, :source_type, :group,
                            :dynamic, :visibility
 
-            # @param object [YARD::CodeObjects::Base] the actual (YARD) code object
+            # @param object [YARD::CodeObjects::Base] the actual (YARD) code
+            #   object
             def initialize(object)
               @object = object
-              @__api_tag = __api_tag
-              @__parent = __parent
-              @__private_tag = __private_tag
+              @api_tag = __api_tag
+              @parent = __parent
+              @private_tag = __private_tag
             end
 
             # Returns the fullname of the object that the current object
@@ -47,18 +48,18 @@ module Inch
               !api_tag.nil?
             end
 
-            def api_tag
-              @__api_tag
-            end
+            attr_reader :api_tag
 
             # To be overridden
             # @see Proxy::NamespaceObject
-            # @return [CodeObject::Proxy::Base,nil] the child inside the current object or +nil+
-            def child(name)
+            # @return [CodeObject::Proxy::Base,nil] the child inside the current
+            #   object or +nil+
+            def child(_name)
               nil
             end
 
-            # @return [Array,nil] the full names of the children of the current object
+            # @return [Array,nil] the full names of the children of the current
+            #   object
             def children_fullnames
               []
             end
@@ -156,9 +157,9 @@ module Inch
               if tags(:example).size > 1 || docstring.code_examples.size > 1
                 true
               else
-                if tag = tag(:example)
+                if (tag = tag(:example))
                   multi_code_examples?(tag.text)
-                elsif text = docstring.code_examples.first
+                elsif (text = docstring.code_examples.first)
                   multi_code_examples?(text)
                 else
                   false
@@ -210,9 +211,7 @@ module Inch
             end
 
             # @return [Array,nil] the parent of the current object or +nil+
-            def parent
-              @__parent
-            end
+            attr_reader :parent
 
             def __parent
               YARD::Object.for(object.parent) if object.parent
@@ -267,9 +266,7 @@ module Inch
               !private_tag.nil?
             end
 
-            def private_tag
-              @__private_tag
-            end
+            attr_reader :private_tag
 
             def private_api_tag?
               api_tag && api_tag.text == "private"

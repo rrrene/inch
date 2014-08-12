@@ -18,7 +18,7 @@ module Inch
       # @return [Array<CodeObject::Proxy::Base>]
       def find_objects_with_names(object_names)
         object_names.map do |object_name|
-          if object = codebase.objects.find(object_name)
+          if (object = codebase.objects.find(object_name))
             object
           else
             codebase.objects.starting_with(object_name)

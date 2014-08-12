@@ -27,10 +27,6 @@ module Inch
         attribute :object_min_priority, DEFAULT_OBJECT_MIN_PRIORITY
         attribute :object_max_score, DEFAULT_OBJECT_MAX_SCORE
       end
-
-      def self.Suggest(options_or_hash)
-        Suggest.new(options_or_hash)
-      end
     end
   end
 end

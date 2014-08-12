@@ -5,7 +5,7 @@ module Inch
     class Suggest < Filter
       def initialize(codebase, options)
         super
-        @options = Options::Suggest(options)
+        @options = Options::Suggest.new(options)
       end
 
       def files

@@ -13,7 +13,7 @@ describe ::Inch::CLI::Command::Suggest do
     refute out.empty?, "there should be some output"
     assert err.empty?, "there should be no errors"
     assert_match /\bFoo::Bar#method_with_wrong_doc\b/, out
-    assert_match /\bFoo::Bar#method_without_docstring\b/, out
+    assert_match /\bFoo::Bar#method_with_rdoc_doc\b/, out
     assert_match /\bFoo::Bar#method_with_unstructured_doc\b/, out
   end
 
@@ -32,7 +32,7 @@ describe ::Inch::CLI::Command::Suggest do
     refute out.empty?, "there should be some output"
     assert err.empty?, "there should be no errors"
     assert_match /\bFoo::Bar#method_with_wrong_doc\b/, out
-    assert_match /\bFoo::Bar#method_without_docstring\b/, out
+    assert_match /\bFoo::Bar#method_with_rdoc_doc\b/, out
     assert_match /\bFoo::Bar#method_with_unstructured_doc\b/, out
   end
 
@@ -53,7 +53,7 @@ describe ::Inch::CLI::Command::Suggest do
     refute out.empty?, "there should be some output"
     assert err.empty?, "there should be no errors"
     assert_match /\bFoo::Bar#method_with_wrong_doc\b/, out
-    assert_match /\bFoo::Bar#method_without_docstring\b/, out
+    assert_match /\bFoo::Bar#method_with_rdoc_doc\b/, out
     assert_match /\bFoo::Bar#method_with_unstructured_doc\b/, out
   end
 

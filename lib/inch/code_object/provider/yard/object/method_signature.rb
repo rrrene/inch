@@ -8,7 +8,8 @@ module Inch
             attr_reader :method, :docstring
 
             # @param method [Provider::YARD::Object::MethodObject]
-            # @param yard_tag [::YARD::Tags::Tag,nil] if nil, the method's normal signature is used
+            # @param yard_tag [::YARD::Tags::Tag,nil] if nil, the method's
+            #   normal signature is used
             def initialize(method, yard_tag = nil)
               @method = method
               @yard_tag = yard_tag

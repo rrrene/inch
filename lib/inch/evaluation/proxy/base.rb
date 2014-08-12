@@ -67,9 +67,7 @@ module Inch
         end
 
         # @return [Array<Evaluation::Role::Base>]
-        def roles
-          @roles
-        end
+        attr_reader :roles
 
         protected
 

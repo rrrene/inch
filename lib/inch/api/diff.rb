@@ -30,7 +30,7 @@ module Inch
       private
 
       def codebase_for(revision)
-        if cached = codebase_from_cache(revision)
+        if (cached = codebase_from_cache(revision))
           cached
         else
           codebase = codebase_from_copy(work_dir, revision)

@@ -16,10 +16,6 @@ module Inch
         attribute :undocumented
         attribute :depth
       end
-
-      def self.Filter(options_or_hash)
-        Filter.new(options_or_hash)
-      end
     end
   end
 end

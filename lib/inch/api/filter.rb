@@ -8,7 +8,7 @@ module Inch
 
       def initialize(codebase, options)
         @codebase = codebase
-        codebase.objects.filter! Options::Filter(options)
+        codebase.objects.filter! Options::Filter.new(options)
         @objects = codebase.objects.to_a
         @grade_lists = @codebase.grade_lists
       end

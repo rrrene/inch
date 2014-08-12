@@ -65,7 +65,7 @@ module Inch
             end
             opts.on("-p", "--since-last-push",
                     "Run diff against last pushed commit") do
-              @before_rev = get_pushed_rev
+              @before_rev = pushed_rev
               @since_last_push = true
             end
           end
@@ -73,8 +73,8 @@ module Inch
           # @return [String] the reference for the pushed revision
           #
           # @example
-          #   get_pushed_rev # => "origin/master"
-          def get_pushed_rev
+          #   pushed_rev # => "origin/master"
+          def pushed_rev
             "#{remote}/#{current_branch}"
           end
 
