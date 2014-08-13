@@ -7,6 +7,8 @@ module Inch
         module Object
           # Proxy class for methods
           class MethodObject < Base
+            UNUSABLE_RETURN_VALUES = %w(nil nothing undefined void)
+
             def aliases_fullnames
               object.aliases.map(&:path)
             end
@@ -154,8 +156,9 @@ module Inch
             end
 
             def return_tag_describes_unusable_value?(t)
-              return if t.types.nil?
-              t.types.size == 1 && %w(void nil nothing).include?(t.types.first)
+              return false if t.types.nil?
+              t.types.size == 1 &&
+                UNUSABLE_RETURN_VALUES.include?(t.types.first)
             end
           end
         end
