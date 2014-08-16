@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.4.11 (pre)
+
+- Add `undefined` to the list of values used to indicate that a return value
+  is not intended for further use. The current list is `nil`, `nothing`,
+  `void`, and `undefined`.
+
+## 0.4.10
+
+- This patch handles cases where the docs indicate that a return value is not
+  intended for further use. After this patch, Inch won't suggest "Describe
+  what foo returns." anymore.
+
+## 0.4.9
+
+- Fixes bugs introduced in 0.4.8
 
 ## 0.4.8
 
