@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + "/../../test_helper")
 
 describe ::Inch::CLI::YardoptsHelper do
   before do
-    Dir.chdir fixture_path(:yardopts)
+    Dir.chdir fixture_path(:ruby, :yardopts)
     assert File.file?(".yardopts")
     @command = ::Inch::CLI::Command::List
   end
@@ -64,7 +64,7 @@ end
 
 describe ::Inch::CLI::YardoptsHelper do
   before do
-    Dir.chdir fixture_path(:simple)
+    Dir.chdir fixture_path(:ruby, :simple)
     refute File.file?(".yardopts")
     refute File.file?(".document")
     @command = ::Inch::CLI::Command::List

@@ -12,4 +12,6 @@ require "inch/code_object"
 require "inch/evaluation"
 
 require "inch/config"
-require File.join(File.dirname(__FILE__), "..", "config", "defaults.rb")
+require File.join(File.dirname(__FILE__), "..", "config", "base.rb")
+require File.join(File.dirname(__FILE__), "..", "config", "ruby.rb")
+require File.join(File.dirname(__FILE__), "..", "config", "nodejs.rb")

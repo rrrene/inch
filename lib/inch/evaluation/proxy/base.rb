@@ -9,34 +9,15 @@ module Inch
         MAX_SCORE = 100
 
         # @return [CodeObject::Proxy::Base]
-        attr_accessor :object
+        attr_reader :object
 
-        class << self
-          attr_reader :criteria_map
-
-          # Defines the weights during evaluation for different criteria
-          #
-          #   MethodObject.criteria do
-          #     docstring           0.5
-          #     parameters          0.4
-          #     return_type         0.1
-          #
-          #     if object.constructor?
-          #       parameters        0.5
-          #       return_type       0.0
-          #     end
-          #   end
-          #
-          # @return [void]
-          def criteria(&block)
-            @criteria_map ||= {}
-            @criteria_map[to_s] ||= ObjectSchema.new(&block)
-          end
-        end
+        # @return [Array<Evaluation::Role::Base>]
+        attr_reader :roles
 
         # @param object [CodeObject::Proxy::Base]
         def initialize(object)
-          self.object = object
+          @object = object
+          @criteria = eval_criteria(Config.for(object.language).evaluation)
           @roles = []
           evaluate
         end
@@ -66,21 +47,17 @@ module Inch
           @__priority ||= __priority
         end
 
-        # @return [Array<Evaluation::Role::Base>]
-        attr_reader :roles
-
         protected
 
         def add_role(role)
           @roles << role
         end
 
-        def criteria
-          @criteria ||= begin
-            c = self.class.criteria_map[self.class.to_s]
-            c.evaluate(object)
-            c
-          end
+        def eval_criteria(config)
+          object_type = self.class.to_s.split('::').last
+          c = config.criteria_for(object_type)
+          c.evaluate(object)
+          c
         end
 
         def relevant_base_roles
@@ -122,8 +99,12 @@ module Inch
           {}
         end
 
-        def score_for(criteria_name)
-          criteria.send(criteria_name) * MAX_SCORE
+        # Returns a score for a given criterion.
+        #
+        # @param criterion_name [String] e.g. 'docstring' or 'return_type'
+        # @return [Float]
+        def score_for(criterion_name)
+          @criteria.send(criterion_name) * MAX_SCORE
         end
 
         def __evaluate(object, role_classes)

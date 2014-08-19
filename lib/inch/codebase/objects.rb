@@ -14,9 +14,10 @@ module Inch
         end.reverse
       end
 
-      def initialize(objects)
+      def initialize(language, objects)
         list = objects.map do |o|
           proxy = CodeObject::Proxy.for(o)
+          proxy.language = language
           proxy.object_lookup = self
           proxy
         end

@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + "/../../../../test_helper")
 
 describe ::Inch::CodeObject::Provider::YARD::NodocHelper do
   before do
-    @provider = ::Inch::CodeObject::Provider::YARD.parse(fixture_path(:simple))
+    @provider = ::Inch::CodeObject::Provider::YARD.parse(fixture_path(:ruby, :simple))
     @objects = @provider.objects
   end
 

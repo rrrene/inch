@@ -8,7 +8,7 @@ end
 
 describe ::Inch::CLI::Command::Console do
   before do
-    Dir.chdir fixture_path(:simple)
+    Dir.chdir fixture_path(:ruby, :simple)
     @command = ::Inch::CLI::Command::Console
   end
 

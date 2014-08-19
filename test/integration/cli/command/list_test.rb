@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + "/../../../shared/base_list")
 
 describe ::Inch::CLI::Command::List do
   before do
-    Dir.chdir fixture_path(:simple)
+    Dir.chdir fixture_path(:ruby, :simple)
     @command = ::Inch::CLI::Command::List
   end
 

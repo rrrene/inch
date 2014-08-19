@@ -28,8 +28,8 @@ def find_roles(object, role_class, object_name = nil)
   end
 end
 
-def fixture_path(name)
-  File.join(File.dirname(__FILE__), "fixtures", name.to_s)
+def fixture_path(language, name)
+  File.join(File.dirname(__FILE__), "fixtures", language.to_s, name.to_s)
 end
 
 module Inch
@@ -37,19 +37,19 @@ module Inch
     class << self
       attr_accessor :object_providers
 
-      def codebase(name)
-        Inch::Codebase::Proxy.new object_provider(name)
+      def codebase(language, name)
+        Inch::Codebase::Proxy.new language, object_provider(language, name)
       end
 
-      def object_provider(name)
+      def object_provider(language, name)
         self.object_providers ||= {}
-        self.object_providers[name] ||= ::Inch::CodeObject::Provider.parse(fixture_path(name))
+        self.object_providers[name] ||= ::Inch::CodeObject::Provider.parse(fixture_path(language, name))
       end
     end
   end
 end
 
 def test_codebase(name)
-  codebase = Inch::Test.codebase(name)
+  codebase = Inch::Test.codebase(:ruby, name)
   codebase
 end

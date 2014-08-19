@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + "/../test_helper")
 
 describe ::Inch::CLI::Command do
   before do
-    Dir.chdir fixture_path(:visibility)
+    Dir.chdir fixture_path(:ruby, :visibility)
     @command = ::Inch::CLI::Command::List
   end
 

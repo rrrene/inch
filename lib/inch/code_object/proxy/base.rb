@@ -21,6 +21,9 @@ module Inch
         #  full name
         attr_accessor :object_lookup
 
+        # @return [String]
+        attr_accessor :language
+
         # convenient shortcuts to evalution object
         def_delegators :evaluation, :score, :roles, :priority
 

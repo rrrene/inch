@@ -21,7 +21,9 @@ module Inch
           @options.parse(args)
           @options.verify
 
-          config = Config::Codebase.new(@options.paths, @options.excluded, @options.language)
+          config = Config::Codebase.new(@options.language, @options.paths, @options.excluded)
+          # TODO: make this more streamlined
+          #   config = Config.for(@options.language, Dir.pwd)
           @codebase = ::Inch::Codebase.parse(Dir.pwd, config)
         end
       end

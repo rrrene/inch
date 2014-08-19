@@ -4,8 +4,8 @@ describe ::Inch::API::Compare::Codebases do
   let(:described_class) { ::Inch::API::Compare::Codebases }
 
   it "should run" do
-    codebase1 = Inch::Codebase.parse fixture_path(:diff1)
-    codebase2 = Inch::Codebase.parse fixture_path(:diff2)
+    codebase1 = Inch::Codebase.parse fixture_path(:ruby, :diff1)
+    codebase2 = Inch::Codebase.parse fixture_path(:ruby, :diff2)
 
     compare = described_class.new(codebase1, codebase2)
     refute compare.comparisons.empty?

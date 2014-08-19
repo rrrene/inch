@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + "/../../test_helper")
 
 describe ::Inch::CLI::Arguments do
   before do
-    Dir.chdir fixture_path(:simple)
+    Dir.chdir fixture_path(:ruby, :simple)
     assert File.file?("README")
   end
 

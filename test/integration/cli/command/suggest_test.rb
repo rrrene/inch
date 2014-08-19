@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + "/../../../test_helper")
 
 describe ::Inch::CLI::Command::Suggest do
   before do
-    Dir.chdir fixture_path(:simple)
+    Dir.chdir fixture_path(:ruby, :simple)
     @command = ::Inch::CLI::Command::Suggest
   end
 
@@ -85,7 +85,7 @@ describe ::Inch::CLI::Command::Suggest do
 
   it "should run without args on really good fixture" do
     out, err = capture_io do
-      Dir.chdir fixture_path(:really_good)
+      Dir.chdir fixture_path(:ruby, :really_good)
       @command.run
     end
     refute out.empty?, "there should be some output"
@@ -94,7 +94,7 @@ describe ::Inch::CLI::Command::Suggest do
 
   it "should run with --pedantic switch" do
     out, err = capture_io do
-      Dir.chdir fixture_path(:really_good)
+      Dir.chdir fixture_path(:ruby, :really_good)
       @command.run("--pedantic")
     end
     refute out.empty?, "there should be some output"

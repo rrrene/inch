@@ -3,8 +3,8 @@ module Inch
     class Proxy
       attr_reader :objects
 
-      def initialize(provider)
-        @objects = Codebase::Objects.new(provider.objects)
+      def initialize(language, provider)
+        @objects = Codebase::Objects.new(language, provider.objects)
       end
 
       def grade_lists
@@ -18,7 +18,7 @@ module Inch
 
       def self.parse(dir = Dir.pwd, config = Inch::Config.codebase)
         provider = CodeObject::Provider.parse(dir, config)
-        new(provider)
+        new(config.language, provider)
       end
     end
   end

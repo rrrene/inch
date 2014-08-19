@@ -4,7 +4,7 @@ describe ::Inch::CodeObject::Provider::YARD::Parser do
   before do
     @config = Inch::Config.codebase
     @parser = ::Inch::CodeObject::Provider::YARD::Parser.parse(
-      fixture_path(:simple), @config)
+      fixture_path(:ruby, :simple), @config)
     @objects = @parser.objects
   end
 

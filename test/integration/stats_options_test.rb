@@ -8,7 +8,7 @@ require File.expand_path(File.dirname(__FILE__) + "/../test_helper")
 #
 describe ::Inch::CLI::Command::List do
   before do
-    Dir.chdir fixture_path(:simple)
+    Dir.chdir fixture_path(:ruby, :simple)
     @command = "bundle exec inch stats"
   end
 

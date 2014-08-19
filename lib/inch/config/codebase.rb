@@ -8,10 +8,10 @@ module Inch
 
       YAML_FILE = ".inch.yml"
 
-      def initialize(included = nil, excluded = nil, language = :ruby)
+      def initialize(language = :ruby, included = nil, excluded = nil)
+        @language = language
         @included_files = included || []
         @excluded_files = excluded || []
-        @language = language
       end
 
       # Returns the contents of +dir+/.inch.yml, if present.
@@ -24,10 +24,13 @@ module Inch
         YAML.load(File.read(yaml_file)) if File.exist?(yaml_file)
       end
 
+      # Update this Codebase config with the given block.
       def update(&block)
         instance_eval(&block)
       end
 
+      # Search the given +dir+ for YAML_FILE and
+      # update this Codebase config with the contents if the file is found.
       def update_via_yaml(dir)
         if (yaml = self.class.yaml(dir))
           Dir.chdir(dir) do

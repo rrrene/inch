@@ -20,7 +20,6 @@ require "inch/utils/read_write_methods"
 require "inch/evaluation/file"
 require "inch/evaluation/grade"
 require "inch/evaluation/grade_list"
-require "inch/evaluation/object_schema"
 require "inch/evaluation/priority_range"
 
 require "inch/evaluation/role/base"
