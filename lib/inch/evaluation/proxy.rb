@@ -2,7 +2,11 @@ module Inch
   # The Evaluation module concerns itself with the evaluation of code objects
   # with regard to their inline code documentation
   module Evaluation
-    module Proxy
+      # Base class for evaluations. This class provides the evaluation's
+      # process structure.
+      #
+      # @abstract
+    class Proxy
       # Returns a Proxy object for the given +code_object+
       #
       # @param language [String,Symbol]
@@ -17,21 +21,24 @@ module Inch
       MIN_SCORE = 0
       MAX_SCORE = 100
 
-      # @return [CodeObject::Proxy]
+      # @return [Codebase::Object]
       attr_reader :object
 
       # @return [Array<Evaluation::Role::Base>]
       attr_reader :roles
 
-      # @param object [CodeObject::Proxy]
+      # @param object [Codebase::Object]
       def initialize(object)
         @object = object
-        @criteria = eval_criteria(Config.for(object.language).evaluation)
+        evaluation_config = Config.for(object.language).evaluation
+        @criteria = eval_criteria(evaluation_config)
         @roles = []
         evaluate
       end
 
       # Evaluates the objects and assigns roles
+      # @note This is its own method so it can be overridden.
+      # @return [void]
       def evaluate
         __evaluate(object, relevant_roles)
       end
@@ -62,6 +69,11 @@ module Inch
         @roles << role
       end
 
+      # Evaluates a Criteria object with the object so that it can
+      # give us scores for docstring, return_type, etc.
+      #
+      # @param config [Config::Evaluation]
+      # @return [Evaluation::Criteria]
       def eval_criteria(config)
         object_type = self.class.to_s.split('::').last
         c = config.criteria_for(object_type)
@@ -86,6 +98,12 @@ module Inch
         @criteria.send(criterion_name) * MAX_SCORE
       end
 
+      # Iterates over the given +role_classes+ and assigns the individual
+      # roles, if applicable.
+      #
+      # @param object [Codebase::Object]
+      # @param role_classes [Hash]
+      # @return [void]
       def __evaluate(object, role_classes)
         role_classes.each do |role_class, score|
           next unless role_class.applicable?(object)

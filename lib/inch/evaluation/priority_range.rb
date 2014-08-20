@@ -1,5 +1,8 @@
 module Inch
   module Evaluation
+    # PriorityRange objects are used to associate a given
+    # range of priorities with a symbol and an arrow.
+    #
     class PriorityRange
       extend Utils::ReadWriteMethods
       extend Forwardable

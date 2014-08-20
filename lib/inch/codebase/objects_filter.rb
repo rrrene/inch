@@ -1,16 +1,20 @@
 module Inch
   module Codebase
-    # ObjectsFilter can be used to filter a list of objects by given a set of
+    # ObjectsFilter can be used to filter a list of objects by a given set of
     # given +options+
     class ObjectsFilter
+      # @return [API::Options::Base] the filter options
       attr_reader :options
 
+      # @param list [Array<CodeObject::Proxy>] the unfiltered list
+      # @param options [API::Options::Base] the filter options
       def initialize(list, options)
         @list = list
         @options = options
         filter
       end
 
+      # @return [Array<CodeObject::Proxy>] the filtered list
       def objects
         @list
       end

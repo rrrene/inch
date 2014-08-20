@@ -1,5 +1,7 @@
 module Inch
   module Evaluation
+    # Evaluation::File is used in the Suggest API/CLI to determine
+    # the importance of files
     class File
       attr_accessor :filename, :objects
 
@@ -16,7 +18,7 @@ module Inch
       end
 
       #
-      # grade, priority, and score are not meant to be displayed in the CLI
+      # grade, priority and score are not meant to be displayed in the CLI
       # they are just for internal evaluation purposes
       #
 
