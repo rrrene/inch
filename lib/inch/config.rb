@@ -5,26 +5,37 @@ module Inch
   class Config
     class << self
       def instance(language = :ruby)
-        @instances ||= {}
-        @instances[language.to_s] ||= Config::Base.new(language)
+        if block = @blocks[language.to_s]
+          config = Config::Base.new(language)
+          config = config.update(&block)
+          config
+        else
+          raise "Language not registered: #{language}"
+        end
+      end
+
+      # Registers a configuration block for a given language.
+      #
+      # @return [void]
+      def register(language, &block)
+        @blocks ||= {}
+        @blocks[language.to_s] = block
       end
 
       def codebase(language = :ruby)
         instance(language).codebase
       end
 
-      def run(language, &block)
-        config = instance(language)
-        config.update(&block) if block
-        config
-      end
-
       def base(&block)
-        run(:__base__, &block)
+        Config::Base.new(:__base__).update(&block)
       end
 
-      def for(language, path = nil, &block)
-        config = run(language, &block)
+      # Returns the Config object for a given +language+.
+      # Optionally parses a given +path+ for inch.yml
+      #
+      # @return [Config::Base]
+      def for(language, path = nil)
+        config = instance(language)
         config.codebase.update_via_yaml(path) if path
         config
       end

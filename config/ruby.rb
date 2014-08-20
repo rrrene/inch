@@ -1,6 +1,6 @@
 # Ruby's configuration
 
-Inch::Config.for(:ruby) do
+Inch::Config.register(:ruby) do
   codebase do
     include_files ["lib/**/*.rb", "app/**/*.rb"]
     exclude_files []
