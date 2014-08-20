@@ -19,7 +19,7 @@ module Inch
         # @return [#find]
         #  an object that responds to #find to look up objects by their
         #  full name
-        attr_accessor :object_lookup
+        attr_reader :object_lookup
 
         # @return [String]
         attr_accessor :language
@@ -27,8 +27,10 @@ module Inch
         # convenient shortcuts to evalution object
         def_delegators :evaluation, :score, :roles, :priority
 
-        def initialize(attributes = {})
+        # @param object_lookup [Codebase::Objects]
+        def initialize(attributes = {}, object_lookup = nil)
           @attributes = attributes
+          @object_lookup = object_lookup
         end
 
         # Returns the attribute for the given +key+
