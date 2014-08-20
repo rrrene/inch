@@ -1,6 +1,6 @@
 module Inch
   module CodeObject
-    module Proxy
+    module Ruby
       # Proxy class for methods
       class MethodObject < Base
         def constructor?

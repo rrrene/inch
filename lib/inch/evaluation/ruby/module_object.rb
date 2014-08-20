@@ -1,7 +1,7 @@
 module Inch
   module Evaluation
-    module Proxy
-      class ClassObject < NamespaceObject
+    module Ruby
+      class ModuleObject < NamespaceObject
       end
     end
   end

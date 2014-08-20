@@ -1,6 +1,6 @@
 module Inch
   module Evaluation
-    module Proxy
+    module Ruby
       class ClassVariableObject < Base
         protected
 

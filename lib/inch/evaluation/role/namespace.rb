@@ -5,7 +5,7 @@ module Inch
       module Namespace
         # Role assigned to namespaces with children
         #
-        # @see CodeObject::Proxy::NamespaceObject#has_children?
+        # @see CodeObject::Ruby::NamespaceObject#has_children?
         class WithChildren < Base
           applicable_if :has_children?
 
@@ -22,7 +22,7 @@ module Inch
 
         # Role assigned to namespaces with many children
         #
-        # @see CodeObject::Proxy::NamespaceObject#has_many_children?
+        # @see CodeObject::Ruby::NamespaceObject#has_many_children?
         class WithManyChildren < Base
           applicable_if :has_many_children?
 
@@ -34,7 +34,7 @@ module Inch
 
         # Role assigned to namespaces with many attributes
         #
-        # @see CodeObject::Proxy::NamespaceObject#has_many_attributes?
+        # @see CodeObject::Ruby::NamespaceObject#has_many_attributes?
         class WithManyAttributes < Base
           applicable_if :has_many_attributes?
 

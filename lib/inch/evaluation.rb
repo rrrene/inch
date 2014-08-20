@@ -2,15 +2,16 @@ module Inch
   # The Evaluation module concerns itself with the evaluation of code objects
   # with regard to their inline code documentation
   module Evaluation
-    def self.for(code_object)
-      class_for(code_object).new(code_object)
+    def self.for(language, code_object)
+      class_for(language, code_object).new(code_object)
     end
 
     private
 
-    def self.class_for(code_object)
+    def self.class_for(language, code_object)
       class_name = code_object.class.to_s.split("::").last
-      const_get(class_name)
+      language_namespace = Evaluation::Ruby
+      language_namespace.const_get(class_name)
     end
   end
 end

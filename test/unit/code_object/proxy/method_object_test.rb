@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + "/../../../test_helper")
 
-describe ::Inch::CodeObject::Proxy::MethodObject do
+describe ::Inch::CodeObject::Ruby::MethodObject do
   before do
     @codebase = test_codebase(:simple)
     @objects = @codebase.objects

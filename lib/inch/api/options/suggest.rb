@@ -1,4 +1,4 @@
-require "inch/evaluation/proxy/base"
+require "inch/evaluation/proxy"
 
 module Inch
   module API
@@ -14,7 +14,7 @@ module Inch
           DEFAULT_GRADES_TO_DISPLAY   = [:B, :C, :U]
           DEFAULT_GRADE_WEIGHTS       = [0.2, 0.4, 0.4]
           DEFAULT_OBJECT_MIN_PRIORITY = 0
-          DEFAULT_OBJECT_MAX_SCORE    = ::Inch::Evaluation::Proxy::Base::MAX_SCORE
+          DEFAULT_OBJECT_MAX_SCORE    = ::Inch::Evaluation::Proxy::MAX_SCORE
         end
 
         include DefaultAttributeValues

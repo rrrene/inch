@@ -1,6 +1,6 @@
 module Inch
   module Evaluation
-    module Proxy
+    module Ruby
       class MethodObject < Base
         def evaluate
           super

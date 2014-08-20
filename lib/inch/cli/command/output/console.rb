@@ -11,8 +11,8 @@ module Inch
           BG_COLOR = :color207  # magenta-ish
 
           # @param options [Options::Console]
-          # @param object [CodeObject::Proxy::Base]
-          # @param objects [Array<CodeObject::Proxy::Base>]
+          # @param object [CodeObject::Proxy]
+          # @param objects [Array<CodeObject::Proxy>]
           # @param codebase [Codebase::Proxy]
           def initialize(options, object, objects, codebase)
             @options = options

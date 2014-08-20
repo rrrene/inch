@@ -14,8 +14,8 @@ module Inch
 
       # Assigns code_objects that received a score with the defined +scores+
       #
-      # @param arr [Array<CodeObject::Proxy::Base>]
-      # @return [Array<CodeObject::Proxy::Base>]
+      # @param arr [Array<CodeObject::Proxy>]
+      # @return [Array<CodeObject::Proxy>]
       def objects=(arr)
         arr.each { |o| o.grade = grade }
         @objects = arr

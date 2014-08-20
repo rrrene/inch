@@ -2,54 +2,15 @@ require "forwardable"
 
 module Inch
   module CodeObject
-    module Proxy
+    module Ruby
       # This is the base class for code object proxies.
       # Code object proxies are via an attributes Hash and provide all methods
       # necessary for the evaluation of its documentation.
       #
       # @abstract
-      class Base
-        extend Forwardable
-
-        # @return [Grade]
-        #   when objects are assigned to GradeLists, this grade is set to
-        #   enable easier querying for objects of a certain grade
-        attr_writer :grade
-
-        # @return [#find]
-        #  an object that responds to #find to look up objects by their
-        #  full name
-        attr_reader :object_lookup
-
-        # @return [String]
-        attr_accessor :language
-
-        # convenient shortcuts to evalution object
-        def_delegators :evaluation, :score, :roles, :priority
-
-        # @param object_lookup [Codebase::Objects]
-        def initialize(attributes = {}, object_lookup = nil)
-          @attributes = attributes
-          @object_lookup = object_lookup
-        end
-
-        # Returns the attribute for the given +key+
-        #
-        # @param key [Symbol]
-        def [](key)
-          @attributes[key]
-        end
-
-        # @return [Evaluation::Base]
-        def evaluation
-          @evaluation ||= Evaluation::Proxy.for(self)
-        end
-
-        # @return [Symbol]
-        def grade
-          @grade ||= Evaluation.new_grade_lists.find do |range|
-            range.scores.include?(score)
-          end.grade
+      class Base < CodeObject::Proxy
+        def language
+          :ruby
         end
 
         # @return [Boolean] if the current object is an alias for something else
@@ -57,7 +18,7 @@ module Inch
           !aliased_object.nil?
         end
 
-        # @return [CodeObject::Proxy::Base] the object the current object is an
+        # @return [CodeObject::Proxy] the object the current object is an
         #   alias of
         def aliased_object
           object_lookup.find(self[:aliased_object_fullname])
@@ -176,7 +137,7 @@ module Inch
           self[:nodoc?]
         end
 
-        # @return [CodeObject::Proxy::Base,nil] the parent of the current object
+        # @return [CodeObject::Proxy,nil] the parent of the current object
         #   or +nil+
         def parent
           object_lookup.find(self[:parent_fullname])
@@ -227,20 +188,6 @@ module Inch
 
         def visibility
           self[:visibility]
-        end
-
-        # Used to persist the code object
-        def marshal_dump
-          @attributes
-        end
-
-        # Used to load a persisted code object
-        def marshal_load(attributes)
-          @attributes = attributes
-        end
-
-        def inspect
-          "#<#{self.class}: #{fullname}>"
         end
       end
     end

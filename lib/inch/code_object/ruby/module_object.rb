@@ -1,7 +1,7 @@
 module Inch
   module CodeObject
-    module Proxy
-      class ClassVariableObject < Base
+    module Ruby
+      class ModuleObject < NamespaceObject
       end
     end
   end

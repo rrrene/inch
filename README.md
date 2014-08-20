@@ -267,7 +267,7 @@ Suggests places where a codebase suffers a lack of documentation.
     # Properly documented, could be improved:
 
     ┃  B  ↑  Inch::CLI::Command::BaseList#prepare_list
-    ┃  B  ↑  Inch::CodeObject::Proxy::MethodParameterObject#initialize
+    ┃  B  ↑  Inch::CodeObject::Ruby::MethodParameterObject#initialize
     ┃  B  ↗  Inch::CLI::Command::Stats#run
     ┃  B  ↗  Inch::CLI::CommandParser#run
 
@@ -362,7 +362,7 @@ Lists all objects in your codebase with their grades.
     # Seems really good
 
     ┃  A  ↑  Inch::CLI::Command::Output::Console#object
-    ┃  A  ↗  Inch::CodeObject::Proxy::Base#depth
+    ┃  A  ↗  Inch::CodeObject::Proxy#depth
     ┃  A  ↗  Inch::CLI::Command::Base#description
     ┃  A  ↗  Inch::CodeObject::NodocHelper#nodoc?
     ┃ ...  (omitting 75 objects)
@@ -370,7 +370,7 @@ Lists all objects in your codebase with their grades.
     # Proper documentation present
 
     ┃  B  ↑  Inch::CLI::Command::Suggest#run
-    ┃  B  ↑  Inch::CodeObject::Proxy::MethodParameterObject#initialize
+    ┃  B  ↑  Inch::CodeObject::Ruby::MethodParameterObject#initialize
     ┃  B  ↗  Inch::CLI::Command::Stats#run
     ┃  B  ↗  Inch::CLI::CommandParser#run
 

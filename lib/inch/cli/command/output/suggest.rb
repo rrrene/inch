@@ -18,9 +18,9 @@ module Inch
           }
 
           # @param options [Command::Options::Suggest]
-          # @param relevant_objects [Array<CodeObject::Proxy::Base>] the objects
+          # @param relevant_objects [Array<CodeObject::Proxy>] the objects
           #   meeting the criteria defined in +options+
-          # @param objects_to_display [Array<CodeObject::Proxy::Base>]
+          # @param objects_to_display [Array<CodeObject::Proxy>]
           # @param grade_lists [Array<Evaluation::GradeList>]
           # @param files [Array<Evaluation::File>]
           def initialize(options, relevant_objects, objects_to_display,

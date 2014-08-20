@@ -6,8 +6,8 @@ module Inch
 
       def_delegators :@list, :each, :empty?, :size
 
-      # @param objects [Array<CodeObject::Proxy::Base>]
-      # @return [Array<CodeObject::Proxy::Base>]
+      # @param objects [Array<CodeObject::Proxy>]
+      # @return [Array<CodeObject::Proxy>]
       def self.sort_by_priority(objects)
         objects.sort_by do |o|
           [o.priority, o.score, o.fullname.size]
@@ -16,9 +16,7 @@ module Inch
 
       def initialize(language, objects)
         list = objects.map do |code_object|
-          proxy = CodeObject::Proxy.for(language, code_object, self)
-          proxy.language = language
-          proxy
+          Codebase::Object.new(language, code_object, self)
         end
         @list = list
         index_by_fullname
@@ -31,7 +29,7 @@ module Inch
       # Returns all parsed objects as code object proxies
       #
       # @see CodeObject::Proxy.for
-      # @return [Array<CodeObject::Proxy::Base>]
+      # @return [Array<CodeObject::Proxy>]
       def all
         @list
       end
@@ -44,7 +42,7 @@ module Inch
       #   # => returns the code object proxy for Foo#bar
       #
       # @param fullname [String] partial fullname/name of an object
-      # @return [CodeObject::Proxy::Base]
+      # @return [CodeObject::Proxy]
       def find(fullname)
         @by_fullname[fullname]
       end
@@ -58,7 +56,7 @@ module Inch
       #   # => returns the code object proxies for all instance methods of Foo
       #
       # @param partial_name [String] partial name of an object
-      # @return [Array<CodeObject::Proxy::Base>]
+      # @return [Array<CodeObject::Proxy>]
       def starting_with(partial_name)
         all.select { |o| o.fullname.start_with?(partial_name) }
       end

@@ -15,7 +15,7 @@ module Inch
       # Returns all objects matching the given +object_names+
       #
       # @param object_names [Array<String>]
-      # @return [Array<CodeObject::Proxy::Base>]
+      # @return [Array<CodeObject::Proxy>]
       def find_objects_with_names(object_names)
         object_names.map do |object_name|
           if (object = codebase.objects.find(object_name))

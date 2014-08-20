@@ -1,6 +1,6 @@
 module Inch
   module CodeObject
-    module Proxy
+    module Ruby
       # Proxy class for method parameters
       class MethodParameterObject
         def initialize(attributes)

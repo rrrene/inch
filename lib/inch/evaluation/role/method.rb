@@ -9,7 +9,7 @@ module Inch
 
         # Role assigned to methods with many parameters
         #
-        # @see CodeObject::Proxy::MethodObject#has_many_parameters?
+        # @see CodeObject::Ruby::MethodObject#has_many_parameters?
         class WithManyParameters < Base
           applicable_if :has_many_parameters?
 
@@ -49,7 +49,7 @@ module Inch
 
         # Role assigned to methods with many lines
         #
-        # @see CodeObject::Proxy::MethodObject#has_many_lines?
+        # @see CodeObject::Ruby::MethodObject#has_many_lines?
         class WithManyLines < Base
           applicable_if :has_many_lines?
 

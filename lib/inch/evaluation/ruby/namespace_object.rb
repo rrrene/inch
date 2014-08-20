@@ -1,6 +1,6 @@
 module Inch
   module Evaluation
-    module Proxy
+    module Ruby
       # a namespace object can have methods and other namespace objects
       # inside itself (e.g. classes and modules)
       class NamespaceObject < Base

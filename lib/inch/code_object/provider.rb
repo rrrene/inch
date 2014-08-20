@@ -9,7 +9,7 @@ module Inch
     # YARD's SourceParser returns ::YARD::CodeObject objects, which are
     # cast to Provider::YARD::Object::Base objects that can ensure naming
     # conventions et al. follow certain rules. These objects are then again
-    # converted into CodeObject::Proxy::Base objects that form the codebase:
+    # converted into CodeObject::Proxy objects that form the codebase:
     #
     #                        ::YARD::CodeObject
     #                               ↓
@@ -17,7 +17,7 @@ module Inch
     #                               ↓
     #                             (Hash)
     #                               ↓
-    #                   ::Inch::CodeObject::Proxy::Base
+    #                   ::Inch::CodeObject::Proxy
     #
     #
     module Provider
