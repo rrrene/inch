@@ -1,18 +1,18 @@
-require File.expand_path(File.dirname(__FILE__) + "/../../../test_helper")
+require File.expand_path(File.dirname(__FILE__) + "/../../test_helper")
 
-class MockPrivateRole < ::Inch::Evaluation::Role::Base
+class MockPrivateRole < ::Inch::Evaluation::Role
   applicable_if :private?
 end
 
-class MockNotPrivateRole < ::Inch::Evaluation::Role::Base
+class MockNotPrivateRole < ::Inch::Evaluation::Role
   applicable_unless :private?
 end
 
-class MockPublicRole < ::Inch::Evaluation::Role::Base
+class MockPublicRole < ::Inch::Evaluation::Role
   applicable_if { |o| o.public? }
 end
 
-class MockIndifferentRole < ::Inch::Evaluation::Role::Base
+class MockIndifferentRole < ::Inch::Evaluation::Role
   def self.applicable?(_object)
     true
   end
@@ -38,7 +38,7 @@ class MockPublicObject
   end
 end
 
-describe ::Inch::Evaluation::Role::Base do
+describe ::Inch::Evaluation::Role do
   describe ".applicable" do
     let(:private_object) { MockPrivateObject.new }
     let(:public_object) { MockPublicObject.new }

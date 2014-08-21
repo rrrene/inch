@@ -331,20 +331,20 @@ describe ::Inch::CodeObject::Ruby::MethodObject do
       skip
       m = @objects.find("Overloading#many_overloads")
       assert_equal 1, count_roles(
-        m, Inch::Evaluation::Role::Method::WithoutReturnDescription)
+        m, Inch::Evaluation::Ruby::Role::Method::WithoutReturnDescription)
       assert_equal 1, count_roles(
-        m, Inch::Evaluation::Role::Method::WithoutReturnType)
+        m, Inch::Evaluation::Ruby::Role::Method::WithoutReturnType)
       assert_equal 1, count_roles(
-        m, Inch::Evaluation::Role::MethodParameter::WithoutMention, "block")
+        m, Inch::Evaluation::Ruby::Role::MethodParameter::WithoutMention, "block")
     end
 
     it "should work if @param tags are only present in the @overload tags," \
        " but not on the actual method" do
       m = @objects.find("Overloading#params_only_in_overloads")
       unexpected_roles = [
-        Inch::Evaluation::Role::Object::WithoutCodeExample,
-        Inch::Evaluation::Role::MethodParameter::WithoutMention,
-        Inch::Evaluation::Role::MethodParameter::WithoutType
+        Inch::Evaluation::Ruby::Role::Object::WithoutCodeExample,
+        Inch::Evaluation::Ruby::Role::MethodParameter::WithoutMention,
+        Inch::Evaluation::Ruby::Role::MethodParameter::WithoutType
       ]
       assert_roles m, [], unexpected_roles
     end
@@ -352,11 +352,11 @@ describe ::Inch::CodeObject::Ruby::MethodObject do
     it "should work with one param missing in the overload tag" do
       m = @objects.find("Overloading#one_param_missing_in_overload")
       unexpected_roles = [
-        Inch::Evaluation::Role::Object::WithoutCodeExample
+        Inch::Evaluation::Ruby::Role::Object::WithoutCodeExample
       ]
       expected_roles = [
-        Inch::Evaluation::Role::MethodParameter::WithoutMention,
-        Inch::Evaluation::Role::MethodParameter::WithoutType
+        Inch::Evaluation::Ruby::Role::MethodParameter::WithoutMention,
+        Inch::Evaluation::Ruby::Role::MethodParameter::WithoutType
       ]
       assert_roles m, expected_roles, unexpected_roles
     end
@@ -369,8 +369,8 @@ describe ::Inch::CodeObject::Ruby::MethodObject do
 
       m = @objects.find("Foo#method_with_named_parameter")
       unexpected_roles = [
-        Inch::Evaluation::Role::MethodParameter::WithoutMention,
-        Inch::Evaluation::Role::MethodParameter::WithoutType
+        Inch::Evaluation::Ruby::Role::MethodParameter::WithoutMention,
+        Inch::Evaluation::Ruby::Role::MethodParameter::WithoutType
       ]
       assert_roles m, [], unexpected_roles
     end
@@ -380,8 +380,8 @@ describe ::Inch::CodeObject::Ruby::MethodObject do
 
       m = @objects.find("Foo#method_with_indented_param_tag")
       unexpected_roles = [
-        Inch::Evaluation::Role::MethodParameter::WithoutMention,
-        Inch::Evaluation::Role::MethodParameter::WithoutType
+        Inch::Evaluation::Ruby::Role::MethodParameter::WithoutMention,
+        Inch::Evaluation::Ruby::Role::MethodParameter::WithoutType
       ]
       assert_roles m, [], unexpected_roles
     end

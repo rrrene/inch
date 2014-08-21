@@ -150,11 +150,3 @@ module Inch
     end
   end
 end
-
-require "inch/evaluation/ruby/base"
-require "inch/evaluation/ruby/namespace_object"
-require "inch/evaluation/ruby/class_object"
-require "inch/evaluation/ruby/class_variable_object"
-require "inch/evaluation/ruby/constant_object"
-require "inch/evaluation/ruby/method_object"
-require "inch/evaluation/ruby/module_object"
