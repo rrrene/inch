@@ -37,7 +37,6 @@ module Inch
           count = object.unconsidered_tag_count
           score_for(:unconsidered_tag) * count
         end
-
       end
     end
   end

@@ -7,12 +7,9 @@ module Inch
         #
         class Alias < Base
           applicable_if :alias?
-
-          def priority
-            # not sure about this yet,
-            # but aliases should not show up high in the reports
-            -7
-          end
+          # not sure about this yet,
+          # but aliases should not show up high in the reports
+          priority      -7
         end
 
         # Role assigned to objects with a describing comment (docstring)
@@ -34,10 +31,7 @@ module Inch
         # the object seems undocumented to Inch.
         class Tagged < Base
           applicable_if :has_unconsidered_tags?
-
-          def priority
-            -1
-          end
+          priority      -1
         end
 
         # Role assigned to objects explicitly or implicitly tagged not to be
@@ -46,10 +40,7 @@ module Inch
         # @see CodeObject::NodocHelper
         class TaggedAsNodoc < Base
           applicable_if :nodoc?
-
-          def priority
-            -7
-          end
+          priority      -7
         end
 
         # Role assigned to objects explicitly or implicitly tagged to be part
@@ -63,10 +54,7 @@ module Inch
         # of a private API.
         class TaggedAsInternalAPI < Base
           applicable_if :tagged_as_internal_api?
-
-          def priority
-            -5
-          end
+          priority      -5
         end
 
         # Role assigned to objects explicitly or implicitly tagged to be
@@ -75,46 +63,31 @@ module Inch
         # @see CodeObject::NodocHelper
         class TaggedAsPrivate < Base
           applicable_if :tagged_as_private?
-
-          def priority
-            -5
-          end
+          priority      -5
         end
 
         # Role assigned to objects declared in the top-level namespace
         class InRoot < Base
           applicable_if :in_root?
-
-          def priority
-            +3
-          end
+          priority      +3
         end
 
         # Role assigned to public objects
         class Public < Base
           applicable_if :public?
-
-          def priority
-            +2
-          end
+          priority      +2
         end
 
         # Role assigned to protected objects
         class Protected < Base
           applicable_if :protected?
-
-          def priority
-            +1
-          end
+          priority      +1
         end
 
         # Role assigned to private objects
         class Private < Base
           applicable_if :private?
-
-          def priority
-            -2
-          end
+          priority      -2
         end
 
         # Role assigned to objects with a single code example

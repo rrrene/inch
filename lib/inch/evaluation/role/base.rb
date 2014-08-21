@@ -24,6 +24,10 @@ module Inch
             @applicable_procs ||= {}
             @applicable_procs[to_s].call(object)
           end
+
+          def priority(value)
+            define_method(:priority) { value }
+          end
         end
 
         def initialize(object, value = nil)
@@ -78,7 +82,7 @@ module Inch
         # subject.
         #
         # @see Role::Missing
-        # @return [Float]
+        # @return [String]
         def suggestion
           nil
         end

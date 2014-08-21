@@ -10,6 +10,7 @@ module Inch
           relevant_base_roles.merge(relevant_namespace_roles)
         end
 
+        # @see Evaluation::Ruby::Base
         def relevant_namespace_roles
           {
             Role::Namespace::Core => nil,
