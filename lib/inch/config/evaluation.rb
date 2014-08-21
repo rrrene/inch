@@ -50,6 +50,7 @@ module Inch
         def evaluate(object)
           @object = object
           instance_eval(&@block)
+          @block = nil
         end
       end
     end

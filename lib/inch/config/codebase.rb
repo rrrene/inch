@@ -2,9 +2,9 @@ module Inch
   class Config
     # Stores the configuration for an individual single codebase
     class Codebase
-      attr_reader :language
-      attr_reader :included_files
-      attr_reader :excluded_files
+      attr_accessor :language
+      attr_accessor :included_files
+      attr_accessor :excluded_files
 
       YAML_FILE = ".inch.yml"
 

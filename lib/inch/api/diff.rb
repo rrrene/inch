@@ -16,24 +16,24 @@ module Inch
       # @param before_rev [String] the 'before' revision
       # @param after_rev [String,nil] the 'after' revision that the 'before'
       #   one is compared against
-      def initialize(dir, before_rev, after_rev = nil)
+      def initialize(dir, config, before_rev, after_rev = nil)
         @work_dir = dir
-        @codebase_old = codebase_for(before_rev)
+        @codebase_old = codebase_for(before_rev, config)
         @codebase_new = if after_rev.nil?
-                          Codebase.parse(work_dir)
+                          Codebase.parse(work_dir, config)
                         else
-                          codebase_for(after_rev)
+                          codebase_for(after_rev, config)
                         end
         @comparer = API::Compare::Codebases.new(@codebase_old, @codebase_new)
       end
 
       private
 
-      def codebase_for(revision)
+      def codebase_for(revision, config)
         if (cached = codebase_from_cache(revision))
           cached
         else
-          codebase = codebase_from_copy(work_dir, revision)
+          codebase = codebase_from_copy(work_dir, config, revision)
           filename = Codebase::Serializer.filename(revision)
           Codebase::Serializer.save(codebase, filename)
           codebase
@@ -45,12 +45,12 @@ module Inch
         Codebase::Serializer.load(filename) if File.exist?(filename)
       end
 
-      def codebase_from_copy(original_dir, revision)
+      def codebase_from_copy(original_dir, config, revision)
         codebase = nil
         Dir.mktmpdir do |tmp_dir|
           new_dir = copy_work_dir(original_dir, tmp_dir)
           git_reset(new_dir, revision)
-          codebase = Codebase.parse(new_dir)
+          codebase = Codebase.parse(new_dir, config)
         end
         codebase
       end

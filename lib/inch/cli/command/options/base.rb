@@ -107,16 +107,9 @@ module Inch
               "displayed with each object."
           end
 
-          DEFAULT_PATHS = ["{lib,app}/**/*.rb", "ext/**/*.c"]
-
           def get_paths(args)
             # @yard_files is assigned by YardoptsHelper#parse_yardopts_options
-            paths = @yard_files ? @yard_files : args.dup
-            if paths.empty?
-              DEFAULT_PATHS
-            else
-              paths
-            end
+            @yard_files ? @yard_files : args.dup
           end
 
           # Adds a set of common options to the tail of the OptionParser

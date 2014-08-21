@@ -98,6 +98,20 @@ module Inch
         def usage
           "Usage: inch #{name} [options]"
         end
+
+        protected
+
+        # Creates a Config::Codebase object and returns it
+        # (merges relevant values of a given +options+ object before).
+        #
+        # @param options [Options::Base]
+        # @return [Config::Codebase]
+        def to_config(options)
+          config = Config.for(@options.language, Dir.pwd).codebase
+          config.included_files = options.paths unless options.paths.empty?
+          config.excluded_files = options.excluded unless options.excluded.empty?
+          config
+        end
       end
     end
   end
