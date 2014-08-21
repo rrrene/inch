@@ -29,6 +29,8 @@ module Inch
         end
       end
 
+      # @param object [Codebase::Object] the object to evaluate
+      # @param value [Float] a score that might be added by this role
       def initialize(object, value = nil)
         @object = object
         @value = value
@@ -86,8 +88,11 @@ module Inch
         nil
       end
 
+      # Returns the type of the +object+ that is being evaluated.
+      #
+      # @return [String]
       def object_type
-        object.class.to_s.split("::").last.gsub(/Object$/, "").downcase
+        raise NotImplementedError
       end
     end
   end
