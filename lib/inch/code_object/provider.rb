@@ -21,26 +21,13 @@ module Inch
     #
     #
     module Provider
-      def self.parse(dir, config = Inch::Config.codebase)
-        type = type_for(config.language)
-        provider_for(type).parse(dir, config)
-      end
-
-      # @return [Module]
-      def self.provider_for(type)
-        const_get(type)
-      end
-
-      # Returns the name of a provider module responsible for the
-      # given +language+.
+      # Parses a codebase to provide objects
       #
-      # @param language [String]
-      # @return [Symbol]
-      def self.type_for(language)
-        {
-          'ruby' => :YARD,
-          'nodejs' => :JSDoc
-        }[language.to_s]
+      # @param dir [String] the directory to parse
+      # @param config [Inch::Config::Codebase]
+      # @return [#objects]
+      def self.parse(dir, config = Inch::Config.codebase)
+        const_get(config.object_provider).parse(dir, config)
       end
     end
   end

@@ -5,7 +5,8 @@ module Inch
     module Provider
       # Parses the source tree (using JSDoc)
       module JSDoc
-        def self.parse(dir, config = Inch::Config.codebase)
+        # @see Provider.parse
+        def self.parse(dir, config)
           Parser.parse(dir, config)
         end
       end

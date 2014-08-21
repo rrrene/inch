@@ -16,7 +16,7 @@ module Inch
         lists
       end
 
-      def self.parse(dir = Dir.pwd, config = Inch::Config.codebase)
+      def self.parse(dir, config)
         provider = CodeObject::Provider.parse(dir, config)
         new(config.language, provider)
       end

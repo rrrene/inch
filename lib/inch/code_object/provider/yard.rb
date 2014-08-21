@@ -36,7 +36,8 @@ module Inch
           end
         end
 
-        def self.parse(dir, config = Inch::Config.codebase)
+        # @see Provider.parse
+        def self.parse(dir, config)
           Parser.parse(dir, config)
         end
       end

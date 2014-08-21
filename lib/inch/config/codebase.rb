@@ -25,12 +25,16 @@ module Inch
       end
 
       # Update this Codebase config with the given block.
+      # @return [void]
       def update(&block)
         instance_eval(&block)
       end
 
       # Search the given +dir+ for YAML_FILE and
       # update this Codebase config with the contents if the file is found.
+      #
+      # @param dir [String] directory to search for the file
+      # @return [void]
       def update_via_yaml(dir)
         if (yaml = self.class.yaml(dir))
           Dir.chdir(dir) do
@@ -46,6 +50,15 @@ module Inch
 
       def exclude_files(*files)
         @excluded_files.concat(files).flatten!
+      end
+
+      # Sets the object provider (e.g. :YARD)
+      #
+      # @param sym [Symbol] the object provider
+      # @return [Symbol] the object provider
+      def object_provider(sym = nil)
+        return @object_provider if sym.nil?
+        @object_provider = sym
       end
 
       private

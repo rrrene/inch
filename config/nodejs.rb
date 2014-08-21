@@ -3,7 +3,8 @@
 
 Inch::Config.register(:nodejs) do
   codebase do
-    include_files ["src/**/*.js"]
-    exclude_files []
+    object_provider :JSDoc
+    include_files   ["src/**/*.js"]
+    exclude_files   []
   end
 end
