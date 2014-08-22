@@ -2,10 +2,10 @@ module Inch
   # The Evaluation module concerns itself with the evaluation of code objects
   # with regard to their inline code documentation
   module Evaluation
-      # Base class for evaluations. This class provides the evaluation's
-      # process structure.
-      #
-      # @abstract
+    # Base class for evaluations. This class provides the evaluation's
+    # process structure.
+    #
+    # @abstract
     class Proxy
       # Returns a Proxy object for the given +code_object+
       #

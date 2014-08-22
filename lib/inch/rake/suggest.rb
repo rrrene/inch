@@ -7,8 +7,11 @@ require "inch/cli"
 module Inch
   # Holds all Rake tasks
   module Rake
+    # Provides Rake task integration
     class Suggest < ::Rake::TaskLib
+      # @return [String] name of the Rake task
       attr_accessor :name
+      # @return [Array] arguments to be passed to Suggest.run
       attr_accessor :args
 
       # @param name [String] name of the Rake task
@@ -23,6 +26,7 @@ module Inch
         task(@name) { suggest }
       end
 
+      # @return [void]
       def suggest
         ::Inch::CLI::Command::Suggest.run(*@args)
       end
