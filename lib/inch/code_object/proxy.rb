@@ -20,7 +20,7 @@ module Inch
       # @return [#find]
       #  an object that responds to #find to look up objects by their
       #  full name
-      attr_reader :object_lookup
+      attr_accessor :object_lookup
 
       # @param object_lookup [Codebase::Objects]
       def initialize(attributes = {}, object_lookup = nil)

@@ -50,6 +50,9 @@ module Inch
         def evaluate(object)
           @object = object
           instance_eval(&@block)
+          # we are "deleting" the block/Proc here because it can't be
+          # serialized by Marshal
+          # TODO: find a nicer way to achieve this
           @block = nil
         end
       end

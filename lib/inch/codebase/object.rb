@@ -21,6 +21,9 @@ module Inch
       # convenient shortcuts to evalution object
       def_delegators :evaluation, :score, :roles, :priority
 
+      # convenient shortcuts to code object
+      def_delegators :code_object, :object_lookup=
+
       # @param language [String,Symbol]
       # @param code_object [YARD::Object::Base]
       # @param object_lookup [Codebase::Objects]

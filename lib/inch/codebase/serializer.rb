@@ -8,7 +8,6 @@ module Inch
       end
 
       def self.save(codebase, filename)
-        binding.pry
         content = Marshal.dump(codebase)
         FileUtils.mkdir_p(File.dirname(filename))
         File.open(filename, "wb") { |file| file.write(content) }
