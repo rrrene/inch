@@ -144,8 +144,7 @@ module Inch
 
       def self.class_for(language, code_object)
         class_name = code_object.class.to_s.split("::").last
-        language_namespace = Evaluation::Ruby
-        language_namespace.const_get(class_name)
+        Config.namespace(language, :Evaluation).const_get(class_name)
       end
     end
   end

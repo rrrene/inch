@@ -39,6 +39,13 @@ module Inch
         config.codebase.update_via_yaml(path) if path
         config
       end
+
+      def namespace(language, submodule = nil)
+        name = language.to_s.split('_').collect { |w| w.capitalize }.join
+        const = ::Inch::Language.const_get(name)
+        const = const.const_get(submodule) unless submodule.nil?
+        const
+      end
     end
   end
 end

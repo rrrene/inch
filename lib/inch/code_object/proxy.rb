@@ -63,19 +63,8 @@ module Inch
       # @return [Class]
       def self.class_for(language, code_object)
         class_name = code_object.class.to_s.split("::").last
-        language_namespace = CodeObject::Ruby
-        language_namespace.const_get(class_name)
+        Config.namespace(language, :CodeObject).const_get(class_name)
       end
-
     end
   end
 end
-
-require "inch/code_object/ruby/base"
-require "inch/code_object/ruby/namespace_object"
-require "inch/code_object/ruby/class_object"
-require "inch/code_object/ruby/class_variable_object"
-require "inch/code_object/ruby/constant_object"
-require "inch/code_object/ruby/method_object"
-require "inch/code_object/ruby/method_parameter_object"
-require "inch/code_object/ruby/module_object"

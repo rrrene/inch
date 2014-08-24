@@ -27,11 +27,10 @@ module Inch
       # @param config [Inch::Config::Codebase]
       # @return [#objects]
       def self.parse(dir, config = Inch::Config.codebase)
-        const_get(config.object_provider).parse(dir, config)
+        Config.namespace(config.language, :Provider)
+          .const_get(config.object_provider)
+          .parse(dir, config)
       end
     end
   end
 end
-
-require "inch/code_object/provider/yard"
-require "inch/code_object/provider/jsdoc"
