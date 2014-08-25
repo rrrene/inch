@@ -22,7 +22,9 @@ module Inch
             # @return [void]
             def parse(dir, config)
               Dir.chdir(dir) do
-                parse_yard_objects(config.included_files, config.excluded_files)
+                parse_yard_objects(config.included_files,
+                                    config.excluded_files,
+                                    config.read_dump_file)
                 inject_base_dir(dir)
               end
             end
@@ -36,10 +38,15 @@ module Inch
 
             private
 
-            def parse_yard_objects(paths, excluded)
-              YARD::Object.clear_cache
-              ::YARD::Registry.clear
-              ::YARD.parse(paths, excluded)
+            def parse_yard_objects(paths, excluded, read_dump_file = nil)
+              if read_dump_file.nil?
+                YARD::Object.clear_cache
+                ::YARD::Registry.clear
+                ::YARD.parse(paths, excluded)
+              else
+                puts "Ruby doesn't support the --read option."
+                exit 1
+              end
             end
 
             def inject_base_dir(dir)

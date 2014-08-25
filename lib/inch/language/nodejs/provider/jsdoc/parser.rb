@@ -25,13 +25,14 @@ module Inch
             # @return [void]
             def parse(dir, config)
               Dir.chdir(dir) do
-                parse_objects(config.included_files, config.excluded_files)
+                parse_objects(config.included_files, config.excluded_files,
+                              config.read_dump_file)
               end
             end
 
             # @return [Array<YARD::Object::Base>]
             def objects
-              pp @parsed_objects.last
+              pp @parsed_objects[10]
               @objects ||= parsed_objects.map do |o|
                 JSDoc::Object.for(o) # unless IGNORE_TYPES.include?(o.type)
               end.compact
@@ -42,8 +43,12 @@ module Inch
 
             private
 
-            def parse_objects(paths, excluded)
-              output = %x(jsdoc --explain #{paths.join(' ')})
+            def parse_objects(paths, excluded, read_dump_file = nil)
+              if read_dump_file.nil?
+                output = %x(jsdoc --explain #{paths.join(' ')})
+              else
+                output = File.read(read_dump_file)
+              end
               @parsed_objects = JSON[output]
             end
           end

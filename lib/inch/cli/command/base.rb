@@ -110,6 +110,7 @@ module Inch
           config = Config.for(@options.language, Dir.pwd).codebase
           config.included_files = options.paths unless options.paths.empty?
           config.excluded_files = options.excluded unless options.excluded.empty?
+          config.read_dump_file = options.read_dump_file
           config
         end
       end

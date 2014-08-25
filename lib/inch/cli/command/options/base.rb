@@ -38,6 +38,7 @@ module Inch
 
           attribute :usage, ""    # usage description for the command
           attribute :language, "ruby"    # the programming language
+          attribute :read_dump_file, nil
           attribute :paths, []    # the paths of the to-be-analysed sources
           attribute :excluded, [] # paths to be excluded from the analysis
 
@@ -128,6 +129,9 @@ module Inch
             end
             opts.on_tail("-l", "--language [LANGUAGE]", "Set language (ruby|nodejs).") do |language|
               @language = language
+            end
+            opts.on_tail("-r", "--read [FILE]", "Read objects from dump.") do |file|
+              @read_dump_file = file
             end
             opts.on_tail("-h", "--help", "Show this help.") do
               ui.trace opts

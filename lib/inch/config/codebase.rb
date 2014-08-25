@@ -5,6 +5,7 @@ module Inch
       attr_accessor :language
       attr_accessor :included_files
       attr_accessor :excluded_files
+      attr_accessor :read_dump_file
 
       YAML_FILE = ".inch.yml"
 
