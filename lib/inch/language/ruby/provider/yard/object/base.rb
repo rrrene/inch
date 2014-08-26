@@ -172,7 +172,7 @@ module Inch
                 !unconsidered_tags.empty?
               end
 
-              def in_in_root?
+              def in_root?
                 depth == 1
               end
 
