@@ -130,7 +130,7 @@ module Inch
             opts.on_tail("-l", "--language [LANGUAGE]", "Set language (ruby|nodejs).") do |language|
               @language = language
             end
-            opts.on_tail("-r", "--read [FILE]", "Read objects from dump.") do |file|
+            opts.on_tail("-r", "--read-from-dump [FILE]", "Read objects from dump.") do |file|
               @read_dump_file = file
             end
             opts.on_tail("-h", "--help", "Show this help.") do
