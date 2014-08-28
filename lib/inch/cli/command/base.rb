@@ -45,7 +45,8 @@ module Inch
         # @see #run
         # @return [Command::Base] the instance that ran
         def self.run(*args)
-          command = new
+          kwargs = args.last.is_a?(Hash) ? args.pop : {}
+          command = new(kwargs)
           command.run(*args)
           command
         end
@@ -59,11 +60,9 @@ module Inch
           CLI::CommandParser.commands[name] = self
         end
 
-        def initialize
-          name = self.class.to_s.split("::").last
-          options_class = Command::Options.const_get(name)
-          @options = options_class.new
-          @options.usage = usage
+        def initialize(kwargs = {})
+          @ui = kwargs[:ui] if kwargs[:ui]
+          initialize_cli_options
         end
 
         # Returns a description of the command
@@ -100,6 +99,13 @@ module Inch
         end
 
         protected
+
+        def initialize_cli_options
+          name = self.class.to_s.split("::").last
+          options_class = Command::Options.const_get(name)
+          @options = options_class.new
+          @options.usage = usage
+        end
 
         # Creates a Config::Codebase object and returns it
         # (merges relevant values of a given +options+ object before).
