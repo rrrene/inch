@@ -140,12 +140,11 @@ module Inch
         @roles.reduce(0) { |sum, r| sum + r.priority.to_i }
       end
 
-      private
-
       def self.class_for(language, code_object)
         class_name = code_object.class.to_s.split("::").last
         Config.namespace(language, :Evaluation).const_get(class_name)
       end
+      private_class_method :class_for
     end
   end
 end

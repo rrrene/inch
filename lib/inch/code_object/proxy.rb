@@ -54,8 +54,6 @@ module Inch
         "#<#{self.class}: #{fullname}>"
       end
 
-      private
-
       # Returns a Proxy class for the given +code_object+
       #
       # @param language [String,Symbol]
@@ -65,6 +63,7 @@ module Inch
         class_name = code_object.class.to_s.split("::").last
         Config.namespace(language, :CodeObject).const_get(class_name)
       end
+      private_class_method :class_for
     end
   end
 end
