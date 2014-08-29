@@ -12,11 +12,11 @@ module Inch
     # converted into CodeObject::Proxy objects that form the codebase:
     #
     #                        ::YARD::CodeObject
-    #                               ↓
+    #                               |
     #           ::Inch::CodeObject::Provider::YARD::Object::Base
-    #                               ↓
+    #                               |
     #                             (Hash)
-    #                               ↓
+    #                               |
     #                   ::Inch::CodeObject::Proxy
     #
     #
