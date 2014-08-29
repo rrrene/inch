@@ -17,7 +17,7 @@ describe ::Inch::CLI::Command::Console do
       assert_raises(SystemExit) { @command.run("--help") }
     end
     refute out.empty?, "there should be some output"
-    assert_match /\bUsage\b.+console/, out
+    assert_match(/\bUsage\b.+console/, out)
     assert err.empty?, "there should be no errors"
   end
 

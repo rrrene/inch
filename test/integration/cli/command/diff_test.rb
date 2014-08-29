@@ -31,7 +31,7 @@ describe ::Inch::CLI::Command::Diff do
     end
     refute out.empty?, "there should be some output"
     assert err.empty?, "there should be no errors"
-    assert_match /\bno changes\b/i, out
+    assert_match(/\bno changes\b/i, out)
 
     # this runs `inch diff` on two distinct revisions
     # should show some changes
@@ -40,7 +40,7 @@ describe ::Inch::CLI::Command::Diff do
     end
     refute out.empty?, "there should be some output"
     assert err.empty?, "there should be no errors"
-    assert_match /\bshowing changes\b/i, out
+    assert_match(/\bshowing changes\b/i, out)
 
     # we now remove all comments in a single file
     filename = File.join(@cloned_dir, "lib/sparkr.rb")
@@ -55,6 +55,6 @@ describe ::Inch::CLI::Command::Diff do
     end
     refute out.empty?, "there should be some output"
     assert err.empty?, "there should be no errors"
-    assert_match /\bshowing changes\b/i, out
+    assert_match(/\bshowing changes\b/i, out)
   end
 end

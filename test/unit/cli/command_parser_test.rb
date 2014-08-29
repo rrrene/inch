@@ -65,7 +65,7 @@ describe ::Inch::CLI::CommandParser do
       @command = @command_parser.run("--help")
     end
     refute out.empty?, "there should be some output"
-    assert_match /\bUsage\b.+inch/, out
+    assert_match(/\bUsage\b.+inch/, out)
     assert err.empty?, "there should be no errors"
   end
 end

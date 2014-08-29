@@ -15,10 +15,10 @@ describe ::Inch::CLI::Command::List do
     end
     refute out.empty?, "there should be some output"
     assert err.empty?, "there should be no errors"
-    assert_match /\bFoo\b/, out
-    assert_match /\bFoo::Bar\b/, out
-    assert_match /\bFoo::Bar#method_with_full_doc\b/, out
-    assert_match /\bFoo::Bar#method_with_code_example\b/, out
+    assert_match(/\bFoo\b/, out)
+    assert_match(/\bFoo::Bar\b/, out)
+    assert_match(/\bFoo::Bar#method_with_full_doc\b/, out)
+    assert_match(/\bFoo::Bar#method_with_code_example\b/, out)
   end
 
   it "should run with --numbers switch" do
@@ -27,10 +27,10 @@ describe ::Inch::CLI::Command::List do
     end
     refute out.empty?, "there should be some output"
     assert err.empty?, "there should be no errors"
-    assert_match /\bFoo\b/, out
-    assert_match /\bFoo::Bar\b/, out
-    assert_match /\bFoo::Bar#method_with_full_doc\b/, out
-    assert_match /\bFoo::Bar#method_with_code_example\b/, out
+    assert_match(/\bFoo\b/, out)
+    assert_match(/\bFoo::Bar\b/, out)
+    assert_match(/\bFoo::Bar#method_with_full_doc\b/, out)
+    assert_match(/\bFoo::Bar#method_with_code_example\b/, out)
   end
 
   it "should run with filelist in args" do
@@ -39,10 +39,10 @@ describe ::Inch::CLI::Command::List do
     end
     refute out.empty?, "there should be some output"
     assert err.empty?, "there should be no errors"
-    assert_match /\bFoo\b/, out
-    assert_match /\bFoo::Bar\b/, out
-    assert_match /\bFoo::Bar#method_with_full_doc\b/, out
-    assert_match /\bFoo::Bar#method_with_code_example\b/, out
+    assert_match(/\bFoo\b/, out)
+    assert_match(/\bFoo::Bar\b/, out)
+    assert_match(/\bFoo::Bar#method_with_full_doc\b/, out)
+    assert_match(/\bFoo::Bar#method_with_code_example\b/, out)
   end
 
   it "should run with non-existing filelist in args" do
@@ -58,7 +58,7 @@ describe ::Inch::CLI::Command::List do
       assert_raises(SystemExit) { @command.run("--help") }
     end
     refute out.empty?, "there should be some output"
-    assert_match /\bUsage\b.+list/, out
+    assert_match(/\bUsage\b.+list/, out)
     assert err.empty?, "there should be no errors"
   end
 end

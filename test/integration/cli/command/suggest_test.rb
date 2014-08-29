@@ -12,9 +12,9 @@ describe ::Inch::CLI::Command::Suggest do
     end
     refute out.empty?, "there should be some output"
     assert err.empty?, "there should be no errors"
-    assert_match /\bFoo::Bar#method_with_wrong_doc\b/, out
-    assert_match /\bFoo::Bar#method_with_rdoc_doc\b/, out
-    assert_match /\bFoo::Bar#method_with_unstructured_doc\b/, out
+    assert_match(/\bFoo::Bar#method_with_wrong_doc\b/, out)
+    assert_match(/\bFoo::Bar#method_with_rdoc_doc\b/, out)
+    assert_match(/\bFoo::Bar#method_with_unstructured_doc\b/, out)
   end
 
   it "should run with --pedantic switch" do
@@ -31,9 +31,9 @@ describe ::Inch::CLI::Command::Suggest do
     end
     refute out.empty?, "there should be some output"
     assert err.empty?, "there should be no errors"
-    assert_match /\bFoo::Bar#method_with_wrong_doc\b/, out
-    assert_match /\bFoo::Bar#method_with_rdoc_doc\b/, out
-    assert_match /\bFoo::Bar#method_with_unstructured_doc\b/, out
+    assert_match(/\bFoo::Bar#method_with_wrong_doc\b/, out)
+    assert_match(/\bFoo::Bar#method_with_rdoc_doc\b/, out)
+    assert_match(/\bFoo::Bar#method_with_unstructured_doc\b/, out)
   end
 
   it "should run with non-existing filelist in args" do
@@ -52,9 +52,9 @@ describe ::Inch::CLI::Command::Suggest do
     end
     refute out.empty?, "there should be some output"
     assert err.empty?, "there should be no errors"
-    assert_match /\bFoo::Bar#method_with_wrong_doc\b/, out
-    assert_match /\bFoo::Bar#method_with_rdoc_doc\b/, out
-    assert_match /\bFoo::Bar#method_with_unstructured_doc\b/, out
+    assert_match(/\bFoo::Bar#method_with_wrong_doc\b/, out)
+    assert_match(/\bFoo::Bar#method_with_rdoc_doc\b/, out)
+    assert_match(/\bFoo::Bar#method_with_unstructured_doc\b/, out)
   end
 
   it "should give error when run with --unknown-switch" do
@@ -68,7 +68,7 @@ describe ::Inch::CLI::Command::Suggest do
       assert_raises(SystemExit) { @command.run("--help") }
     end
     refute out.empty?, "there should be some output"
-    assert_match /\bUsage\b.+suggest/, out
+    assert_match(/\bUsage\b.+suggest/, out)
     assert err.empty?, "there should be no errors"
   end
 
@@ -77,7 +77,7 @@ describe ::Inch::CLI::Command::Suggest do
       assert_raises(SystemExit) { @command.run("--version") }
     end
     refute out.empty?, "there should be some output"
-    assert_match /inch\ \d\.\d\.\d/, out
+    assert_match(/inch\ \d\.\d\.\d/, out)
     assert err.empty?, "there should be no errors"
   end
 

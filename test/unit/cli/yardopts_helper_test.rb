@@ -13,9 +13,9 @@ describe ::Inch::CLI::YardoptsHelper do
     end
     refute out.empty?, "there should be some output"
     assert err.empty?, "there should be no errors"
-    assert_match /\bFoo\b/, out
-    assert_match /\bFoo::Bar\b/, out
-    assert_match /\bFoo::Bar#initialize\b/, out
+    assert_match(/\bFoo\b/, out)
+    assert_match(/\bFoo::Bar\b/, out)
+    assert_match(/\bFoo::Bar#initialize\b/, out)
   end
 
   it "should run with --no-yardopts" do
@@ -55,7 +55,7 @@ describe ::Inch::CLI::YardoptsHelper do
       assert_raises(SystemExit) { @command.run("--help") }
     end
     refute out.empty?, "there should be some output"
-    assert_match /\bUsage\b.+list/, out
+    assert_match(/\bUsage\b.+list/, out)
     # assert_match /\b\-\-\[no\-\]yardopts\b/, out,
     #              "--[no-]yardopts should be mentioned"
     assert err.empty?, "there should be no errors"
