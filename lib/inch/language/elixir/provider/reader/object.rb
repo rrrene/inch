@@ -37,7 +37,7 @@ module Inch
               # @param json_object [Hash]
               # @return [Class]
               def class_for(json_object)
-                class_name = json_object['object_type']
+                class_name = json_object["object_type"]
                 Reader::Object.const_get(class_name)
               rescue NameError
                 Reader::Object::Base
@@ -49,10 +49,10 @@ module Inch
               # @return [String]
               def cache_key(json_object)
                 [
-                  json_object['id'],
-                  json_object['module_id'],
-                  json_object['signature']
-                ].map(&:to_s).join('.')
+                  json_object["id"],
+                  json_object["module_id"],
+                  json_object["signature"]
+                ].map(&:to_s).join(".")
               end
             end
           end

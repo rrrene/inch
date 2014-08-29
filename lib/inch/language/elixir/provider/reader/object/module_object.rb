@@ -7,7 +7,7 @@ module Inch
             # Proxy class for modules
             class ModuleObject < Base
               def fullname
-                @hash['id']
+                @hash["id"]
               end
 
               def namespace?

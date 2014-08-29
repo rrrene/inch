@@ -75,7 +75,7 @@ module Inch
       # @param config [Config::Evaluation]
       # @return [Evaluation::Criteria]
       def eval_criteria(config)
-        object_type = self.class.to_s.split('::').last
+        object_type = self.class.to_s.split("::").last
         c = config.criteria_for(object_type)
         c.evaluate(object)
         c

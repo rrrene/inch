@@ -45,7 +45,7 @@ module Inch
               else
                 output = File.read(read_dump_file)
               end
-              @parsed_objects = JSON[output]['objects']
+              @parsed_objects = JSON[output]["objects"]
             end
           end
         end
