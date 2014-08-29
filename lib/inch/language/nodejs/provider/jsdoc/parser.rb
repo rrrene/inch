@@ -45,7 +45,7 @@ module Inch
 
             def parse_objects(paths, excluded, read_dump_file = nil)
               if read_dump_file.nil?
-                output = %x(jsdoc --explain #{paths.join(' ')})
+                output = `jsdoc --explain #{paths.join(' ')}`
               else
                 output = File.read(read_dump_file)
               end
