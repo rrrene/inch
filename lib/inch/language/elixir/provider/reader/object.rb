@@ -22,7 +22,7 @@ module Inch
               # @return [Provider::JSDoc::Object]
               def for(json_object)
                 @cache ||= {}
-                if proxy_object = @cache[cache_key(json_object)]
+                if (proxy_object = @cache[cache_key(json_object)])
                   proxy_object
                 else
                   @cache[cache_key(json_object)] =

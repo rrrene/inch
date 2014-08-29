@@ -17,7 +17,7 @@ module Inch
               # @return [Provider::JSDoc::Object]
               def for(jsdoc_object)
                 @cache ||= {}
-                if proxy_object = @cache[cache_key(jsdoc_object)]
+                if (proxy_object = @cache[cache_key(jsdoc_object)])
                   proxy_object
                 else
                   @cache[cache_key(jsdoc_object)] =

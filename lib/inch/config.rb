@@ -5,7 +5,7 @@ module Inch
   class Config
     class << self
       def instance(language = :ruby)
-        if block = @blocks[language.to_s]
+        if (block = @blocks[language.to_s])
           config = Config::Base.new(language)
           config = config.update(&block)
           config
