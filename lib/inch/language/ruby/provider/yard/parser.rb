@@ -23,8 +23,8 @@ module Inch
             def parse(dir, config)
               Dir.chdir(dir) do
                 parse_yard_objects(config.included_files,
-                                    config.excluded_files,
-                                    config.read_dump_file)
+                                   config.excluded_files,
+                                   config.read_dump_file)
                 inject_base_dir(dir)
               end
             end
