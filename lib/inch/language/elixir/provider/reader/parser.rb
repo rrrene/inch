@@ -41,7 +41,7 @@ module Inch
 
             def parse_objects(paths, excluded, read_dump_file = nil)
               if read_dump_file.nil?
-                raise "Elixir analysis only works with --read-from-dump."
+                fail "Elixir analysis only works with --read-from-dump."
               else
                 output = File.read(read_dump_file)
               end

@@ -37,7 +37,7 @@ module Inch
 
       # @return [Symbol] the programming language of the code object
       def language
-        raise NotImplementedError
+        fail NotImplementedError
       end
 
       # Used to persist the code object

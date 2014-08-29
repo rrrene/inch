@@ -16,7 +16,7 @@ module Inch
               end
 
               def fullname
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def files

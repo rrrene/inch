@@ -10,7 +10,7 @@ module Inch
           config = config.update(&block)
           config
         else
-          raise "Language not registered: #{language}"
+          fail "Language not registered: #{language}"
         end
       end
 

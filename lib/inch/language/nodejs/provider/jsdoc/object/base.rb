@@ -12,175 +12,175 @@ module Inch
               end
 
               def name
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def fullname
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def files
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def filename
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def children_fullnames
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def parent_fullname
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def api_tag?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def aliased_object_fullname
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def aliases_fullnames
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def attributes
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def bang_name?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def constant?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def constructor?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def depth
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def docstring
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def getter?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def has_children?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def has_code_example?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def has_doc?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def has_multiple_code_examples?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def has_unconsidered_tags?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def method?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def nodoc?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def namespace?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def original_docstring
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def overridden?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def overridden_method_fullname
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def parameters
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def private?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def tagged_as_internal_api?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def tagged_as_private?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def protected?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def public?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def questioning_name?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def return_described?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def return_mentioned?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def return_typed?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def in_root?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def setter?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def source
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def unconsidered_tag_count
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def undocumented?
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def visibility
-                raise NotImplementedError
+                fail NotImplementedError
               end
             end
           end

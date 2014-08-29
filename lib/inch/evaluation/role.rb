@@ -92,7 +92,7 @@ module Inch
       #
       # @return [String]
       def object_type
-        raise NotImplementedError
+        fail NotImplementedError
       end
     end
   end
