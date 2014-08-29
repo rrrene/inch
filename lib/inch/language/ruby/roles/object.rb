@@ -45,15 +45,15 @@ module Inch
               priority      -7
             end
 
-            # Role assigned to objects explicitly or implicitly tagged to be part
-            # of an API. If the API is 'private'/'internal' TaggedAsInternalAPI is
-            # assigned instead.
+            # Role assigned to objects explicitly or implicitly tagged to be
+            # part of an API. If the API is 'private'/'internal'
+            # TaggedAsInternalAPI is assigned instead.
             class TaggedAsAPI < Base
               applicable_if :api_tag?
             end
 
-            # Role assigned to objects explicitly or implicitly tagged to be part
-            # of a private API.
+            # Role assigned to objects explicitly or implicitly tagged to be
+            # part of a private API.
             class TaggedAsInternalAPI < Base
               applicable_if :tagged_as_internal_api?
               priority      -5

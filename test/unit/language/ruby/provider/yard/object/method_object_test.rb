@@ -1,4 +1,5 @@
-require File.expand_path(File.dirname(__FILE__) + "/../../../../../../test_helper")
+require File.expand_path(File.dirname(__FILE__) +
+                         "/../../../../../../test_helper")
 
 describe ::Inch::Language::Ruby::Provider::YARD::Parser do
   before do
@@ -16,7 +17,8 @@ describe ::Inch::Language::Ruby::Provider::YARD::Parser do
     assert m.has_code_example?
 
     assert_equal 3, m.signatures.size
-    assert_equal 2, m.parameters.size # at this moment, this counts all parameters in all overloaded signatures
+    # at this moment, this counts all parameters in all overloaded signatures
+    assert_equal 2, m.parameters.size
 
     signature = m.signatures[0]
     assert_equal "params_also_in_overloads(user_options = {})",
@@ -49,7 +51,8 @@ describe ::Inch::Language::Ruby::Provider::YARD::Parser do
     assert m.has_code_example?
 
     assert_equal 3, m.signatures.size
-    assert_equal 2, m.parameters.size # at this moment, this counts all parameters in all overloaded signatures
+    # at this moment, this counts all parameters in all overloaded signatures
+    assert_equal 2, m.parameters.size
 
     signature = m.signatures[0]
     assert_equal "params_only_in_overloads()", signature.signature

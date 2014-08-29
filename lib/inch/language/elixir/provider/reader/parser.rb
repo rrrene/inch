@@ -13,7 +13,8 @@ module Inch
             # Helper method to parse an instance with the given +args+
             #
             # @see #parse
-            # @return [CodeObject::Provider::Reader::Parser] the instance that ran
+            # @return [CodeObject::Provider::Reader::Parser] the instance that
+            #   ran
             def self.parse(*args)
               parser = new
               parser.parse(*args)

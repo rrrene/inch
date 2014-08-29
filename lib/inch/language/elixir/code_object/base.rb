@@ -14,7 +14,8 @@ module Inch
             :elixir
           end
 
-          # @return [Boolean] if the current object is an alias for something else
+          # @return [Boolean] if the current object is an alias for something
+          #   else
           def alias?
             !aliased_object.nil?
           end
@@ -133,7 +134,8 @@ module Inch
             self[:original_docstring]
           end
 
-          # @return [Boolean] +true+ if the object was tagged not to be documented
+          # @return [Boolean] +true+ if the object was tagged not to be
+          #   documented
           def nodoc?
             self[:nodoc?]
           end

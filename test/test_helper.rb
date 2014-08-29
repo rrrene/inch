@@ -43,7 +43,8 @@ module Inch
 
       def object_provider(language, name)
         self.object_providers ||= {}
-        self.object_providers[name] ||= ::Inch::CodeObject::Provider.parse(fixture_path(language, name))
+        self.object_providers[name] ||=
+          ::Inch::CodeObject::Provider.parse(fixture_path(language, name))
       end
     end
   end

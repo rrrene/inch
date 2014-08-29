@@ -104,7 +104,8 @@ describe ::Inch::Language::Ruby::CodeObject::MethodObject do
       assert m.score
     end
 
-    it "should handle unusable return value when only @return [void] is given" do
+    it "should handle unusable return value when only @return [void]" \
+       " is given" do
       m = @objects.find("Foo::Bar#method_without_usable_return_value")
       assert m.return_mentioned?
       assert m.return_described?
@@ -335,7 +336,8 @@ describe ::Inch::Language::Ruby::CodeObject::MethodObject do
       assert_equal 1, count_roles(
         m, Inch::Language::Ruby::Evaluation::Role::Method::WithoutReturnType)
       assert_equal 1, count_roles(
-        m, Inch::Language::Ruby::Evaluation::Role::MethodParameter::WithoutMention, "block")
+        m, Inch::Language::Ruby::Evaluation::Role::MethodParameter::WithoutMention,
+        "block")
     end
 
     it "should work if @param tags are only present in the @overload tags," \

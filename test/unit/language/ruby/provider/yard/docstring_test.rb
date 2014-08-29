@@ -191,6 +191,7 @@ A string in the specified format.
   end
 
   it "should work with code example" do
+    # rubocop:disable Metrics/LineLength
     text = <<-DOC
 Another example.
 
@@ -201,6 +202,7 @@ Params:
 +param2+:: +Proc+ object that takes a pipe object as first and only param (may be nil)
 +param3+:: +Proc+ object that takes a pipe object as first and only param (may be nil)
     DOC
+    # rubocop:enable Metrics/LineLength
     docstring = described_class.new(text)
     assert docstring.contains_code_example?
     assert docstring.mentions_parameter?(:param1)
@@ -212,12 +214,14 @@ Params:
   end
 
   it "should recognize several parameter notations" do
+    # rubocop:disable Metrics/LineLength
     text = <<-DOC
 Params:
 +param1<String>+:: param1 line string to be executed by the system
 +param2<String,nil>+:: +Proc+ object that takes a pipe object as first and only param (may be nil)
 +param3<String|Class>+:: +Proc+ object that takes a pipe object as first and only param (may be nil)
     DOC
+    # rubocop:enable Metrics/LineLength
     docstring = described_class.new(text)
     assert docstring.mentions_parameter?(:param1), "should mention param1"
     assert docstring.mentions_parameter?(:param2), "should mention param2"

@@ -47,7 +47,8 @@ describe ::Inch::CLI::Command do
     refute_match(/\bFoo#public_method\b/, out)
     refute_match(/\bFoo#protected_method\b/, out)
     refute_match(/\bFoo#private_method\b/, out) # has @private tag
-    refute_match(/\bFoo#method_with_private_tag\b/, out) # has a @private tag, but is really :public
+    # has a @private tag, but is really :public
+    refute_match(/\bFoo#method_with_private_tag\b/, out)
   end
 
   it "should run with --no-public --no-protected --private switch" do
@@ -58,7 +59,8 @@ describe ::Inch::CLI::Command do
     refute_match(/\bFoo#public_method\b/, out)
     refute_match(/\bFoo#protected_method\b/, out)
     assert_match(/\bFoo#private_method\b/, out) # has @private tag
-    refute_match(/\bFoo#method_with_private_tag\b/, out) # has a @private tag, but is really :public
+    # has a @private tag, but is really :public
+    refute_match(/\bFoo#method_with_private_tag\b/, out)
   end
 
   it "should run with --no-public switch" do
@@ -69,7 +71,8 @@ describe ::Inch::CLI::Command do
     refute_match(/\bFoo#public_method\b/, out)
     assert_match(/\bFoo#protected_method\b/, out)
     refute_match(/\bFoo#private_method\b/, out) # has @private tag
-    refute_match(/\bFoo#method_with_private_tag\b/, out) # has a @private tag, but is really :public
+    # has a @private tag, but is really :public
+    refute_match(/\bFoo#method_with_private_tag\b/, out)
   end
 
   it "should run with --no-protected switch" do
@@ -80,7 +83,8 @@ describe ::Inch::CLI::Command do
     assert_match(/\bFoo#public_method\b/, out)
     refute_match(/\bFoo#protected_method\b/, out)
     refute_match(/\bFoo#private_method\b/, out) # has @private tag
-    refute_match(/\bFoo#method_with_private_tag\b/, out) # has a @private tag, but is really :public
+    # has a @private tag, but is really :public
+    refute_match(/\bFoo#method_with_private_tag\b/, out)
   end
 
 end

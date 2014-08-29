@@ -53,7 +53,8 @@ module Inch
 
           def relevant_parameter_roles(param, per_param)
             {
-              Role::MethodParameter::WithWrongMention => -score_for(:parameters),
+              Role::MethodParameter::WithWrongMention =>
+                -score_for(:parameters),
               Role::MethodParameter::WithMention => per_param * 0.5,
               Role::MethodParameter::WithoutMention => per_param * 0.5,
               Role::MethodParameter::WithType => per_param * 0.5,

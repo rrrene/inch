@@ -8,7 +8,8 @@ module Inch
             # inside itself (e.g. classes and modules)
             class NamespaceObject < Base
               def attributes
-                object.class_attributes.values + object.instance_attributes.values
+                object.class_attributes.values +
+                  object.instance_attributes.values
               end
 
               def children_fullnames

@@ -70,7 +70,8 @@ module Inch
               # mentioned in the docstring (e.g. "Returns a String").
               def return_mentioned?
                 return_tags.any? do |t|
-                  !t.types.nil? && !t.types.empty? && !YARD.implicit_tag?(t, self)
+                  !t.types.nil? && !t.types.empty? &&
+                    !YARD.implicit_tag?(t, self)
                 end || docstring.mentions_return? && !implicit_docstring?
               end
 

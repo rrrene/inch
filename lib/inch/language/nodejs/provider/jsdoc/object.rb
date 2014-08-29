@@ -44,7 +44,9 @@ module Inch
               # @return [String]
               def cache_key(jsdoc_object)
                 return if jsdoc_object["meta"].nil?
-                "#{jsdoc_object["meta"]["path"]}/#{jsdoc_object["meta"]["path"]}:#{jsdoc_object["meta"]["lineno"]}"
+                "#{jsdoc_object["meta"]["path"]}/" \
+                  "#{jsdoc_object["meta"]["path"]}:" \
+                  "#{jsdoc_object["meta"]["lineno"]}"
               end
             end
           end
