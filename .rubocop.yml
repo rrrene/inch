@@ -8,8 +8,5 @@ AllCops:
   Exclude:
     - 'test/fixtures/**/*'
 
-Style/Encoding:
-  Enabled: true
-
 Style/StringLiterals:
   EnforcedStyle: double_quotes
