@@ -48,7 +48,7 @@ describe ::Inch::CLI::Command::Diff do
     filename = File.join(@cloned_dir, 'lib/sparkr.rb')
     content = File.read(filename)
     content_without_comments = content.gsub(/\s+#(.+)/, '')
-    File.open(filename, 'w') {|f| f.write(content_without_comments) }
+    File.open(filename, 'w') { |f| f.write(content_without_comments) }
 
     # running the standard `inch diff` again
     # should now show some changes
