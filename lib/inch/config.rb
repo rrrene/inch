@@ -41,7 +41,7 @@ module Inch
       end
 
       def namespace(language, submodule = nil)
-        name = language.to_s.split('_').collect { |w| w.capitalize }.join
+        name = language.to_s.split('_').map { |w| w.capitalize }.join
         const = ::Inch::Language.const_get(name)
         const = const.const_get(submodule) unless submodule.nil?
         const
