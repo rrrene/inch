@@ -1,4 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + "/../../../test_helper")
+require 'inch/utils/buffered_ui'
 
 describe ::Inch::CLI::Command::Suggest do
   before do
@@ -78,6 +79,15 @@ describe ::Inch::CLI::Command::Suggest do
     end
     refute out.empty?, "there should be some output"
     assert_match /inch\ \d\.\d\.\d/, out
+    assert err.empty?, "there should be no errors"
+  end
+
+  it "should not output anything to stdout when used with BufferedUI" do
+    ui = ::Inch::Utils::BufferedUI.new
+    out, err = capture_io do
+      @command.run(:ui => ui)
+    end
+    assert out.empty?, "there should be no output"
     assert err.empty?, "there should be no errors"
   end
 

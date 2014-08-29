@@ -30,29 +30,29 @@ module Inch
             print_grades
             print_grades_by_priority
             print_priorities
-            puts
-            puts "Try `--format json|yaml` for raw numbers.".dark
+            ui.trace
+            ui.trace "Try `--format json|yaml` for raw numbers.".dark
           end
 
           def print_grades
             sparkline = grade_lists_sparkline(@grade_lists).to_s(" ")
-            puts
-            puts "Grade distribution: (undocumented, C, B, A)"
-            puts
-            puts "  Overall:  #{sparkline}  #{objects.size.to_s.rjust(5)} " \
+            ui.trace
+            ui.trace "Grade distribution: (undocumented, C, B, A)"
+            ui.trace
+            ui.trace "  Overall:  #{sparkline}  #{objects.size.to_s.rjust(5)} " \
               "objects"
-            puts
+            ui.trace
           end
 
           def print_grades_by_priority
-            puts "Grade distribution by priority:"
-            puts
+            ui.trace "Grade distribution by priority:"
+            ui.trace
             Evaluation::PriorityRange.all.each do |priority_range|
               list = objects.select { |o| priority_range.include?(o.priority) }
               sparkline = grades_sparkline(list).to_s(" ")
-              puts "        #{priority_range.arrow}   #{sparkline}  " \
+              ui.trace "        #{priority_range.arrow}   #{sparkline}  " \
                     "#{list.size.to_s.rjust(5)} objects"
-              puts
+              ui.trace
             end
           end
 
@@ -68,27 +68,27 @@ module Inch
             sparkline.format do |tick, _count, index|
               tick.color(PRIORITY_COLORS[index])
             end
-            puts "  #{grade_list.grade}:  " + sparkline.to_s(" ") +
+            ui.trace "  #{grade_list.grade}:  " + sparkline.to_s(" ") +
                   " #{grade_list.objects.size.to_s.rjust(5)} objects"
-            puts
+            ui.trace
           end
 
           def print_priorities
             arrows = Evaluation::PriorityRange.all.map(&:arrow)
-            puts "Priority distribution in grades: (low to high)"
-            puts
-            puts "      #{arrows.reverse.join("      ")}"
+            ui.trace "Priority distribution in grades: (low to high)"
+            ui.trace
+            ui.trace "      #{arrows.reverse.join("      ")}"
             @grade_lists.reverse.each do |grade_list|
               print_grade_list(grade_list)
             end
           end
 
           def display_json
-            puts JSON.pretty_generate(stats_hash)
+            ui.trace JSON.pretty_generate(stats_hash)
           end
 
           def display_yaml
-            puts YAML.dump(stats_hash)
+            ui.trace YAML.dump(stats_hash)
           end
 
           def stats_hash

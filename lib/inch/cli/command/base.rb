@@ -105,6 +105,7 @@ module Inch
           options_class = Command::Options.const_get(name)
           @options = options_class.new
           @options.usage = usage
+          @options.ui = ui
         end
 
         # Creates a Config::Codebase object and returns it

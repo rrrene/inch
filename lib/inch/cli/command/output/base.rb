@@ -30,6 +30,11 @@ module Inch
             end
             echo separator
           end
+
+          # this is used to use Inch::Utils::BufferedIO
+          def ui
+            @options.ui
+          end
         end
       end
     end

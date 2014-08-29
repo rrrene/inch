@@ -48,9 +48,9 @@ module Inch
 
           def display_distribution
             sparkline = grades_sparkline(@relevant_objects).to_s(" ")
-            puts "Grade distribution (undocumented, C, B, A):  " + sparkline
-            puts
-            puts priority_filter_hint
+            ui.trace "Grade distribution (undocumented, C, B, A):  " + sparkline
+            ui.trace
+            ui.trace priority_filter_hint
           end
 
           def priority_filter_hint

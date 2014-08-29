@@ -42,6 +42,8 @@ module Inch
           attribute :paths, []    # the paths of the to-be-analysed sources
           attribute :excluded, [] # paths to be excluded from the analysis
 
+          attr_accessor :ui
+
           # Parses the given +args+ "into" the current Options object
           #
           # @param args [Array<String>] command-line arguments
