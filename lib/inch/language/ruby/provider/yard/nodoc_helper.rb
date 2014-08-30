@@ -1,4 +1,4 @@
-require 'English'
+require "English"
 
 module Inch
   module Language

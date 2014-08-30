@@ -12,11 +12,11 @@ module Inch
               end
 
               def name
-                @hash['name']
+                @hash["name"]
               end
 
               def fullname
-                raise NotImplementedError
+                fail NotImplementedError
               end
 
               def files
@@ -64,11 +64,11 @@ module Inch
               end
 
               def depth
-                fullname.split('.').size
+                fullname.split(".").size
               end
 
               def docstring
-                @hash['doc'] # raise NotImplementedError
+                @hash["doc"] # raise NotImplementedError
               end
 
               def getter?
@@ -100,7 +100,7 @@ module Inch
               end
 
               def nodoc?
-                @hash['doc'] == false
+                @hash["doc"] == false
               end
 
               def namespace?
@@ -108,7 +108,7 @@ module Inch
               end
 
               def original_docstring
-                @hash['doc']
+                @hash["doc"]
               end
 
               def overridden?
@@ -176,7 +176,7 @@ module Inch
               end
 
               def undocumented?
-                @hash['doc'].nil?
+                @hash["doc"].nil?
               end
 
               def visibility

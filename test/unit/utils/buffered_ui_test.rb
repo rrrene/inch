@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + "/../../test_helper")
-require 'inch/utils/buffered_ui'
+require "inch/utils/buffered_ui"
 
 describe ::Inch::Utils::BufferedUI do
   let(:described_class) { ::Inch::Utils::BufferedUI }

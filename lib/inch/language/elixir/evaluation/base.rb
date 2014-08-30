@@ -18,7 +18,8 @@ module Inch
               Role::Object::WithCodeExample => score_for(:code_example_single),
               Role::Object::WithMultipleCodeExamples =>
                 score_for(:code_example_multi),
-              Role::Object::WithoutCodeExample => score_for(:code_example_single)
+              Role::Object::WithoutCodeExample =>
+                score_for(:code_example_single)
             }
           end
         end

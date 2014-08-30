@@ -23,7 +23,6 @@ module Inch
 
           @codebase = ::Inch::Codebase.parse(Dir.pwd, to_config(@options))
         end
-
       end
     end
   end

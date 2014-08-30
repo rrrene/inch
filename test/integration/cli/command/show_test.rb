@@ -19,7 +19,7 @@ describe ::Inch::CLI::Command::Show do
       assert_raises(SystemExit) { @command.run("--help") }
     end
     refute out.empty?, "there should be some output"
-    assert_match /\bUsage\b.+show/, out
+    assert_match(/\bUsage\b.+show/, out)
     assert err.empty?, "there should be no errors"
   end
 
@@ -28,7 +28,7 @@ describe ::Inch::CLI::Command::Show do
       @command.run("Foo::Bar#method_with_full_doc", "--no-color")
     end
     refute out.empty?, "there should be some output"
-    assert_match /\bFoo::Bar#method_with_full_doc\b/, out
+    assert_match(/\bFoo::Bar#method_with_full_doc\b/, out)
     refute_match(/\b Foo::Bar#method_without_doc\b/, out)
     assert err.empty?, "there should be no errors"
   end
@@ -38,8 +38,8 @@ describe ::Inch::CLI::Command::Show do
       @command.run("Foo::Bar#", "--no-color")
     end
     refute out.empty?, "there should be some output"
-    assert_match /\bFoo::Bar#method_without_doc\b/, out
-    assert_match /\bFoo::Bar#method_with_full_doc\b/, out
+    assert_match(/\bFoo::Bar#method_without_doc\b/, out)
+    assert_match(/\bFoo::Bar#method_with_full_doc\b/, out)
     assert err.empty?, "there should be no errors"
   end
 

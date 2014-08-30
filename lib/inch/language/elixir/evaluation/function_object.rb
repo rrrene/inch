@@ -21,7 +21,7 @@ module Inch
                   nil
                 end,
               Role::Function::WithBangName => nil,
-              Role::Function::WithQuestioningName => nil,
+              Role::Function::WithQuestioningName => nil
             }
           end
         end

@@ -13,7 +13,8 @@ module Inch
             # Helper method to parse an instance with the given +args+
             #
             # @see #parse
-            # @return [CodeObject::Provider::JSDoc::Parser] the instance that ran
+            # @return [CodeObject::Provider::JSDoc::Parser] the instance that
+            #   ran
             def self.parse(*args)
               parser = new
               parser.parse(*args)
@@ -45,7 +46,7 @@ module Inch
 
             def parse_objects(paths, excluded, read_dump_file = nil)
               if read_dump_file.nil?
-                output = %x(jsdoc --explain #{paths.join(' ')})
+                output = `jsdoc --explain #{paths.join(" ")}`
               else
                 output = File.read(read_dump_file)
               end

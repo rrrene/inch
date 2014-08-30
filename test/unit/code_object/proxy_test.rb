@@ -8,7 +8,7 @@ describe ::Inch::CodeObject::Proxy do
 
   def test_inspect_gives_original_name
     m = @objects.find("Foo::Bar#method_with_code_example")
-    assert_match /Foo::Bar#method_with_code_example/, m.inspect
+    assert_match(/Foo::Bar#method_with_code_example/, m.inspect)
   end
 
   def test_grade_is_not_nil

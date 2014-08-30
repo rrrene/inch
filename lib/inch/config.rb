@@ -5,12 +5,12 @@ module Inch
   class Config
     class << self
       def instance(language = :ruby)
-        if block = @blocks[language.to_s]
+        if (block = @blocks[language.to_s])
           config = Config::Base.new(language)
           config = config.update(&block)
           config
         else
-          raise "Language not registered: #{language}"
+          fail "Language not registered: #{language}"
         end
       end
 
@@ -41,7 +41,7 @@ module Inch
       end
 
       def namespace(language, submodule = nil)
-        name = language.to_s.split('_').collect { |w| w.capitalize }.join
+        name = language.to_s.split("_").map { |w| w.capitalize }.join
         const = ::Inch::Language.const_get(name)
         const = const.const_get(submodule) unless submodule.nil?
         const

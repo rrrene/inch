@@ -19,8 +19,8 @@ module Inch
             end
 
             # @return [Fixnum]
-            #  a score that can be achieved by adding the missing thing mentioned
-            #  by the role
+            #  a score that can be achieved by adding the missing thing
+            #  mentioned by the role
             def potential_score
               @value.to_i
             end

@@ -16,10 +16,10 @@ module Shared
       end
       refute out.empty?, "there should be some output"
       assert err.empty?, "there should be no errors"
-      assert_match /\bFoo\b/, out
-      assert_match /\bFoo::Bar\b/, out
-      refute_match /\bFoo::Bar#method_with_full_doc\b/, out
-      refute_match /\bFoo::Bar#method_with_code_example\b/, out
+      assert_match(/\bFoo\b/, out)
+      assert_match(/\bFoo::Bar\b/, out)
+      refute_match(/\bFoo::Bar#method_with_full_doc\b/, out)
+      refute_match(/\bFoo::Bar#method_with_code_example\b/, out)
     end
 
     it "should run with --only-namespaces switch" do
@@ -28,10 +28,10 @@ module Shared
       end
       refute out.empty?, "there should be some output"
       assert err.empty?, "there should be no errors"
-      assert_match /\bFoo\s/, out
-      assert_match /\bFoo::Bar\s/, out
-      refute_match /\bFoo::Bar\./, out
-      refute_match /\bFoo::Bar#/, out
+      assert_match(/\bFoo\s/, out)
+      assert_match(/\bFoo::Bar\s/, out)
+      refute_match(/\bFoo::Bar\./, out)
+      refute_match(/\bFoo::Bar#/, out)
     end
 
     it "should run with --no-namespaces switch" do
@@ -40,9 +40,9 @@ module Shared
       end
       refute out.empty?, "there should be some output"
       assert err.empty?, "there should be no errors"
-      refute_match /\bFoo\s/, out
-      refute_match /\bFoo::Bar\s/, out
-      assert_match /\bFoo::Bar#/, out
+      refute_match(/\bFoo\s/, out)
+      refute_match(/\bFoo::Bar\s/, out)
+      assert_match(/\bFoo::Bar#/, out)
     end
 
     it "should run with --only-undocumented switch" do
@@ -52,10 +52,10 @@ module Shared
       end
       refute out.empty?, "there should be some output"
       assert err.empty?, "there should be no errors"
-      refute_match /\bFoo\s/, out
-      refute_match /\bFoo::Bar#method_with_full_doc\b/, out
-      assert_match /\bFoo::Bar\s/, out
-      assert_match /\bFoo::Bar#method_without_doc\b/, out
+      refute_match(/\bFoo\s/, out)
+      refute_match(/\bFoo::Bar#method_with_full_doc\b/, out)
+      assert_match(/\bFoo::Bar\s/, out)
+      assert_match(/\bFoo::Bar#method_without_doc\b/, out)
     end
 
     it "should run with --no-undocumented switch" do
@@ -65,10 +65,10 @@ module Shared
       end
       refute out.empty?, "there should be some output"
       assert err.empty?, "there should be no errors"
-      assert_match /\bFoo\s/, out
-      assert_match /\bFoo::Bar#method_with_full_doc\b/, out
-      refute_match /\bFoo::Bar\s/, out
-      refute_match /\bFoo::Bar#method_without_doc\b/, out
+      assert_match(/\bFoo\s/, out)
+      assert_match(/\bFoo::Bar#method_with_full_doc\b/, out)
+      refute_match(/\bFoo::Bar\s/, out)
+      refute_match(/\bFoo::Bar#method_without_doc\b/, out)
     end
   end
 end

@@ -17,7 +17,8 @@ module Inch
               priority      +2
             end
 
-            # Role assigned to methods where the return value is typed in the docs
+            # Role assigned to methods where the return value is typed in the
+            # docs
             class WithReturnType < Base
               applicable_if :return_typed?
             end

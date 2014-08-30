@@ -41,7 +41,8 @@ module Inch
                 described_by_tag? || described_by_docstring?
               end
 
-              # @return [Boolean] +true+ if the parameter is mentioned in the docs
+              # @return [Boolean] +true+ if the parameter is mentioned in the
+              #   docs
               def mentioned?
                 !!@tag || mentioned_by_docstring?
               end

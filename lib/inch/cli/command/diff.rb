@@ -24,7 +24,7 @@ module Inch
 
           before_rev, after_rev = revisions[0], revisions[1]
           diff = API::Diff.new(work_dir, to_config(@options),
-                                          before_rev, after_rev)
+                               before_rev, after_rev)
 
           Output::Diff.new(@options, diff.comparer)
         end

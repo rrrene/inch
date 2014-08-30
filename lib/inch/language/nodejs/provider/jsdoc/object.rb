@@ -17,7 +17,7 @@ module Inch
               # @return [Provider::JSDoc::Object]
               def for(jsdoc_object)
                 @cache ||= {}
-                if proxy_object = @cache[cache_key(jsdoc_object)]
+                if (proxy_object = @cache[cache_key(jsdoc_object)])
                   proxy_object
                 else
                   @cache[cache_key(jsdoc_object)] =
@@ -43,8 +43,10 @@ module Inch
               # @param jsdoc_object [Hash]
               # @return [String]
               def cache_key(jsdoc_object)
-                return if jsdoc_object['meta'].nil?
-                "#{jsdoc_object['meta']['path']}/#{jsdoc_object['meta']['path']}:#{jsdoc_object['meta']['lineno']}"
+                return if jsdoc_object["meta"].nil?
+                "#{jsdoc_object["meta"]["path"]}/" \
+                  "#{jsdoc_object["meta"]["path"]}:" \
+                  "#{jsdoc_object["meta"]["lineno"]}"
               end
             end
           end

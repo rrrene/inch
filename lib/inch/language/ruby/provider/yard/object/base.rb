@@ -59,8 +59,8 @@ module Inch
                 nil
               end
 
-              # @return [Array,nil] the full names of the children of the current
-              #   object
+              # @return [Array,nil] the full names of the children of the
+              #   current object
               def children_fullnames
                 []
               end
@@ -75,11 +75,12 @@ module Inch
                 Array Bignum BasicObject Object Module Class Complex NilClass
                 Numeric String Float Fiber FiberError Continuation Dir File
                 Encoding Enumerator StopIteration Enumerator::Generator
-                Enumerator::Yielder Exception SystemExit SignalException Interrupt
-                StandardError TypeError ArgumentError IndexError KeyError
-                RangeError ScriptError SyntaxError LoadError NotImplementedError
-                NameError NoMethodError RuntimeError SecurityError NoMemoryError
-                EncodingError SystemCallError Encoding::CompatibilityError
+                Enumerator::Yielder Exception SystemExit SignalException
+                Interrupt StandardError TypeError ArgumentError IndexError
+                KeyError RangeError ScriptError SyntaxError LoadError
+                NotImplementedError NameError NoMethodError RuntimeError
+                SecurityError NoMemoryError EncodingError SystemCallError
+                Encoding::CompatibilityError
                 File::Stat IO Hash ENV IOError EOFError ARGF RubyVM
                 RubyVM::InstructionSequence Math::DomainError ZeroDivisionError
                 FloatDomainError Integer Fixnum Data TrueClass FalseClass Mutex
@@ -91,8 +92,9 @@ module Inch
                 Encoding::ConverterNotFoundError Encoding::Converter RubyVM::Env
 
                 Comparable Kernel File::Constants Enumerable Errno FileTest GC
-                ObjectSpace GC::Profiler IO::WaitReadable IO::WaitWritable Marshal
-                Math Process Process::UID Process::GID Process::Sys Signal
+                ObjectSpace GC::Profiler IO::WaitReadable IO::WaitWritable
+                Marshal Math Process Process::UID Process::GID Process::Sys
+                Signal
               )
               def core?
                 RUBY_CORE.include?(name.to_s)
@@ -103,8 +105,8 @@ module Inch
                 @docstring ||= Docstring.new(object.docstring)
               end
 
-              # Returns all files declaring the object in the form of an Array of
-              # Arrays containing the location of their declaration.
+              # Returns all files declaring the object in the form of an Array
+              # of Arrays containing the location of their declaration.
               #
               # @return [Array<CodeLocation>]
               def files
@@ -117,9 +119,10 @@ module Inch
                 []
               end
 
-              # CodeLocation is a utility class to find declarations of objects in
-              # files
-              class CodeLocation < Struct.new(:base_dir, :relative_path, :line_no)
+              # CodeLocation is a utility class to find declarations of objects
+              # in files
+              class CodeLocation < Struct.new(:base_dir, :relative_path,
+                                              :line_no)
                 def filename
                   File.join(base_dir, relative_path)
                 end
@@ -128,8 +131,8 @@ module Inch
               # Returns the name of the file where the object is declared first
               # @return [String] a filename
               def filename
-                # just checking the first file (which is the file where an object
-                # is first declared)
+                # just checking the first file (which is the file where an
+                # object is first declared)
                 files.first && files.first.filename
               end
 
@@ -182,8 +185,8 @@ module Inch
               #    ^    ^    ^      ^
               #    1 << 2 << 3  <<  4
               #
-              # +depth+ answers the question "how many layers of code objects are
-              # above this one?"
+              # +depth+ answers the question "how many layers of code objects
+              # are above this one?"
               #
               # @note top-level counts, that's why Foo has depth 1!
               #
@@ -242,7 +245,8 @@ module Inch
                 depth == 1
               end
 
-              # @return [Boolean] +true+ if the object has no documentation at all
+              # @return [Boolean] +true+ if the object has no documentation at
+              #   all
               def undocumented?
                 original_docstring.empty?
               end
@@ -286,7 +290,8 @@ module Inch
               end
 
               # @return [Array]
-              #   YARD tags that are not already covered by other wrapper methods
+              #   YARD tags that are not already covered by other wrapper
+              #   methods
               def unconsidered_tags
                 @unconsidered_tags ||= tags.reject do |tag|
                   auto_generated_tag?(tag) ||

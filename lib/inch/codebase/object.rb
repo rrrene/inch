@@ -1,4 +1,4 @@
-require 'inch/code_object/converter'
+require "inch/code_object/converter"
 
 module Inch
   module Codebase
@@ -29,7 +29,8 @@ module Inch
       # @param object_lookup [Codebase::Objects]
       def initialize(language, code_object, object_lookup)
         @language = language
-        @code_object = CodeObject::Proxy.for(language, code_object, object_lookup)
+        @code_object = CodeObject::Proxy.for(language, code_object,
+                                             object_lookup)
       end
 
       def evaluation
