@@ -50,7 +50,14 @@ module Inch
   end
 end
 
-def test_codebase(name)
-  codebase = Inch::Test.codebase(:ruby, name)
+def test_codebase(language, name)
+  codebase = Inch::Test.codebase(language, name)
   codebase
+end
+
+def fresh_codebase(language, name, read_dump_file = nil)
+  dir = fixture_path(language, name)
+  config = Inch::Config.for(language, dir).codebase
+  config.read_dump_file = read_dump_file
+  ::Inch::Codebase.parse(dir, config)
 end

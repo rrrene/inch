@@ -10,6 +10,10 @@ Rake::TestTask.new(:"test:unit") do |t|
   t.pattern = "test/unit/**/*_test.rb"
 end
 
+Rake::TestTask.new(:"test:elixir") do |t|
+  t.pattern = "test/unit/language/elixir/**/*_test.rb"
+end
+
 Rake::TestTask.new(:"test:ruby") do |t|
   t.pattern = "test/unit/language/ruby/**/*_test.rb"
 end

@@ -33,9 +33,22 @@ module Inch
 
             # @return [Array<YARD::Object::Base>]
             def objects
-              @objects ||= parsed_objects.map do |o|
-                Reader::Object.for(o) # unless IGNORE_TYPES.include?(o.type)
-              end.compact
+              @objects ||= begin
+                list = parsed_objects.map do |o|
+                  Reader::Object.for(o) # unless IGNORE_TYPES.include?(o.type)
+                end.compact
+                children_map = {}
+                list.each do |object|
+                  if object.parent_fullname
+                    children_map[object.parent_fullname] ||= []
+                    children_map[object.parent_fullname] << object.fullname
+                  end
+                end
+                list.each do |object|
+                  object.children_fullnames = children_map[object.fullname]
+                end
+                list
+              end
             end
 
             private

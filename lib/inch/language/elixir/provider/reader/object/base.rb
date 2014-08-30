@@ -1,3 +1,5 @@
+require "inch/language/elixir/provider/reader/docstring"
+
 module Inch
   module Language
     module Elixir
@@ -27,12 +29,17 @@ module Inch
                 nil
               end
 
+              attr_writer :children_fullnames
               def children_fullnames
-                [] # raise NotImplementedError
+                @children_fullnames ||= []
               end
 
               def parent_fullname
-                false # raise NotImplementedError
+                if depth == 1
+                  nil
+                else
+                  fullname.split('.')[0...-1].join('.')
+                end
               end
 
               def api_tag?
@@ -67,8 +74,9 @@ module Inch
                 fullname.split(".").size
               end
 
+              # @return [Docstring]
               def docstring
-                @hash["doc"] # raise NotImplementedError
+                @docstring ||= Docstring.new(@hash['doc'])
               end
 
               def getter?
@@ -76,7 +84,7 @@ module Inch
               end
 
               def has_children?
-                false # raise NotImplementedError
+                !children_fullnames.empty?
               end
 
               def has_code_example?

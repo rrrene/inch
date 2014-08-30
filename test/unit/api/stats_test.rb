@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + "/../../test_helper")
 
 describe ::Inch::API::Stats do
   before do
-    @codebase = test_codebase(:simple)
+    @codebase = test_codebase(:ruby, :simple)
   end
 
   it "should work" do

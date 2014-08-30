@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + "/../../test_helper")
 
 describe ::Inch::CodeObject::Proxy do
   before do
-    @codebase = test_codebase(:code_examples)
+    @codebase = test_codebase(:ruby, :code_examples)
     @objects = @codebase.objects
   end
 
