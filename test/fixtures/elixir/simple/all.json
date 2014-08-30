@@ -1,0 +1,321 @@
+{
+    "objects": [
+        {
+            "id": "InchEx",
+            "module": "Elixir.InchEx",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
+            "typespecs": []
+        },
+        {
+            "id": "InchEx.Config",
+            "module": "Elixir.InchEx.Config",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
+            "typespecs": []
+        },
+        {
+            "id": "InchEx.Docs.Formatter",
+            "module": "Elixir.InchEx.Docs.Formatter",
+            "moduledoc": "Provide JSON-formatted documentation\n",
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
+            "typespecs": []
+        },
+        {
+            "id": "InchEx.Docs.Retriever",
+            "module": "Elixir.InchEx.Docs.Retriever",
+            "moduledoc": "Functions to extract documentation information from modules.\n",
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
+            "typespecs": []
+        },
+        {
+            "id": "InchEx.Docs.Retriever.Error",
+            "module": "Elixir.InchEx.Docs.Retriever.Error",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": "exception",
+            "typespecs": []
+        },
+        {
+            "id": "InchEx.FunctionObject",
+            "module": "Elixir.InchEx.FunctionObject",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
+            "typespecs": []
+        },
+        {
+            "id": "InchEx.ModuleObject",
+            "module": "Elixir.InchEx.ModuleObject",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
+            "typespecs": []
+        },
+        {
+            "id": "InchEx.Reporter.Local",
+            "module": "Elixir.InchEx.Reporter.Local",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
+            "typespecs": []
+        },
+        {
+            "id": "InchEx.Reporter.Remote",
+            "module": "Elixir.InchEx.Reporter.Remote",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
+            "typespecs": []
+        },
+        {
+            "id": "InchEx.TypeObject",
+            "module": "Elixir.InchEx.TypeObject",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
+            "typespecs": []
+        },
+        {
+            "id": "Mix.Tasks.Inch",
+            "module": "Elixir.Mix.Tasks.Inch",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
+            "typespecs": []
+        },
+        {
+            "arity": 3,
+            "doc": false,
+            "id": "generate_docs/3",
+            "module_id": "InchEx",
+            "name": "generate_docs",
+            "object_type": "FunctionObject",
+            "signature": "generate_docs(project, version, options)",
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 2,
+            "doc": "Generate JSON documentation for the given modules\n",
+            "id": "run/2",
+            "module_id": "InchEx.Docs.Formatter",
+            "name": "run",
+            "object_type": "FunctionObject",
+            "signature": "run(modules, config)",
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 2,
+            "doc": "Extract documentation from all modules in the specified directory\n",
+            "id": "docs_from_dir/2",
+            "module_id": "InchEx.Docs.Retriever",
+            "name": "docs_from_dir",
+            "object_type": "FunctionObject",
+            "signature": "docs_from_dir(dir, config)",
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 2,
+            "doc": "Extract documentation from all modules in the specified list of files\n",
+            "id": "docs_from_files/2",
+            "module_id": "InchEx.Docs.Retriever",
+            "name": "docs_from_files",
+            "object_type": "FunctionObject",
+            "signature": "docs_from_files(files, config)",
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 2,
+            "doc": "Extract documentation from all modules in the list `modules`\n",
+            "id": "docs_from_modules/2",
+            "module_id": "InchEx.Docs.Retriever",
+            "name": "docs_from_modules",
+            "object_type": "FunctionObject",
+            "signature": "docs_from_modules(modules, config)",
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": "Callback implementation of `Exception.exception/1`.",
+            "id": "exception/1",
+            "module_id": "InchEx.Docs.Retriever.Error",
+            "name": "exception",
+            "object_type": "FunctionObject",
+            "signature": "exception(args)",
+            "source": null,
+            "specs": [
+                [
+                    "::",
+                    {
+                        "line": 19
+                    },
+                    [
+                        [
+                            "exception",
+                            {
+                                "line": 19
+                            },
+                            [
+                                [
+                                    [
+                                        ".",
+                                        {
+                                            "line": 19
+                                        },
+                                        [
+                                            "Elixir.Keyword",
+                                            "t"
+                                        ]
+                                    ],
+                                    {
+                                        "line": 19
+                                    },
+                                    []
+                                ]
+                            ]
+                        ],
+                        [
+                            [
+                                ".",
+                                {
+                                    "line": 19
+                                },
+                                [
+                                    "Elixir.Exception",
+                                    "t"
+                                ]
+                            ],
+                            {
+                                "line": 19
+                            },
+                            []
+                        ]
+                    ]
+                ]
+            ],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": "Callback implementation of `Exception.message/1`.",
+            "id": "message/1",
+            "module_id": "InchEx.Docs.Retriever.Error",
+            "name": "message",
+            "object_type": "FunctionObject",
+            "signature": "message(exception)",
+            "source": null,
+            "specs": [
+                [
+                    "::",
+                    {
+                        "line": 19
+                    },
+                    [
+                        [
+                            "message",
+                            {
+                                "line": 19
+                            },
+                            [
+                                [
+                                    [
+                                        ".",
+                                        {
+                                            "line": 19
+                                        },
+                                        [
+                                            "Elixir.Exception",
+                                            "t"
+                                        ]
+                                    ],
+                                    {
+                                        "line": 19
+                                    },
+                                    []
+                                ]
+                            ]
+                        ],
+                        [
+                            [
+                                ".",
+                                {
+                                    "line": 19
+                                },
+                                [
+                                    "Elixir.String",
+                                    "t"
+                                ]
+                            ],
+                            {
+                                "line": 19
+                            },
+                            []
+                        ]
+                    ]
+                ]
+            ],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": "  Runs inch locally, if installed. If you want to force usage of a particular\n  inch installation, set INCH_PATH environment variable to it.\n\n    export INCH_PATH=/home/rrrene/projects/inch\n",
+            "id": "run/1",
+            "module_id": "InchEx.Reporter.Local",
+            "name": "run",
+            "object_type": "FunctionObject",
+            "signature": "run(filename)",
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 2,
+            "doc": "  Runs inch remotely, if already invented.\n",
+            "id": "run/2",
+            "module_id": "InchEx.Reporter.Remote",
+            "name": "run",
+            "object_type": "FunctionObject",
+            "signature": "run(filename, config \\\\ Mix.Project.config())",
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 4,
+            "doc": false,
+            "id": "run/4",
+            "module_id": "Mix.Tasks.Inch",
+            "name": "run",
+            "object_type": "FunctionObject",
+            "signature": "run(args, config \\\\ Mix.Project.config(), generator \\\\ :erlang.make_fun(InchEx, :generate_docs, 3), reporter \\\\ InchEx.Reporter.Local)",
+            "source": null,
+            "specs": [],
+            "type": "def"
+        }
+    ]
+}
