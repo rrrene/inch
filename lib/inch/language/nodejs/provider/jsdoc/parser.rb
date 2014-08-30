@@ -1,5 +1,5 @@
-require "json"
-require "inch/language/nodejs/provider/jsdoc/object"
+require 'json'
+require 'inch/language/nodejs/provider/jsdoc/object'
 
 module Inch
   module Language
@@ -38,7 +38,7 @@ module Inch
                 JSDoc::Object.for(o) # unless IGNORE_TYPES.include?(o.type)
               end.compact
               puts "#{@objects.size} objects found."
-              puts "Rest of implementation: coming soon -.-"
+              puts 'Rest of implementation: coming soon -.-'
               exit 1
             end
 
@@ -46,7 +46,7 @@ module Inch
 
             def parse_objects(paths, excluded, read_dump_file = nil)
               if read_dump_file.nil?
-                output = `jsdoc --explain #{paths.join(" ")}`
+                output = `jsdoc --explain #{paths.join(' ')}`
               else
                 output = File.read(read_dump_file)
               end

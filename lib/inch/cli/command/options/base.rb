@@ -1,4 +1,4 @@
-require "optparse"
+require 'optparse'
 
 module Inch
   module CLI
@@ -36,8 +36,8 @@ module Inch
             end
           end
 
-          attribute :usage, ""    # usage description for the command
-          attribute :language, "ruby"    # the programming language
+          attribute :usage, ''    # usage description for the command
+          attribute :language, 'ruby'    # the programming language
           attribute :read_dump_file, nil
           attribute :paths, []    # the paths of the to-be-analysed sources
           attribute :excluded, [] # paths to be excluded from the analysis
@@ -53,7 +53,7 @@ module Inch
             opts.banner = usage
 
             descriptions.each do |text|
-              opts.separator "  " + text
+              opts.separator '  ' + text
             end
 
             set_options(opts)
@@ -95,9 +95,9 @@ module Inch
           #
           # @return [String]
           def description_hint_arrows
-            arrows = Evaluation::PriorityRange.all.map(&:arrow).join(" ")
+            arrows = Evaluation::PriorityRange.all.map(&:arrow).join(' ')
             "Arrows (#{arrows}) hint at the importance of the object " \
-              "being documented."
+              'being documented.'
           end
 
           # Returns a decriptive hint explaining the arrows used to represent
@@ -106,8 +106,8 @@ module Inch
           # @return [String]
           def description_hint_grades
             grades = Evaluation::Grade.all
-            "School grades (#{grades.join(", ")}) are assigned and " \
-              "displayed with each object."
+            "School grades (#{grades.join(', ')}) are assigned and " \
+              'displayed with each object.'
           end
 
           def get_paths(args)
@@ -120,24 +120,24 @@ module Inch
           # @param [OptionParser] opts the option parser object
           # @return [void]
           def common_options(opts)
-            opts.separator ""
-            opts.separator "Other options:"
-            opts.on("--[no-]color", "Run without color") do |v|
+            opts.separator ''
+            opts.separator 'Other options:'
+            opts.on('--[no-]color', 'Run without color') do |v|
               Term::ANSIColor.coloring = v
             end
-            opts.on_tail("-v", "--version", "Show version.") do
+            opts.on_tail('-v', '--version', 'Show version.') do
               ui.trace "inch #{Inch::VERSION}"
               exit
             end
-            opts.on_tail("-l", "--language [LANGUAGE]",
-                         "Set language (ruby|nodejs).") do |language|
+            opts.on_tail('-l', '--language [LANGUAGE]',
+                         'Set language (ruby|nodejs).') do |language|
               @language = language
             end
-            opts.on_tail("-r", "--read-from-dump [FILE]",
-                         "Read objects from dump.") do |file|
+            opts.on_tail('-r', '--read-from-dump [FILE]',
+                         'Read objects from dump.') do |file|
               @read_dump_file = file
             end
-            opts.on_tail("-h", "--help", "Show this help.") do
+            opts.on_tail('-h', '--help', 'Show this help.') do
               ui.trace opts
               exit
             end

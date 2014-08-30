@@ -1,4 +1,4 @@
-require "sparkr"
+require 'sparkr'
 
 module Inch
   module CLI
@@ -11,10 +11,10 @@ module Inch
 
           FILE_COLOR = :dark # TODO: store all colors somewhere
           RANGE_LABELS = {
-            A: "Nearly perfect:",
-            B: "Properly documented, could be improved:",
-            C: "Not properly documented:",
-            U: "Undocumented:"
+            A: 'Nearly perfect:',
+            B: 'Properly documented, could be improved:',
+            C: 'Not properly documented:',
+            U: 'Undocumented:'
           }
 
           # @param options [Command::Options::Suggest]
@@ -47,8 +47,8 @@ module Inch
           end
 
           def display_distribution
-            sparkline = grades_sparkline(@relevant_objects).to_s(" ")
-            ui.trace "Grade distribution (undocumented, C, B, A):  " + sparkline
+            sparkline = grades_sparkline(@relevant_objects).to_s(' ')
+            ui.trace 'Grade distribution (undocumented, C, B, A):  ' + sparkline
             ui.trace
             ui.trace priority_filter_hint
           end
@@ -65,11 +65,11 @@ module Inch
 
           def display_files
             ui.trace
-            ui.trace "You might want to look at these files:"
+            ui.trace 'You might want to look at these files:'
             ui.trace
 
             files.each do |file|
-              filename = file.fullname.gsub(base_dir, "")
+              filename = file.fullname.gsub(base_dir, '')
               ui.edged(FILE_COLOR, filename.color(FILE_COLOR))
             end
             ui.trace
@@ -93,16 +93,16 @@ module Inch
 
           def display_no_objects_hint
             hint = if @options.pedantic
-                     "Even by my standards."
+                     'Even by my standards.'
                    else
-                     "Try --pedantic to be excessively concerned with minor " \
-                       "details and rules."
+                     'Try --pedantic to be excessively concerned with minor ' \
+                       'details and rules.'
                    end
-            ui.trace "Nothing to suggest.".color(:green) + " #{hint}"
+            ui.trace 'Nothing to suggest.'.color(:green) + " #{hint}"
           end
 
           def min_priority_arrows
-            priority_arrows_gte(@options.object_min_priority).join(" ")
+            priority_arrows_gte(@options.object_min_priority).join(' ')
           end
 
           def priority_arrows_gte(min_priority)

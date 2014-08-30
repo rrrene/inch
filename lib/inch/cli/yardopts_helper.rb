@@ -21,7 +21,7 @@ module Inch
         wrapper = YardoptsWrapper.new
 
         dupped_args = args.dup
-        dupped_args.delete("--help")
+        dupped_args.delete('--help')
         dupped_args.delete_if do |arg|
           arg =~ /^\-/ && !VALID_YARD_SWITCHES.include?(arg)
         end

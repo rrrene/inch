@@ -1,4 +1,4 @@
-require "inch/utils/shell_helper"
+require 'inch/utils/shell_helper'
 
 module Inch
   module CLI
@@ -8,18 +8,18 @@ module Inch
           include Utils::ShellHelper
 
           def initialize
-            @before_rev = "HEAD"
+            @before_rev = 'HEAD'
             @after_rev  = nil
           end
 
           def descriptions
             [
-              "",
-              "Shows changes in documentation between two revisions " \
-                "(defaults to last commit against current)",
-              "",
-              "Example: " + "$ inch diff HEAD^..HEAD".color(:cyan),
-              "",
+              '',
+              'Shows changes in documentation between two revisions ' \
+                '(defaults to last commit against current)',
+              '',
+              'Example: ' + '$ inch diff HEAD^..HEAD'.color(:cyan),
+              '',
               description_hint_grades,
               description_hint_arrows
             ]
@@ -41,12 +41,12 @@ module Inch
             if object_names.empty?
               [@before_rev, @after_rev]
             else
-              object_names.first.split("..")
+              object_names.first.split('..')
             end
           end
 
           def since_last_commit?
-            revisions == ["HEAD", nil]
+            revisions == ['HEAD', nil]
           end
 
           def since_last_push?
@@ -56,15 +56,15 @@ module Inch
           private
 
           def diff_options(opts)
-            opts.separator ""
-            opts.separator "Diff options:"
+            opts.separator ''
+            opts.separator 'Diff options:'
 
-            opts.on("--since-last-commit",
-                    "Run diff against last commit (default)") do
-              @before_rev = "HEAD"
+            opts.on('--since-last-commit',
+                    'Run diff against last commit (default)') do
+              @before_rev = 'HEAD'
             end
-            opts.on("-p", "--since-last-push",
-                    "Run diff against last pushed commit") do
+            opts.on('-p', '--since-last-push',
+                    'Run diff against last pushed commit') do
               @before_rev = pushed_rev
               @since_last_push = true
             end
@@ -79,11 +79,11 @@ module Inch
           end
 
           def current_branch
-            git Dir.pwd, "rev-parse --abbrev-ref HEAD"
+            git Dir.pwd, 'rev-parse --abbrev-ref HEAD'
           end
 
           def remote
-            "origin"
+            'origin'
           end
         end
       end

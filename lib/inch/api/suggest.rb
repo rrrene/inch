@@ -1,4 +1,4 @@
-require "inch/utils/weighted_list"
+require 'inch/utils/weighted_list'
 
 module Inch
   module API

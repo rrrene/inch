@@ -65,7 +65,7 @@ module Inch
 
               def suggestion
                 "The parameter '#{object.name}' seems not to be part of the " \
-                  "signature."
+                  'signature.'
               end
             end
 

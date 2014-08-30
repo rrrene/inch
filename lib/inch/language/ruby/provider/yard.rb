@@ -13,7 +13,7 @@ module Inch
             if method.getter?
               docstring.to_s == "Returns the value of attribute #{name}"
             elsif method.setter?
-              basename = name.to_s.gsub(/(\=)$/, "")
+              basename = name.to_s.gsub(/(\=)$/, '')
               docstring.to_s == "Sets the attribute #{basename}"
             else
               false
@@ -27,11 +27,11 @@ module Inch
           def self.implicit_tag?(tag, method)
             name = method.name
             if method.getter?
-              tag.tag_name == "return" &&
+              tag.tag_name == 'return' &&
                 tag.text == "the current value of #{name}"
             elsif method.setter?
-              tag.tag_name == "return" &&
-                tag.text == "the newly set value"
+              tag.tag_name == 'return' &&
+                tag.text == 'the newly set value'
             else
               false
             end
@@ -47,12 +47,12 @@ module Inch
   end
 end
 
-require "logger"
-require "yard"
+require 'logger'
+require 'yard'
 
 log.level = ::Logger::UNKNOWN # basically disable YARD's logging
 
-require "inch/language/ruby/provider/yard/parser"
-require "inch/language/ruby/provider/yard/docstring"
-require "inch/language/ruby/provider/yard/nodoc_helper"
-require "inch/language/ruby/provider/yard/object"
+require 'inch/language/ruby/provider/yard/parser'
+require 'inch/language/ruby/provider/yard/docstring'
+require 'inch/language/ruby/provider/yard/nodoc_helper'
+require 'inch/language/ruby/provider/yard/object'

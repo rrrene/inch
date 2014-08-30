@@ -40,22 +40,22 @@ module Inch
 
           def print_roles_info(o)
             if o.roles.empty?
-              echo "No roles assigned.".dark
+              echo 'No roles assigned.'.dark
             else
               o.roles.each do |role|
                 next unless role.suggestion
-                echo "+".color(COLOR) + " #{role.suggestion}"
+                echo '+'.color(COLOR) + " #{role.suggestion}"
               end
             end
             echo separator
           end
 
-          def echo(msg = "")
+          def echo(msg = '')
             ui.edged(COLOR, msg)
           end
 
           def separator
-            "-".color(COLOR) * (CLI::COLUMNS - 2)
+            '-'.color(COLOR) * (CLI::COLUMNS - 2)
           end
 
           def grade(score)

@@ -2,25 +2,25 @@ Inch::Config.base do
   evaluation do
     grade(:A) do
       scores    80..100
-      label     "Seems really good"
+      label     'Seems really good'
       color     :green
     end
 
     grade(:B) do
       scores    50...80
-      label     "Proper documentation present"
+      label     'Proper documentation present'
       color     :yellow
     end
 
     grade(:C) do
       scores    1...50
-      label     "Needs work"
+      label     'Needs work'
       color     :red
     end
 
     grade(:U) do
       scores    0..0
-      label     "Undocumented"
+      label     'Undocumented'
       color     :color141
       bg_color  :color105
     end

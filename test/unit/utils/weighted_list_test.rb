@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + "/../../test_helper")
+require File.expand_path(File.dirname(__FILE__) + '/../../test_helper')
 
 describe ::Inch::Utils::WeightedList do
   before do
@@ -25,32 +25,32 @@ describe ::Inch::Utils::WeightedList do
     [list, expected]
   end
 
-  it "should work if elements are exact" do
+  it 'should work if elements are exact' do
     @list, @expected = list_and_expected([4, 8, 8], [4, 8, 8])
     assert_weighted_list(@list, @counts, @expected)
   end
 
-  it "should work if more than enough elements are present" do
+  it 'should work if more than enough elements are present' do
     @list, @expected = list_and_expected([10, 10, 10], [4, 8, 8])
     assert_weighted_list(@list, @counts, @expected)
   end
 
-  it "should work if not enough Bs are present" do
+  it 'should work if not enough Bs are present' do
     @list, @expected = list_and_expected([2, 12, 15], [2, 8, 10])
     assert_weighted_list(@list, @counts, @expected)
   end
 
-  it "should work if not enough Cs are present" do
+  it 'should work if not enough Cs are present' do
     @list, @expected = list_and_expected([15, 4, 15], [4, 4, 12])
     assert_weighted_list(@list, @counts, @expected)
   end
 
-  it "should work if not enough Us are present" do
+  it 'should work if not enough Us are present' do
     @list, @expected = list_and_expected([15, 15, 4], [4, 12, 4])
     assert_weighted_list(@list, @counts, @expected)
   end
 
-  it "should work if not enough Bs AND Cs and Us are present" do
+  it 'should work if not enough Bs AND Cs and Us are present' do
     @list, @expected = list_and_expected([2, 2, 15], [2, 2, 15])
     assert_weighted_list(@list, @counts, @expected)
   end

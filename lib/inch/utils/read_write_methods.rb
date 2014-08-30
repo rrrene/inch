@@ -21,7 +21,7 @@ module Inch
       #
       # @return [void]
       def rw_method(name)
-        class_eval """
+        class_eval ''"
           def #{name}(value = nil)
             if value.nil?
               @#{name}
@@ -29,7 +29,7 @@ module Inch
               @#{name} = value
             end
           end
-        """
+        "''
       end
 
       # Implements multiple read(write) methods with the given +names+

@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + "/../../../../../test_helper")
+require File.expand_path(File.dirname(__FILE__) + '/../../../../../test_helper')
 
 describe ::Inch::Language::Ruby::Provider::YARD::Docstring do
   let(:described_class) { ::Inch::Language::Ruby::Provider::YARD::Docstring }
@@ -7,7 +7,7 @@ describe ::Inch::Language::Ruby::Provider::YARD::Docstring do
   # loose TomDoc compatibility
   #
 
-  it "should notice things in tomdoc style docs" do
+  it 'should notice things in tomdoc style docs' do
     text = <<-DOC
 Internal: Detects the Language of the blob.
 
@@ -32,7 +32,7 @@ Returns Language or nil.
     assert docstring.describes_return?
   end
 
-  it "should notice things in tomdoc style docs 2" do
+  it 'should notice things in tomdoc style docs 2' do
     text = <<-DOC
 Public: Look up Language by one of its aliases.
 
@@ -55,7 +55,7 @@ Returns the Lexer or nil if none was found.
     assert docstring.describes_return?
   end
 
-  it "should notice multi-line returns in tomdoc style docs" do
+  it 'should notice multi-line returns in tomdoc style docs' do
     text = <<-DOC
 Public: Look up Language by one of its aliases.
 
@@ -67,7 +67,7 @@ Returns the Lexer or nil
     assert docstring.describes_return?
   end
 
-  it "should notice multi-line returns in tomdoc style docs 2" do
+  it 'should notice multi-line returns in tomdoc style docs 2' do
     text = <<-DOC
 Public: Look up Language by one of its aliases.
 
@@ -80,7 +80,7 @@ Returns the Lexer or nil
     assert docstring.describes_return?
   end
 
-  it "should notice things in tomdoc style docs 3" do
+  it 'should notice things in tomdoc style docs 3' do
     text = <<-DOC
 Public: Look up Language by one of its aliases.
 
@@ -140,8 +140,8 @@ returns nothing
   end
 
   it "should understand 'Returns ...' with a visibility modifier in front of" \
-     " it" do
-    text = "Public: Returns the Integer color."
+     ' it' do
+    text = 'Public: Returns the Integer color.'
     docstring = described_class.new(text)
     assert docstring.mentions_return?
     assert docstring.describes_return?
@@ -151,7 +151,7 @@ returns nothing
   # PARAMETER MENTIONS
   #
 
-  it "should work 2" do
+  it 'should work 2' do
     text = <<-DOC
 Just because format_html is mentioned here, does not mean
 the first parameter is mentioned.
@@ -161,7 +161,7 @@ the first parameter is mentioned.
     refute docstring.contains_code_example?
   end
 
-  it "should work 2 if correct" do
+  it 'should work 2 if correct' do
     text = <<-DOC
 Just because format is mentioned here, does not mean
 the first parameter is meant.
@@ -175,7 +175,7 @@ the first parameter is meant.
   # CODE EXAMPLES
   #
 
-  it "should work 3" do
+  it 'should work 3' do
     text = <<-DOC
 An example of a method using RDoc rather than YARD.
 
@@ -190,7 +190,7 @@ A string in the specified format.
     refute docstring.contains_code_example?
   end
 
-  it "should work with code example" do
+  it 'should work with code example' do
     # rubocop:disable Metrics/LineLength
     text = <<-DOC
 Another example.
@@ -213,7 +213,7 @@ Params:
     assert docstring.describes_parameter?(:param3)
   end
 
-  it "should recognize several parameter notations" do
+  it 'should recognize several parameter notations' do
     # rubocop:disable Metrics/LineLength
     text = <<-DOC
 Params:
@@ -223,15 +223,15 @@ Params:
     DOC
     # rubocop:enable Metrics/LineLength
     docstring = described_class.new(text)
-    assert docstring.mentions_parameter?(:param1), "should mention param1"
-    assert docstring.mentions_parameter?(:param2), "should mention param2"
-    assert docstring.mentions_parameter?(:param3), "should mention param3"
-    assert docstring.describes_parameter?(:param1), "should describe param1"
-    assert docstring.describes_parameter?(:param2), "should describe param2"
-    assert docstring.describes_parameter?(:param3), "should describe param3"
+    assert docstring.mentions_parameter?(:param1), 'should mention param1'
+    assert docstring.mentions_parameter?(:param2), 'should mention param2'
+    assert docstring.mentions_parameter?(:param3), 'should mention param3'
+    assert docstring.describes_parameter?(:param1), 'should describe param1'
+    assert docstring.describes_parameter?(:param2), 'should describe param2'
+    assert docstring.describes_parameter?(:param3), 'should describe param3'
   end
 
-  it "should work with code example 2" do
+  it 'should work with code example 2' do
     text = <<-DOC
 Just because format_html is mentioned here, does not mean
 the first parameter is mentioned.
@@ -244,7 +244,7 @@ the first parameter is mentioned.
     assert_equal 1, docstring.code_examples.size
   end
 
-  it "should work with code example 3" do
+  it 'should work with code example 3' do
     text = <<-DOC
 An example of a method using RDoc rather than YARD.
 
@@ -264,7 +264,7 @@ A string in the specified format.
     assert docstring.describes_parameter?(:param1)
   end
 
-  it "should work with multiple code examples" do
+  it 'should work with multiple code examples' do
     text = <<-DOC
 An example of a method using RDoc rather than YARD.
 
@@ -285,6 +285,6 @@ A string in the specified format.
     docstring = described_class.new(text)
     assert docstring.contains_code_example?
     assert_equal 2, docstring.code_examples.size
-    assert docstring.code_examples.last.index("create_index! 2")
+    assert docstring.code_examples.last.index('create_index! 2')
   end
 end

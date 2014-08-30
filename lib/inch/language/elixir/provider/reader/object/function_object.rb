@@ -7,11 +7,11 @@ module Inch
             # Proxy class for functions
             class FunctionObject < Base
               def name
-                @hash["id"]
+                @hash['id']
               end
 
               def fullname
-                @hash["module_id"] + "." + @hash["id"]
+                @hash['module_id'] + '.' + @hash['id']
               end
 
               def method?

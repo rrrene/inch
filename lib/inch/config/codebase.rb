@@ -7,7 +7,7 @@ module Inch
       attr_accessor :excluded_files
       attr_accessor :read_dump_file
 
-      YAML_FILE = ".inch.yml"
+      YAML_FILE = '.inch.yml'
 
       def initialize(language = :ruby, included = nil, excluded = nil)
         @language = language
@@ -39,8 +39,8 @@ module Inch
       def update_via_yaml(dir)
         if (yaml = self.class.yaml(dir))
           Dir.chdir(dir) do
-            update_language yaml["language"]
-            update_files yaml["files"]
+            update_language yaml['language']
+            update_files yaml['files']
           end
         end
       end
@@ -77,8 +77,8 @@ module Inch
 
       def update_files(files)
         return if files.nil?
-        @included_files = expand_files(files["included"]) if files["included"]
-        @excluded_files = expand_files(files["excluded"]) if files["excluded"]
+        @included_files = expand_files(files['included']) if files['included']
+        @excluded_files = expand_files(files['excluded']) if files['excluded']
       end
 
       def update_language(language)

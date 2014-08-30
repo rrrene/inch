@@ -41,7 +41,7 @@ module Inch
       end
 
       def namespace(language, submodule = nil)
-        name = language.to_s.split("_").map { |w| w.capitalize }.join
+        name = language.to_s.split('_').map { |w| w.capitalize }.join
         const = ::Inch::Language.const_get(name)
         const = const.const_get(submodule) unless submodule.nil?
         const
@@ -50,6 +50,6 @@ module Inch
   end
 end
 
-require "inch/config/base"
-require "inch/config/evaluation"
-require "inch/config/codebase"
+require 'inch/config/base'
+require 'inch/config/evaluation'
+require 'inch/config/codebase'

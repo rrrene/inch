@@ -109,7 +109,7 @@ module Inch
               applicable_unless :has_code_example?
 
               def suggestion
-                "Add a code example (optional)"
+                'Add a code example (optional)'
               end
             end
           end

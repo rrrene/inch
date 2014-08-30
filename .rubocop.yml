@@ -7,6 +7,3 @@ AllCops:
     - '**/Rakefile'
   Exclude:
     - 'test/fixtures/**/*'
-
-Style/StringLiterals:
-  EnforcedStyle: double_quotes

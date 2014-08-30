@@ -1,4 +1,4 @@
-require "inch/utils/ui"
+require 'inch/utils/ui'
 
 module Inch
   module CLI

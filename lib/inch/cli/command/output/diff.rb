@@ -18,7 +18,7 @@ module Inch
             degraded = @comparer.degraded_objects
 
             if added.empty? && improved.empty? && degraded.empty?
-              ui.trace "No changes."
+              ui.trace 'No changes.'
             else
               show(added, improved, degraded)
             end
@@ -29,7 +29,7 @@ module Inch
           def show(added, improved, degraded)
             unless added.empty? && improved.empty?
               ui.trace
-              ui.header("Added or improved:", :green)
+              ui.header('Added or improved:', :green)
               added.each do |compare|
                 puts_added compare.after
               end
@@ -40,7 +40,7 @@ module Inch
 
             unless degraded.empty?
               ui.trace
-              ui.header("Degraded:", :red)
+              ui.header('Degraded:', :red)
               degraded.each do |compare|
                 puts_degraded compare.before, compare.after
               end
@@ -48,20 +48,20 @@ module Inch
             ui.trace
             ui.trace rev_hint
             ui.trace
-            ui.trace "Format: grade (before -> after), priority, and name. " \
+            ui.trace 'Format: grade (before -> after), priority, and name. ' \
                       "Try `--help' for options.".dark
           end
 
           def puts_added(o)
             grade = colored_grade(o)
-            change = "  +  ".dark + grade + "  " + priority_arrow(o.priority)
+            change = '  +  '.dark + grade + '  ' + priority_arrow(o.priority)
             ui.sub(" #{change}  #{o.fullname}")
           end
 
           def puts_improved(before, o)
             before_grade = colored_grade(before)
             grade = colored_grade(o)
-            change = before_grade + " -> ".dark + grade + "  " +
+            change = before_grade + ' -> '.dark + grade + '  ' +
               priority_arrow(o.priority)
             ui.sub(" #{change}  #{o.fullname}")
           end
@@ -79,13 +79,13 @@ module Inch
 
           def rev_hint
             if @options.since_last_commit?
-              "Showing changes since your last commit."
+              'Showing changes since your last commit.'
             elsif @options.since_last_push?
-              "Showing changes since you last pushed."
+              'Showing changes since you last pushed.'
             else
               revisions = @options.revisions
               before_rev = revisions[0]
-              after_rev = revisions[1] || "now"
+              after_rev = revisions[1] || 'now'
               "Showing changes between #{before_rev} and #{after_rev}."
             end
           end

@@ -25,13 +25,13 @@ module Inch
 
           def descriptions
             [
-              "",
-              "Suggests objects and files that can be improved regarding " \
-                "their documentation.",
-              "",
-              "Example: " +
-                "$ inch suggest lib/**/*.rb --pedantic".color(:cyan),
-              "",
+              '',
+              'Suggests objects and files that can be improved regarding ' \
+                'their documentation.',
+              '',
+              'Example: ' +
+                '$ inch suggest lib/**/*.rb --pedantic'.color(:cyan),
+              '',
               description_hint_grades,
               description_hint_arrows
             ]
@@ -40,14 +40,14 @@ module Inch
           protected
 
           def suggest_options(opts)
-            opts.separator ""
-            opts.separator "Suggest options:"
+            opts.separator ''
+            opts.separator 'Suggest options:'
 
-            opts.on("-n", "--objects [COUNT]", "Show COUNT objects") do |count|
+            opts.on('-n', '--objects [COUNT]', 'Show COUNT objects') do |count|
               @object_count = count.to_i
             end
-            opts.on("--pedantic",
-                    "Be excessively concerned with minor details and rules") do
+            opts.on('--pedantic',
+                    'Be excessively concerned with minor details and rules') do
               # all objects are considered a priority
               @object_min_priority = -99
               # only objects with the highest score are omitted from the list

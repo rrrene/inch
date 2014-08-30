@@ -1,18 +1,18 @@
-require File.expand_path(File.dirname(__FILE__) + "/../../test_helper")
+require File.expand_path(File.dirname(__FILE__) + '/../../test_helper')
 
 describe ::Inch::API::Suggest do
   before do
     @codebase = test_codebase(:ruby, :simple)
   end
 
-  it "should work" do
+  it 'should work' do
     @options = {}
     @context = ::Inch::API::Suggest.new @codebase, @options
     refute @context.objects.empty?
     refute @context.grade_lists.empty?
   end
 
-  it "should work with option: object_count" do
+  it 'should work with option: object_count' do
     @options = { object_count: 10 }
     @context = ::Inch::API::Suggest.new @codebase, @options
 

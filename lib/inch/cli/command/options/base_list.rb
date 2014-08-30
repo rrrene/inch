@@ -18,7 +18,7 @@ module Inch
             opts.banner = usage
 
             descriptions.each do |text|
-              opts.separator "  " + text
+              opts.separator '  ' + text
             end
 
             set_options(opts)
@@ -42,43 +42,43 @@ module Inch
           # @param opts [OptionParser]
           # @return [void]
           def list_options(opts)
-            opts.separator ""
-            opts.separator "List options:"
+            opts.separator ''
+            opts.separator 'List options:'
 
-            opts.on("--all", "Show all objects in the output") do
+            opts.on('--all', 'Show all objects in the output') do
               @show_all = true
             end
 
-            opts.on("--only-namespaces",
-                    "Only show namespaces (classes, modules)") do
+            opts.on('--only-namespaces',
+                    'Only show namespaces (classes, modules)') do
               @namespaces = :only
             end
-            opts.on("--no-namespaces",
-                    "Only show namespace children (methods, constants, " \
-                    "attributes)") do
+            opts.on('--no-namespaces',
+                    'Only show namespace children (methods, constants, ' \
+                    'attributes)') do
               @namespaces = :none
             end
 
-            opts.on("--no-public", "Do not show public objects") do
+            opts.on('--no-public', 'Do not show public objects') do
               set_visibility :public, false
             end
-            opts.on("--no-protected", "Do not show protected objects") do
+            opts.on('--no-protected', 'Do not show protected objects') do
               set_visibility :protected, false
             end
-            opts.on("--private", "Show private objects") do
+            opts.on('--private', 'Show private objects') do
               set_visibility :private, true
             end
 
-            opts.on("--only-undocumented", "Only show undocumented objects") do
+            opts.on('--only-undocumented', 'Only show undocumented objects') do
               @undocumented = :only
             end
-            opts.on("--no-undocumented", "Only show documented objects") do
+            opts.on('--no-undocumented', 'Only show documented objects') do
               @undocumented = :none
             end
 
-            opts.on("--depth [DEPTH]",
-                    "Only show objects up to a given DEPTH " \
-                    "in the class tree") do |depth|
+            opts.on('--depth [DEPTH]',
+                    'Only show objects up to a given DEPTH ' \
+                    'in the class tree') do |depth|
               @depth = depth.to_i
             end
           end

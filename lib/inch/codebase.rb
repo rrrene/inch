@@ -14,8 +14,8 @@ module Inch
   end
 end
 
-require "inch/codebase/proxy"
-require "inch/codebase/object"
-require "inch/codebase/objects"
-require "inch/codebase/objects_filter"
-require "inch/codebase/serializer"
+require 'inch/codebase/proxy'
+require 'inch/codebase/object'
+require 'inch/codebase/objects'
+require 'inch/codebase/objects_filter'
+require 'inch/codebase/serializer'

@@ -1,7 +1,7 @@
-require File.expand_path(File.dirname(__FILE__) + "/../../test_helper")
+require File.expand_path(File.dirname(__FILE__) + '/../../test_helper')
 
 describe ::Inch::Config::Codebase do
-  it "should parse .inch.yml" do
+  it 'should parse .inch.yml' do
     dir = fixture_path(:ruby, :simple)
     config = Inch::Config::Codebase.new
     config.update_via_yaml(dir)
@@ -9,7 +9,7 @@ describe ::Inch::Config::Codebase do
     assert config.excluded_files.empty?
   end
 
-  it "should parse .inch.yml if present" do
+  it 'should parse .inch.yml if present' do
     dir = fixture_path(:ruby, :"inch-yml")
     config = Inch::Config::Codebase.new
     config.update_via_yaml(dir)

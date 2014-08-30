@@ -10,7 +10,7 @@ module Inch
             opts.banner = usage
 
             descriptions.each do |text|
-              opts.separator "  " + text
+              opts.separator '  ' + text
             end
 
             set_options(opts)

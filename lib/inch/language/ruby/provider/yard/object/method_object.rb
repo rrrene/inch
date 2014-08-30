@@ -1,4 +1,4 @@
-require "inch/language/ruby/provider/yard/object/method_signature"
+require 'inch/language/ruby/provider/yard/object/method_signature'
 
 module Inch
   module Language
@@ -121,7 +121,7 @@ module Inch
 
               # @return [MethodObject,nil]
               def corresponding_getter
-                clean_name = name.to_s.gsub(/(\=)$/, "")
+                clean_name = name.to_s.gsub(/(\=)$/, '')
                 parent.child(clean_name.to_sym)
               end
 

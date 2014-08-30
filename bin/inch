@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
 # hit Control + C to stop
-Signal.trap("INT") do
-  warn "  cancelled by user (INT)"
+Signal.trap('INT') do
+  warn '  cancelled by user (INT)'
   exit 1
 end
 
@@ -12,12 +12,12 @@ def find_lib_path
   while File.symlink?(path)
     path = File.expand_path(File.readlink(path), File.dirname(path))
   end
-  File.join(File.dirname(File.expand_path(path)), "..", "lib")
+  File.join(File.dirname(File.expand_path(path)), '..', 'lib')
 end
 
 $LOAD_PATH.unshift(find_lib_path)
 
-require "inch"
-require "inch/cli"
+require 'inch'
+require 'inch/cli'
 
 Inch::CLI::CommandParser.run(*ARGV)

@@ -1,2 +1,2 @@
-require "inch"
-require "inch/rake/suggest"
+require 'inch'
+require 'inch/rake/suggest'

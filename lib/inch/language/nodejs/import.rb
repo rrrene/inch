@@ -5,4 +5,4 @@ module Inch
   end
 end
 
-require "inch/language/nodejs/provider/jsdoc"
+require 'inch/language/nodejs/provider/jsdoc'

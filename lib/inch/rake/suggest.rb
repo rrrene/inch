@@ -1,8 +1,8 @@
 # encoding: utf-8
 
-require "rake"
-require "rake/tasklib"
-require "inch/cli"
+require 'rake'
+require 'rake/tasklib'
+require 'inch/cli'
 
 module Inch
   # Holds all Rake tasks
@@ -17,12 +17,12 @@ module Inch
       # @param name [String] name of the Rake task
       # @param *args [Array] arguments to be passed to Suggest.run
       # @param &block [Proc] optional, evaluated inside the task definition
-      def initialize(name = "inch", *args, &block)
+      def initialize(name = 'inch', *args, &block)
         @name = name
         @args = args
         block.call(self) if block
 
-        desc "Suggest objects to add documention to"
+        desc 'Suggest objects to add documention to'
         task(@name) { suggest }
       end
 

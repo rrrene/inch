@@ -1,4 +1,4 @@
-require "inch/code_object/converter"
+require 'inch/code_object/converter'
 
 module Inch
   module Codebase

@@ -23,14 +23,14 @@ module Inch
   end
 end
 
-require "inch/api/options/base"
-require "inch/api/options/filter"
-require "inch/api/options/suggest"
+require 'inch/api/options/base'
+require 'inch/api/options/filter'
+require 'inch/api/options/suggest'
 
-require "inch/api/compare"
-require "inch/api/filter"
-require "inch/api/get"
-require "inch/api/list"
-require "inch/api/suggest"
-require "inch/api/stats"
-require "inch/api/diff"
+require 'inch/api/compare'
+require 'inch/api/filter'
+require 'inch/api/get'
+require 'inch/api/list'
+require 'inch/api/suggest'
+require 'inch/api/stats'
+require 'inch/api/diff'

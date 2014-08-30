@@ -1,16 +1,16 @@
-require File.expand_path(File.dirname(__FILE__) + "/../../../../test_helper")
+require File.expand_path(File.dirname(__FILE__) + '/../../../../test_helper')
 
 describe ::Inch::Language::Ruby::Provider::YARD do
   let(:described_class) { ::Inch::Language::Ruby::Provider::YARD }
   let(:config) { ::Inch::Config.codebase }
 
-  it "should parse" do
+  it 'should parse' do
     provider = described_class.parse(fixture_path(:ruby, :simple), config)
     assert !provider.objects.empty?
   end
 
-  it "should parse too different codebases" do
-    fullname = "Foo#b"
+  it 'should parse too different codebases' do
+    fullname = 'Foo#b'
 
     provider1 = described_class.parse(fixture_path(:ruby, :diff1), config)
     object1 = provider1.objects.find { |o| o.fullname == fullname }

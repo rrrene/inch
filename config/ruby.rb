@@ -3,7 +3,7 @@
 Inch::Config.register(:ruby) do
   codebase do
     object_provider :YARD
-    include_files   ["lib/**/*.rb", "app/**/*.rb"]
+    include_files   ['lib/**/*.rb', 'app/**/*.rb']
     exclude_files   []
   end
 

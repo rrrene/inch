@@ -56,7 +56,7 @@ module Inch
       # argument.
       # @return [Command::Base]
       def run(*args)
-        if ["--help", "-h"].include?(args.join)
+        if ['--help', '-h'].include?(args.join)
           list_commands
         else
           run_command(*args)
@@ -70,12 +70,12 @@ module Inch
       end
 
       def list_commands
-        ui.trace "Usage: inch <command> [options]"
+        ui.trace 'Usage: inch <command> [options]'
         ui.trace
-        ui.trace "Commands:"
+        ui.trace 'Commands:'
         commands.keys.sort_by { |k| k.to_s }.each do |command_name|
           command = commands[command_name].new
-          ui.trace format("  %-8s %s", command_name, command.description)
+          ui.trace format('  %-8s %s', command_name, command.description)
         end
       end
 

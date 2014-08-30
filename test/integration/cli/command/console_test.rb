@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + "/../../../test_helper")
+require File.expand_path(File.dirname(__FILE__) + '/../../../test_helper')
 
 class Inch::CLI::Command::Output::Console
   def run_pry
@@ -12,16 +12,16 @@ describe ::Inch::CLI::Command::Console do
     @command = ::Inch::CLI::Command::Console
   end
 
-  it "should output info when run with --help" do
+  it 'should output info when run with --help' do
     out, err = capture_io do
-      assert_raises(SystemExit) { @command.run("--help") }
+      assert_raises(SystemExit) { @command.run('--help') }
     end
-    refute out.empty?, "there should be some output"
+    refute out.empty?, 'there should be some output'
     assert_match(/\bUsage\b.+console/, out)
-    assert err.empty?, "there should be no errors"
+    assert err.empty?, 'there should be no errors'
   end
 
-  it "should run without args" do
+  it 'should run without args' do
     _out, _err = capture_io do
       @prompt = @command.new.run
     end
@@ -33,21 +33,21 @@ describe ::Inch::CLI::Command::Console do
     assert @prompt.objects.empty?
   end
 
-  it "should run with a definitive object name" do
+  it 'should run with a definitive object name' do
     _out, _err = capture_io do
-      @prompt = @command.new.run("Foo::Bar#method_with_full_doc")
+      @prompt = @command.new.run('Foo::Bar#method_with_full_doc')
     end
     assert !@prompt.all.empty?
-    assert !@prompt.ff("Foo::Bar#").empty?
-    assert !@prompt.f("Foo::Bar").nil?
+    assert !@prompt.ff('Foo::Bar#').empty?
+    assert !@prompt.f('Foo::Bar').nil?
     assert !@prompt.o.nil?
     refute @prompt.o.nil?
     assert_equal 1, @prompt.objects.size
   end
 
-  it "should run with a partial name" do
+  it 'should run with a partial name' do
     _out, _err = capture_io do
-      @prompt = @command.new.run("Foo::Bar#")
+      @prompt = @command.new.run('Foo::Bar#')
     end
     assert @prompt.respond_to?(:all)
     assert @prompt.respond_to?(:ff)

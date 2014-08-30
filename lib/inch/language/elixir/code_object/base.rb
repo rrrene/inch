@@ -1,4 +1,4 @@
-require "forwardable"
+require 'forwardable'
 
 module Inch
   module Language
@@ -176,7 +176,7 @@ module Inch
           end
 
           def type
-            self.class.to_s.gsub(/Object$/, "")
+            self.class.to_s.gsub(/Object$/, '')
           end
 
           # @return [Boolean] +true+ if the object has no documentation at all

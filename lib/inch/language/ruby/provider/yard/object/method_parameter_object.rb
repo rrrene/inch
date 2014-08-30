@@ -73,7 +73,7 @@ module Inch
                 if @method.docstring.describes_parameter?(name)
                   true
                 else
-                  unsplatted = name.gsub(/^[\&\*]/, "")
+                  unsplatted = name.gsub(/^[\&\*]/, '')
                   @method.docstring.describes_parameter?(unsplatted)
                 end
               end
@@ -82,7 +82,7 @@ module Inch
                 if @method.docstring.mentions_parameter?(name)
                   true
                 else
-                  unsplatted = name.gsub(/^[\&\*]/, "")
+                  unsplatted = name.gsub(/^[\&\*]/, '')
                   @method.docstring.mentions_parameter?(unsplatted)
                 end
               end

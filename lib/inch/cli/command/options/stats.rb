@@ -9,8 +9,8 @@ module Inch
 
           def list_options(opts)
             super
-            opts.on("-f", "--format [FORMAT]", FORMATS,
-                    "Set output FORMAT") do |format|
+            opts.on('-f', '--format [FORMAT]', FORMATS,
+                    'Set output FORMAT') do |format|
               @format = format
             end
           end

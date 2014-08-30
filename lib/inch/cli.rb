@@ -11,7 +11,7 @@ module Inch
       # @return [Fixnum]
       def get_term_columns(default = 80)
         str = `stty size`
-        rows_cols = str.split(" ").map(&:to_i)
+        rows_cols = str.split(' ').map(&:to_i)
         rows_cols[1] || default
       rescue
         default
@@ -21,9 +21,9 @@ module Inch
   end
 end
 
-require "inch/cli/arguments"
-require "inch/cli/sparkline_helper"
-require "inch/cli/trace_helper"
-require "inch/cli/yardopts_helper"
+require 'inch/cli/arguments'
+require 'inch/cli/sparkline_helper'
+require 'inch/cli/trace_helper'
+require 'inch/cli/yardopts_helper'
 
-require "inch/cli/command"
+require 'inch/cli/command'

@@ -1,5 +1,5 @@
-require "inch/cli/command/options/stats"
-require "inch/cli/command/output/stats"
+require 'inch/cli/command/options/stats'
+require 'inch/cli/command/output/stats'
 
 module Inch
   module CLI
@@ -8,11 +8,11 @@ module Inch
         register_command_as :stats
 
         def description
-          "Show statistics"
+          'Show statistics'
         end
 
         def usage
-          "Usage: inch stats [paths] [options]"
+          'Usage: inch stats [paths] [options]'
         end
 
         def run(*args)

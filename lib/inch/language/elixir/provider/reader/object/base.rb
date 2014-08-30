@@ -1,4 +1,4 @@
-require "inch/language/elixir/provider/reader/docstring"
+require 'inch/language/elixir/provider/reader/docstring'
 
 module Inch
   module Language
@@ -14,7 +14,7 @@ module Inch
               end
 
               def name
-                @hash["name"]
+                @hash['name']
               end
 
               def fullname
@@ -71,7 +71,7 @@ module Inch
               end
 
               def depth
-                fullname.split(".").size
+                fullname.split('.').size
               end
 
               # @return [Docstring]
@@ -108,7 +108,7 @@ module Inch
               end
 
               def nodoc?
-                @hash["doc"] == false
+                @hash['doc'] == false
               end
 
               def namespace?
@@ -116,7 +116,7 @@ module Inch
               end
 
               def original_docstring
-                @hash["doc"]
+                @hash['doc']
               end
 
               def overridden?
@@ -184,7 +184,7 @@ module Inch
               end
 
               def undocumented?
-                @hash["doc"].nil?
+                @hash['doc'].nil?
               end
 
               def visibility

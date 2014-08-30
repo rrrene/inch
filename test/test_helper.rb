@@ -1,12 +1,12 @@
-require "simplecov"
+require 'simplecov'
 
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
-require "minitest/autorun"
-require "bundler"
+require 'minitest/autorun'
+require 'bundler'
 Bundler.require
-require "inch"
-require "inch/cli"
+require 'inch'
+require 'inch/cli'
 
 def assert_roles(object, expected, unexpected)
   roles = object.roles.map(&:class)
@@ -29,7 +29,7 @@ def find_roles(object, role_class, object_name = nil)
 end
 
 def fixture_path(language, name)
-  File.join(File.dirname(__FILE__), "fixtures", language.to_s, name.to_s)
+  File.join(File.dirname(__FILE__), 'fixtures', language.to_s, name.to_s)
 end
 
 module Inch

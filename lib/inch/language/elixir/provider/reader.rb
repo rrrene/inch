@@ -1,4 +1,4 @@
-require "json"
+require 'json'
 
 module Inch
   module Language
@@ -16,4 +16,4 @@ module Inch
   end
 end
 
-require "inch/language/elixir/provider/reader/parser"
+require 'inch/language/elixir/provider/reader/parser'

@@ -69,7 +69,7 @@ module Inch
         #
         # @return [String]
         def description
-          ""
+          ''
         end
 
         # Returns the name of the command by which it is referenced
@@ -101,7 +101,7 @@ module Inch
         protected
 
         def initialize_cli_options
-          name = self.class.to_s.split("::").last
+          name = self.class.to_s.split('::').last
           options_class = Command::Options.const_get(name)
           @options = options_class.new
           @options.usage = usage

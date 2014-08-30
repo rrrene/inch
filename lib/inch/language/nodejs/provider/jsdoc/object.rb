@@ -32,7 +32,7 @@ module Inch
               # @param jsdoc_object [Hash]
               # @return [Class]
               def class_for(jsdoc_object)
-                class_name = jsdoc_object.class.to_s.split("::").last
+                class_name = jsdoc_object.class.to_s.split('::').last
                 const_get(class_name)
               rescue NameError
                 Base
@@ -43,10 +43,10 @@ module Inch
               # @param jsdoc_object [Hash]
               # @return [String]
               def cache_key(jsdoc_object)
-                return if jsdoc_object["meta"].nil?
-                "#{jsdoc_object["meta"]["path"]}/" \
-                  "#{jsdoc_object["meta"]["path"]}:" \
-                  "#{jsdoc_object["meta"]["lineno"]}"
+                return if jsdoc_object['meta'].nil?
+                "#{jsdoc_object['meta']['path']}/" \
+                  "#{jsdoc_object['meta']['path']}:" \
+                  "#{jsdoc_object['meta']['lineno']}"
               end
             end
           end

@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + "/../../test_helper")
+require File.expand_path(File.dirname(__FILE__) + '/../../test_helper')
 
 class MockPrivateRole < ::Inch::Evaluation::Role
   applicable_if :private?
@@ -39,31 +39,31 @@ class MockPublicObject
 end
 
 describe ::Inch::Evaluation::Role do
-  describe ".applicable" do
+  describe '.applicable' do
     let(:private_object) { MockPrivateObject.new }
     let(:public_object) { MockPublicObject.new }
 
-    describe ".applicable_if" do
-      it "should work with a symbol" do
+    describe '.applicable_if' do
+      it 'should work with a symbol' do
         assert MockPrivateRole.applicable?(private_object)
         assert !MockPrivateRole.applicable?(public_object)
       end
 
-      it "should work with a block" do
+      it 'should work with a block' do
         assert MockPublicRole.applicable?(public_object)
         assert MockNotPrivateRole.applicable?(public_object)
         assert !MockPublicRole.applicable?(private_object)
       end
     end
 
-    describe ".applicable_unless" do
-      it "should work with a block" do
+    describe '.applicable_unless' do
+      it 'should work with a block' do
         assert MockNotPrivateRole.applicable?(public_object)
         assert !MockNotPrivateRole.applicable?(private_object)
       end
     end
 
-    it "should work by implementing a class method" do
+    it 'should work by implementing a class method' do
       assert MockIndifferentRole.applicable?(private_object)
       assert MockIndifferentRole.applicable?(public_object)
     end

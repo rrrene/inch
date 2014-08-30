@@ -10,18 +10,18 @@ module Inch
       end
 
       def debug(msg)
-        return unless ENV["DEBUG"]
+        return unless ENV['DEBUG']
         msg.to_s.lines.each do |line|
-          trace edged :dark, line.gsub(/\n$/, "").dark
+          trace edged :dark, line.gsub(/\n$/, '').dark
         end
       end
 
-      def sub(msg = "")
+      def sub(msg = '')
         color = @current_header_color || :white
         trace __edged(color, msg)
       end
 
-      def edged(color, msg, edge = "┃ ")
+      def edged(color, msg, edge = '┃ ')
         trace __edged(color, msg, edge)
       end
 
@@ -29,7 +29,7 @@ module Inch
       #
       # @param text [String]
       # @return [void]
-      def trace(text = "")
+      def trace(text = '')
         @current_header_color = nil if text.to_s.empty?
         out.puts text
       end
@@ -38,7 +38,7 @@ module Inch
       #
       # @param text [String]
       # @return [void]
-      def warn(text = "")
+      def warn(text = '')
         err.puts text
       end
 
@@ -55,7 +55,7 @@ module Inch
 
       private
 
-      def __edged(color, msg, edge = "┃ ")
+      def __edged(color, msg, edge = '┃ ')
         edge.color(color) + msg
       end
 
@@ -63,7 +63,7 @@ module Inch
         bg_color ||= "intense_#{color}"
         bar = " #{text}".ljust(CLI::COLUMNS - 1)
                 .on_color(bg_color).color(:color16)
-        "#".color(color).on_color(color) + bar
+        '#'.color(color).on_color(color) + bar
       end
     end
   end

@@ -5,11 +5,11 @@ module Inch
         class Inspect < BaseObject
           def descriptions
             [
-              "",
-              "Example: " +
-                "$ inch inspect lib/**/*.rb Foo::Bar#initialize".color(:cyan),
-              "",
-              "Shows one or more objects in detail."
+              '',
+              'Example: ' +
+                '$ inch inspect lib/**/*.rb Foo::Bar#initialize'.color(:cyan),
+              '',
+              'Shows one or more objects in detail.'
             ]
           end
 

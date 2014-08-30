@@ -1,5 +1,5 @@
-require "json"
-require "inch/language/elixir/provider/reader/object"
+require 'json'
+require 'inch/language/elixir/provider/reader/object'
 
 module Inch
   module Language
@@ -55,11 +55,11 @@ module Inch
 
             def parse_objects(paths, excluded, read_dump_file = nil)
               if read_dump_file.nil?
-                fail "Elixir analysis only works with --read-from-dump."
+                fail 'Elixir analysis only works with --read-from-dump.'
               else
                 output = File.read(read_dump_file)
               end
-              @parsed_objects = JSON[output]["objects"]
+              @parsed_objects = JSON[output]['objects']
             end
           end
         end

@@ -1,5 +1,5 @@
-require "json"
-require "yaml"
+require 'json'
+require 'yaml'
 
 module Inch
   module CLI
@@ -31,25 +31,25 @@ module Inch
             print_grades_by_priority
             print_priorities
             ui.trace
-            ui.trace "Try `--format json|yaml` for raw numbers.".dark
+            ui.trace 'Try `--format json|yaml` for raw numbers.'.dark
           end
 
           def print_grades
-            sparkline = grade_lists_sparkline(@grade_lists).to_s(" ")
+            sparkline = grade_lists_sparkline(@grade_lists).to_s(' ')
             ui.trace
-            ui.trace "Grade distribution: (undocumented, C, B, A)"
+            ui.trace 'Grade distribution: (undocumented, C, B, A)'
             ui.trace
             ui.trace "  Overall:  #{sparkline}  #{objects.size.to_s.rjust(5)} " \
-              "objects"
+              'objects'
             ui.trace
           end
 
           def print_grades_by_priority
-            ui.trace "Grade distribution by priority:"
+            ui.trace 'Grade distribution by priority:'
             ui.trace
             Evaluation::PriorityRange.all.each do |priority_range|
               list = objects.select { |o| priority_range.include?(o.priority) }
-              sparkline = grades_sparkline(list).to_s(" ")
+              sparkline = grades_sparkline(list).to_s(' ')
               ui.trace "        #{priority_range.arrow}   #{sparkline}  " \
                     "#{list.size.to_s.rjust(5)} objects"
               ui.trace
@@ -68,16 +68,16 @@ module Inch
             sparkline.format do |tick, _count, index|
               tick.color(PRIORITY_COLORS[index])
             end
-            ui.trace "  #{grade_list.grade}:  " + sparkline.to_s(" ") +
+            ui.trace "  #{grade_list.grade}:  " + sparkline.to_s(' ') +
                   " #{grade_list.objects.size.to_s.rjust(5)} objects"
             ui.trace
           end
 
           def print_priorities
             arrows = Evaluation::PriorityRange.all.map(&:arrow)
-            ui.trace "Priority distribution in grades: (low to high)"
+            ui.trace 'Priority distribution in grades: (low to high)'
             ui.trace
-            ui.trace "      #{arrows.reverse.join("      ")}"
+            ui.trace "      #{arrows.reverse.join('      ')}"
             @grade_lists.reverse.each do |grade_list|
               print_grade_list(grade_list)
             end
@@ -93,9 +93,9 @@ module Inch
 
           def stats_hash
             {
-              "grade_lists" => __grade_lists,
-              "scores" => __scores,
-              "priorities" => __priorities
+              'grade_lists' => __grade_lists,
+              'scores' => __scores,
+              'priorities' => __priorities
             }
           end
 

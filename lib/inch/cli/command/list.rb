@@ -1,5 +1,5 @@
-require "inch/cli/command/options/list"
-require "inch/cli/command/output/list"
+require 'inch/cli/command/options/list'
+require 'inch/cli/command/output/list'
 
 module Inch
   module CLI
@@ -8,11 +8,11 @@ module Inch
         register_command_as :list
 
         def description
-          "Lists all objects with their results"
+          'Lists all objects with their results'
         end
 
         def usage
-          "Usage: inch list [paths] [options]"
+          'Usage: inch list [paths] [options]'
         end
 
         # Runs the commandline utility, parsing arguments and displaying a

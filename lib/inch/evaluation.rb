@@ -9,19 +9,19 @@ module Inch
     private
 
     def self.class_for(language, code_object)
-      class_name = code_object.class.to_s.split("::").last
+      class_name = code_object.class.to_s.split('::').last
       language_namespace = Evaluation::Ruby
       language_namespace.const_get(class_name)
     end
   end
 end
 
-require "inch/utils/read_write_methods"
+require 'inch/utils/read_write_methods'
 
-require "inch/evaluation/file"
-require "inch/evaluation/grade"
-require "inch/evaluation/grade_list"
-require "inch/evaluation/priority_range"
+require 'inch/evaluation/file'
+require 'inch/evaluation/grade'
+require 'inch/evaluation/grade_list'
+require 'inch/evaluation/priority_range'
 
-require "inch/evaluation/proxy"
-require "inch/evaluation/role"
+require 'inch/evaluation/proxy'
+require 'inch/evaluation/role'
