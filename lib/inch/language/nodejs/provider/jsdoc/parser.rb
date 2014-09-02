@@ -46,11 +46,11 @@ module Inch
 
             def parse_objects(paths, excluded, read_dump_file = nil)
               if read_dump_file.nil?
-                output = `jsdoc --explain #{paths.join(' ')}`
+                fail 'NodeJS analysis only works with --read-from-dump.'
               else
                 output = File.read(read_dump_file)
               end
-              @parsed_objects = JSON[output]
+              @parsed_objects = JSON[output]['objects']
             end
           end
         end
