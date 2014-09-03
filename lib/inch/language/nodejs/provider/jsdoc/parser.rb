@@ -8,6 +8,8 @@ module Inch
         module JSDoc
           # Parses the source tree (using JSDoc)
           class Parser
+            IGNORE_TYPES = %w(package)
+
             attr_reader :parsed_objects
 
             # Helper method to parse an instance with the given +args+
@@ -33,13 +35,9 @@ module Inch
 
             # @return [Array<YARD::Object::Base>]
             def objects
-              pp @parsed_objects[10]
               @objects ||= parsed_objects.map do |o|
-                JSDoc::Object.for(o) # unless IGNORE_TYPES.include?(o.type)
+                JSDoc::Object.for(o) unless IGNORE_TYPES.include?(o['kind'])
               end.compact
-              puts "#{@objects.size} objects found."
-              puts 'Rest of implementation: coming soon -.-'
-              exit 1
             end
 
             private

@@ -1,3 +1,6 @@
+require 'inch/language/nodejs/provider/jsdoc/docstring'
+require 'inch/utils/code_location'
+
 module Inch
   module Language
     module Nodejs
@@ -6,181 +9,214 @@ module Inch
           module Object
             # @abstract
             class Base
+              # @return [String] the codebase's directory
+              attr_accessor :base_dir
+
               # @param hash [Hash] hash returned via JSON interface
               def initialize(hash)
                 @hash = hash
               end
 
               def name
-                fail NotImplementedError
+                @hash['name']
               end
 
               def fullname
-                fail NotImplementedError
+                #fail NotImplementedError
+                base = "#{@hash['longname']}"
+                if meta?
+                  base << "@#{meta['path']}/" \
+                          "#{meta['filename']}:" \
+                          "#{meta['lineno']}"
+                end
+                base
               end
 
+              # Returns all files declaring the object in the form of an Array
+              # of Arrays containing the location of their declaration.
+              #
+              # @return [Array<CodeLocation>]
               def files
-                fail NotImplementedError
+                return [] unless meta?
+                [
+                  Inch::Utils::CodeLocation.new('', meta['filename'], meta['lineno'])
+                ]
               end
 
               def filename
-                fail NotImplementedError
+                files.first.filename unless files.empty?
               end
 
+              attr_writer :children_fullnames
               def children_fullnames
-                fail NotImplementedError
+                @children_fullnames ||= []
               end
 
               def parent_fullname
-                fail NotImplementedError
+                if depth == 1
+                  nil
+                else
+                  fullname.split('.')[0...-1].join('.')
+                end
               end
 
               def api_tag?
-                fail NotImplementedError
+                nil
               end
 
               def aliased_object_fullname
-                fail NotImplementedError
+                nil
               end
 
               def aliases_fullnames
-                fail NotImplementedError
+                nil
               end
 
               def attributes
-                fail NotImplementedError
+                []
               end
 
               def bang_name?
-                fail NotImplementedError
+                false
               end
 
               def constant?
-                fail NotImplementedError
+                false # raise NotImplementedError
               end
 
               def constructor?
-                fail NotImplementedError
+                false
               end
 
               def depth
-                fail NotImplementedError
+                fullname.split('.').size
               end
 
+              # @return [Docstring]
               def docstring
-                fail NotImplementedError
+                @docstring ||= Docstring.new(@hash['doc'])
               end
 
               def getter?
-                fail NotImplementedError
+                name =~ /^get_/ # raise NotImplementedError
               end
 
               def has_children?
-                fail NotImplementedError
+                !children_fullnames.empty?
               end
 
               def has_code_example?
-                fail NotImplementedError
+                false # raise NotImplementedError
               end
 
               def has_doc?
-                fail NotImplementedError
+                !undocumented?
               end
 
               def has_multiple_code_examples?
-                fail NotImplementedError
+                false # raise NotImplementedError
               end
 
               def has_unconsidered_tags?
-                fail NotImplementedError
+                false # raise NotImplementedError
               end
 
               def method?
-                fail NotImplementedError
+                false
               end
 
               def nodoc?
-                fail NotImplementedError
+                @hash['doc'] == false
               end
 
               def namespace?
-                fail NotImplementedError
+                false
               end
 
               def original_docstring
-                fail NotImplementedError
+                @hash['doc']
               end
 
               def overridden?
-                fail NotImplementedError
+                false # raise NotImplementedError
               end
 
               def overridden_method_fullname
-                fail NotImplementedError
+                nil # raise NotImplementedError
               end
 
               def parameters
-                fail NotImplementedError
+                [] # raise NotImplementedError
               end
 
               def private?
-                fail NotImplementedError
+                false
               end
 
               def tagged_as_internal_api?
-                fail NotImplementedError
+                false
               end
 
               def tagged_as_private?
-                fail NotImplementedError
+                nodoc?
               end
 
               def protected?
-                fail NotImplementedError
+                false
               end
 
               def public?
-                fail NotImplementedError
+                true
               end
 
               def questioning_name?
-                fail NotImplementedError
+                fullname =~ /\?$/
               end
 
               def return_described?
-                fail NotImplementedError
+                false # raise NotImplementedError
               end
 
               def return_mentioned?
-                fail NotImplementedError
+                false # raise NotImplementedError
               end
 
               def return_typed?
-                fail NotImplementedError
+                false # raise NotImplementedError
               end
 
               def in_root?
-                fail NotImplementedError
+                depth == 1
               end
 
               def setter?
-                fail NotImplementedError
+                name =~ /^set_/ # raise NotImplementedError
               end
 
               def source
-                fail NotImplementedError
+                nil
               end
 
               def unconsidered_tag_count
-                fail NotImplementedError
+                0
               end
 
               def undocumented?
-                fail NotImplementedError
+                @hash['doc'].nil?
               end
 
               def visibility
-                fail NotImplementedError
+                :public
+              end
+
+              protected
+
+              def meta?
+                !meta.nil?
+              end
+
+              def meta
+                @hash['meta']
               end
             end
           end

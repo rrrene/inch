@@ -1,4 +1,5 @@
 require 'forwardable'
+require 'inch/utils/code_location'
 
 module Inch
   module Language
@@ -117,15 +118,6 @@ module Inch
                 # this error is raised by YARD
                 # see broken.rb in test fixtures
                 []
-              end
-
-              # CodeLocation is a utility class to find declarations of objects
-              # in files
-              class CodeLocation < Struct.new(:base_dir, :relative_path,
-                                              :line_no)
-                def filename
-                  File.join(base_dir, relative_path)
-                end
               end
 
               # Returns the name of the file where the object is declared first
