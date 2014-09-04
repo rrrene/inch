@@ -94,7 +94,7 @@ module Inch
 
               # @return [Docstring]
               def docstring
-                @docstring ||= Docstring.new(@hash['doc'])
+                @docstring ||= Docstring.new(@hash['comment'])
               end
 
               def getter?
@@ -126,7 +126,7 @@ module Inch
               end
 
               def nodoc?
-                @hash['doc'] == false
+                @hash['comment'] == false
               end
 
               def namespace?
@@ -134,7 +134,7 @@ module Inch
               end
 
               def original_docstring
-                @hash['doc']
+                @hash['comment']
               end
 
               def overridden?
@@ -202,7 +202,7 @@ module Inch
               end
 
               def undocumented?
-                @hash['doc'].nil?
+                @hash['comment'].to_s.empty?
               end
 
               def visibility

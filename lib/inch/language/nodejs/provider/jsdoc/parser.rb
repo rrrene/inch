@@ -8,7 +8,7 @@ module Inch
         module JSDoc
           # Parses the source tree (using JSDoc)
           class Parser
-            IGNORE_TYPES = %w(package)
+            IGNORE_TYPES = %w(member package)
 
             attr_reader :parsed_objects
 
