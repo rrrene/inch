@@ -112,7 +112,7 @@ module Inch
               # @return [Array<CodeLocation>]
               def files
                 object.files.map do |(filename, line_no)|
-                  CodeLocation.new(base_dir, filename, line_no)
+                  Inch::Utils::CodeLocation.new(base_dir, filename, line_no)
                 end
               rescue ::YARD::CodeObjects::ProxyMethodError
                 # this error is raised by YARD
