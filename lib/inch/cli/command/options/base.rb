@@ -130,7 +130,7 @@ module Inch
               exit
             end
             opts.on_tail('-l', '--language [LANGUAGE]',
-                         'Set language (ruby|nodejs).') do |language|
+                         'Set language (elixir|nodejs|ruby).') do |language|
               @language = language
             end
             opts.on_tail('-r', '--read-from-dump [FILE]',

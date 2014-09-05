@@ -25,7 +25,7 @@ module Inch
                 #fail NotImplementedError
                 base = "#{@hash['longname']}"
                 if meta?
-                  base << "@#{meta['path']}/" \
+                  base << " @ #{meta['path']}/" \
                           "#{meta['filename']}:" \
                           "#{meta['lineno']}"
                 end
@@ -38,8 +38,9 @@ module Inch
               # @return [Array<CodeLocation>]
               def files
                 return [] unless meta?
+                filename = meta['path'] + '/' + meta['filename']
                 [
-                  Inch::Utils::CodeLocation.new('', meta['filename'], meta['lineno'])
+                  Inch::Utils::CodeLocation.new('', filename, meta['lineno'])
                 ]
               end
 
