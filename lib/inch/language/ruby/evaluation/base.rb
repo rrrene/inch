@@ -28,7 +28,13 @@ module Inch
               Role::Object::TaggedAsPrivate => nil,
               Role::Object::Alias =>
                 if object.alias?
-                  object.aliased_object.score
+                  aliased_object = object.aliased_object
+                  if aliased_object.alias? && aliased_object.aliased_object.alias?
+                    # warn "Possible alias cycle: #{object.fullname} -> #{aliased_object.fullname}"
+                    nil
+                  else
+                    aliased_object.score
+                  end
                 else
                   nil
                 end
