@@ -19,7 +19,7 @@ module Inch
               end
 
               def all_signature_parameter_names
-                relevant_object.parameters.map(&:first)
+                (relevant_object.parameters || []).map(&:first)
               end
 
               def has_code_example?
