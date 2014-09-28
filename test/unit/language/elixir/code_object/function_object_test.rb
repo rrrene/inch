@@ -10,7 +10,7 @@ describe ::Inch::Language::Elixir::CodeObject::FunctionObject do
     #
     it 'should not' do
       m = @objects.find('InchEx.generate_docs/3')
-      assert m.score > 50
+      assert m.score >= 50
     end
   end
 
@@ -31,5 +31,17 @@ describe ::Inch::Language::Elixir::CodeObject::FunctionObject do
     assert_equal 3, m.depth
     m = @objects.find('InchEx.Docs.Formatter.run/2')
     assert_equal 4, m.depth
+  end
+
+  it "should parse parameters correctly" do
+    m = @objects.find("Mix.Tasks.Inch.run/4")
+    #assert_equal 4, m.parameters.size
+  end
+
+  # TODO: move to own test file
+  it "should parse parameters correctly 1" do
+    klass = ::Inch::Language::Elixir::Provider::Reader::Object::FunctionObject::FunctionSignature
+    fn = klass.new('run/4', "run(args, config \\\\ Mix.Project.config(), generator \\\\ :erlang.make_fun(InchEx, :generate_docs, 3), reporter \\\\ InchEx.Reporter.Local)")
+    assert_equal %w(args config generator reporter), fn.parameter_names
   end
 end

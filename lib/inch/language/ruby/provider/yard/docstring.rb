@@ -106,6 +106,7 @@ module Inch
               expr = parameter_notations(name)
               [
                 /#{expr}\:\:/,            # param1::
+                /\`#{expr}\`/,            # `param1`
                 /\+#{expr}\+/,            # +param1+
                 /\+#{expr}\+\:\:/,        # +param1+::
                 /<tt>#{expr}<\/tt>/,      # <tt>param1</tt>

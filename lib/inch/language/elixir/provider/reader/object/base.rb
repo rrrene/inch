@@ -128,7 +128,7 @@ module Inch
               end
 
               def parameters
-                [] # raise NotImplementedError
+                []
               end
 
               def private?
@@ -190,6 +190,7 @@ module Inch
               def visibility
                 :public
               end
+
             end
           end
         end
