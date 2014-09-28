@@ -147,7 +147,14 @@ module Inch
               end
 
               def parameters
-                [] # raise NotImplementedError
+                if meta? && meta['code']
+                  names = meta['code']['paramnames'] || []
+                  names.map do |name|
+                    FunctionParameterObject.new(self, name)
+                  end
+                else
+                  []
+                end
               end
 
               def private?
@@ -207,7 +214,7 @@ module Inch
               end
 
               def visibility
-                :public
+                docstring.visibility
               end
 
               protected

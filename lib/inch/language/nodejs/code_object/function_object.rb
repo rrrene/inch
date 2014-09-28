@@ -1,3 +1,5 @@
+require 'inch/language/nodejs/code_object/function_parameter_object'
+
 module Inch
   module Language
     module Nodejs
@@ -31,7 +33,7 @@ module Inch
 
           def parameters
             @parameters ||= self[:parameters].map do |param_attr|
-              MethodParameterObject.new(param_attr)
+              FunctionParameterObject.new(param_attr)
             end
           end
 

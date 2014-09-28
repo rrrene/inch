@@ -59,7 +59,7 @@ module Inch
               @text
             end
 
-            private
+            protected
 
             def first_line
               @first_line ||= @text.lines.to_a.first
@@ -103,23 +103,28 @@ module Inch
             # @param name [String] the name of the method parameter
             # @return [Array<Regexp>]
             def mention_parameter_patterns(name)
-              escaped_name = Regexp.escape(name)
-              type = /<[^>]+>/
+              expr = parameter_notations(name)
               [
-                escaped_name,
-                /#{escaped_name}#{type}/ # matches "param1<String,nil>"
-              ].map do |expr|
-                [
-                  /#{expr}\:\:/,            # param1::
-                  /\+#{expr}\+/,            # +param1+
-                  /\+#{expr}\+\:\:/,        # +param1+::
-                  /<tt>#{expr}<\/tt>/,      # <tt>param1</tt>
-                  /<tt>#{expr}<\/tt>\:\:/,  # <tt>param1</tt>::
-                  /^#{expr}\ \-\ /          # param1 -
-                ]
-              end.flatten
+                /#{expr}\:\:/,            # param1::
+                /\+#{expr}\+/,            # +param1+
+                /\+#{expr}\+\:\:/,        # +param1+::
+                /<tt>#{expr}<\/tt>/,      # <tt>param1</tt>
+                /<tt>#{expr}<\/tt>\:\:/,  # <tt>param1</tt>::
+                /^#{expr}\ \-\ /          # param1 -
+              ]
             end
 
+            # Returns possible notations for +name+.
+            # matches "param1" and "param1<String,nil>"
+            # @return [Regexp]
+            def parameter_notations(name)
+              escaped_name = Regexp.escape(name)
+              type = /<[^>]+>/
+              /(#{escaped_name}|#{escaped_name}#{type})/
+            end
+
+            # Returns regexes to match parameter description on the next
+            # line.
             def describe_parameter_extra_regexps(name)
               [
                 "#{name}::",

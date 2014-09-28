@@ -1,3 +1,5 @@
+require 'inch/language/nodejs/provider/jsdoc/object/function_parameter_object'
+
 module Inch
   module Language
     module Nodejs
