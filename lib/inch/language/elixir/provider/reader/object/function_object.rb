@@ -21,7 +21,7 @@ module Inch
               end
 
               def parameters
-                names = FunctionSignature.new(name, @hash['signature']).parameter_names
+                names = FunctionSignature.new(@hash['signature']).parameter_names
                 names.map do |name|
                   FunctionParameterObject.new(self, name)
                 end
@@ -29,18 +29,28 @@ module Inch
 
               private
 
-              class FunctionSignature < Struct.new(:fun_name, :signature)
+              class FunctionSignature < Struct.new(:signature)
                 def parameter_names
-                  base_name = fun_name.split('/').first
-                  signature.gsub(/^(#{base_name}\()/, '').gsub(/(\))$/, '')
-                    .gsub( /\([^\)]+\)/, '' )
-                    .split(',')
-                    .map do |param|
-                      name = param.split("\\\\").first
-                      name && name.strip
-                    end.compact
+                  names = []
+                  signature.each do |tuple|
+                    if name = name_from_tuple(*tuple)
+                      names << name
+                    end
+                  end
+                  names
+                end
+
+                def name_from_tuple(a, _, b)
+                  if b.nil?
+                    a
+                  else
+                    if a == "\\\\"
+                      b.first.first
+                    end
+                  end
                 end
               end
+
             end
           end
         end

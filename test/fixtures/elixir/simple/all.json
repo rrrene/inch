@@ -1,4 +1,6 @@
 {
+    "args": [],
+    "language": "elixir",
     "objects": [
         {
             "id": "InchEx",
@@ -100,25 +102,62 @@
             "typespecs": []
         },
         {
-            "arity": 3,
+            "arity": 4,
             "doc": false,
-            "id": "generate_docs/3",
+            "id": "generate_docs/4",
             "module_id": "InchEx",
             "name": "generate_docs",
             "object_type": "FunctionObject",
-            "signature": "generate_docs(project, version, options)",
+            "signature": [
+                [
+                    "project",
+                    [],
+                    null
+                ],
+                [
+                    "version",
+                    [],
+                    null
+                ],
+                [
+                    "args",
+                    [],
+                    null
+                ],
+                [
+                    "options",
+                    [],
+                    null
+                ]
+            ],
             "source": null,
             "specs": [],
             "type": "def"
         },
         {
-            "arity": 2,
+            "arity": 3,
             "doc": "Generate JSON documentation for the given modules\n",
-            "id": "run/2",
+            "id": "run/3",
             "module_id": "InchEx.Docs.Formatter",
             "name": "run",
             "object_type": "FunctionObject",
-            "signature": "run(modules, config)",
+            "signature": [
+                [
+                    "modules",
+                    [],
+                    null
+                ],
+                [
+                    "args",
+                    [],
+                    null
+                ],
+                [
+                    "config",
+                    [],
+                    null
+                ]
+            ],
             "source": null,
             "specs": [],
             "type": "def"
@@ -130,7 +169,18 @@
             "module_id": "InchEx.Docs.Retriever",
             "name": "docs_from_dir",
             "object_type": "FunctionObject",
-            "signature": "docs_from_dir(dir, config)",
+            "signature": [
+                [
+                    "dir",
+                    [],
+                    null
+                ],
+                [
+                    "config",
+                    [],
+                    null
+                ]
+            ],
             "source": null,
             "specs": [],
             "type": "def"
@@ -142,7 +192,18 @@
             "module_id": "InchEx.Docs.Retriever",
             "name": "docs_from_files",
             "object_type": "FunctionObject",
-            "signature": "docs_from_files(files, config)",
+            "signature": [
+                [
+                    "files",
+                    [],
+                    null
+                ],
+                [
+                    "config",
+                    [],
+                    null
+                ]
+            ],
             "source": null,
             "specs": [],
             "type": "def"
@@ -154,7 +215,18 @@
             "module_id": "InchEx.Docs.Retriever",
             "name": "docs_from_modules",
             "object_type": "FunctionObject",
-            "signature": "docs_from_modules(modules, config)",
+            "signature": [
+                [
+                    "modules",
+                    [],
+                    null
+                ],
+                [
+                    "config",
+                    [],
+                    null
+                ]
+            ],
             "source": null,
             "specs": [],
             "type": "def"
@@ -166,7 +238,13 @@
             "module_id": "InchEx.Docs.Retriever.Error",
             "name": "exception",
             "object_type": "FunctionObject",
-            "signature": "exception(args)",
+            "signature": [
+                [
+                    "args",
+                    [],
+                    null
+                ]
+            ],
             "source": null,
             "specs": [
                 [
@@ -227,7 +305,13 @@
             "module_id": "InchEx.Docs.Retriever.Error",
             "name": "message",
             "object_type": "FunctionObject",
-            "signature": "message(exception)",
+            "signature": [
+                [
+                    "exception",
+                    [],
+                    null
+                ]
+            ],
             "source": null,
             "specs": [
                 [
@@ -282,13 +366,31 @@
             "type": "def"
         },
         {
-            "arity": 1,
-            "doc": "  Runs inch locally, if installed. If you want to force usage of a particular\n  inch installation, set INCH_PATH environment variable to it.\n\n    export INCH_PATH=/home/rrrene/projects/inch\n",
-            "id": "run/1",
+            "arity": 2,
+            "doc": "  Runs inch locally, if installed. If you want to force usage of a particular\n  inch installation, set INCH_PATH environment variable:\n\n    export INCH_PATH=/home/rrrene/projects/inch\n\n  Otherwise, InchEx will take whatever `inch` command it finds. If it does\n  not find any, it sends the data to the open API at inch-ci.org to perform\n  the analysis and reports the findings back.\n",
+            "id": "run/2",
             "module_id": "InchEx.Reporter.Local",
             "name": "run",
             "object_type": "FunctionObject",
-            "signature": "run(filename)",
+            "signature": [
+                [
+                    "filename",
+                    [],
+                    null
+                ],
+                [
+                    "\\\\",
+                    [],
+                    [
+                        [
+                            "args",
+                            [],
+                            null
+                        ],
+                        []
+                    ]
+                ]
+            ],
             "source": null,
             "specs": [],
             "type": "def"
@@ -300,7 +402,40 @@
             "module_id": "InchEx.Reporter.Remote",
             "name": "run",
             "object_type": "FunctionObject",
-            "signature": "run(filename, config \\\\ Mix.Project.config())",
+            "signature": [
+                [
+                    "filename",
+                    [],
+                    null
+                ],
+                [
+                    "\\\\",
+                    [],
+                    [
+                        [
+                            "config",
+                            [],
+                            null
+                        ],
+                        [
+                            [
+                                ".",
+                                {
+                                    "line": 7
+                                },
+                                [
+                                    "Elixir.Mix.Project",
+                                    "config"
+                                ]
+                            ],
+                            {
+                                "line": 7
+                            },
+                            []
+                        ]
+                    ]
+                ]
+            ],
             "source": null,
             "specs": [],
             "type": "def"
@@ -312,7 +447,81 @@
             "module_id": "Mix.Tasks.Inch",
             "name": "run",
             "object_type": "FunctionObject",
-            "signature": "run(args, config \\\\ Mix.Project.config(), generator \\\\ :erlang.make_fun(InchEx, :generate_docs, 3), reporter \\\\ InchEx.Reporter.Local)",
+            "signature": [
+                [
+                    "args",
+                    [],
+                    null
+                ],
+                [
+                    "\\\\",
+                    [],
+                    [
+                        [
+                            "config",
+                            [],
+                            null
+                        ],
+                        [
+                            [
+                                ".",
+                                {
+                                    "line": 10
+                                },
+                                [
+                                    "Elixir.Mix.Project",
+                                    "config"
+                                ]
+                            ],
+                            {
+                                "line": 10
+                            },
+                            []
+                        ]
+                    ]
+                ],
+                [
+                    "\\\\",
+                    [],
+                    [
+                        [
+                            "generator",
+                            [],
+                            null
+                        ],
+                        [
+                            [
+                                ".",
+                                [],
+                                [
+                                    "erlang",
+                                    "make_fun"
+                                ]
+                            ],
+                            {
+                                "line": 10
+                            },
+                            [
+                                "Elixir.InchEx",
+                                "generate_docs",
+                                4
+                            ]
+                        ]
+                    ]
+                ],
+                [
+                    "\\\\",
+                    [],
+                    [
+                        [
+                            "reporter",
+                            [],
+                            null
+                        ],
+                        "Elixir.InchEx.Reporter.Local"
+                    ]
+                ]
+            ],
             "source": null,
             "specs": [],
             "type": "def"
