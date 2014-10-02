@@ -31,21 +31,20 @@ module Inch
 
               class FunctionSignature < Struct.new(:signature)
                 def parameter_names
-                  names = []
-                  signature.each do |tuple|
-                    if name = name_from_tuple(*tuple)
-                      names << name
-                    end
+                  return [] if signature.nil?
+                  signature.map do |tuple|
+                    name_from_tuple(*tuple)
                   end
-                  names
                 end
 
                 def name_from_tuple(a, _, b)
-                  if b.nil?
+                  if b.nil? || b == 'Elixir'
                     a
                   else
                     if a == "\\\\"
-                      b.first.first
+                      name_from_tuple(*b.first)
+                    else
+                      warn "[WARN] could not parse FunctionSignature: #{[a, _, b].inspect}"
                     end
                   end
                 end
