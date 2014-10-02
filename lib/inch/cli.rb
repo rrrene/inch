@@ -10,9 +10,13 @@ module Inch
       # @param default [Fixnum] default value for columns
       # @return [Fixnum]
       def get_term_columns(default = 80)
-        str = `stty size`
-        rows_cols = str.split(' ').map(&:to_i)
-        rows_cols[1] || default
+        str = `stty size 2>&1`
+        if str =~ /Invalid argument/
+          default
+        else
+          rows_cols = str.split(' ').map(&:to_i)
+          rows_cols[1] || default
+        end
       rescue
         default
       end
