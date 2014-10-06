@@ -1,6 +1,14 @@
 # Changelog
 
-## 0.4.11 (pre)
+## 0.5.0
+
+- Multi-language support was added
+- Basic Elixir capabilities were added
+- TomDoc compatibility was improved
+- stty warning when reading terminal size was fixed
+- Many Rubocop alerts were fixed (thanks @yous)
+
+## 0.4.11
 
 - Add `undefined` to the list of values used to indicate that a return value
   is not intended for further use. The current list is `nil`, `nothing`,
