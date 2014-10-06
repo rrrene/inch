@@ -17,7 +17,7 @@ module Inch
       # @param [Array<String>] args the arguments passed from input. This
       #   array will be modified.
       # @return [void]
-      def parse_yardopts_options(opts, args)
+      def parse_yardopts_options(_opts, args)
         wrapper = YardoptsWrapper.new
 
         dupped_args = args.dup

@@ -53,7 +53,7 @@ module Inch
           end
 
           def unnamed?
-            name == ""
+            name == ''
           end
 
           # @return [Boolean] +true+ if the parameter is mentioned in the docs,

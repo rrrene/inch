@@ -69,7 +69,7 @@ module Inch
           priority_list.empty? ? list : priority_list)
       end
 
-      def all_filenames(objects)
+      def all_filenames(_objects)
         codebase.objects.map do |o|
           o.files.map(&:filename)
         end.flatten

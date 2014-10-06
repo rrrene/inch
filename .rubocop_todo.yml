@@ -24,7 +24,7 @@ Lint/UnderscorePrefixedVariableName:
 # Offense count: 12
 # Cop supports --auto-correct.
 Lint/UnusedMethodArgument:
-  Enabled: false
+  Enabled: true
 
 # Offense count: 1
 Lint/UselessAccessModifier:
@@ -89,7 +89,7 @@ Style/EmptyLinesAroundBody:
 # Offense count: 12
 # Configuration parameters: MinBodyLength.
 Style/GuardClause:
-  Enabled: false
+  Enabled: true
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -146,7 +146,7 @@ Style/SpaceInsideHashLiteralBraces:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 Style/StringLiterals:
-  Enabled: false
+  Enabled: true
 
 # Offense count: 1
 # Cop supports --auto-correct.

@@ -3,7 +3,7 @@ module Inch
     class BufferedUI < UI
       attr_reader :out, :err
 
-      def initialize(stdout = $stdout, stderr = $stderr)
+      def initialize(_stdout = $stdout, _stderr = $stderr)
         @io = StringIO.new
         super(@io, @io)
       end

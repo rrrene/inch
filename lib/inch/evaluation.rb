@@ -8,7 +8,7 @@ module Inch
 
     private
 
-    def self.class_for(language, code_object)
+    def self.class_for(_language, code_object)
       class_name = code_object.class.to_s.split('::').last
       language_namespace = Evaluation::Ruby
       language_namespace.const_get(class_name)

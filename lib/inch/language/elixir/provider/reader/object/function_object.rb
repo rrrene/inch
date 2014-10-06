@@ -41,7 +41,7 @@ module Inch
                   if b.nil? || b == 'Elixir'
                     a
                   else
-                    if a == "\\\\"
+                    if a == '\\\\'
                       name_from_tuple(*b.first)
                     else
                       warn "[WARN] could not parse FunctionSignature: #{[a, _, b].inspect}"
