@@ -42,13 +42,15 @@ module Inch
           end
 
           def relevant_parameter_roles(param, per_param)
+            score_for_mention = per_param
+            score_for_type = 0
             {
               Role::FunctionParameter::WithWrongMention =>
                 -score_for(:parameters),
-              Role::FunctionParameter::WithMention => per_param * 0.5,
-              Role::FunctionParameter::WithoutMention => per_param * 0.5,
-              Role::FunctionParameter::WithType => per_param * 0.5,
-              Role::FunctionParameter::WithoutType => per_param * 0.5,
+              Role::FunctionParameter::WithMention => score_for_mention,
+              Role::FunctionParameter::WithoutMention => score_for_mention,
+              Role::FunctionParameter::WithType => score_for_type,
+              Role::FunctionParameter::WithoutType => score_for_type,
               Role::FunctionParameter::WithBadName => nil,
             }
           end

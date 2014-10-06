@@ -38,6 +38,30 @@ describe ::Inch::Language::Elixir::CodeObject::FunctionObject do
     assert_equal 3, m.parameters.size
   end
 
+  it "should parse parameters correctly" do
+    m = @objects.find("InchTest.Functions.full_doc/2")
+    assert_equal 2, m.parameters.size
+    assert_equal "A", m.grade.to_s
+  end
+
+  it "should parse parameters correctly" do
+    m = @objects.find("InchTest.Functions.full_doc_second_parameter_unnamed/2")
+    assert_equal 2, m.parameters.size
+    assert_equal "", m.parameters.last.name
+    assert m.parameters.last.unnamed?
+    assert_equal "A", m.grade.to_s
+  end
+
+  it "should recognize code examples" do
+    m = @objects.find("InchTest.CodeExamples.single_code_example/0")
+    assert m.has_code_example?
+    refute m.has_multiple_code_examples?
+
+    m = @objects.find("InchTest.CodeExamples.multiple_code_examples/0")
+    assert m.has_code_example?
+    assert m.has_multiple_code_examples?
+  end
+
   # TODO: move to own test file
   it "should parse parameters correctly 1" do
     klass = ::Inch::Language::Elixir::Provider::Reader::Object::FunctionObject::FunctionSignature

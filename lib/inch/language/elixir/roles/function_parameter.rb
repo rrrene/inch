@@ -11,14 +11,19 @@ module Inch
             #
             # @see CodeObject::Ruby::MethodParameterObject#mentioned?
             class WithMention < Base
-              applicable_if :mentioned?
+              applicable_if do |p|
+                # unnamed parameters are mentioned implicitly
+                p.mentioned? || p.unnamed?
+              end
             end
 
             # Role assigned to parameters that are not mentioned in the docs
             #
             # @see CodeObject::Ruby::MethodParameterObject#mentioned?
             class WithoutMention < Missing
-              applicable_unless :mentioned?
+              applicable_if do |p|
+                !p.mentioned? && !p.unnamed?
+              end
 
               def suggestion
                 "Describe the parameter '#{object.name}'"

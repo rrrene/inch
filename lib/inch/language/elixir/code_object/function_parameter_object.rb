@@ -52,6 +52,10 @@ module Inch
             self[:typed?]
           end
 
+          def unnamed?
+            name == ""
+          end
+
           # @return [Boolean] +true+ if the parameter is mentioned in the docs,
           #   but not present in the method's signature
           def wrongly_mentioned?

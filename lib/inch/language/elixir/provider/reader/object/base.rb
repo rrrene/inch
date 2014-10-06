@@ -88,7 +88,7 @@ module Inch
               end
 
               def has_code_example?
-                false # raise NotImplementedError
+                docstring.code_examples.size > 0
               end
 
               def has_doc?
@@ -96,7 +96,7 @@ module Inch
               end
 
               def has_multiple_code_examples?
-                false # raise NotImplementedError
+                docstring.code_examples.size > 1
               end
 
               def has_unconsidered_tags?
