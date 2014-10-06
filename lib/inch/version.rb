@@ -1,3 +1,3 @@
 module Inch
-  VERSION = '0.5.0.rc11'
+  VERSION = '0.5.0'
 end
