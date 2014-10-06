@@ -12,21 +12,21 @@ describe ::Inch::Language::Ruby::Provider::YARD::Docstring do
 Internal: Detects the Language of the blob.
 
 param1 - String filename
-param2 - String blob data. A block also maybe passed in for lazy
+p2     - String blob data. A block also maybe passed in for lazy
        loading. This behavior is deprecated and you should always
        pass in a String.
-param3 - Optional String mode (defaults to nil)
+prm3   - Optional String mode (defaults to nil)
 
 Returns Language or nil.
     DOC
     docstring = described_class.new(text)
     assert docstring.describes_internal_api?
     assert docstring.mentions_parameter?(:param1)
-    assert docstring.mentions_parameter?(:param2)
-    assert docstring.mentions_parameter?(:param3)
+    assert docstring.mentions_parameter?(:p2)
+    assert docstring.mentions_parameter?(:prm3)
     assert docstring.describes_parameter?(:param1)
-    assert docstring.describes_parameter?(:param2)
-    assert docstring.describes_parameter?(:param3)
+    assert docstring.describes_parameter?(:p2)
+    assert docstring.describes_parameter?(:prm3)
     refute docstring.contains_code_example?
     assert docstring.mentions_return?
     assert docstring.describes_return?
@@ -125,6 +125,33 @@ returns nil
     text = <<-DOC
 [...]
 Returns nothing.
+    DOC
+    docstring = described_class.new(text)
+    assert docstring.describes_return?
+  end
+
+  it "should understand 'Gets/Sets nothing.'" do
+    text = <<-DOC
+[...]
+Gets/Sets nothing.
+    DOC
+    docstring = described_class.new(text)
+    assert docstring.describes_return?
+  end
+
+  it "should understand 'Gets nothing.'" do
+    text = <<-DOC
+[...]
+Gets nothing.
+    DOC
+    docstring = described_class.new(text)
+    assert docstring.describes_return?
+  end
+
+  it "should understand 'Sets nothing.'" do
+    text = <<-DOC
+[...]
+Sets nothing.
     DOC
     docstring = described_class.new(text)
     assert docstring.describes_return?

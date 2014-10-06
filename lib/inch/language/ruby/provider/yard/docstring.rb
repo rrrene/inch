@@ -44,14 +44,14 @@ module Inch
 
             def mentions_return?
               last_lines.any? do |line|
-                line =~ /^#{tomdoc_modifiers}Returns\ /
+                line =~ /^#{tomdoc_modifiers}(Returns|Gets|Sets|Gets\/Sets)\ /
               end
             end
 
             def describes_return?
               last_lines.any? do |line|
-                line =~ /^#{tomdoc_modifiers}Returns\ (\w+\s){2,}/i ||
-                  line =~ /^#{tomdoc_modifiers}Returns\ (nil|nothing)\.*/i
+                line =~ /^#{tomdoc_modifiers}(Returns|Gets|Sets|Gets\/Sets)\ (\w+\s){2,}/i ||
+                  line =~ /^#{tomdoc_modifiers}(Returns|Gets|Sets|Gets\/Sets)\ (nil|nothing)\.*/i
               end
             end
 
