@@ -113,7 +113,7 @@ describe ::Inch::CLI::Command::Suggest do
 
   it 'should run on elixir codebase with --read-from-dump' do
     out, err = capture_io do
-      Dir.chdir fixture_path(:elixir, :simple)
+      Dir.chdir fixture_path(:elixir, :inch_test)
       @command.run('--language=elixir', '--read-from-dump=all.json')
     end
     refute out.empty?, 'there should be some output'

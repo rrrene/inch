@@ -3,8 +3,8 @@
     "language": "elixir",
     "objects": [
         {
-            "id": "InchEx",
-            "module": "Elixir.InchEx",
+            "id": "InchTest",
+            "module": "Elixir.InchTest",
             "moduledoc": null,
             "object_type": "ModuleObject",
             "source": null,
@@ -12,8 +12,8 @@
             "typespecs": []
         },
         {
-            "id": "InchEx.Config",
-            "module": "Elixir.InchEx.Config",
+            "id": "InchTest.Config",
+            "module": "Elixir.InchTest.Config",
             "moduledoc": null,
             "object_type": "ModuleObject",
             "source": null,
@@ -21,8 +21,8 @@
             "typespecs": []
         },
         {
-            "id": "InchEx.Docs.Formatter",
-            "module": "Elixir.InchEx.Docs.Formatter",
+            "id": "InchTest.Docs.Formatter",
+            "module": "Elixir.InchTest.Docs.Formatter",
             "moduledoc": "Provide JSON-formatted documentation\n",
             "object_type": "ModuleObject",
             "source": null,
@@ -30,8 +30,8 @@
             "typespecs": []
         },
         {
-            "id": "InchEx.Docs.Retriever",
-            "module": "Elixir.InchEx.Docs.Retriever",
+            "id": "InchTest.Docs.Retriever",
+            "module": "Elixir.InchTest.Docs.Retriever",
             "moduledoc": "Functions to extract documentation information from modules.\n",
             "object_type": "ModuleObject",
             "source": null,
@@ -39,8 +39,8 @@
             "typespecs": []
         },
         {
-            "id": "InchEx.Docs.Retriever.Error",
-            "module": "Elixir.InchEx.Docs.Retriever.Error",
+            "id": "InchTest.Docs.Retriever.Error",
+            "module": "Elixir.InchTest.Docs.Retriever.Error",
             "moduledoc": null,
             "object_type": "ModuleObject",
             "source": null,
@@ -48,8 +48,8 @@
             "typespecs": []
         },
         {
-            "id": "InchEx.FunctionObject",
-            "module": "Elixir.InchEx.FunctionObject",
+            "id": "InchTest.FunctionObject",
+            "module": "Elixir.InchTest.FunctionObject",
             "moduledoc": null,
             "object_type": "ModuleObject",
             "source": null,
@@ -57,8 +57,8 @@
             "typespecs": []
         },
         {
-            "id": "InchEx.ModuleObject",
-            "module": "Elixir.InchEx.ModuleObject",
+            "id": "InchTest.ModuleObject",
+            "module": "Elixir.InchTest.ModuleObject",
             "moduledoc": null,
             "object_type": "ModuleObject",
             "source": null,
@@ -66,8 +66,8 @@
             "typespecs": []
         },
         {
-            "id": "InchEx.Reporter.Local",
-            "module": "Elixir.InchEx.Reporter.Local",
+            "id": "InchTest.Naming",
+            "module": "Elixir.InchTest.Naming",
             "moduledoc": null,
             "object_type": "ModuleObject",
             "source": null,
@@ -75,26 +75,8 @@
             "typespecs": []
         },
         {
-            "id": "InchEx.Reporter.Remote",
-            "module": "Elixir.InchEx.Reporter.Remote",
-            "moduledoc": null,
-            "object_type": "ModuleObject",
-            "source": null,
-            "type": null,
-            "typespecs": []
-        },
-        {
-            "id": "InchEx.TypeObject",
-            "module": "Elixir.InchEx.TypeObject",
-            "moduledoc": null,
-            "object_type": "ModuleObject",
-            "source": null,
-            "type": null,
-            "typespecs": []
-        },
-        {
-            "id": "Mix.Tasks.Inch",
-            "module": "Elixir.Mix.Tasks.Inch",
+            "id": "InchTest.TypeObject",
+            "module": "Elixir.InchTest.TypeObject",
             "moduledoc": null,
             "object_type": "ModuleObject",
             "source": null,
@@ -105,7 +87,7 @@
             "arity": 4,
             "doc": false,
             "id": "generate_docs/4",
-            "module_id": "InchEx",
+            "module_id": "InchTest",
             "name": "generate_docs",
             "object_type": "FunctionObject",
             "signature": [
@@ -138,7 +120,7 @@
             "arity": 3,
             "doc": "Generate JSON documentation for the given modules\n",
             "id": "run/3",
-            "module_id": "InchEx.Docs.Formatter",
+            "module_id": "InchTest.Docs.Formatter",
             "name": "run",
             "object_type": "FunctionObject",
             "signature": [
@@ -166,7 +148,7 @@
             "arity": 2,
             "doc": "Extract documentation from all modules in the specified directory\n",
             "id": "docs_from_dir/2",
-            "module_id": "InchEx.Docs.Retriever",
+            "module_id": "InchTest.Docs.Retriever",
             "name": "docs_from_dir",
             "object_type": "FunctionObject",
             "signature": [
@@ -189,7 +171,7 @@
             "arity": 2,
             "doc": "Extract documentation from all modules in the specified list of files\n",
             "id": "docs_from_files/2",
-            "module_id": "InchEx.Docs.Retriever",
+            "module_id": "InchTest.Docs.Retriever",
             "name": "docs_from_files",
             "object_type": "FunctionObject",
             "signature": [
@@ -212,7 +194,7 @@
             "arity": 2,
             "doc": "Extract documentation from all modules in the list `modules`\n",
             "id": "docs_from_modules/2",
-            "module_id": "InchEx.Docs.Retriever",
+            "module_id": "InchTest.Docs.Retriever",
             "name": "docs_from_modules",
             "object_type": "FunctionObject",
             "signature": [
@@ -235,7 +217,7 @@
             "arity": 1,
             "doc": "Callback implementation of `Exception.exception/1`.",
             "id": "exception/1",
-            "module_id": "InchEx.Docs.Retriever.Error",
+            "module_id": "InchTest.Docs.Retriever.Error",
             "name": "exception",
             "object_type": "FunctionObject",
             "signature": [
@@ -250,20 +232,20 @@
                 [
                     "::",
                     {
-                        "line": 19
+                        "line": 21
                     },
                     [
                         [
                             "exception",
                             {
-                                "line": 19
+                                "line": 21
                             },
                             [
                                 [
                                     [
                                         ".",
                                         {
-                                            "line": 19
+                                            "line": 21
                                         },
                                         [
                                             "Elixir.Keyword",
@@ -271,7 +253,7 @@
                                         ]
                                     ],
                                     {
-                                        "line": 19
+                                        "line": 21
                                     },
                                     []
                                 ]
@@ -281,7 +263,7 @@
                             [
                                 ".",
                                 {
-                                    "line": 19
+                                    "line": 21
                                 },
                                 [
                                     "Elixir.Exception",
@@ -289,7 +271,7 @@
                                 ]
                             ],
                             {
-                                "line": 19
+                                "line": 21
                             },
                             []
                         ]
@@ -302,7 +284,7 @@
             "arity": 1,
             "doc": "Callback implementation of `Exception.message/1`.",
             "id": "message/1",
-            "module_id": "InchEx.Docs.Retriever.Error",
+            "module_id": "InchTest.Docs.Retriever.Error",
             "name": "message",
             "object_type": "FunctionObject",
             "signature": [
@@ -317,20 +299,20 @@
                 [
                     "::",
                     {
-                        "line": 19
+                        "line": 21
                     },
                     [
                         [
                             "message",
                             {
-                                "line": 19
+                                "line": 21
                             },
                             [
                                 [
                                     [
                                         ".",
                                         {
-                                            "line": 19
+                                            "line": 21
                                         },
                                         [
                                             "Elixir.Exception",
@@ -338,7 +320,7 @@
                                         ]
                                     ],
                                     {
-                                        "line": 19
+                                        "line": 21
                                     },
                                     []
                                 ]
@@ -348,7 +330,7 @@
                             [
                                 ".",
                                 {
-                                    "line": 19
+                                    "line": 21
                                 },
                                 [
                                     "Elixir.String",
@@ -356,7 +338,7 @@
                                 ]
                             ],
                             {
-                                "line": 19
+                                "line": 21
                             },
                             []
                         ]
@@ -366,29 +348,35 @@
             "type": "def"
         },
         {
-            "arity": 2,
-            "doc": "  Runs inch locally, if installed. If you want to force usage of a particular\n  inch installation, set INCH_PATH environment variable:\n\n    export INCH_PATH=/home/rrrene/projects/inch\n\n  Otherwise, InchEx will take whatever `inch` command it finds. If it does\n  not find any, it sends the data to the open API at inch-ci.org to perform\n  the analysis and reports the findings back.\n",
-            "id": "run/2",
-            "module_id": "InchEx.Reporter.Local",
-            "name": "run",
+            "arity": 1,
+            "doc": "Converts String to camel case\n\n## Examples\n\n    iex> InchTest.Naming.camelize(\"my_app\")\n    \"MyApp\"\n\nIn general, `camelize` can be thought of as the reverse of\n`underscore`, however, in some cases formatting may be lost:\n\n    InchTest.Naming.underscore \"SAPExample\"  #=> \"sap_example\"\n    InchTest.Naming.camelize   \"sap_example\" #=> \"SapExample\"\n\n",
+            "id": "camelize/1",
+            "module_id": "InchTest.Naming",
+            "name": "camelize",
             "object_type": "FunctionObject",
             "signature": [
                 [
-                    "filename",
+                    "arg1",
                     [],
-                    null
-                ],
+                    "Elixir"
+                ]
+            ],
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": null,
+            "id": "do_camelize/1",
+            "module_id": "InchTest.Naming",
+            "name": "do_camelize",
+            "object_type": "FunctionObject",
+            "signature": [
                 [
-                    "\\\\",
+                    "arg1",
                     [],
-                    [
-                        [
-                            "args",
-                            [],
-                            null
-                        ],
-                        []
-                    ]
+                    "Elixir"
                 ]
             ],
             "source": null,
@@ -397,14 +385,60 @@
         },
         {
             "arity": 2,
-            "doc": "  Runs inch remotely, if already invented.\n",
-            "id": "run/2",
-            "module_id": "InchEx.Reporter.Remote",
-            "name": "run",
+            "doc": null,
+            "id": "do_underscore/2",
+            "module_id": "InchTest.Naming",
+            "name": "do_underscore",
             "object_type": "FunctionObject",
             "signature": [
                 [
-                    "filename",
+                    "arg1",
+                    [],
+                    "Elixir"
+                ],
+                [
+                    "prev",
+                    [],
+                    null
+                ]
+            ],
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 2,
+            "doc": null,
+            "id": "remove_suffix/2",
+            "module_id": "InchTest.Naming",
+            "name": "remove_suffix",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "alias",
+                    [],
+                    null
+                ],
+                [
+                    "suffix",
+                    [],
+                    null
+                ]
+            ],
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 2,
+            "doc": "Extracts the resource name from an alias\n\n## Examples\n\n    iex> InchTest.Naming.resource_name(MyApp.User)\n    \"user\"\n    iex> InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n    \"user\"\n\n",
+            "id": "resource_name/2",
+            "module_id": "InchTest.Naming",
+            "name": "resource_name",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "alias",
                     [],
                     null
                 ],
@@ -413,26 +447,11 @@
                     [],
                     [
                         [
-                            "config",
+                            "suffix",
                             [],
                             null
                         ],
-                        [
-                            [
-                                ".",
-                                {
-                                    "line": 7
-                                },
-                                [
-                                    "Elixir.Mix.Project",
-                                    "config"
-                                ]
-                            ],
-                            {
-                                "line": 7
-                            },
-                            []
-                        ]
+                        null
                     ]
                 ]
             ],
@@ -441,85 +460,53 @@
             "type": "def"
         },
         {
-            "arity": 4,
-            "doc": false,
-            "id": "run/4",
-            "module_id": "Mix.Tasks.Inch",
-            "name": "run",
+            "arity": 1,
+            "doc": null,
+            "id": "to_lower_char/1",
+            "module_id": "InchTest.Naming",
+            "name": "to_lower_char",
             "object_type": "FunctionObject",
             "signature": [
                 [
-                    "args",
+                    "char",
                     [],
                     null
-                ],
+                ]
+            ],
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": null,
+            "id": "to_upper_char/1",
+            "module_id": "InchTest.Naming",
+            "name": "to_upper_char",
+            "object_type": "FunctionObject",
+            "signature": [
                 [
-                    "\\\\",
+                    "char",
                     [],
-                    [
-                        [
-                            "config",
-                            [],
-                            null
-                        ],
-                        [
-                            [
-                                ".",
-                                {
-                                    "line": 10
-                                },
-                                [
-                                    "Elixir.Mix.Project",
-                                    "config"
-                                ]
-                            ],
-                            {
-                                "line": 10
-                            },
-                            []
-                        ]
-                    ]
-                ],
+                    null
+                ]
+            ],
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": "Converts String to underscore case\n\n## Examples\n\n    iex> InchTest.Naming.underscore(\"MyApp\")\n    \"my_app\"\n\n    iex> InchTest.Naming.underscore(\"my-app\")\n    \"my_app\"\n\nIn general, `underscore` can be thought of as the reverse of\n`camelize`, however, in some cases formatting may be lost:\n\n    Naming.underscore \"SAPExample\"  #=> \"sap_example\"\n    Naming.camelize   \"sap_example\" #=> \"SapExample\"\n\n",
+            "id": "underscore/1",
+            "module_id": "InchTest.Naming",
+            "name": "underscore",
+            "object_type": "FunctionObject",
+            "signature": [
                 [
-                    "\\\\",
+                    "arg1",
                     [],
-                    [
-                        [
-                            "generator",
-                            [],
-                            null
-                        ],
-                        [
-                            [
-                                ".",
-                                [],
-                                [
-                                    "erlang",
-                                    "make_fun"
-                                ]
-                            ],
-                            {
-                                "line": 10
-                            },
-                            [
-                                "Elixir.InchEx",
-                                "generate_docs",
-                                4
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    "\\\\",
-                    [],
-                    [
-                        [
-                            "reporter",
-                            [],
-                            null
-                        ],
-                        "Elixir.InchEx.Reporter.Local"
-                    ]
+                    "Elixir"
                 ]
             ],
             "source": null,
