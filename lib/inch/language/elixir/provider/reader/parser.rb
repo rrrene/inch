@@ -57,7 +57,7 @@ module Inch
               if read_dump_file.nil?
                 fail 'Elixir analysis only works with --read-from-dump.'
               else
-                output = File.read(read_dump_file)
+                output = File.read(read_dump_file, :encoding => 'utf-8')
               end
               @parsed_objects = JSON[output]['objects']
             end
