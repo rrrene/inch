@@ -6,6 +6,14 @@ module Inch
           module Object
             # Proxy class for modules
             class ModuleObject < Base
+              def original_docstring
+                @hash['moduledoc']
+              end
+
+              def nodoc?
+                super || @hash['moduledoc'] == false
+              end
+
               def fullname
                 @hash['id']
               end

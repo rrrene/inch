@@ -1,608 +1,608 @@
 {
     "args": [
-        "inspect", 
+        "inspect",
         "InchTest.Functions."
-    ], 
-    "git_repo_url": "git@github.com:inch-ci/Hello-World-Elixir.git", 
-    "language": "elixir", 
+    ],
+    "git_repo_url": "git@github.com:inch-ci/Hello-World-Elixir.git",
+    "language": "elixir",
     "objects": [
         {
-            "id": "InchTest", 
-            "module": "Elixir.InchTest", 
-            "moduledoc": null, 
-            "object_type": "ModuleObject", 
-            "source": null, 
-            "type": null, 
+            "id": "InchTest",
+            "module": "Elixir.InchTest",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
             "typespecs": []
-        }, 
+        },
         {
-            "id": "InchTest.CodeExamples", 
-            "module": "Elixir.InchTest.CodeExamples", 
-            "moduledoc": null, 
-            "object_type": "ModuleObject", 
-            "source": null, 
-            "type": null, 
+            "id": "InchTest.CodeExamples",
+            "module": "Elixir.InchTest.CodeExamples",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
             "typespecs": []
-        }, 
+        },
         {
-            "id": "InchTest.Config", 
-            "module": "Elixir.InchTest.Config", 
-            "moduledoc": null, 
-            "object_type": "ModuleObject", 
-            "source": null, 
-            "type": null, 
+            "id": "InchTest.Config",
+            "module": "Elixir.InchTest.Config",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
             "typespecs": []
-        }, 
+        },
         {
-            "id": "InchTest.Docs.Formatter", 
-            "module": "Elixir.InchTest.Docs.Formatter", 
-            "moduledoc": "Provide JSON-formatted documentation\n", 
-            "object_type": "ModuleObject", 
-            "source": null, 
-            "type": null, 
+            "id": "InchTest.Docs.Formatter",
+            "module": "Elixir.InchTest.Docs.Formatter",
+            "moduledoc": "Provide JSON-formatted documentation\n",
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
             "typespecs": []
-        }, 
+        },
         {
-            "id": "InchTest.Docs.Retriever", 
-            "module": "Elixir.InchTest.Docs.Retriever", 
-            "moduledoc": "Functions to extract documentation information from modules.\n", 
-            "object_type": "ModuleObject", 
-            "source": null, 
-            "type": null, 
+            "id": "InchTest.Docs.Retriever",
+            "module": "Elixir.InchTest.Docs.Retriever",
+            "moduledoc": "Functions to extract documentation information from modules.\n",
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
             "typespecs": []
-        }, 
+        },
         {
-            "id": "InchTest.Docs.Retriever.Error", 
-            "module": "Elixir.InchTest.Docs.Retriever.Error", 
-            "moduledoc": null, 
-            "object_type": "ModuleObject", 
-            "source": null, 
-            "type": "exception", 
+            "id": "InchTest.Docs.Retriever.Error",
+            "module": "Elixir.InchTest.Docs.Retriever.Error",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": "exception",
             "typespecs": []
-        }, 
+        },
         {
-            "id": "InchTest.FunctionObject", 
-            "module": "Elixir.InchTest.FunctionObject", 
-            "moduledoc": null, 
-            "object_type": "ModuleObject", 
-            "source": null, 
-            "type": null, 
+            "id": "InchTest.FunctionObject",
+            "module": "Elixir.InchTest.FunctionObject",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
             "typespecs": []
-        }, 
+        },
         {
-            "id": "InchTest.Functions", 
-            "module": "Elixir.InchTest.Functions", 
-            "moduledoc": "  In this module we define funs that are \"cases\" for our test suite.\n", 
-            "object_type": "ModuleObject", 
-            "source": null, 
-            "type": null, 
+            "id": "InchTest.Functions",
+            "module": "Elixir.InchTest.Functions",
+            "moduledoc": "  In this module we define funs that are \"cases\" for our test suite.\n",
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
             "typespecs": []
-        }, 
+        },
         {
-            "id": "InchTest.ModuleObject", 
-            "module": "Elixir.InchTest.ModuleObject", 
-            "moduledoc": null, 
-            "object_type": "ModuleObject", 
-            "source": null, 
-            "type": null, 
+            "id": "InchTest.ModuleObject",
+            "module": "Elixir.InchTest.ModuleObject",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
             "typespecs": []
-        }, 
+        },
         {
-            "id": "InchTest.Naming", 
-            "module": "Elixir.InchTest.Naming", 
-            "moduledoc": null, 
-            "object_type": "ModuleObject", 
-            "source": null, 
-            "type": null, 
+            "id": "InchTest.Naming",
+            "module": "Elixir.InchTest.Naming",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
             "typespecs": []
-        }, 
+        },
         {
-            "id": "InchTest.TypeObject", 
-            "module": "Elixir.InchTest.TypeObject", 
-            "moduledoc": null, 
-            "object_type": "ModuleObject", 
-            "source": null, 
-            "type": null, 
+            "id": "InchTest.TypeObject",
+            "module": "Elixir.InchTest.TypeObject",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
             "typespecs": []
-        }, 
+        },
         {
-            "arity": 4, 
-            "doc": false, 
-            "id": "generate_docs/4", 
-            "module_id": "InchTest", 
-            "name": "generate_docs", 
-            "object_type": "FunctionObject", 
+            "arity": 4,
+            "doc": false,
+            "id": "generate_docs/4",
+            "module_id": "InchTest",
+            "name": "generate_docs",
+            "object_type": "FunctionObject",
             "signature": [
                 [
-                    "project", 
-                    [], 
+                    "project",
+                    [],
                     null
-                ], 
+                ],
                 [
-                    "version", 
-                    [], 
+                    "version",
+                    [],
                     null
-                ], 
+                ],
                 [
-                    "args", 
-                    [], 
+                    "args",
+                    [],
                     null
-                ], 
+                ],
                 [
-                    "options", 
-                    [], 
+                    "options",
+                    [],
                     null
                 ]
-            ], 
-            "source": null, 
-            "specs": [], 
+            ],
+            "source": null,
+            "specs": [],
             "type": "def"
-        }, 
+        },
         {
-            "arity": 0, 
-            "doc": "Converts String to underscore case\n\n## Examples\n\n    iex> InchTest.Naming.underscore(\"MyApp\")\n    \"my_app\"\n\n    iex> InchTest.Naming.underscore(\"my-app\")\n    \"my_app\"\n\nIn general, `underscore` can be thought of as the reverse of\n`camelize`, however, in some cases formatting may be lost:\n\n    Naming.underscore \"SAPExample\"  #=> \"sap_example\"\n    Naming.camelize   \"sap_example\" #=> \"SapExample\"\n\n", 
-            "id": "multiple_code_examples/0", 
-            "module_id": "InchTest.CodeExamples", 
-            "name": "multiple_code_examples", 
-            "object_type": "FunctionObject", 
-            "signature": [], 
-            "source": null, 
-            "specs": [], 
+            "arity": 0,
+            "doc": "Converts String to underscore case\n\n## Examples\n\n    iex> InchTest.Naming.underscore(\"MyApp\")\n    \"my_app\"\n\n    iex> InchTest.Naming.underscore(\"my-app\")\n    \"my_app\"\n\nIn general, `underscore` can be thought of as the reverse of\n`camelize`, however, in some cases formatting may be lost:\n\n    Naming.underscore \"SAPExample\"  #=> \"sap_example\"\n    Naming.camelize   \"sap_example\" #=> \"SapExample\"\n\n",
+            "id": "multiple_code_examples/0",
+            "module_id": "InchTest.CodeExamples",
+            "name": "multiple_code_examples",
+            "object_type": "FunctionObject",
+            "signature": [],
+            "source": null,
+            "specs": [],
             "type": "def"
-        }, 
+        },
         {
-            "arity": 0, 
-            "doc": "Extracts the resource name from an alias\n\n## Examples\n\n    iex> InchTest.Naming.resource_name(MyApp.User)\n    \"user\"\n    iex> InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n    \"user\"\n", 
-            "id": "single_code_example/0", 
-            "module_id": "InchTest.CodeExamples", 
-            "name": "single_code_example", 
-            "object_type": "FunctionObject", 
-            "signature": [], 
-            "source": null, 
-            "specs": [], 
+            "arity": 0,
+            "doc": "Extracts the resource name from an alias\n\n## Examples\n\n    iex> InchTest.Naming.resource_name(MyApp.User)\n    \"user\"\n    iex> InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n    \"user\"\n",
+            "id": "single_code_example/0",
+            "module_id": "InchTest.CodeExamples",
+            "name": "single_code_example",
+            "object_type": "FunctionObject",
+            "signature": [],
+            "source": null,
+            "specs": [],
             "type": "def"
-        }, 
+        },
         {
-            "arity": 3, 
-            "doc": "Generate JSON documentation for the given modules\n", 
-            "id": "run/3", 
-            "module_id": "InchTest.Docs.Formatter", 
-            "name": "run", 
-            "object_type": "FunctionObject", 
+            "arity": 3,
+            "doc": "Generate JSON documentation for the given modules\n",
+            "id": "run/3",
+            "module_id": "InchTest.Docs.Formatter",
+            "name": "run",
+            "object_type": "FunctionObject",
             "signature": [
                 [
-                    "modules", 
-                    [], 
+                    "modules",
+                    [],
                     null
-                ], 
+                ],
                 [
-                    "args", 
-                    [], 
+                    "args",
+                    [],
                     null
-                ], 
+                ],
                 [
-                    "config", 
-                    [], 
+                    "config",
+                    [],
                     null
                 ]
-            ], 
-            "source": null, 
-            "specs": [], 
+            ],
+            "source": null,
+            "specs": [],
             "type": "def"
-        }, 
+        },
         {
-            "arity": 2, 
-            "doc": "Extract documentation from all modules in the specified directory\n", 
-            "id": "docs_from_dir/2", 
-            "module_id": "InchTest.Docs.Retriever", 
-            "name": "docs_from_dir", 
-            "object_type": "FunctionObject", 
+            "arity": 2,
+            "doc": "Extract documentation from all modules in the specified directory\n",
+            "id": "docs_from_dir/2",
+            "module_id": "InchTest.Docs.Retriever",
+            "name": "docs_from_dir",
+            "object_type": "FunctionObject",
             "signature": [
                 [
-                    "dir", 
-                    [], 
+                    "dir",
+                    [],
                     null
-                ], 
+                ],
                 [
-                    "config", 
-                    [], 
+                    "config",
+                    [],
                     null
                 ]
-            ], 
-            "source": null, 
-            "specs": [], 
+            ],
+            "source": null,
+            "specs": [],
             "type": "def"
-        }, 
+        },
         {
-            "arity": 2, 
-            "doc": "Extract documentation from all modules in the specified list of files\n", 
-            "id": "docs_from_files/2", 
-            "module_id": "InchTest.Docs.Retriever", 
-            "name": "docs_from_files", 
-            "object_type": "FunctionObject", 
+            "arity": 2,
+            "doc": "Extract documentation from all modules in the specified list of files\n",
+            "id": "docs_from_files/2",
+            "module_id": "InchTest.Docs.Retriever",
+            "name": "docs_from_files",
+            "object_type": "FunctionObject",
             "signature": [
                 [
-                    "files", 
-                    [], 
+                    "files",
+                    [],
                     null
-                ], 
+                ],
                 [
-                    "config", 
-                    [], 
+                    "config",
+                    [],
                     null
                 ]
-            ], 
-            "source": null, 
-            "specs": [], 
+            ],
+            "source": null,
+            "specs": [],
             "type": "def"
-        }, 
+        },
         {
-            "arity": 2, 
-            "doc": "Extract documentation from all modules in the list `modules`\n", 
-            "id": "docs_from_modules/2", 
-            "module_id": "InchTest.Docs.Retriever", 
-            "name": "docs_from_modules", 
-            "object_type": "FunctionObject", 
+            "arity": 2,
+            "doc": "Extract documentation from all modules in the list `modules`\n",
+            "id": "docs_from_modules/2",
+            "module_id": "InchTest.Docs.Retriever",
+            "name": "docs_from_modules",
+            "object_type": "FunctionObject",
             "signature": [
                 [
-                    "modules", 
-                    [], 
+                    "modules",
+                    [],
                     null
-                ], 
+                ],
                 [
-                    "config", 
-                    [], 
+                    "config",
+                    [],
                     null
                 ]
-            ], 
-            "source": null, 
-            "specs": [], 
+            ],
+            "source": null,
+            "specs": [],
             "type": "def"
-        }, 
+        },
         {
-            "arity": 1, 
-            "doc": "Callback implementation of `Exception.exception/1`.", 
-            "id": "exception/1", 
-            "module_id": "InchTest.Docs.Retriever.Error", 
-            "name": "exception", 
-            "object_type": "FunctionObject", 
+            "arity": 1,
+            "doc": "Callback implementation of `Exception.exception/1`.",
+            "id": "exception/1",
+            "module_id": "InchTest.Docs.Retriever.Error",
+            "name": "exception",
+            "object_type": "FunctionObject",
             "signature": [
                 [
-                    "args", 
-                    [], 
+                    "args",
+                    [],
                     null
                 ]
-            ], 
-            "source": null, 
+            ],
+            "source": null,
             "specs": [
                 [
-                    "::", 
+                    "::",
                     {
                         "line": 21
-                    }, 
+                    },
                     [
                         [
-                            "exception", 
+                            "exception",
                             {
                                 "line": 21
-                            }, 
+                            },
                             [
                                 [
                                     [
-                                        ".", 
+                                        ".",
                                         {
                                             "line": 21
-                                        }, 
+                                        },
                                         [
-                                            "Elixir.Keyword", 
+                                            "Elixir.Keyword",
                                             "t"
                                         ]
-                                    ], 
+                                    ],
                                     {
                                         "line": 21
-                                    }, 
+                                    },
                                     []
                                 ]
                             ]
-                        ], 
+                        ],
                         [
                             [
-                                ".", 
+                                ".",
                                 {
                                     "line": 21
-                                }, 
+                                },
                                 [
-                                    "Elixir.Exception", 
+                                    "Elixir.Exception",
                                     "t"
                                 ]
-                            ], 
+                            ],
                             {
                                 "line": 21
-                            }, 
+                            },
                             []
                         ]
                     ]
                 ]
-            ], 
+            ],
             "type": "def"
-        }, 
+        },
         {
-            "arity": 1, 
-            "doc": "Callback implementation of `Exception.message/1`.", 
-            "id": "message/1", 
-            "module_id": "InchTest.Docs.Retriever.Error", 
-            "name": "message", 
-            "object_type": "FunctionObject", 
+            "arity": 1,
+            "doc": "Callback implementation of `Exception.message/1`.",
+            "id": "message/1",
+            "module_id": "InchTest.Docs.Retriever.Error",
+            "name": "message",
+            "object_type": "FunctionObject",
             "signature": [
                 [
-                    "exception", 
-                    [], 
+                    "exception",
+                    [],
                     null
                 ]
-            ], 
-            "source": null, 
+            ],
+            "source": null,
             "specs": [
                 [
-                    "::", 
+                    "::",
                     {
                         "line": 21
-                    }, 
+                    },
                     [
                         [
-                            "message", 
+                            "message",
                             {
                                 "line": 21
-                            }, 
+                            },
                             [
                                 [
                                     [
-                                        ".", 
+                                        ".",
                                         {
                                             "line": 21
-                                        }, 
+                                        },
                                         [
-                                            "Elixir.Exception", 
+                                            "Elixir.Exception",
                                             "t"
                                         ]
-                                    ], 
+                                    ],
                                     {
                                         "line": 21
-                                    }, 
+                                    },
                                     []
                                 ]
                             ]
-                        ], 
+                        ],
                         [
                             [
-                                ".", 
+                                ".",
                                 {
                                     "line": 21
-                                }, 
+                                },
                                 [
-                                    "Elixir.String", 
+                                    "Elixir.String",
                                     "t"
                                 ]
-                            ], 
+                            ],
                             {
                                 "line": 21
-                            }, 
+                            },
                             []
                         ]
                     ]
                 ]
-            ], 
+            ],
             "type": "def"
-        }, 
+        },
         {
-            "arity": 2, 
-            "doc": "This fun takes `param1` and `param2` as arguments.\n\n## Examples\n\n    iex> InchTest.Naming.resource_name(MyApp.User)\n    \"user\"\n    iex> InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n    \"user\"\n", 
-            "id": "full_doc/2", 
-            "module_id": "InchTest.Functions", 
-            "name": "full_doc", 
-            "object_type": "FunctionObject", 
+            "arity": 2,
+            "doc": "This fun takes `param1` and `param2` as arguments.\n\n## Examples\n\n    iex> InchTest.Naming.resource_name(MyApp.User)\n    \"user\"\n    iex> InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n    \"user\"\n",
+            "id": "full_doc/2",
+            "module_id": "InchTest.Functions",
+            "name": "full_doc",
+            "object_type": "FunctionObject",
             "signature": [
                 [
-                    "param1", 
-                    [], 
+                    "param1",
+                    [],
                     null
-                ], 
+                ],
                 [
-                    "param2", 
-                    [], 
+                    "param2",
+                    [],
                     null
                 ]
-            ], 
-            "source": null, 
-            "specs": [], 
+            ],
+            "source": null,
+            "specs": [],
             "type": "def"
-        }, 
+        },
         {
-            "arity": 2, 
-            "doc": "This fun takes a `param1` and a second parameter that is never used\n(maybe, because it is a callback or something like that). However, the\nsecond param should impact the evaluation by Inch.\n\n## Examples\n\n    iex> InchTest.Naming.resource_name(MyApp.User)\n    \"user\"\n    iex> InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n    \"user\"\n", 
-            "id": "full_doc_second_parameter_unnamed/2", 
-            "module_id": "InchTest.Functions", 
-            "name": "full_doc_second_parameter_unnamed", 
-            "object_type": "FunctionObject", 
+            "arity": 2,
+            "doc": "This fun takes a `param1` and a second parameter that is never used\n(maybe, because it is a callback or something like that). However, the\nsecond param should impact the evaluation by Inch.\n\n## Examples\n\n    iex> InchTest.Naming.resource_name(MyApp.User)\n    \"user\"\n    iex> InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n    \"user\"\n",
+            "id": "full_doc_second_parameter_unnamed/2",
+            "module_id": "InchTest.Functions",
+            "name": "full_doc_second_parameter_unnamed",
+            "object_type": "FunctionObject",
             "signature": [
                 [
-                    "param1", 
-                    [], 
+                    "param1",
+                    [],
                     null
-                ], 
+                ],
                 [
-                    "", 
-                    [], 
+                    "",
+                    [],
                     "Elixir"
                 ]
-            ], 
-            "source": null, 
-            "specs": [], 
+            ],
+            "source": null,
+            "specs": [],
             "type": "def"
-        }, 
+        },
         {
-            "arity": 1, 
-            "doc": "Converts String to camel case\n\n## Examples\n\n    iex> InchTest.Naming.camelize(\"my_app\")\n    \"MyApp\"\n\nIn general, `camelize` can be thought of as the reverse of\n`underscore`, however, in some cases formatting may be lost:\n\n    InchTest.Naming.underscore \"SAPExample\"  #=> \"sap_example\"\n    InchTest.Naming.camelize   \"sap_example\" #=> \"SapExample\"\n\n", 
-            "id": "camelize/1", 
-            "module_id": "InchTest.Naming", 
-            "name": "camelize", 
-            "object_type": "FunctionObject", 
+            "arity": 1,
+            "doc": "Converts String to camel case\n\n## Examples\n\n    iex> InchTest.Naming.camelize(\"my_app\")\n    \"MyApp\"\n\nIn general, `camelize` can be thought of as the reverse of\n`underscore`, however, in some cases formatting may be lost:\n\n    InchTest.Naming.underscore \"SAPExample\"  #=> \"sap_example\"\n    InchTest.Naming.camelize   \"sap_example\" #=> \"SapExample\"\n\n",
+            "id": "camelize/1",
+            "module_id": "InchTest.Naming",
+            "name": "camelize",
+            "object_type": "FunctionObject",
             "signature": [
                 [
-                    "arg1", 
-                    [], 
+                    "arg1",
+                    [],
                     "Elixir"
                 ]
-            ], 
-            "source": null, 
-            "specs": [], 
+            ],
+            "source": null,
+            "specs": [],
             "type": "def"
-        }, 
+        },
         {
-            "arity": 1, 
-            "doc": null, 
-            "id": "do_camelize/1", 
-            "module_id": "InchTest.Naming", 
-            "name": "do_camelize", 
-            "object_type": "FunctionObject", 
+            "arity": 1,
+            "doc": null,
+            "id": "do_camelize/1",
+            "module_id": "InchTest.Naming",
+            "name": "do_camelize",
+            "object_type": "FunctionObject",
             "signature": [
                 [
-                    "arg1", 
-                    [], 
+                    "arg1",
+                    [],
                     "Elixir"
                 ]
-            ], 
-            "source": null, 
-            "specs": [], 
+            ],
+            "source": null,
+            "specs": [],
             "type": "def"
-        }, 
+        },
         {
-            "arity": 2, 
-            "doc": null, 
-            "id": "do_underscore/2", 
-            "module_id": "InchTest.Naming", 
-            "name": "do_underscore", 
-            "object_type": "FunctionObject", 
+            "arity": 2,
+            "doc": null,
+            "id": "do_underscore/2",
+            "module_id": "InchTest.Naming",
+            "name": "do_underscore",
+            "object_type": "FunctionObject",
             "signature": [
                 [
-                    "arg1", 
-                    [], 
+                    "arg1",
+                    [],
                     "Elixir"
-                ], 
+                ],
                 [
-                    "prev", 
-                    [], 
+                    "prev",
+                    [],
                     null
                 ]
-            ], 
-            "source": null, 
-            "specs": [], 
+            ],
+            "source": null,
+            "specs": [],
             "type": "def"
-        }, 
+        },
         {
-            "arity": 2, 
-            "doc": null, 
-            "id": "remove_suffix/2", 
-            "module_id": "InchTest.Naming", 
-            "name": "remove_suffix", 
-            "object_type": "FunctionObject", 
+            "arity": 2,
+            "doc": null,
+            "id": "remove_suffix/2",
+            "module_id": "InchTest.Naming",
+            "name": "remove_suffix",
+            "object_type": "FunctionObject",
             "signature": [
                 [
-                    "alias", 
-                    [], 
+                    "alias",
+                    [],
                     null
-                ], 
+                ],
                 [
-                    "suffix", 
-                    [], 
+                    "suffix",
+                    [],
                     null
                 ]
-            ], 
-            "source": null, 
-            "specs": [], 
+            ],
+            "source": null,
+            "specs": [],
             "type": "def"
-        }, 
+        },
         {
-            "arity": 2, 
-            "doc": "Extracts the resource name from an alias\n\n## Examples\n\n    iex> InchTest.Naming.resource_name(MyApp.User)\n    \"user\"\n    iex> InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n    \"user\"\n\n", 
-            "id": "resource_name/2", 
-            "module_id": "InchTest.Naming", 
-            "name": "resource_name", 
-            "object_type": "FunctionObject", 
+            "arity": 2,
+            "doc": "Extracts the resource name from an alias\n\n## Examples\n\n    iex> InchTest.Naming.resource_name(MyApp.User)\n    \"user\"\n    iex> InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n    \"user\"\n\n",
+            "id": "resource_name/2",
+            "module_id": "InchTest.Naming",
+            "name": "resource_name",
+            "object_type": "FunctionObject",
             "signature": [
                 [
-                    "alias", 
-                    [], 
+                    "alias",
+                    [],
                     null
-                ], 
+                ],
                 [
-                    "\\\\", 
-                    [], 
+                    "\\\\",
+                    [],
                     [
                         [
-                            "suffix", 
-                            [], 
+                            "suffix",
+                            [],
                             null
-                        ], 
+                        ],
                         null
                     ]
                 ]
-            ], 
-            "source": null, 
-            "specs": [], 
+            ],
+            "source": null,
+            "specs": [],
             "type": "def"
-        }, 
+        },
         {
-            "arity": 1, 
-            "doc": null, 
-            "id": "to_lower_char/1", 
-            "module_id": "InchTest.Naming", 
-            "name": "to_lower_char", 
-            "object_type": "FunctionObject", 
+            "arity": 1,
+            "doc": null,
+            "id": "to_lower_char/1",
+            "module_id": "InchTest.Naming",
+            "name": "to_lower_char",
+            "object_type": "FunctionObject",
             "signature": [
                 [
-                    "char", 
-                    [], 
+                    "char",
+                    [],
                     null
                 ]
-            ], 
-            "source": null, 
-            "specs": [], 
+            ],
+            "source": null,
+            "specs": [],
             "type": "def"
-        }, 
+        },
         {
-            "arity": 1, 
-            "doc": null, 
-            "id": "to_upper_char/1", 
-            "module_id": "InchTest.Naming", 
-            "name": "to_upper_char", 
-            "object_type": "FunctionObject", 
+            "arity": 1,
+            "doc": null,
+            "id": "to_upper_char/1",
+            "module_id": "InchTest.Naming",
+            "name": "to_upper_char",
+            "object_type": "FunctionObject",
             "signature": [
                 [
-                    "char", 
-                    [], 
+                    "char",
+                    [],
                     null
                 ]
-            ], 
-            "source": null, 
-            "specs": [], 
+            ],
+            "source": null,
+            "specs": [],
             "type": "def"
-        }, 
+        },
         {
-            "arity": 1, 
-            "doc": "Converts String to underscore case\n\n## Examples\n\n    iex> InchTest.Naming.underscore(\"MyApp\")\n    \"my_app\"\n\n    iex> InchTest.Naming.underscore(\"my-app\")\n    \"my_app\"\n\nIn general, `underscore` can be thought of as the reverse of\n`camelize`, however, in some cases formatting may be lost:\n\n    Naming.underscore \"SAPExample\"  #=> \"sap_example\"\n    Naming.camelize   \"sap_example\" #=> \"SapExample\"\n\n", 
-            "id": "underscore/1", 
-            "module_id": "InchTest.Naming", 
-            "name": "underscore", 
-            "object_type": "FunctionObject", 
+            "arity": 1,
+            "doc": "Converts String to underscore case\n\n## Examples\n\n    iex> InchTest.Naming.underscore(\"MyApp\")\n    \"my_app\"\n\n    iex> InchTest.Naming.underscore(\"my-app\")\n    \"my_app\"\n\nIn general, `underscore` can be thought of as the reverse of\n`camelize`, however, in some cases formatting may be lost:\n\n    Naming.underscore \"SAPExample\"  #=> \"sap_example\"\n    Naming.camelize   \"sap_example\" #=> \"SapExample\"\n\n",
+            "id": "underscore/1",
+            "module_id": "InchTest.Naming",
+            "name": "underscore",
+            "object_type": "FunctionObject",
             "signature": [
                 [
-                    "arg1", 
-                    [], 
+                    "arg1",
+                    [],
                     "Elixir"
                 ]
-            ], 
-            "source": null, 
-            "specs": [], 
+            ],
+            "source": null,
+            "specs": [],
             "type": "def"
         }
     ]

@@ -76,7 +76,7 @@ module Inch
 
               # @return [Docstring]
               def docstring
-                @docstring ||= Docstring.new(@hash['doc'])
+                @docstring ||= Docstring.new(original_docstring)
               end
 
               def getter?
@@ -184,7 +184,7 @@ module Inch
               end
 
               def undocumented?
-                @hash['doc'].nil?
+                original_docstring.nil? || original_docstring.to_s.strip.empty?
               end
 
               def visibility
