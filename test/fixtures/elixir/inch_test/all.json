@@ -1,8 +1,5 @@
 {
-    "args": [
-        "inspect",
-        "InchTest.Functions."
-    ],
+    "args": [],
     "git_repo_url": "git@github.com:inch-ci/Hello-World-Elixir.git",
     "language": "elixir",
     "objects": [
@@ -76,6 +73,80 @@
             "object_type": "ModuleObject",
             "source": null,
             "type": null,
+            "typespecs": []
+        },
+        {
+            "id": "InchTest.Html",
+            "module": "Elixir.InchTest.Html",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": null,
+            "typespecs": []
+        },
+        {
+            "id": "InchTest.Html.Safe",
+            "module": "Elixir.InchTest.Html.Safe",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": "protocol",
+            "typespecs": [
+                "[Elixir.Any]"
+            ]
+        },
+        {
+            "id": "InchTest.Html.Safe.Atom",
+            "module": "Elixir.InchTest.Html.Safe.Atom",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": "impl",
+            "typespecs": []
+        },
+        {
+            "id": "InchTest.Html.Safe.BitString",
+            "module": "Elixir.InchTest.Html.Safe.BitString",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": "impl",
+            "typespecs": []
+        },
+        {
+            "id": "InchTest.Html.Safe.Float",
+            "module": "Elixir.InchTest.Html.Safe.Float",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": "impl",
+            "typespecs": []
+        },
+        {
+            "id": "InchTest.Html.Safe.Integer",
+            "module": "Elixir.InchTest.Html.Safe.Integer",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": "impl",
+            "typespecs": []
+        },
+        {
+            "id": "InchTest.Html.Safe.List",
+            "module": "Elixir.InchTest.Html.Safe.List",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": "impl",
+            "typespecs": []
+        },
+        {
+            "id": "InchTest.Html.Safe.Tuple",
+            "module": "Elixir.InchTest.Html.Safe.Tuple",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": null,
+            "type": "impl",
             "typespecs": []
         },
         {
@@ -441,6 +512,697 @@
         },
         {
             "arity": 1,
+            "doc": null,
+            "id": "escape/1",
+            "module_id": "InchTest.Html",
+            "name": "escape",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "buffer",
+                    [],
+                    null
+                ]
+            ],
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": null,
+            "id": "safe/1",
+            "module_id": "InchTest.Html",
+            "name": "safe",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "value",
+                    [],
+                    null
+                ]
+            ],
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": null,
+            "id": "unsafe/1",
+            "module_id": "InchTest.Html",
+            "name": "unsafe",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "value",
+                    [],
+                    null
+                ]
+            ],
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": false,
+            "id": "__protocol__/1",
+            "module_id": "InchTest.Html.Safe",
+            "name": "__protocol__",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "atom1",
+                    [],
+                    "Elixir"
+                ]
+            ],
+            "source": null,
+            "specs": [
+                [
+                    "::",
+                    {
+                        "line": 19
+                    },
+                    [
+                        [
+                            "__protocol__",
+                            {
+                                "line": 19
+                            },
+                            [
+                                "functions"
+                            ]
+                        ],
+                        [
+                            [
+                                "{}",
+                                {
+                                    "line": 0
+                                },
+                                [
+                                    "to_string",
+                                    1
+                                ]
+                            ],
+                            [
+                                "...",
+                                {
+                                    "line": 0
+                                },
+                                null
+                            ]
+                        ]
+                    ]
+                ],
+                [
+                    "::",
+                    {
+                        "line": 19
+                    },
+                    [
+                        [
+                            "__protocol__",
+                            {
+                                "line": 19
+                            },
+                            [
+                                "name"
+                            ]
+                        ],
+                        "Elixir.InchTest.Html.Safe"
+                    ]
+                ]
+            ],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": null,
+            "id": "to_string/1",
+            "module_id": "InchTest.Html.Safe",
+            "name": "to_string",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "data",
+                    [],
+                    null
+                ]
+            ],
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": false,
+            "id": "__impl__/1",
+            "module_id": "InchTest.Html.Safe.Atom",
+            "name": "__impl__",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "atom1",
+                    [],
+                    "Elixir"
+                ]
+            ],
+            "source": null,
+            "specs": [
+                [
+                    "::",
+                    {
+                        "line": 23
+                    },
+                    [
+                        [
+                            "__impl__",
+                            {
+                                "line": 23
+                            },
+                            [
+                                "protocol"
+                            ]
+                        ],
+                        "Elixir.InchTest.Html.Safe"
+                    ]
+                ],
+                [
+                    "::",
+                    {
+                        "line": 23
+                    },
+                    [
+                        [
+                            "__impl__",
+                            {
+                                "line": 23
+                            },
+                            [
+                                "target"
+                            ]
+                        ],
+                        "Elixir.InchTest.Html.Safe.Atom"
+                    ]
+                ],
+                [
+                    "::",
+                    {
+                        "line": 23
+                    },
+                    [
+                        [
+                            "__impl__",
+                            {
+                                "line": 23
+                            },
+                            [
+                                "for"
+                            ]
+                        ],
+                        "Elixir.Atom"
+                    ]
+                ]
+            ],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": "Callback implementation of `InchTest.Html.Safe.to_string/1`.",
+            "id": "to_string/1",
+            "module_id": "InchTest.Html.Safe.Atom",
+            "name": "to_string",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "atom",
+                    [],
+                    null
+                ]
+            ],
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": false,
+            "id": "__impl__/1",
+            "module_id": "InchTest.Html.Safe.BitString",
+            "name": "__impl__",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "atom1",
+                    [],
+                    "Elixir"
+                ]
+            ],
+            "source": null,
+            "specs": [
+                [
+                    "::",
+                    {
+                        "line": 28
+                    },
+                    [
+                        [
+                            "__impl__",
+                            {
+                                "line": 28
+                            },
+                            [
+                                "protocol"
+                            ]
+                        ],
+                        "Elixir.InchTest.Html.Safe"
+                    ]
+                ],
+                [
+                    "::",
+                    {
+                        "line": 28
+                    },
+                    [
+                        [
+                            "__impl__",
+                            {
+                                "line": 28
+                            },
+                            [
+                                "target"
+                            ]
+                        ],
+                        "Elixir.InchTest.Html.Safe.BitString"
+                    ]
+                ],
+                [
+                    "::",
+                    {
+                        "line": 28
+                    },
+                    [
+                        [
+                            "__impl__",
+                            {
+                                "line": 28
+                            },
+                            [
+                                "for"
+                            ]
+                        ],
+                        "Elixir.BitString"
+                    ]
+                ]
+            ],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": "Callback implementation of `InchTest.Html.Safe.to_string/1`.",
+            "id": "to_string/1",
+            "module_id": "InchTest.Html.Safe.BitString",
+            "name": "to_string",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "data",
+                    [],
+                    null
+                ]
+            ],
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": false,
+            "id": "__impl__/1",
+            "module_id": "InchTest.Html.Safe.Float",
+            "name": "__impl__",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "atom1",
+                    [],
+                    "Elixir"
+                ]
+            ],
+            "source": null,
+            "specs": [
+                [
+                    "::",
+                    {
+                        "line": 66
+                    },
+                    [
+                        [
+                            "__impl__",
+                            {
+                                "line": 66
+                            },
+                            [
+                                "protocol"
+                            ]
+                        ],
+                        "Elixir.InchTest.Html.Safe"
+                    ]
+                ],
+                [
+                    "::",
+                    {
+                        "line": 66
+                    },
+                    [
+                        [
+                            "__impl__",
+                            {
+                                "line": 66
+                            },
+                            [
+                                "target"
+                            ]
+                        ],
+                        "Elixir.InchTest.Html.Safe.Float"
+                    ]
+                ],
+                [
+                    "::",
+                    {
+                        "line": 66
+                    },
+                    [
+                        [
+                            "__impl__",
+                            {
+                                "line": 66
+                            },
+                            [
+                                "for"
+                            ]
+                        ],
+                        "Elixir.Float"
+                    ]
+                ]
+            ],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": "Callback implementation of `InchTest.Html.Safe.to_string/1`.",
+            "id": "to_string/1",
+            "module_id": "InchTest.Html.Safe.Float",
+            "name": "to_string",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "data",
+                    [],
+                    null
+                ]
+            ],
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": false,
+            "id": "__impl__/1",
+            "module_id": "InchTest.Html.Safe.Integer",
+            "name": "__impl__",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "atom1",
+                    [],
+                    "Elixir"
+                ]
+            ],
+            "source": null,
+            "specs": [
+                [
+                    "::",
+                    {
+                        "line": 62
+                    },
+                    [
+                        [
+                            "__impl__",
+                            {
+                                "line": 62
+                            },
+                            [
+                                "protocol"
+                            ]
+                        ],
+                        "Elixir.InchTest.Html.Safe"
+                    ]
+                ],
+                [
+                    "::",
+                    {
+                        "line": 62
+                    },
+                    [
+                        [
+                            "__impl__",
+                            {
+                                "line": 62
+                            },
+                            [
+                                "target"
+                            ]
+                        ],
+                        "Elixir.InchTest.Html.Safe.Integer"
+                    ]
+                ],
+                [
+                    "::",
+                    {
+                        "line": 62
+                    },
+                    [
+                        [
+                            "__impl__",
+                            {
+                                "line": 62
+                            },
+                            [
+                                "for"
+                            ]
+                        ],
+                        "Elixir.Integer"
+                    ]
+                ]
+            ],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": "Callback implementation of `InchTest.Html.Safe.to_string/1`.",
+            "id": "to_string/1",
+            "module_id": "InchTest.Html.Safe.Integer",
+            "name": "to_string",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "data",
+                    [],
+                    null
+                ]
+            ],
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": false,
+            "id": "__impl__/1",
+            "module_id": "InchTest.Html.Safe.List",
+            "name": "__impl__",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "atom1",
+                    [],
+                    "Elixir"
+                ]
+            ],
+            "source": null,
+            "specs": [
+                [
+                    "::",
+                    {
+                        "line": 34
+                    },
+                    [
+                        [
+                            "__impl__",
+                            {
+                                "line": 34
+                            },
+                            [
+                                "protocol"
+                            ]
+                        ],
+                        "Elixir.InchTest.Html.Safe"
+                    ]
+                ],
+                [
+                    "::",
+                    {
+                        "line": 34
+                    },
+                    [
+                        [
+                            "__impl__",
+                            {
+                                "line": 34
+                            },
+                            [
+                                "target"
+                            ]
+                        ],
+                        "Elixir.InchTest.Html.Safe.List"
+                    ]
+                ],
+                [
+                    "::",
+                    {
+                        "line": 34
+                    },
+                    [
+                        [
+                            "__impl__",
+                            {
+                                "line": 34
+                            },
+                            [
+                                "for"
+                            ]
+                        ],
+                        "Elixir.List"
+                    ]
+                ]
+            ],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": "Callback implementation of `InchTest.Html.Safe.to_string/1`.",
+            "id": "to_string/1",
+            "module_id": "InchTest.Html.Safe.List",
+            "name": "to_string",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "list",
+                    [],
+                    null
+                ]
+            ],
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": false,
+            "id": "__impl__/1",
+            "module_id": "InchTest.Html.Safe.Tuple",
+            "name": "__impl__",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "atom1",
+                    [],
+                    "Elixir"
+                ]
+            ],
+            "source": null,
+            "specs": [
+                [
+                    "::",
+                    {
+                        "line": 72
+                    },
+                    [
+                        [
+                            "__impl__",
+                            {
+                                "line": 72
+                            },
+                            [
+                                "protocol"
+                            ]
+                        ],
+                        "Elixir.InchTest.Html.Safe"
+                    ]
+                ],
+                [
+                    "::",
+                    {
+                        "line": 72
+                    },
+                    [
+                        [
+                            "__impl__",
+                            {
+                                "line": 72
+                            },
+                            [
+                                "target"
+                            ]
+                        ],
+                        "Elixir.InchTest.Html.Safe.Tuple"
+                    ]
+                ],
+                [
+                    "::",
+                    {
+                        "line": 72
+                    },
+                    [
+                        [
+                            "__impl__",
+                            {
+                                "line": 72
+                            },
+                            [
+                                "for"
+                            ]
+                        ],
+                        "Elixir.Tuple"
+                    ]
+                ]
+            ],
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": "Callback implementation of `InchTest.Html.Safe.to_string/1`.",
+            "id": "to_string/1",
+            "module_id": "InchTest.Html.Safe.Tuple",
+            "name": "to_string",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "arg1",
+                    [],
+                    "Elixir"
+                ]
+            ],
+            "source": null,
+            "specs": [],
+            "type": "def"
+        },
+        {
+            "arity": 1,
             "doc": "Converts String to camel case\n\n## Examples\n\n    iex> InchTest.Naming.camelize(\"my_app\")\n    \"MyApp\"\n\nIn general, `camelize` can be thought of as the reverse of\n`underscore`, however, in some cases formatting may be lost:\n\n    InchTest.Naming.underscore \"SAPExample\"  #=> \"sap_example\"\n    InchTest.Naming.camelize   \"sap_example\" #=> \"SapExample\"\n\n",
             "id": "camelize/1",
             "module_id": "InchTest.Naming",
@@ -605,5 +1367,10 @@
             "specs": [],
             "type": "def"
         }
-    ]
+    ],
+    "travis": true,
+    "travis_branch": "master",
+    "travis_commit": null,
+    "travis_job_id": null,
+    "travis_repo_slug": "rrrene/inch_ex"
 }
