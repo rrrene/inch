@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.5.3
+
+- Elixir: Hide implementations of protocols
+
+## 0.5.2
+
+- Elixir: Fix bug related to @moduledoc
+
+## 0.5.1
+
+- Fix bug related to reading dumps
+
 ## 0.5.0
 
 - Multi-language support was added
