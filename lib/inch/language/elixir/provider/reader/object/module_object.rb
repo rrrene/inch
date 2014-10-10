@@ -10,8 +10,10 @@ module Inch
                 @hash['moduledoc']
               end
 
+              HIDDEN_TYPES = %w(impl)
               def nodoc?
-                super || @hash['moduledoc'] == false
+                @hash['moduledoc'] == false ||
+                  HIDDEN_TYPES.include?(@hash['type'])
               end
 
               def fullname
