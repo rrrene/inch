@@ -148,7 +148,7 @@ module Inch
             end
 
             def comments
-              code_object.original_docstring.lines.map do |line|
+              code_object.original_docstring.to_s.lines.map do |line|
                 "# #{line}"
               end
             end

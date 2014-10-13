@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.4
+
+- CLI: Fix a bug with the `inspect` command
+- Elixir: Implicitly ignore callbacks, macros, and exceptions
+
 ## 0.5.3
 
 - Elixir: Hide implementations of protocols
