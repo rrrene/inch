@@ -10,7 +10,7 @@ module Inch
                 @hash['moduledoc']
               end
 
-              HIDDEN_TYPES = %w(impl)
+              HIDDEN_TYPES = %w(defcallback defmacro exception impl)
               def nodoc?
                 @hash['moduledoc'] == false ||
                   HIDDEN_TYPES.include?(@hash['type'])
