@@ -107,8 +107,10 @@ module Inch
                 false
               end
 
+              HIDDEN_TYPES = %w(defcallback defmacro exception impl)
               def nodoc?
-                @hash['doc'] == false
+                @hash['doc'] == false ||
+                  HIDDEN_TYPES.include?(@hash['type'])
               end
 
               def namespace?
