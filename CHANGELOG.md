@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.5
+
+- Ruby: Add support for named arguments in Ruby 2.1
+
 ## 0.5.4
 
 - CLI: Fix a bug with the `inspect` command
