@@ -84,7 +84,7 @@ module Inch
               # @param name [String] parameter name
               # @return [String]
               def in_signature(name)
-                possible_names = [name, "*#{name}", "&#{name}"]
+                possible_names = [name, "*#{name}", "&#{name}", "#{name}:"]
                 (all_signature_parameter_names & possible_names).first
               end
 
@@ -95,7 +95,7 @@ module Inch
               # @param name [String] parameter name
               # @return [String]
               def normalize_parameter_name(name)
-                name.gsub(/[\&\*\$\[\]]/, '')
+                name.gsub(/[\&\*\$\[\]\:]/, '')
               end
 
               def parameter_tag(param_name)

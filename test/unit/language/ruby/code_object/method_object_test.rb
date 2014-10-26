@@ -367,7 +367,7 @@ describe ::Inch::Language::Ruby::CodeObject::MethodObject do
   describe 'MISC' do
     #
     it 'should recognize named parameters in Ruby 2.1' do
-      skip # unless RUBY_VERSION =~ /^2/
+      skip unless RUBY_VERSION =~ /^2/
 
       m = @objects.find('Foo#method_with_named_parameter')
       unexpected_roles = [
