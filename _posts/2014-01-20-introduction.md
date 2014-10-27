@@ -147,6 +147,6 @@ But you don't have to adhere to any specific syntax. This gets an `A` as well:
 def blob_size(filename, blob, mode = nil)
 ```
 
-Inch ***let's you write your documentation the way you want***.
+Inch ***lets you write your documentation the way you want***.
 
 
