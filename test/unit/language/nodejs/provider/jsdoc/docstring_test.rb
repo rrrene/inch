@@ -52,7 +52,7 @@ describe ::Inch::Language::Nodejs::Provider::JSDoc::Docstring do
      */
       DOC
       docstring = described_class.new(text)
-      assert_equal visibility, docstring.visibility
+      assert_equal visibility.to_sym, docstring.visibility
     end
   end
 

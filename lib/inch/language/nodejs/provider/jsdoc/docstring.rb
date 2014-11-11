@@ -5,6 +5,8 @@ module Inch
       module Provider
         module JSDoc
           class Docstring < Ruby::Provider::YARD::Docstring
+            VISIBILITIES = %w(public protected private)
+
             # Removes the comment markers // /* */ from the docstring.
             #
             #   Docstring.new("// test").without_comment_markers
@@ -43,9 +45,10 @@ module Inch
             end
 
             def visibility
-              %w(public protected private).detect do |v|
+              tagged_value = VISIBILITIES.detect do |v|
                 tag?(v)
-              end || 'public'
+              end
+              (tagged_value || 'public').to_sym
             end
 
             def tag?(tagname, regex = nil)
