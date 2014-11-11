@@ -23,7 +23,8 @@ module Inch
       end
 
       def criteria_for(constant_name)
-        @criteria_blocks[constant_name.to_s]
+        @criteria_blocks[constant_name.to_s] ||
+          raise("No criteria for #{constant_name}")
       end
 
       # An Criteria describes how important certain parts of the docs are

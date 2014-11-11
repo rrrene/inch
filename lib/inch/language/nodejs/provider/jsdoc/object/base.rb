@@ -220,7 +220,7 @@ module Inch
               protected
 
               def meta?
-                !meta.nil?
+                !meta.nil? && meta.is_a?(Hash)
               end
 
               def meta

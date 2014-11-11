@@ -8,7 +8,8 @@ module Inch
         module JSDoc
           # Parses the source tree (using JSDoc)
           class Parser
-            IGNORE_TYPES = %w(member package)
+            # TODO: should we remove constant and namespace from this list?
+            IGNORE_TYPES = %w(member package constant namespace)
 
             attr_reader :parsed_objects
 

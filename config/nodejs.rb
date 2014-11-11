@@ -27,6 +27,15 @@ Inch::Config.register(:nodejs) do
       unconsidered_tag    0.2
     end
 
+    schema(:ClassObject) do
+      docstring           1.0
+
+      # optional:
+      code_example_single 0.1
+      code_example_multi  0.2
+      unconsidered_tag    0.2
+    end
+
     schema(:FunctionObject) do
       docstring           0.5
       parameters          0.4

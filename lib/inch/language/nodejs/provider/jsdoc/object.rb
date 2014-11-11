@@ -1,6 +1,7 @@
 require 'inch/language/nodejs/provider/jsdoc/object/base'
 require 'inch/language/nodejs/provider/jsdoc/object/function_object'
 require 'inch/language/nodejs/provider/jsdoc/object/module_object'
+require 'inch/language/nodejs/provider/jsdoc/object/class_object'
 require 'inch/language/nodejs/provider/jsdoc/object/member_object'
 
 module Inch

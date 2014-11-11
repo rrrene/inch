@@ -9,11 +9,13 @@ require 'inch/language/nodejs/provider/jsdoc'
 
 require 'inch/language/nodejs/code_object/base'
 require 'inch/language/nodejs/code_object/module_object'
+require 'inch/language/nodejs/code_object/class_object'
 require 'inch/language/nodejs/code_object/function_object'
 require 'inch/language/nodejs/code_object/member_object'
 
 require 'inch/language/nodejs/evaluation/base'
 require 'inch/language/nodejs/evaluation/module_object'
+require 'inch/language/nodejs/evaluation/class_object'
 require 'inch/language/nodejs/evaluation/function_object'
 require 'inch/language/nodejs/evaluation/member_object'
 
