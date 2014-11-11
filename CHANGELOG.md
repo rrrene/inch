@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.6
+
+- NodeJS: Fix bug regarding visibility of objects
+
 ## 0.5.5
 
 - Ruby: Add support for named arguments in Ruby 2.1
