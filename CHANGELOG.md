@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.7
+
+- NodeJS: Add support for JSDoc's ClassObject
+
 ## 0.5.6
 
 - NodeJS: Fix bug regarding visibility of objects
