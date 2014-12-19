@@ -1,4 +1,5 @@
 require 'inch/language/elixir/provider/reader/docstring'
+require 'inch/utils/code_location'
 
 module Inch
   module Language
@@ -22,11 +23,13 @@ module Inch
               end
 
               def files
-                []
+                return [] if location.empty?
+                file, line_no = location[0], location[1]
+                [Inch::Utils::CodeLocation.new('', file, line_no)]
               end
 
               def filename
-                nil
+                location[0]
               end
 
               attr_writer :children_fullnames
@@ -191,6 +194,12 @@ module Inch
 
               def visibility
                 :public
+              end
+
+              private
+
+              def location
+                @hash['source'].to_s.split(':')
               end
 
             end

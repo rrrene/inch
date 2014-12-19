@@ -71,7 +71,7 @@
             "module": "Elixir.InchTest.Functions",
             "moduledoc": "  In this module we define funs that are \"cases\" for our test suite.\n",
             "object_type": "ModuleObject",
-            "source": null,
+            "source": "lib/inch_test/functions.ex:9",
             "type": null,
             "typespecs": []
         },

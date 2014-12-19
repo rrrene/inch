@@ -40,4 +40,17 @@ describe ::Inch::Language::Elixir::CodeObject::ModuleObject do
     assert m.nodoc?
     assert m.priority < 0
   end
+
+  it 'should recognize code location' do
+    m = @objects.find('InchTest.Functions')
+    file = m.filename
+    refute_nil file
+    assert_equal 'lib/inch_test/functions.ex', file.relative_path
+    assert_equal 9, file.line_no.to_i
+  end
+
+  it 'should recognize missing code location' do
+    m = @objects.find('InchTest.FunctionObject')
+    assert_nil m.filename
+  end
 end
