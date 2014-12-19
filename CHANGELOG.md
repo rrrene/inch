@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.8
+
+- Elixir: Recognize location (filename/line no.) of code objects
+
 ## 0.5.7
 
 - NodeJS: Add support for JSDoc's ClassObject
