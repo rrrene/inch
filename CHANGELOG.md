@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.9
+
+- NodeJS: Improve output of code object names and locations
+
 ## 0.5.8
 
 - Elixir: Recognize location (filename/line no.) of code objects
