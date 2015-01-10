@@ -18,6 +18,14 @@ module Inch
         class Base
           include TraceHelper
 
+          def display_name(object)
+            if object.language == :nodejs
+              object.fullname+" in #{object.filename.relative_path}".color(:dark)
+            else
+              object.fullname
+            end
+          end
+
           def priority_arrow(priority, color = :white)
             Evaluation::PriorityRange.all.each do |range|
               return range.arrow.color(color).dark if range.include?(priority)

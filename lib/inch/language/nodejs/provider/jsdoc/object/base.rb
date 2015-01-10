@@ -22,14 +22,7 @@ module Inch
               end
 
               def fullname
-                #fail NotImplementedError
-                base = "#{@hash['longname']}"
-                if meta?
-                  base << " @ #{meta['path']}/" \
-                          "#{meta['filename']}:" \
-                          "#{meta['lineno']}"
-                end
-                base
+                "#{@hash['longname']}"
               end
 
               # Returns all files declaring the object in the form of an Array

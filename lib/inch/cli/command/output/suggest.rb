@@ -86,7 +86,7 @@ module Inch
                 grade = o.grade.to_s.ljust(2).color(r.color)
                 priority = o.priority
                 ui.sub(" #{grade} #{priority_arrow(priority, r.color)}  " \
-                       "#{o.fullname}")
+                       "#{display_name(o)}")
               end
             end
           end
