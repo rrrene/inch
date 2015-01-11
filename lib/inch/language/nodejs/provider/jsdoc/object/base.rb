@@ -47,11 +47,7 @@ module Inch
               end
 
               def parent_fullname
-                if depth == 1
-                  nil
-                else
-                  fullname.split('.')[0...-1].join('.')
-                end
+                @hash['memberof'] || retrieve_parent_fullname
               end
 
               def api_tag?
@@ -100,7 +96,7 @@ module Inch
               end
 
               def has_code_example?
-                false # raise NotImplementedError
+                docstring.code_examples.size > 0
               end
 
               def has_doc?
@@ -108,7 +104,7 @@ module Inch
               end
 
               def has_multiple_code_examples?
-                false # raise NotImplementedError
+                docstring.code_examples.size > 1
               end
 
               def has_unconsidered_tags?
@@ -151,7 +147,7 @@ module Inch
               end
 
               def private?
-                false
+                visibility == 'private'
               end
 
               def tagged_as_internal_api?
@@ -163,11 +159,11 @@ module Inch
               end
 
               def protected?
-                false
+                visibility == 'protected'
               end
 
               def public?
-                true
+                visibility == 'public'
               end
 
               def questioning_name?
@@ -175,15 +171,15 @@ module Inch
               end
 
               def return_described?
-                false # raise NotImplementedError
+                docstring.describes_return?
               end
 
               def return_mentioned?
-                false # raise NotImplementedError
+                docstring.mentions_return?
               end
 
               def return_typed?
-                false # raise NotImplementedError
+                return_mentioned?
               end
 
               def in_root?
@@ -207,7 +203,7 @@ module Inch
               end
 
               def visibility
-                docstring.visibility
+                docstring.visibility(@hash['access'])
               end
 
               protected
@@ -218,6 +214,14 @@ module Inch
 
               def meta
                 @hash['meta']
+              end
+
+              def retrieve_parent_fullname
+                if depth == 1
+                  nil
+                else
+                  fullname.split('.')[0...-1].join('.')
+                end
               end
             end
           end

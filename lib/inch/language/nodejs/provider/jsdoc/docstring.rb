@@ -7,16 +7,8 @@ module Inch
           class Docstring < Ruby::Provider::YARD::Docstring
             VISIBILITIES = %w(public protected private)
 
-            # Removes the comment markers // /* */ from the docstring.
-            #
-            #   Docstring.new("// test").without_comment_markers
-            #   # => "test"
-            #
-            # @return [String]
-            def without_comment_markers
-              @text.lines.map do |line|
-                line.strip.gsub(/^(\s*(\/\*+|\/\/|\*+\/|\*)+\s?)/m, '')
-              end.join("\n").strip
+            def initialize(text)
+              @text = without_comment_markers(text)
             end
 
             def describes_internal_api?
@@ -44,21 +36,36 @@ module Inch
               tag?(:return, /#{type_notation}*(\s\w+)/) || super
             end
 
-            def visibility
+            # @param access_value [nil,String] visibility in JSDoc output
+            def visibility(access_value = nil)
               tagged_value = VISIBILITIES.detect do |v|
                 tag?(v)
               end
-              (tagged_value || 'public').to_sym
+              (tagged_value || access_value || 'public').to_sym
             end
 
             def tag?(tagname, regex = nil)
-              if without_comment_markers =~ /^\s*\@#{tagname}([^\n]*)$/m
+              if @text =~ /^\s*\@#{tagname}([^\n]*)$/m
                 if regex.nil?
                   true
                 else
                   $1 =~ /#{regex}/
                 end
               end
+            end
+
+            private
+
+            # Removes the comment markers // /* */ from the docstring.
+            #
+            #   Docstring.new("// test").without_comment_markers
+            #   # => "test"
+            #
+            # @return [String]
+            def without_comment_markers(text)
+              text.to_s.lines.map do |line|
+                line.strip.gsub(/^(\s*(\/\*+|\/\/|\*+\/|\*)+\s?)/m, '')
+              end.join("\n").strip
             end
           end
         end
