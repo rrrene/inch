@@ -39,7 +39,7 @@ module Inch
 
               # @return [Boolean] +true+ if the type of the parameter is defined
               def typed?
-                false # TODO: parse types of params
+                described_by_docstring?
               end
 
               # @return [Boolean] +true+ if the parameter is mentioned in the

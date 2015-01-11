@@ -18,7 +18,8 @@ module Inch
             def describes_parameter?(name)
               return false if name.nil?
               parameter = parameter_notations(name)
-              tag?(:param, /#{parameter}\s+\S+/)
+              type_notation = /(\{[^\}]+\}|\[[^\]]+\])/
+              tag?(:param, /#{type_notation}\s+#{parameter}\s+\S+/)
             end
 
             def mentions_parameter?(name)
@@ -45,16 +46,18 @@ module Inch
             end
 
             def tag?(tagname, regex = nil)
-              if @text =~ /^\s*\@#{tagname}([^\n]*)$/m
+              tag_regex = /^\s*\@#{tagname}([^\n]*)$/m
+              matches = @text.scan(tag_regex).flatten
+              if !matches.empty?
                 if regex.nil?
                   true
                 else
-                  $1 =~ /#{regex}/
+                  matches.any? do |matched|
+                    matched =~ /#{regex}/
+                  end
                 end
               end
             end
-
-            private
 
             # Removes the comment markers // /* */ from the docstring.
             #
