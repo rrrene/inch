@@ -15,7 +15,12 @@ module Inch
           default
         else
           rows_cols = str.split(' ').map(&:to_i)
-          rows_cols[1] || default
+          cols = rows_cols[1]
+          if cols == 0
+            default
+          else
+            cols || default
+          end
         end
       rescue
         default
