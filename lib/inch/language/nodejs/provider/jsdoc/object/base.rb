@@ -22,7 +22,7 @@ module Inch
               end
 
               def fullname
-                "#{@hash['longname']}"
+                @hash['longname']
               end
 
               # Returns all files declaring the object in the form of an Array
