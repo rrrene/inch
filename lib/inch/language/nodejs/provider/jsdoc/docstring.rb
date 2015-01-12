@@ -59,7 +59,7 @@ module Inch
               end
             end
 
-            # Removes the comment markers // /* */ from the docstring.
+            # Removes the comment markers // /* */ from the given +text+.
             #
             #   Docstring.new("// test").without_comment_markers
             #   # => "test"
