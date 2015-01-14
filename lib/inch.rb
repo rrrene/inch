@@ -16,5 +16,5 @@ require 'inch/language'
 require 'inch/config'
 require File.join(File.dirname(__FILE__), '..', 'config', 'base.rb')
 require File.join(File.dirname(__FILE__), '..', 'config', 'ruby.rb')
-require File.join(File.dirname(__FILE__), '..', 'config', 'nodejs.rb')
+require File.join(File.dirname(__FILE__), '..', 'config', 'javascript.rb')
 require File.join(File.dirname(__FILE__), '..', 'config', 'elixir.rb')

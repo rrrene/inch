@@ -19,7 +19,7 @@ module Inch
           include TraceHelper
 
           def display_name(object)
-            if object.language == :nodejs
+            if object.language == :javascript
               object.fullname+" in #{object.filename.relative_path}".color(:dark)
             else
               object.fullname
