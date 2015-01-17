@@ -292,19 +292,48 @@ describe ::Inch::Language::Ruby::CodeObject::MethodObject do
   end
 
   describe 'YARDs @!attribute directive on a class' do
-    #
-    it 'should work as a reader' do
-      m = @objects.find('Attributes#email')
-      refute_equal 0, m.score
-      refute m.undocumented?
+    describe "implemented as virtual attribute" do
+      it 'should work as a reader' do
+        m = @objects.find('Attributes#email')
+        refute_equal 0, m.score
+        refute m.undocumented?
+      end
+
+      it 'should work as a writer' do
+        m = @objects.find('Attributes#email=')
+        refute_equal 0, m.score
+        # refute m.undocumented?
+        # NOTE: this is undocumented since there is no original_docstring
+      end
     end
 
-    it 'should work as a writer' do
-      m = @objects.find('Attributes#email=')
-      refute_equal 0, m.score
-      # refute m.undocumented?
-      # NOTE: this is undocumented since there is no original_docstring
+    describe "used inside the class right before accessor macro" do
+      it 'should work as a reader' do
+        m = @objects.find('AttributesAccessor#email')
+        refute_equal 0, m.score
+        refute m.undocumented?
+      end
+
+      it 'should work as a writer' do
+        m = @objects.find('AttributesAccessor#email=')
+        refute_equal 0, m.score
+      end
     end
+
+
+    describe "used inside a struct" do
+      it 'should work as a reader' do
+        m = @objects.find('AttributesStruct#email')
+        refute_equal 0, m.score
+        refute m.undocumented?
+      end
+
+      it 'should work as a writer' do
+        m = @objects.find('AttributesStruct#email=')
+        refute_equal 0, m.score
+      end
+    end
+
   end
 
   describe 'YARDs @overload tag on methods' do
