@@ -1,252 +1,252 @@
 {
-    "args": [], 
-    "branch_name": "master", 
-    "client_name": "inchjs", 
-    "client_version": "0.1.4", 
-    "git_repo_url": "git@github.com:inch-ci/Hello-World-NodeJS.git", 
-    "language": "nodejs", 
+    "args": [],
+    "branch_name": "master",
+    "client_name": "inchjs",
+    "client_version": "0.1.4",
+    "git_repo_url": "git@github.com:inch-ci/Hello-World-NodeJS.git",
+    "language": "javascript",
     "objects": [
         {
-            "comment": "", 
-            "kind": "function", 
-            "longname": "InstanciatableClass", 
+            "comment": "",
+            "kind": "function",
+            "longname": "InstanciatableClass",
             "meta": {
                 "code": {
-                    "id": "astnode100000004", 
-                    "name": "InstanciatableClass", 
-                    "type": "FunctionExpression", 
+                    "id": "astnode100000004",
+                    "name": "InstanciatableClass",
+                    "type": "FunctionExpression",
                     "value": "function"
-                }, 
-                "filename": "inch_test.js", 
-                "lineno": 4, 
-                "path": "/src", 
+                },
+                "filename": "inch_test.js",
+                "lineno": 4,
+                "path": "/src",
                 "range": [
-                    20, 
+                    20,
                     55
                 ]
-            }, 
-            "name": "InstanciatableClass", 
-            "scope": "global", 
+            },
+            "name": "InstanciatableClass",
+            "scope": "global",
             "undocumented": true
-        }, 
+        },
         {
-            "comment": "", 
-            "kind": "function", 
-            "longname": "InstanciatableClass#render", 
-            "memberof": "InstanciatableClass", 
+            "comment": "",
+            "kind": "function",
+            "longname": "InstanciatableClass#render",
+            "memberof": "InstanciatableClass",
             "meta": {
                 "code": {
-                    "id": "astnode100000009", 
-                    "name": "InstanciatableClass.prototype.render", 
-                    "paramnames": [], 
-                    "type": "FunctionExpression", 
+                    "id": "astnode100000009",
+                    "name": "InstanciatableClass.prototype.render",
+                    "paramnames": [],
+                    "type": "FunctionExpression",
                     "value": "function"
-                }, 
-                "filename": "inch_test.js", 
-                "lineno": 5, 
-                "path": "/src", 
+                },
+                "filename": "inch_test.js",
+                "lineno": 5,
+                "path": "/src",
                 "range": [
-                    57, 
+                    57,
                     125
                 ]
-            }, 
-            "name": "render", 
-            "scope": "instance", 
+            },
+            "name": "render",
+            "scope": "instance",
             "undocumented": true
-        }, 
+        },
         {
-            "access": "private", 
-            "comment": "/**\n* @private\n*/", 
-            "kind": "function", 
-            "longname": "InchTest.generate_docs", 
-            "memberof": "InchTest", 
+            "access": "private",
+            "comment": "/**\n* @private\n*/",
+            "kind": "function",
+            "longname": "InchTest.generate_docs",
+            "memberof": "InchTest",
             "meta": {
                 "code": {
-                    "id": "astnode100000024", 
-                    "name": "InchTest.generate_docs", 
+                    "id": "astnode100000024",
+                    "name": "InchTest.generate_docs",
                     "paramnames": [
-                        "project", 
-                        "version", 
-                        "args", 
+                        "project",
+                        "version",
+                        "args",
                         "options"
-                    ], 
-                    "type": "FunctionExpression", 
+                    ],
+                    "type": "FunctionExpression",
                     "value": "function"
-                }, 
-                "filename": "inch_test.js", 
-                "lineno": 13, 
-                "path": "/src", 
+                },
+                "filename": "inch_test.js",
+                "lineno": 13,
+                "path": "/src",
                 "range": [
-                    165, 
+                    165,
                     236
                 ]
-            }, 
-            "name": "generate_docs", 
+            },
+            "name": "generate_docs",
             "scope": "static"
-        }, 
+        },
         {
-            "comment": "// Generate JSON documentation for the given modules", 
-            "kind": "function", 
-            "longname": "InchTest.Docs.Formatter.run", 
-            "memberof": "InchTest.Docs.Formatter", 
+            "comment": "// Generate JSON documentation for the given modules",
+            "kind": "function",
+            "longname": "InchTest.Docs.Formatter.run",
+            "memberof": "InchTest.Docs.Formatter",
             "meta": {
                 "code": {
-                    "id": "astnode100000042", 
-                    "name": "run", 
-                    "type": "FunctionExpression", 
+                    "id": "astnode100000042",
+                    "name": "run",
+                    "type": "FunctionExpression",
                     "value": "function"
-                }, 
-                "filename": "inch_test.js", 
-                "lineno": 19, 
-                "path": "/src", 
+                },
+                "filename": "inch_test.js",
+                "lineno": 19,
+                "path": "/src",
                 "range": [
-                    333, 
+                    333,
                     398
                 ]
-            }, 
-            "name": "run", 
-            "scope": "static", 
+            },
+            "name": "run",
+            "scope": "static",
             "undocumented": true
-        }, 
+        },
         {
-            "comment": "/**\n*\n* This function takes `param1` and `param2` as arguments.\n*\n* @param {Number} param1 A number from 0 to 26 that will result in a letter a-z\n* @param {String} param2 A text\n* @return {String} A character from a-z based on the input number n\n*\n* Examples:\n*\n*   > InchTest.Naming.resource_name(MyApp.User)\n*   \"user\"\n*   > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n*   \"user\"\n*/", 
-            "description": "This function takes `param1` and `param2` as arguments.", 
-            "kind": "function", 
-            "longname": "InchTest.Functions.full_doc", 
-            "memberof": "InchTest.Functions", 
+            "comment": "/**\n*\n* This function takes `param1` and `param2` as arguments.\n*\n* @param {Number} param1 A number from 0 to 26 that will result in a letter a-z\n* @param {String} param2 A text\n* @return {String} A character from a-z based on the input number n\n*\n* Examples:\n*\n*   > InchTest.Naming.resource_name(MyApp.User)\n*   \"user\"\n*   > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n*   \"user\"\n*/",
+            "description": "This function takes `param1` and `param2` as arguments.",
+            "kind": "function",
+            "longname": "InchTest.Functions.full_doc",
+            "memberof": "InchTest.Functions",
             "meta": {
                 "code": {
-                    "id": "astnode100000057", 
-                    "name": "InchTest.Functions.full_doc", 
+                    "id": "astnode100000057",
+                    "name": "InchTest.Functions.full_doc",
                     "paramnames": [
-                        "param1", 
+                        "param1",
                         "param2"
-                    ], 
-                    "type": "FunctionExpression", 
+                    ],
+                    "type": "FunctionExpression",
                     "value": "function"
-                }, 
-                "filename": "inch_test.js", 
-                "lineno": 41, 
-                "path": "/src", 
+                },
+                "filename": "inch_test.js",
+                "lineno": 41,
+                "path": "/src",
                 "range": [
-                    841, 
+                    841,
                     914
                 ]
-            }, 
-            "name": "full_doc", 
+            },
+            "name": "full_doc",
             "params": [
                 {
-                    "description": "A number from 0 to 26 that will result in a letter a-z", 
-                    "name": "param1", 
+                    "description": "A number from 0 to 26 that will result in a letter a-z",
+                    "name": "param1",
                     "type": {
                         "names": [
                             "Number"
                         ]
                     }
-                }, 
+                },
                 {
-                    "description": "A text", 
-                    "name": "param2", 
+                    "description": "A text",
+                    "name": "param2",
                     "type": {
                         "names": [
                             "String"
                         ]
                     }
                 }
-            ], 
+            ],
             "returns": [
                 {
-                    "description": "A character from a-z based on the input number n\n\nExamples:\n\n  > InchTest.Naming.resource_name(MyApp.User)\n  \"user\"\n  > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n  \"user\"", 
+                    "description": "A character from a-z based on the input number n\n\nExamples:\n\n  > InchTest.Naming.resource_name(MyApp.User)\n  \"user\"\n  > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n  \"user\"",
                     "type": {
                         "names": [
                             "String"
                         ]
                     }
                 }
-            ], 
+            ],
             "scope": "static"
-        }, 
+        },
         {
-            "comment": "/**\n*\n* This function takes a `param1` and a second parameter that is never used\n* (maybe, because it is a callback or something like that). However, the\n* second param should impact the evaluation by Inch.\n*\n* Examples:\n*\n*   > InchTest.Naming.resource_name(MyApp.User)\n*   \"user\"\n*   > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n*   \"user\"\n*/", 
-            "description": "This function takes a `param1` and a second parameter that is never used\n(maybe, because it is a callback or something like that). However, the\nsecond param should impact the evaluation by Inch.\n\nExamples:\n\n  > InchTest.Naming.resource_name(MyApp.User)\n  \"user\"\n  > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n  \"user\"", 
-            "kind": "function", 
-            "longname": "InchTest.Functions.full_doc_second_parameter_unnamed", 
-            "memberof": "InchTest.Functions", 
+            "comment": "/**\n*\n* This function takes a `param1` and a second parameter that is never used\n* (maybe, because it is a callback or something like that). However, the\n* second param should impact the evaluation by Inch.\n*\n* Examples:\n*\n*   > InchTest.Naming.resource_name(MyApp.User)\n*   \"user\"\n*   > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n*   \"user\"\n*/",
+            "description": "This function takes a `param1` and a second parameter that is never used\n(maybe, because it is a callback or something like that). However, the\nsecond param should impact the evaluation by Inch.\n\nExamples:\n\n  > InchTest.Naming.resource_name(MyApp.User)\n  \"user\"\n  > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n  \"user\"",
+            "kind": "function",
+            "longname": "InchTest.Functions.full_doc_second_parameter_unnamed",
+            "memberof": "InchTest.Functions",
             "meta": {
                 "code": {
-                    "id": "astnode100000070", 
-                    "name": "InchTest.Functions.full_doc_second_parameter_unnamed", 
+                    "id": "astnode100000070",
+                    "name": "InchTest.Functions.full_doc_second_parameter_unnamed",
                     "paramnames": [
-                        "param1", 
+                        "param1",
                         "_"
-                    ], 
-                    "type": "FunctionExpression", 
+                    ],
+                    "type": "FunctionExpression",
                     "value": "function"
-                }, 
-                "filename": "inch_test.js", 
-                "lineno": 57, 
-                "path": "/src", 
+                },
+                "filename": "inch_test.js",
+                "lineno": 57,
+                "path": "/src",
                 "range": [
-                    1271, 
+                    1271,
                     1364
                 ]
-            }, 
-            "name": "full_doc_second_parameter_unnamed", 
+            },
+            "name": "full_doc_second_parameter_unnamed",
             "scope": "static"
-        }, 
+        },
         {
-            "comment": "/**\n*\n* This function takes no arguments.\n*\n* Examples:\n*\n*   > InchTest.Naming.resource_name(MyApp.User)\n*   \"user\"\n*   > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n*   \"user\"\n*/", 
-            "description": "This function takes no arguments.\n\nExamples:\n\n  > InchTest.Naming.resource_name(MyApp.User)\n  \"user\"\n  > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n  \"user\"", 
-            "kind": "function", 
-            "longname": "InchTest.CodeExamples.single_code_example", 
-            "memberof": "InchTest.CodeExamples", 
+            "comment": "/**\n*\n* This function takes no arguments.\n*\n* Examples:\n*\n*   > InchTest.Naming.resource_name(MyApp.User)\n*   \"user\"\n*   > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n*   \"user\"\n*/",
+            "description": "This function takes no arguments.\n\nExamples:\n\n  > InchTest.Naming.resource_name(MyApp.User)\n  \"user\"\n  > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n  \"user\"",
+            "kind": "function",
+            "longname": "InchTest.CodeExamples.single_code_example",
+            "memberof": "InchTest.CodeExamples",
             "meta": {
                 "code": {
-                    "id": "astnode100000088", 
-                    "name": "single_code_example", 
-                    "type": "FunctionExpression", 
+                    "id": "astnode100000088",
+                    "name": "single_code_example",
+                    "type": "FunctionExpression",
                     "value": "function"
-                }, 
-                "filename": "inch_test.js", 
-                "lineno": 74, 
-                "path": "/src", 
+                },
+                "filename": "inch_test.js",
+                "lineno": 74,
+                "path": "/src",
                 "range": [
-                    1609, 
+                    1609,
                     1665
                 ]
-            }, 
-            "name": "single_code_example", 
+            },
+            "name": "single_code_example",
             "scope": "static"
-        }, 
+        },
         {
-            "comment": "/**\n*\n* This function takes no arguments.\n*\n* Examples:\n*\n*   > InchTest.Naming.resource_name(MyApp.User)\n*   \"user\"\n*   > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n*   \"user\"\n*\n* In general, `underscore` can be thought of as the reverse ...\n*\n*   > InchTest.Naming.resource_name(MyApp.User)\n*   \"user\"\n*   > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n*   \"user\"\n*/", 
-            "description": "This function takes no arguments.\n\nExamples:\n\n  > InchTest.Naming.resource_name(MyApp.User)\n  \"user\"\n  > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n  \"user\"\n\nIn general, `underscore` can be thought of as the reverse ...\n\n  > InchTest.Naming.resource_name(MyApp.User)\n  \"user\"\n  > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n  \"user\"", 
-            "kind": "function", 
-            "longname": "InchTest.CodeExamples.multiple_code_examples", 
-            "memberof": "InchTest.CodeExamples", 
+            "comment": "/**\n*\n* This function takes no arguments.\n*\n* Examples:\n*\n*   > InchTest.Naming.resource_name(MyApp.User)\n*   \"user\"\n*   > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n*   \"user\"\n*\n* In general, `underscore` can be thought of as the reverse ...\n*\n*   > InchTest.Naming.resource_name(MyApp.User)\n*   \"user\"\n*   > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n*   \"user\"\n*/",
+            "description": "This function takes no arguments.\n\nExamples:\n\n  > InchTest.Naming.resource_name(MyApp.User)\n  \"user\"\n  > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n  \"user\"\n\nIn general, `underscore` can be thought of as the reverse ...\n\n  > InchTest.Naming.resource_name(MyApp.User)\n  \"user\"\n  > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n  \"user\"",
+            "kind": "function",
+            "longname": "InchTest.CodeExamples.multiple_code_examples",
+            "memberof": "InchTest.CodeExamples",
             "meta": {
                 "code": {
-                    "id": "astnode100000093", 
-                    "name": "multiple_code_examples", 
-                    "type": "FunctionExpression", 
+                    "id": "astnode100000093",
+                    "name": "multiple_code_examples",
+                    "type": "FunctionExpression",
                     "value": "function"
-                }, 
-                "filename": "inch_test.js", 
-                "lineno": 95, 
-                "path": "/src", 
+                },
+                "filename": "inch_test.js",
+                "lineno": 95,
+                "path": "/src",
                 "range": [
-                    2094, 
+                    2094,
                     2153
                 ]
-            }, 
-            "name": "multiple_code_examples", 
+            },
+            "name": "multiple_code_examples",
             "scope": "static"
-        }, 
+        },
         {
             "files": [
                 "/home/rf/devel/Hello-World-NodeJS/src/inch_test.js"
-            ], 
-            "kind": "package", 
+            ],
+            "kind": "package",
             "longname": "package:undefined"
         }
     ]
