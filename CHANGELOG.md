@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.0
+
+- NodeJS is renamed to JavaScript, which breaks backwards compatibility
+
 ## 0.5.9
 
 - NodeJS: Improve output of code object names and locations
