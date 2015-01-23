@@ -39,7 +39,7 @@ module Inch
             # Role assigned to objects declared in the top-level namespace
             class InRoot < Base
               applicable_if :in_root?
-              priority      +3
+              priority      0
             end
 
             # Role assigned to public objects
