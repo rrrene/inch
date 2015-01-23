@@ -81,11 +81,13 @@ module Inch
             # Role assigned to methods that are getters
             class Getter < Base
               applicable_if :getter?
+              priority      -1
             end
 
             # Role assigned to methods that are setters
             class Setter < Base
               applicable_if :setter?
+              priority      -1
             end
 
             # Role assigned to methods that are overriding another method

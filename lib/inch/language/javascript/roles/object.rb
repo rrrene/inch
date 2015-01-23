@@ -48,6 +48,18 @@ module Inch
               priority      0
             end
 
+            # Role assigned to protected objects
+            class Protected < Base
+              applicable_if :protected?
+              priority      -1
+            end
+
+            # Role assigned to private objects
+            class Private < Base
+              applicable_if :private?
+              priority      -4
+            end
+
             # Role assigned to objects with a single code example
             class WithCodeExample < Base
               applicable_if do |o|

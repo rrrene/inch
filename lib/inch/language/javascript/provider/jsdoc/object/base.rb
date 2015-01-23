@@ -88,7 +88,7 @@ module Inch
               end
 
               def getter?
-                name =~ /^get_/ # raise NotImplementedError
+                fullname =~ /(\A|#|\.)(get)[A-Z]/
               end
 
               def has_children?
@@ -147,7 +147,7 @@ module Inch
               end
 
               def private?
-                visibility == 'private'
+                visibility == 'private' || private_name?
               end
 
               def tagged_as_internal_api?
@@ -167,7 +167,7 @@ module Inch
               end
 
               def questioning_name?
-                fullname =~ /\?$/
+                fullname =~ /(\A|#|\.)(has|is)[A-Z]/
               end
 
               def return_described?
@@ -187,7 +187,7 @@ module Inch
               end
 
               def setter?
-                name =~ /^set_/ # raise NotImplementedError
+                fullname =~ /(\A|#|\.)(set)[A-Z]/
               end
 
               def source
@@ -214,6 +214,11 @@ module Inch
 
               def meta
                 @hash['meta']
+              end
+
+              # Returns +true+ if the name starts with an underscore (_).
+              def private_name?
+                fullname =~ /(\A|#|\.)_/
               end
 
               def retrieve_parent_fullname

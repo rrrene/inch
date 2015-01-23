@@ -12,6 +12,8 @@ module Inch
             {
               Role::Object::InRoot => nil,
               Role::Object::Public => nil,
+              Role::Object::Protected => nil,
+              Role::Object::Private => nil,
               Role::Object::TaggedAsNodoc => nil,
               Role::Object::WithDoc => score_for(:docstring),
               Role::Object::WithoutDoc => score_for(:docstring),
