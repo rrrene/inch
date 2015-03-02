@@ -96,7 +96,7 @@ module Inch
               end
 
               def has_code_example?
-                docstring.code_examples.size > 0
+                docstring.contains_code_example?
               end
 
               def has_doc?

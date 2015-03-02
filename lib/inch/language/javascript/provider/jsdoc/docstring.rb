@@ -11,6 +11,10 @@ module Inch
               @text = without_comment_markers(text)
             end
 
+            def contains_code_example?
+              tag?(:example) || super
+            end
+
             def describes_internal_api?
               tag?(:api, :private) || super
             end
