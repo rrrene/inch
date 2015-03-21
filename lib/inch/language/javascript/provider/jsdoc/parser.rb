@@ -28,6 +28,7 @@ module Inch
             # @param config [Inch::Config::Codebase] configuration for codebase
             # @return [void]
             def parse(dir, config)
+              raise "Directory does not exist: #{dir}" if !File.exist?(dir)
               Dir.chdir(dir) do
                 parse_objects(config.included_files, config.excluded_files,
                               config.read_dump_file)
