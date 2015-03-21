@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../../../test_helper')
 
 describe ::Inch::Language::Ruby::CodeObject::ClassObject do
   before do
-    @codebase = test_codebase(:ruby, :simple)
+    @codebase = test_codebase(:ruby, :structs)
     @objects = @codebase.objects
   end
 
