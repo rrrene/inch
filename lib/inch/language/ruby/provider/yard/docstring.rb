@@ -35,6 +35,14 @@ module Inch
               end
             end
 
+            # Returns +true+ if the docstring mentions a member with the given
+            # +name+.
+            def mentions_member?(name)
+              mentions_parameter?(name)
+            end
+
+            # Returns +true+ if the docstring mentions a parameter with the
+            # given +name+.
             def mentions_parameter?(name)
               return false if name.nil?
               mention_parameter_regexps(name).any? do |pattern|

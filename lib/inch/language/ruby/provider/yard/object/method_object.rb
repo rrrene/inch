@@ -37,7 +37,8 @@ module Inch
               end
 
               def has_doc?
-                signatures.any? { |s| s.has_doc? }
+                signatures.any? { |s| s.has_doc? } ||
+                  (parent && parent.has_doc_for?(name))
               end
 
               def method?
