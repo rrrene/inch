@@ -108,6 +108,12 @@ module Inch
             self[:has_doc?]
           end
 
+          # @return [Boolean] +true+ if the docstring mentions a given
+          #   +member_name+.
+          def has_doc_for?(member_name)
+            docstring.mentions_member?(member_name)
+          end
+
           def has_multiple_code_examples?
             self[:has_multiple_code_examples?]
           end

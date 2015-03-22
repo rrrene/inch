@@ -34,7 +34,6 @@ module Inch
                 @api_tag = __api_tag
                 @parent = __parent
                 @private_tag = __private_tag
-                @docstring = Docstring.new(object.docstring)
               end
 
               # Returns the fullname of the object that the current object
@@ -103,7 +102,9 @@ module Inch
               end
 
               # @return [Docstring]
-              attr_reader :docstring
+              def docstring
+                @docstring ||= Docstring.new(object.docstring)
+              end
 
               # Returns all files declaring the object in the form of an Array
               # of Arrays containing the location of their declaration.
@@ -146,11 +147,6 @@ module Inch
 
               def has_doc?
                 !docstring.empty?
-              end
-
-              # Returns +true+ if the docstring mentions a given +member_name+.
-              def has_doc_for?(member_name)
-                docstring.mentions_member?(member_name)
               end
 
               def has_multiple_code_examples?
@@ -212,6 +208,10 @@ module Inch
 
               # @return [CodeObject::Base,nil] the parent of the current object or +nil+
               attr_reader :parent
+
+              def parent_fullname
+                parent && parent.fullname
+              end
 
               def __parent
                 YARD::Object.for(object.parent) if object.parent

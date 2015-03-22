@@ -16,6 +16,10 @@ module Inch
             self[:getter?]
           end
 
+          def has_doc?
+            super || mentioned_in_parent_docstring?
+          end
+
           def has_parameters?
             !parameters.empty?
           end
@@ -75,9 +79,20 @@ module Inch
             self[:source?]
           end
 
+          def undocumented?
+            super && !mentioned_in_parent_docstring?
+          end
+
           def questioning_name?
             self[:questioning_name?]
           end
+
+          private
+
+          def mentioned_in_parent_docstring?
+            parent && parent.has_doc_for?(name)
+          end
+
         end
       end
     end
