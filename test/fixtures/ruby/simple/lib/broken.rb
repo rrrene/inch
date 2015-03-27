@@ -44,6 +44,28 @@ module Foo
   #     @option params [Hash<Symbol, String>] :headers The default headers to supply in a request. Only used if params[:headers] is not supplied to Connection#request
   def method_with_indented_param_tag(params = {})
   end
+
+  ##
+  # Checks wether the given Foo allows this Actor to perform the given action.
+  #
+  # @param action [Symbol] a valid action for this Foo (see {DSL::Foo})
+  # @param resource [Foo] an authorized Foo
+  #
+  # @see Foo
+  #
+  def can?(action, resource)
+    resource.allows?(action, self)
+  end
+
+  ##
+  # Opposite of {#can?}.
+  #
+  # @param (see #can?)
+  # @return (see #can?)
+  #
+  def cannot?(*args)
+    !can?(*args)
+  end
 end
 
 module Overloading

@@ -501,4 +501,19 @@ describe ::Inch::Language::Ruby::CodeObject::MethodObject do
       assert_equal 100, m.score
     end
   end
+
+  describe 'YARDs reference tag on methods' do
+    #
+    it 'should recognize referenced docs' do
+      m1 = @objects.find('Foo#can?')
+      assert m1.has_doc?
+      refute m1.undocumented?
+      assert_equal 100, m1.score
+
+      m2 = @objects.find('Foo#cannot?')
+      assert m2.has_doc?
+      refute m2.undocumented?
+      assert_equal 100, m2.score
+    end
+  end
 end
