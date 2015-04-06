@@ -119,7 +119,7 @@ module Inch
                 /\+#{expr}\+\:\:/,        # +param1+::
                 /<tt>#{expr}<\/tt>/,      # <tt>param1</tt>
                 /<tt>#{expr}<\/tt>\:\:/,  # <tt>param1</tt>::
-                /^#{expr}\ +\-\ /         # param1 -
+                /^\s*#{expr}\ +\-\ /         # param1 -
               ]
             end
 
