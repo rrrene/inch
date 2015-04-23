@@ -155,7 +155,7 @@ module Inch
                     attributed_return_tags
               end
 
-              # Returns +true+ if a return value is described by words.
+              # Returns +true+ if a return value is described via tags.
               def return_described_via_tag?
                 return_tags.any? do |t|
                   return_tag_describes_unusable_value?(t) ||
