@@ -23,8 +23,12 @@ module Inch
         def run(*args)
           prepare_codebase(*args)
           context = API::Suggest.new(codebase, @options)
-          Output::Suggest.new(@options, context.all_objects, context.objects,
-                              context.grade_lists, context.files)
+          if @options.format == Options::Suggest::FORMAT_TEXT
+            Output::Suggest.new(@options, context.all_objects, context.objects,
+                                context.grade_lists, context.files)
+          else
+            Output::Stats.new(@options, context.all_objects, context.grade_lists)
+          end
         end
       end
     end

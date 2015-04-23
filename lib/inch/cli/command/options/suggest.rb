@@ -3,6 +3,11 @@ module Inch
     module Command
       module Options
         class Suggest < BaseList
+          FORMAT_TEXT = "text"
+          FORMATS = [FORMAT_TEXT] + %w(json yaml)
+
+          attribute :format, FORMATS.first
+
           include API::Options::Suggest::DefaultAttributeValues
 
           attribute :object_count, DEFAULT_OBJECT_COUNT
@@ -45,6 +50,10 @@ module Inch
 
             opts.on('-n', '--objects [COUNT]', 'Show COUNT objects') do |count|
               @object_count = count.to_i
+            end
+            opts.on('-f', '--format [FORMAT]', FORMATS,
+                    'Set output FORMAT') do |format|
+              @format = format
             end
             opts.on('--pedantic',
                     'Be excessively concerned with minor details and rules') do
