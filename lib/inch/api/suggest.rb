@@ -14,6 +14,10 @@ module Inch
         list[0...how_many]
       end
 
+      def grade_lists
+        super(relevant_objects)
+      end
+
       # @return [Array] the +@options.object_count+ objects the API suggests
       def objects
         filter_objects_to_display
