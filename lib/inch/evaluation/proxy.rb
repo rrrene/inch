@@ -114,13 +114,13 @@ module Inch
       # @return [Float] the max score that is assignable to +object+
       def __max_score
         arr = @roles.map(&:max_score).compact
-        [MAX_SCORE].concat(arr).min
+        [MAX_SCORE].concat(arr).min.to_i
       end
 
       # @return [Float] the max score that is assignable to +object+
       def __min_score
         arr = @roles.map(&:min_score).compact
-        [MIN_SCORE].concat(arr).max
+        [MIN_SCORE].concat(arr).max.to_i
       end
 
       # @return [Float]
