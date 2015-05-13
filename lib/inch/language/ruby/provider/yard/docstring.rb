@@ -28,6 +28,8 @@ module Inch
               @code_examples ||= parse_code_examples
             end
 
+            # Returns +true+ if the docstring describes the parameter with the
+            # given +name+.
             def describes_parameter?(name)
               return false if name.nil?
               describe_parameter_regexps(name).any? do |pattern|
@@ -149,7 +151,7 @@ module Inch
               same_line_regexps =
                 mention_parameter_patterns(name).map do |pattern|
                   r = pattern.is_a?(Regexp) ? pattern : Regexp.escape(pattern)
-                  /^#{r}\s?\S+/
+                  /^\s*[-\*]?\s*#{r}\s?\S+/
                 end
               same_line_regexps + describe_parameter_extra_regexps(name)
             end

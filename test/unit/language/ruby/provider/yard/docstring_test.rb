@@ -3,6 +3,31 @@ require File.expand_path(File.dirname(__FILE__) + '/../../../../../test_helper')
 describe ::Inch::Language::Ruby::Provider::YARD::Docstring do
   let(:described_class) { ::Inch::Language::Ruby::Provider::YARD::Docstring }
 
+  it 'should notice things in phoenix style docs' do
+    text = <<-DOC
+Unsubscribes the pid from the topic.
+
+  * `param1` - The registered server name or pid
+  * `p2` - The subscriber pid
+  * `prm3` - The string topic, ie "users:123"
+
+## Examples
+
+    iex> unsubscribe(:param1, self, "foo")
+    :ok
+    DOC
+    docstring = described_class.new(text)
+    assert docstring.mentions_parameter?(:param1)
+    assert docstring.mentions_parameter?(:p2)
+    assert docstring.mentions_parameter?(:prm3)
+    assert docstring.describes_parameter?(:param1)
+    assert docstring.describes_parameter?(:p2)
+    assert docstring.describes_parameter?(:prm3)
+    assert docstring.contains_code_example?
+    refute docstring.mentions_return?
+    refute docstring.describes_return?
+  end
+
   #
   # loose TomDoc compatibility
   #
