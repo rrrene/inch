@@ -22,8 +22,9 @@ module Inch
             def describes_parameter?(name)
               return false if name.nil?
               parameter = parameter_notations(name)
-              type_notation = /(\{[^\}]+\}|\[[^\]]+\])/
-              tag?(:param, /#{type_notation}\s+#{parameter}\s+\S+/)
+              type_notation = /(\{[^\}]+\}|\[[^\]]+\])/ # text in curly or square brackets
+              type_and_param = /(#{type_notation}\s+#{parameter}|#{parameter}\s+#{type_notation})/ # type and param OR param and type
+              tag?(:param, /#{type_and_param}\s+\S+/)
             end
 
             def mentions_parameter?(name)
