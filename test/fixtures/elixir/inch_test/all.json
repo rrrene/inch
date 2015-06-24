@@ -2,6 +2,9 @@
     "args": [
         "list"
     ],
+    "branch_name": "master",
+    "client_name": "inch_ex",
+    "client_version": "0.3.3",
     "git_repo_url": "https://github.com/inch-ci/Hello-World-Elixir.git",
     "language": "elixir",
     "objects": [
@@ -229,7 +232,7 @@
         },
         {
             "arity": 1,
-            "doc": null,
+            "doc": false,
             "id": "no_doc/1",
             "module_id": "InchTest.Callbacks",
             "name": "no_doc",
@@ -928,5 +931,7 @@
             "source": "lib/inch_test/naming.ex:52",
             "type": "def"
         }
-    ]
+    ],
+    "revision": "2f0554fbb54c81e4869a391c264735c95dd1c460",
+    "shell": true
 }
