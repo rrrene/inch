@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.6.3
+
+- Elixir: Recognize callbacks and macros
+- NodeJS: Improve param type detection
+
+## 0.6.2
+
+- CLI: Add `--format` option to `suggest` command
+- Elixir: Improve general parameter detection
+
+## 0.6.1
+
+- Fix bug related to score boundaries being Floats rather than Ints
+
 ## 0.6.0
 
 - NodeJS is renamed to JavaScript, which breaks backwards compatibility
