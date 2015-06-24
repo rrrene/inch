@@ -1,6 +1,8 @@
 {
-    "args": [],
-    "git_repo_url": "git@github.com:inch-ci/Hello-World-Elixir.git",
+    "args": [
+        "list"
+    ],
+    "git_repo_url": "https://github.com/inch-ci/Hello-World-Elixir.git",
     "language": "elixir",
     "objects": [
         {
@@ -8,173 +10,168 @@
             "module": "Elixir.InchTest",
             "moduledoc": null,
             "object_type": "ModuleObject",
-            "source": null,
-            "type": null,
-            "typespecs": []
+            "source": "lib/inch_test.ex:1",
+            "type": null
+        },
+        {
+            "id": "InchTest.Callbacks",
+            "module": "Elixir.InchTest.Callbacks",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": "lib/inch_test/callbacks.ex:1",
+            "type": "behaviour"
         },
         {
             "id": "InchTest.CodeExamples",
             "module": "Elixir.InchTest.CodeExamples",
             "moduledoc": null,
             "object_type": "ModuleObject",
-            "source": null,
-            "type": null,
-            "typespecs": []
+            "source": "lib/inch_test/code_examples.ex:1",
+            "type": null
         },
         {
             "id": "InchTest.Config",
             "module": "Elixir.InchTest.Config",
             "moduledoc": null,
             "object_type": "ModuleObject",
-            "source": null,
-            "type": null,
-            "typespecs": []
+            "source": "lib/inch_test.ex:2",
+            "type": null
         },
         {
             "id": "InchTest.Docs.Formatter",
             "module": "Elixir.InchTest.Docs.Formatter",
             "moduledoc": "Provide JSON-formatted documentation\n",
             "object_type": "ModuleObject",
-            "source": null,
-            "type": null,
-            "typespecs": []
+            "source": "lib/inch_test/docs/formatter.ex:3",
+            "type": null
         },
         {
             "id": "InchTest.Docs.Retriever",
             "module": "Elixir.InchTest.Docs.Retriever",
             "moduledoc": "Functions to extract documentation information from modules.\n",
             "object_type": "ModuleObject",
-            "source": null,
-            "type": null,
-            "typespecs": []
+            "source": "lib/inch_test/docs/retriever.ex:24",
+            "type": null
         },
         {
             "id": "InchTest.Docs.Retriever.Error",
             "module": "Elixir.InchTest.Docs.Retriever.Error",
             "moduledoc": null,
             "object_type": "ModuleObject",
-            "source": null,
-            "type": "exception",
-            "typespecs": []
+            "source": "lib/inch_test/docs/retriever.ex:20",
+            "type": "exception"
         },
         {
             "id": "InchTest.FunctionObject",
             "module": "Elixir.InchTest.FunctionObject",
             "moduledoc": null,
             "object_type": "ModuleObject",
-            "source": null,
-            "type": null,
-            "typespecs": []
+            "source": "lib/inch_test/docs/retriever.ex:10",
+            "type": null
         },
         {
             "id": "InchTest.Functions",
             "module": "Elixir.InchTest.Functions",
             "moduledoc": "  In this module we define funs that are \"cases\" for our test suite.\n",
             "object_type": "ModuleObject",
-            "source": "lib/inch_test/functions.ex:9",
-            "type": null,
-            "typespecs": []
+            "source": "lib/inch_test/functions.ex:1",
+            "type": null
         },
         {
             "id": "InchTest.Html",
             "module": "Elixir.InchTest.Html",
             "moduledoc": null,
             "object_type": "ModuleObject",
-            "source": null,
-            "type": null,
-            "typespecs": []
+            "source": "lib/inch_test/html.ex:3",
+            "type": null
         },
         {
             "id": "InchTest.Html.Safe",
             "module": "Elixir.InchTest.Html.Safe",
             "moduledoc": null,
             "object_type": "ModuleObject",
-            "source": null,
-            "type": "protocol",
-            "typespecs": [
-                "[Elixir.Any]"
-            ]
+            "source": "lib/inch_test/html.ex:19",
+            "type": "protocol"
         },
         {
             "id": "InchTest.Html.Safe.Atom",
             "module": "Elixir.InchTest.Html.Safe.Atom",
             "moduledoc": null,
             "object_type": "ModuleObject",
-            "source": null,
-            "type": "impl",
-            "typespecs": []
+            "source": "lib/inch_test/html.ex:23",
+            "type": "impl"
         },
         {
             "id": "InchTest.Html.Safe.BitString",
             "module": "Elixir.InchTest.Html.Safe.BitString",
             "moduledoc": null,
             "object_type": "ModuleObject",
-            "source": null,
-            "type": "impl",
-            "typespecs": []
+            "source": "lib/inch_test/html.ex:28",
+            "type": "impl"
         },
         {
             "id": "InchTest.Html.Safe.Float",
             "module": "Elixir.InchTest.Html.Safe.Float",
             "moduledoc": null,
             "object_type": "ModuleObject",
-            "source": null,
-            "type": "impl",
-            "typespecs": []
+            "source": "lib/inch_test/html.ex:66",
+            "type": "impl"
         },
         {
             "id": "InchTest.Html.Safe.Integer",
             "module": "Elixir.InchTest.Html.Safe.Integer",
             "moduledoc": null,
             "object_type": "ModuleObject",
-            "source": null,
-            "type": "impl",
-            "typespecs": []
+            "source": "lib/inch_test/html.ex:62",
+            "type": "impl"
         },
         {
             "id": "InchTest.Html.Safe.List",
             "module": "Elixir.InchTest.Html.Safe.List",
             "moduledoc": null,
             "object_type": "ModuleObject",
-            "source": null,
-            "type": "impl",
-            "typespecs": []
+            "source": "lib/inch_test/html.ex:34",
+            "type": "impl"
         },
         {
             "id": "InchTest.Html.Safe.Tuple",
             "module": "Elixir.InchTest.Html.Safe.Tuple",
             "moduledoc": null,
             "object_type": "ModuleObject",
-            "source": null,
-            "type": "impl",
-            "typespecs": []
+            "source": "lib/inch_test/html.ex:72",
+            "type": "impl"
+        },
+        {
+            "id": "InchTest.Macros",
+            "module": "Elixir.InchTest.Macros",
+            "moduledoc": null,
+            "object_type": "ModuleObject",
+            "source": "lib/inch_test/macros.ex:1",
+            "type": null
         },
         {
             "id": "InchTest.ModuleObject",
             "module": "Elixir.InchTest.ModuleObject",
             "moduledoc": null,
             "object_type": "ModuleObject",
-            "source": null,
-            "type": null,
-            "typespecs": []
+            "source": "lib/inch_test/docs/retriever.ex:5",
+            "type": null
         },
         {
             "id": "InchTest.Naming",
             "module": "Elixir.InchTest.Naming",
             "moduledoc": null,
             "object_type": "ModuleObject",
-            "source": null,
-            "type": null,
-            "typespecs": []
+            "source": "lib/inch_test/naming.ex:3",
+            "type": null
         },
         {
             "id": "InchTest.TypeObject",
             "module": "Elixir.InchTest.TypeObject",
             "moduledoc": null,
             "object_type": "ModuleObject",
-            "source": null,
-            "type": null,
-            "typespecs": []
+            "source": "lib/inch_test/docs/retriever.ex:15",
+            "type": null
         },
         {
             "arity": 4,
@@ -205,8 +202,57 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test.ex:12",
+            "type": "def"
+        },
+        {
+            "arity": 1,
+            "doc": "Informs the given message.\n",
+            "id": "full_doc/1",
+            "module_id": "InchTest.Callbacks",
+            "name": "full_doc",
+            "object_type": "FunctionObject",
+            "signature": null,
+            "source": "lib/inch_test/callbacks.ex:7",
+            "type": "defcallback"
+        },
+        {
+            "arity": 1,
+            "doc": null,
+            "id": "missing_doc/1",
+            "module_id": "InchTest.Callbacks",
+            "name": "missing_doc",
+            "object_type": "FunctionObject",
+            "signature": null,
+            "source": "lib/inch_test/callbacks.ex:12",
+            "type": "defcallback"
+        },
+        {
+            "arity": 1,
+            "doc": null,
+            "id": "no_doc/1",
+            "module_id": "InchTest.Callbacks",
+            "name": "no_doc",
+            "object_type": "FunctionObject",
+            "signature": null,
+            "source": "lib/inch_test/callbacks.ex:10",
+            "type": "defcallback"
+        },
+        {
+            "arity": 1,
+            "doc": false,
+            "id": "__behaviour__/1",
+            "module_id": "InchTest.Callbacks",
+            "name": "__behaviour__",
+            "object_type": "FunctionObject",
+            "signature": [
+                [
+                    "atom1",
+                    [],
+                    "Elixir"
+                ]
+            ],
+            "source": "lib/inch_test/callbacks.ex:1",
             "type": "def"
         },
         {
@@ -217,8 +263,7 @@
             "name": "multiple_code_examples",
             "object_type": "FunctionObject",
             "signature": [],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/code_examples.ex:33",
             "type": "def"
         },
         {
@@ -229,8 +274,7 @@
             "name": "single_code_example",
             "object_type": "FunctionObject",
             "signature": [],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/code_examples.ex:12",
             "type": "def"
         },
         {
@@ -257,8 +301,7 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/docs/formatter.ex:11",
             "type": "def"
         },
         {
@@ -280,8 +323,7 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/docs/retriever.ex:32",
             "type": "def"
         },
         {
@@ -303,8 +345,7 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/docs/retriever.ex:38",
             "type": "def"
         },
         {
@@ -326,13 +367,12 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/docs/retriever.ex:44",
             "type": "def"
         },
         {
             "arity": 1,
-            "doc": "Callback implementation of `Exception.exception/1`.",
+            "doc": false,
             "id": "exception/1",
             "module_id": "InchTest.Docs.Retriever.Error",
             "name": "exception",
@@ -344,62 +384,12 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [
-                [
-                    "::",
-                    {
-                        "line": 21
-                    },
-                    [
-                        [
-                            "exception",
-                            {
-                                "line": 21
-                            },
-                            [
-                                [
-                                    [
-                                        ".",
-                                        {
-                                            "line": 21
-                                        },
-                                        [
-                                            "Elixir.Keyword",
-                                            "t"
-                                        ]
-                                    ],
-                                    {
-                                        "line": 21
-                                    },
-                                    []
-                                ]
-                            ]
-                        ],
-                        [
-                            [
-                                ".",
-                                {
-                                    "line": 21
-                                },
-                                [
-                                    "Elixir.Exception",
-                                    "t"
-                                ]
-                            ],
-                            {
-                                "line": 21
-                            },
-                            []
-                        ]
-                    ]
-                ]
-            ],
+            "source": "lib/inch_test/docs/retriever.ex:21",
             "type": "def"
         },
         {
             "arity": 1,
-            "doc": "Callback implementation of `Exception.message/1`.",
+            "doc": false,
             "id": "message/1",
             "module_id": "InchTest.Docs.Retriever.Error",
             "name": "message",
@@ -411,57 +401,7 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [
-                [
-                    "::",
-                    {
-                        "line": 21
-                    },
-                    [
-                        [
-                            "message",
-                            {
-                                "line": 21
-                            },
-                            [
-                                [
-                                    [
-                                        ".",
-                                        {
-                                            "line": 21
-                                        },
-                                        [
-                                            "Elixir.Exception",
-                                            "t"
-                                        ]
-                                    ],
-                                    {
-                                        "line": 21
-                                    },
-                                    []
-                                ]
-                            ]
-                        ],
-                        [
-                            [
-                                ".",
-                                {
-                                    "line": 21
-                                },
-                                [
-                                    "Elixir.String",
-                                    "t"
-                                ]
-                            ],
-                            {
-                                "line": 21
-                            },
-                            []
-                        ]
-                    ]
-                ]
-            ],
+            "source": "lib/inch_test/docs/retriever.ex:21",
             "type": "def"
         },
         {
@@ -483,8 +423,7 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/functions.ex:16",
             "type": "def"
         },
         {
@@ -506,8 +445,7 @@
                     "Elixir"
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/functions.ex:31",
             "type": "def"
         },
         {
@@ -524,8 +462,7 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/html.ex:76",
             "type": "def"
         },
         {
@@ -542,8 +479,7 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/html.ex:14",
             "type": "def"
         },
         {
@@ -560,8 +496,7 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/html.ex:16",
             "type": "def"
         },
         {
@@ -578,63 +513,7 @@
                     "Elixir"
                 ]
             ],
-            "source": null,
-            "specs": [
-                [
-                    "::",
-                    {
-                        "line": 19
-                    },
-                    [
-                        [
-                            "__protocol__",
-                            {
-                                "line": 19
-                            },
-                            [
-                                "functions"
-                            ]
-                        ],
-                        [
-                            [
-                                "{}",
-                                {
-                                    "line": 0
-                                },
-                                [
-                                    "to_string",
-                                    1
-                                ]
-                            ],
-                            [
-                                "...",
-                                {
-                                    "line": 0
-                                },
-                                null
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    "::",
-                    {
-                        "line": 19
-                    },
-                    [
-                        [
-                            "__protocol__",
-                            {
-                                "line": 19
-                            },
-                            [
-                                "name"
-                            ]
-                        ],
-                        "Elixir.InchTest.Html.Safe"
-                    ]
-                ]
-            ],
+            "source": "lib/inch_test/html.ex:19",
             "type": "def"
         },
         {
@@ -651,8 +530,7 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/html.ex:20",
             "type": "def"
         },
         {
@@ -669,68 +547,12 @@
                     "Elixir"
                 ]
             ],
-            "source": null,
-            "specs": [
-                [
-                    "::",
-                    {
-                        "line": 23
-                    },
-                    [
-                        [
-                            "__impl__",
-                            {
-                                "line": 23
-                            },
-                            [
-                                "protocol"
-                            ]
-                        ],
-                        "Elixir.InchTest.Html.Safe"
-                    ]
-                ],
-                [
-                    "::",
-                    {
-                        "line": 23
-                    },
-                    [
-                        [
-                            "__impl__",
-                            {
-                                "line": 23
-                            },
-                            [
-                                "target"
-                            ]
-                        ],
-                        "Elixir.InchTest.Html.Safe.Atom"
-                    ]
-                ],
-                [
-                    "::",
-                    {
-                        "line": 23
-                    },
-                    [
-                        [
-                            "__impl__",
-                            {
-                                "line": 23
-                            },
-                            [
-                                "for"
-                            ]
-                        ],
-                        "Elixir.Atom"
-                    ]
-                ]
-            ],
+            "source": "lib/inch_test/html.ex:23",
             "type": "def"
         },
         {
             "arity": 1,
-            "doc": "Callback implementation of `InchTest.Html.Safe.to_string/1`.",
+            "doc": false,
             "id": "to_string/1",
             "module_id": "InchTest.Html.Safe.Atom",
             "name": "to_string",
@@ -742,8 +564,7 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/html.ex:24",
             "type": "def"
         },
         {
@@ -760,68 +581,12 @@
                     "Elixir"
                 ]
             ],
-            "source": null,
-            "specs": [
-                [
-                    "::",
-                    {
-                        "line": 28
-                    },
-                    [
-                        [
-                            "__impl__",
-                            {
-                                "line": 28
-                            },
-                            [
-                                "protocol"
-                            ]
-                        ],
-                        "Elixir.InchTest.Html.Safe"
-                    ]
-                ],
-                [
-                    "::",
-                    {
-                        "line": 28
-                    },
-                    [
-                        [
-                            "__impl__",
-                            {
-                                "line": 28
-                            },
-                            [
-                                "target"
-                            ]
-                        ],
-                        "Elixir.InchTest.Html.Safe.BitString"
-                    ]
-                ],
-                [
-                    "::",
-                    {
-                        "line": 28
-                    },
-                    [
-                        [
-                            "__impl__",
-                            {
-                                "line": 28
-                            },
-                            [
-                                "for"
-                            ]
-                        ],
-                        "Elixir.BitString"
-                    ]
-                ]
-            ],
+            "source": "lib/inch_test/html.ex:28",
             "type": "def"
         },
         {
             "arity": 1,
-            "doc": "Callback implementation of `InchTest.Html.Safe.to_string/1`.",
+            "doc": false,
             "id": "to_string/1",
             "module_id": "InchTest.Html.Safe.BitString",
             "name": "to_string",
@@ -833,8 +598,7 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/html.ex:29",
             "type": "def"
         },
         {
@@ -851,68 +615,12 @@
                     "Elixir"
                 ]
             ],
-            "source": null,
-            "specs": [
-                [
-                    "::",
-                    {
-                        "line": 66
-                    },
-                    [
-                        [
-                            "__impl__",
-                            {
-                                "line": 66
-                            },
-                            [
-                                "protocol"
-                            ]
-                        ],
-                        "Elixir.InchTest.Html.Safe"
-                    ]
-                ],
-                [
-                    "::",
-                    {
-                        "line": 66
-                    },
-                    [
-                        [
-                            "__impl__",
-                            {
-                                "line": 66
-                            },
-                            [
-                                "target"
-                            ]
-                        ],
-                        "Elixir.InchTest.Html.Safe.Float"
-                    ]
-                ],
-                [
-                    "::",
-                    {
-                        "line": 66
-                    },
-                    [
-                        [
-                            "__impl__",
-                            {
-                                "line": 66
-                            },
-                            [
-                                "for"
-                            ]
-                        ],
-                        "Elixir.Float"
-                    ]
-                ]
-            ],
+            "source": "lib/inch_test/html.ex:66",
             "type": "def"
         },
         {
             "arity": 1,
-            "doc": "Callback implementation of `InchTest.Html.Safe.to_string/1`.",
+            "doc": false,
             "id": "to_string/1",
             "module_id": "InchTest.Html.Safe.Float",
             "name": "to_string",
@@ -924,8 +632,7 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/html.ex:67",
             "type": "def"
         },
         {
@@ -942,68 +649,12 @@
                     "Elixir"
                 ]
             ],
-            "source": null,
-            "specs": [
-                [
-                    "::",
-                    {
-                        "line": 62
-                    },
-                    [
-                        [
-                            "__impl__",
-                            {
-                                "line": 62
-                            },
-                            [
-                                "protocol"
-                            ]
-                        ],
-                        "Elixir.InchTest.Html.Safe"
-                    ]
-                ],
-                [
-                    "::",
-                    {
-                        "line": 62
-                    },
-                    [
-                        [
-                            "__impl__",
-                            {
-                                "line": 62
-                            },
-                            [
-                                "target"
-                            ]
-                        ],
-                        "Elixir.InchTest.Html.Safe.Integer"
-                    ]
-                ],
-                [
-                    "::",
-                    {
-                        "line": 62
-                    },
-                    [
-                        [
-                            "__impl__",
-                            {
-                                "line": 62
-                            },
-                            [
-                                "for"
-                            ]
-                        ],
-                        "Elixir.Integer"
-                    ]
-                ]
-            ],
+            "source": "lib/inch_test/html.ex:62",
             "type": "def"
         },
         {
             "arity": 1,
-            "doc": "Callback implementation of `InchTest.Html.Safe.to_string/1`.",
+            "doc": false,
             "id": "to_string/1",
             "module_id": "InchTest.Html.Safe.Integer",
             "name": "to_string",
@@ -1015,8 +666,7 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/html.ex:63",
             "type": "def"
         },
         {
@@ -1033,68 +683,12 @@
                     "Elixir"
                 ]
             ],
-            "source": null,
-            "specs": [
-                [
-                    "::",
-                    {
-                        "line": 34
-                    },
-                    [
-                        [
-                            "__impl__",
-                            {
-                                "line": 34
-                            },
-                            [
-                                "protocol"
-                            ]
-                        ],
-                        "Elixir.InchTest.Html.Safe"
-                    ]
-                ],
-                [
-                    "::",
-                    {
-                        "line": 34
-                    },
-                    [
-                        [
-                            "__impl__",
-                            {
-                                "line": 34
-                            },
-                            [
-                                "target"
-                            ]
-                        ],
-                        "Elixir.InchTest.Html.Safe.List"
-                    ]
-                ],
-                [
-                    "::",
-                    {
-                        "line": 34
-                    },
-                    [
-                        [
-                            "__impl__",
-                            {
-                                "line": 34
-                            },
-                            [
-                                "for"
-                            ]
-                        ],
-                        "Elixir.List"
-                    ]
-                ]
-            ],
+            "source": "lib/inch_test/html.ex:34",
             "type": "def"
         },
         {
             "arity": 1,
-            "doc": "Callback implementation of `InchTest.Html.Safe.to_string/1`.",
+            "doc": false,
             "id": "to_string/1",
             "module_id": "InchTest.Html.Safe.List",
             "name": "to_string",
@@ -1106,8 +700,7 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/html.ex:35",
             "type": "def"
         },
         {
@@ -1124,68 +717,12 @@
                     "Elixir"
                 ]
             ],
-            "source": null,
-            "specs": [
-                [
-                    "::",
-                    {
-                        "line": 72
-                    },
-                    [
-                        [
-                            "__impl__",
-                            {
-                                "line": 72
-                            },
-                            [
-                                "protocol"
-                            ]
-                        ],
-                        "Elixir.InchTest.Html.Safe"
-                    ]
-                ],
-                [
-                    "::",
-                    {
-                        "line": 72
-                    },
-                    [
-                        [
-                            "__impl__",
-                            {
-                                "line": 72
-                            },
-                            [
-                                "target"
-                            ]
-                        ],
-                        "Elixir.InchTest.Html.Safe.Tuple"
-                    ]
-                ],
-                [
-                    "::",
-                    {
-                        "line": 72
-                    },
-                    [
-                        [
-                            "__impl__",
-                            {
-                                "line": 72
-                            },
-                            [
-                                "for"
-                            ]
-                        ],
-                        "Elixir.Tuple"
-                    ]
-                ]
-            ],
+            "source": "lib/inch_test/html.ex:72",
             "type": "def"
         },
         {
             "arity": 1,
-            "doc": "Callback implementation of `InchTest.Html.Safe.to_string/1`.",
+            "doc": false,
             "id": "to_string/1",
             "module_id": "InchTest.Html.Safe.Tuple",
             "name": "to_string",
@@ -1197,9 +734,41 @@
                     "Elixir"
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/html.ex:73",
             "type": "def"
+        },
+        {
+            "arity": 0,
+            "doc": "Another example",
+            "id": "full_doc/0",
+            "module_id": "InchTest.Macros",
+            "name": "full_doc",
+            "object_type": "FunctionObject",
+            "signature": [],
+            "source": "lib/inch_test/macros.ex:3",
+            "type": "defmacro"
+        },
+        {
+            "arity": 0,
+            "doc": null,
+            "id": "missing_doc/0",
+            "module_id": "InchTest.Macros",
+            "name": "missing_doc",
+            "object_type": "FunctionObject",
+            "signature": [],
+            "source": "lib/inch_test/macros.ex:8",
+            "type": "defmacro"
+        },
+        {
+            "arity": 0,
+            "doc": false,
+            "id": "no_doc/0",
+            "module_id": "InchTest.Macros",
+            "name": "no_doc",
+            "object_type": "FunctionObject",
+            "signature": [],
+            "source": "lib/inch_test/macros.ex:6",
+            "type": "defmacro"
         },
         {
             "arity": 1,
@@ -1215,8 +784,7 @@
                     "Elixir"
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/naming.ex:106",
             "type": "def"
         },
         {
@@ -1233,8 +801,7 @@
                     "Elixir"
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/naming.ex:116",
             "type": "def"
         },
         {
@@ -1256,8 +823,7 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/naming.ex:58",
             "type": "def"
         },
         {
@@ -1279,8 +845,7 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/naming.ex:23",
             "type": "def"
         },
         {
@@ -1309,8 +874,7 @@
                     ]
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/naming.ex:15",
             "type": "def"
         },
         {
@@ -1327,8 +891,7 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/naming.ex:88",
             "type": "def"
         },
         {
@@ -1345,8 +908,7 @@
                     null
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/naming.ex:140",
             "type": "def"
         },
         {
@@ -1363,14 +925,8 @@
                     "Elixir"
                 ]
             ],
-            "source": null,
-            "specs": [],
+            "source": "lib/inch_test/naming.ex:52",
             "type": "def"
         }
-    ],
-    "travis": true,
-    "travis_branch": "master",
-    "travis_commit": null,
-    "travis_job_id": null,
-    "travis_repo_slug": "rrrene/inch_ex"
+    ]
 }
