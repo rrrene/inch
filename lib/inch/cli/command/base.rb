@@ -36,6 +36,9 @@ module Inch
       # @note This was adapted from YARD
       #   https://github.com/lsegal/yard/blob/master/lib/yard/cli/command.rb
       class Base
+        EXIT_NO_ERRORS = 0
+        EXIT_WITH_ERRORS = 64
+
         include TraceHelper
 
         attr_reader :codebase # @return [Codebase::Proxy]
@@ -96,6 +99,13 @@ module Inch
         # @return [String]
         def usage
           "Usage: inch #{name} [options]"
+        end
+
+        # Retun exit status for command line
+        #
+        # @return [Integer] Zero by default
+        def exit_status
+          EXIT_NO_ERRORS
         end
 
         protected

@@ -260,7 +260,8 @@ It comes with four sub-commands: `suggest`, `stats`, `show`, and `list`
 
 ### inch suggest
 
-Suggests places where a codebase suffers a lack of documentation.
+Suggests places where a codebase suffers a lack of documentation. The command
+line exit status will be above zero when suggestions are found.
 
     $ inch suggest
 

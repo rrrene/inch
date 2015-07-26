@@ -9,6 +9,12 @@ describe ::Inch::CLI::Command::List do
 
   include Shared::BaseList
 
+  it 'should run with exit status' do
+    _out, _err = capture_io do
+      assert_equal @command.run.exit_status, @command::EXIT_NO_ERRORS
+    end
+  end
+
   it 'should run without args' do
     out, err = capture_io do
       @command.run

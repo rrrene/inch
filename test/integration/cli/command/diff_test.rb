@@ -23,6 +23,12 @@ describe ::Inch::CLI::Command::Diff do
     FileUtils.rm_rf @tmp_dir
   end
 
+  it 'should run with exit status' do
+    _out, _err = capture_io do
+      assert_equal @command.run.exit_status, @command::EXIT_NO_ERRORS
+    end
+  end
+
   it 'should not show any changes' do
     # this runs `inch diff` on a freshly cloned repo
     # should not show any changes

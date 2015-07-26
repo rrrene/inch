@@ -7,6 +7,12 @@ describe ::Inch::CLI::Command::Suggest do
     @command = ::Inch::CLI::Command::Suggest
   end
 
+  it 'should run with exit status' do
+    _out, _err = capture_io do
+      assert_equal @command.run.exit_status, @command::EXIT_WITH_ERRORS
+    end
+  end
+
   it 'should run without args' do
     out, err = capture_io do
       @command.run
@@ -92,6 +98,13 @@ describe ::Inch::CLI::Command::Suggest do
   end
 
   # Edge case: Really good codebase
+
+  it 'should return EXIT_NO_ERRORS when no suggestions' do
+    Dir.chdir fixture_path(:ruby, :really_good)
+    _out, _err = capture_io do
+      assert_equal @command.run.exit_status, @command::EXIT_NO_ERRORS
+    end
+  end
 
   it 'should run without args on really good fixture' do
     out, err = capture_io do
