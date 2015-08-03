@@ -13,6 +13,12 @@ module Foo
     def method_with_missing_param_doc(param1, param2, param3)
     end
 
+    # Provides an example of a missing described parameter.
+    #
+    # @return [void]
+    def method_with_missing_ignore_param_doc(_)
+    end
+
     # Provides an example of a wrongly described parameter.
     #
     # @param param1 [String]

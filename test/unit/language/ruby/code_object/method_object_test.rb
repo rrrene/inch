@@ -20,6 +20,12 @@ describe ::Inch::Language::Ruby::CodeObject::MethodObject do
       refute m.undocumented?
     end
 
+    it 'does not complain about _ parameter' do
+      m = @objects.find('Foo::Bar#method_with_missing_ignore_param_doc')
+      assert_equal 100, m.score
+      refute m.undocumented?
+    end
+
     it 'should not count a call to `raise`' do
       m = @objects.find('InchTest#raising_method')
       assert_equal 0, m.score

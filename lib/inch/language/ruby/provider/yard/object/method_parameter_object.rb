@@ -21,7 +21,8 @@ module Inch
                 @in_signature = in_signature
               end
 
-              BAD_NAME_EXCEPTIONS = %w(id)
+              IGNORE_NAME = "_"
+              BAD_NAME_EXCEPTIONS = [IGNORE_NAME, "id"]
               BAD_NAME_THRESHOLD = 3
 
               # @return [Boolean] +true+ if the name of the parameter is
@@ -38,13 +39,13 @@ module Inch
 
               # @return [Boolean] +true+ if an additional description given?
               def described?
-                described_by_tag? || described_by_docstring?
+                described_by_tag? || described_by_docstring? || ignore?
               end
 
               # @return [Boolean] +true+ if the parameter is mentioned in the
               #   docs
               def mentioned?
-                !!@tag || mentioned_by_docstring?
+                !!@tag || mentioned_by_docstring? || ignore?
               end
 
               # @return [Boolean] +true+ if the parameter is a splat argument
@@ -54,7 +55,7 @@ module Inch
 
               # @return [Boolean] +true+ if the type of the parameter is defined
               def typed?
-                @tag && @tag.types && !@tag.types.empty?
+                (@tag && @tag.types && !@tag.types.empty?) || ignore?
               end
 
               # @return [Boolean] +true+ if the parameter is mentioned in the
@@ -76,6 +77,10 @@ module Inch
                   unsplatted = name.gsub(/^[\&\*]/, '')
                   @method.docstring.describes_parameter?(unsplatted)
                 end
+              end
+
+              def ignore?
+                name == IGNORE_NAME
               end
 
               def mentioned_by_docstring?
