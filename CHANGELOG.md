@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.4
+
+- Ruby: Skip analysis for method parameters named '_'
+- Ruby: Fix bug regarding method object evaluation
+
 ## 0.6.3
 
 - Elixir: Recognize callbacks and macros
