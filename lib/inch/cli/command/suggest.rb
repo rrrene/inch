@@ -7,6 +7,8 @@ module Inch
       class Suggest < List
         register_command_as :suggest, true
 
+        EXIT_CODE_PENDING_SUGGESTIONS = 10
+
         def description
           'Suggests some objects to be documented (better)'
         end
@@ -32,15 +34,9 @@ module Inch
           end
         end
 
-        # Retun exit status for command line
-        #
-        # @return [Integer] Zero when no errors, above when suggestions
+        # @return [Fixnum] 10 if suggestions were found, zero otherwise
         def exit_status
-          if objects.empty?
-            EXIT_NO_ERRORS
-          else
-            EXIT_WITH_ERRORS
-          end
+          objects.empty? ? super : EXIT_CODE_PENDING_SUGGESTIONS
         end
       end
     end

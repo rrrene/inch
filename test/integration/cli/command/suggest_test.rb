@@ -9,7 +9,7 @@ describe ::Inch::CLI::Command::Suggest do
 
   it 'should run with exit status' do
     _out, _err = capture_io do
-      assert_equal @command.run.exit_status, @command::EXIT_WITH_ERRORS
+      assert_equal @command.run.exit_status, @command::EXIT_CODE_PENDING_SUGGESTIONS
     end
   end
 
@@ -99,10 +99,10 @@ describe ::Inch::CLI::Command::Suggest do
 
   # Edge case: Really good codebase
 
-  it 'should return EXIT_NO_ERRORS when no suggestions' do
+  it 'should return EXIT_STATUS_SUCCESS when no suggestions' do
     Dir.chdir fixture_path(:ruby, :really_good)
     _out, _err = capture_io do
-      assert_equal @command.run.exit_status, @command::EXIT_NO_ERRORS
+      assert_equal @command.run.exit_status, @command::EXIT_STATUS_SUCCESS
     end
   end
 

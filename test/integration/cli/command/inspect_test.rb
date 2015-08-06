@@ -9,7 +9,7 @@ describe ::Inch::CLI::Command::Inspect do
   it 'should run with exit status' do
     _out, _err = capture_io do
       cmd = @command.run('Foo::Bar#', '--no-color')
-      assert_equal cmd.exit_status, @command::EXIT_NO_ERRORS
+      assert_equal cmd.exit_status, @command::EXIT_STATUS_SUCCESS
     end
   end
 

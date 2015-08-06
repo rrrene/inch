@@ -36,8 +36,7 @@ module Inch
       # @note This was adapted from YARD
       #   https://github.com/lsegal/yard/blob/master/lib/yard/cli/command.rb
       class Base
-        EXIT_NO_ERRORS = 0
-        EXIT_WITH_ERRORS = 64
+        EXIT_STATUS_SUCCESS = 0
 
         include TraceHelper
 
@@ -75,6 +74,14 @@ module Inch
           ''
         end
 
+        # Returns the exit status of the running command.
+        # This can be overridden to customize exit statusses.
+        #
+        # @return [Fixnum] zero (by default)
+        def exit_status
+          EXIT_STATUS_SUCCESS
+        end
+
         # Returns the name of the command by which it is referenced
         # in the command list
         #
@@ -99,13 +106,6 @@ module Inch
         # @return [String]
         def usage
           "Usage: inch #{name} [options]"
-        end
-
-        # Retun exit status for command line
-        #
-        # @return [Integer] Zero by default
-        def exit_status
-          EXIT_NO_ERRORS
         end
 
         protected
