@@ -258,7 +258,7 @@ module Inch
               protected
 
               def multi_code_examples?(text)
-                text.scan(/\b(#{Regexp.escape(name)})[^_0-9\!\?]/m).size > 1
+                text.to_s.scan(/\b(#{Regexp.escape(name)})[^_0-9\!\?]/m).size > 1
               end
 
               # @return [Boolean]

@@ -159,7 +159,7 @@ module Inch
               def return_described_via_tag?
                 return_tags.any? do |t|
                   return_tag_describes_unusable_value?(t) ||
-                    !t.text.empty? && !YARD.implicit_tag?(t, self)
+                    !t.text.to_s.empty? && !YARD.implicit_tag?(t, self)
                 end
               end
 
