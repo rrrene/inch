@@ -23,11 +23,23 @@ module Inch
         def run(*args)
           prepare_codebase(*args)
           context = API::Suggest.new(codebase, @options)
+          self.objects = context.objects
           if @options.format == Options::Suggest::FORMAT_TEXT
-            Output::Suggest.new(@options, context.all_objects, context.objects,
+            Output::Suggest.new(@options, context.all_objects, objects,
                                 context.grade_lists, context.files)
           else
             Output::Stats.new(@options, context.all_objects, context.grade_lists)
+          end
+        end
+
+        # Retun exit status for command line
+        #
+        # @return [Integer] Zero when no errors, above when suggestions
+        def exit_status
+          if objects.empty?
+            EXIT_NO_ERRORS
+          else
+            EXIT_WITH_ERRORS
           end
         end
       end

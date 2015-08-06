@@ -6,6 +6,13 @@ describe ::Inch::CLI::Command::Show do
     @command = ::Inch::CLI::Command::Show
   end
 
+  it 'should run with exit status' do
+    _out, _err = capture_io do
+      cmd = @command.run('Foo::Bar#', '--no-color')
+      assert_equal cmd.exit_status, @command::EXIT_NO_ERRORS
+    end
+  end
+
   it 'should warn and exit when run without args' do
     out, err = capture_io do
       assert_raises(SystemExit) { @command.run }
