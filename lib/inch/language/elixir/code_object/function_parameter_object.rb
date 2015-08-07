@@ -12,6 +12,7 @@ module Inch
             @attributes[key]
           end
 
+          IGNORE_NAME_PREFIX = "_"
           BAD_NAME_EXCEPTIONS = %w(id)
           BAD_NAME_THRESHOLD = 3
 
@@ -29,12 +30,12 @@ module Inch
 
           # @return [Boolean] +true+ if an additional description given?
           def described?
-            self[:described?]
+            self[:described?] || ignore?
           end
 
           # @return [Boolean] +true+ if the parameter is mentioned in the docs
           def mentioned?
-            self[:mentioned?]
+            self[:mentioned?] || ignore?
           end
 
           def name
@@ -49,7 +50,7 @@ module Inch
 
           # @return [Boolean] +true+ if the type of the parameter is defined
           def typed?
-            self[:typed?]
+            self[:typed?] || ignore?
           end
 
           def unnamed?
@@ -60,6 +61,12 @@ module Inch
           #   but not present in the method's signature
           def wrongly_mentioned?
             self[:wrongly_mentioned?]
+          end
+
+          private
+
+          def ignore?
+            name.start_with?(IGNORE_NAME_PREFIX)
           end
         end
       end
