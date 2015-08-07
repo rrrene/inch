@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.0
+
+- Elixir: Skip analysis for function parameters starting with '_'
+- CLI: Use an exit status different from zero in case of suggestions
+
 ## 0.6.4
 
 - Ruby: Skip analysis for method parameters named '_'
