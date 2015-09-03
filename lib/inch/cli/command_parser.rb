@@ -77,6 +77,7 @@ module Inch
           command = commands[command_name].new
           ui.trace format('  %-8s %s', command_name, command.description)
         end
+        exit 0
       end
 
       # Runs the {Command} object matching the command name of the first
