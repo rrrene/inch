@@ -116,7 +116,9 @@ module Inch
               end
 
               def nodoc?
-                @hash['comment'] == false
+                @hash['comment'] == false ||
+                  docstring.tag?(:ignore) ||
+                    docstring.to_s.strip.start_with?("istanbul ignore")
               end
 
               def namespace?

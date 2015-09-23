@@ -56,4 +56,12 @@ describe ::Inch::Language::Elixir::CodeObject::FunctionObject do
     assert m.has_code_example?
     assert m.has_multiple_code_examples?
   end
+
+  it 'should recognize nodoc' do
+    m = @objects.find('InchTest.Docs.Formatter.nodoc_ignore')
+    assert m.nodoc?
+
+    m = @objects.find('InchTest.Docs.Formatter.nodoc_istanbul')
+    assert m.nodoc?
+  end
 end

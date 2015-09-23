@@ -2,8 +2,8 @@
     "args": [],
     "branch_name": "master",
     "client_name": "inchjs",
-    "client_version": "0.1.4",
-    "git_repo_url": "git@github.com:inch-ci/Hello-World-NodeJS.git",
+    "client_version": "0.4.0",
+    "git_repo_url": "https://github.com/inch-ci/Hello-World-NodeJS.git",
     "language": "javascript",
     "objects": [
         {
@@ -74,11 +74,11 @@
                     "value": "function"
                 },
                 "filename": "inch_test.js",
-                "lineno": 13,
+                "lineno": 14,
                 "path": "/src",
                 "range": [
-                    165,
-                    236
+                    166,
+                    235
                 ]
             },
             "name": "generate_docs",
@@ -109,6 +109,54 @@
             "undocumented": true
         },
         {
+            "comment": "/*\n* @ignore\n*/",
+            "kind": "function",
+            "longname": "InchTest.Docs.Formatter.nodoc_ignore",
+            "memberof": "InchTest.Docs.Formatter",
+            "meta": {
+                "code": {
+                    "id": "astnode100000050",
+                    "name": "nodoc_ignore",
+                    "type": "FunctionExpression",
+                    "value": "function"
+                },
+                "filename": "inch_test.js",
+                "lineno": 25,
+                "path": "/src",
+                "range": [
+                    434,
+                    463
+                ]
+            },
+            "name": "nodoc_ignore",
+            "scope": "static",
+            "undocumented": true
+        },
+        {
+            "comment": "/* istanbul ignore next */",
+            "kind": "function",
+            "longname": "InchTest.Docs.Formatter.nodoc_istanbul",
+            "memberof": "InchTest.Docs.Formatter",
+            "meta": {
+                "code": {
+                    "id": "astnode100000053",
+                    "name": "nodoc_istanbul",
+                    "type": "FunctionExpression",
+                    "value": "function"
+                },
+                "filename": "inch_test.js",
+                "lineno": 27,
+                "path": "/src",
+                "range": [
+                    500,
+                    531
+                ]
+            },
+            "name": "nodoc_istanbul",
+            "scope": "static",
+            "undocumented": true
+        },
+        {
             "comment": "/**\n*\n* This function takes `param1` and `param2` as arguments.\n*\n* @param {Number} param1 A number from 0 to 26 that will result in a letter a-z\n* @param {String} param2 A text\n* @return {String} A character from a-z based on the input number n\n*\n* Examples:\n*\n*   > InchTest.Naming.resource_name(MyApp.User)\n*   \"user\"\n*   > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n*   \"user\"\n*/",
             "description": "This function takes `param1` and `param2` as arguments.",
             "kind": "function",
@@ -116,7 +164,7 @@
             "memberof": "InchTest.Functions",
             "meta": {
                 "code": {
-                    "id": "astnode100000057",
+                    "id": "astnode100000063",
                     "name": "InchTest.Functions.full_doc",
                     "paramnames": [
                         "param1",
@@ -126,11 +174,11 @@
                     "value": "function"
                 },
                 "filename": "inch_test.js",
-                "lineno": 41,
+                "lineno": 47,
                 "path": "/src",
                 "range": [
-                    841,
-                    914
+                    974,
+                    1047
                 ]
             },
             "name": "full_doc",
@@ -174,7 +222,7 @@
             "memberof": "InchTest.Functions",
             "meta": {
                 "code": {
-                    "id": "astnode100000070",
+                    "id": "astnode100000076",
                     "name": "InchTest.Functions.full_doc_second_parameter_unnamed",
                     "paramnames": [
                         "param1",
@@ -184,11 +232,11 @@
                     "value": "function"
                 },
                 "filename": "inch_test.js",
-                "lineno": 57,
+                "lineno": 63,
                 "path": "/src",
                 "range": [
-                    1271,
-                    1364
+                    1404,
+                    1497
                 ]
             },
             "name": "full_doc_second_parameter_unnamed",
@@ -202,17 +250,17 @@
             "memberof": "InchTest.CodeExamples",
             "meta": {
                 "code": {
-                    "id": "astnode100000088",
+                    "id": "astnode100000094",
                     "name": "single_code_example",
                     "type": "FunctionExpression",
                     "value": "function"
                 },
                 "filename": "inch_test.js",
-                "lineno": 74,
+                "lineno": 80,
                 "path": "/src",
                 "range": [
-                    1609,
-                    1665
+                    1742,
+                    1798
                 ]
             },
             "name": "single_code_example",
@@ -226,28 +274,21 @@
             "memberof": "InchTest.CodeExamples",
             "meta": {
                 "code": {
-                    "id": "astnode100000093",
+                    "id": "astnode100000099",
                     "name": "multiple_code_examples",
                     "type": "FunctionExpression",
                     "value": "function"
                 },
                 "filename": "inch_test.js",
-                "lineno": 95,
+                "lineno": 101,
                 "path": "/src",
                 "range": [
-                    2094,
-                    2153
+                    2227,
+                    2286
                 ]
             },
             "name": "multiple_code_examples",
             "scope": "static"
-        },
-        {
-            "files": [
-                "/home/rf/devel/Hello-World-NodeJS/src/inch_test.js"
-            ],
-            "kind": "package",
-            "longname": "package:undefined"
         }
     ]
 }
