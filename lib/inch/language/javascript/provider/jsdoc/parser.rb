@@ -39,7 +39,7 @@ module Inch
             def objects
               @objects ||= parsed_objects.map do |o|
                 JSDoc::Object.for(o) unless IGNORE_TYPES.include?(o['kind'])
-              end.compact
+              end.compact.uniq
             end
 
             private

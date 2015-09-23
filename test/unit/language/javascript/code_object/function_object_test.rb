@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../../../test_helper')
 
-describe ::Inch::Language::Elixir::CodeObject::FunctionObject do
+describe ::Inch::Language::JavaScript::CodeObject::FunctionObject do
   before do
     @codebase = fresh_codebase(:javascript, :inch_test, 'all.json')
     @objects = @codebase.objects
@@ -63,5 +63,10 @@ describe ::Inch::Language::Elixir::CodeObject::FunctionObject do
 
     m = @objects.find('InchTest.Docs.Formatter.nodoc_istanbul')
     assert m.nodoc?
+  end
+
+  it 'should recognize @also' do
+    list = @objects.to_a.map(&:fullname)
+    assert list.size == list.uniq.size, "There should be no duplicate fullnames."
   end
 end

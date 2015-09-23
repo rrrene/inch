@@ -3,7 +3,7 @@
     "branch_name": "master",
     "client_name": "inchjs",
     "client_version": "0.4.0",
-    "git_repo_url": "https://github.com/inch-ci/Hello-World-NodeJS.git",
+    "git_repo_url": "git@github.com:inch-ci/Hello-World-NodeJS.git",
     "language": "javascript",
     "objects": [
         {
@@ -243,6 +243,136 @@
             "scope": "static"
         },
         {
+            "access": "public",
+            "comment": "/**\n* Creates and returns a new MultiRedisClient instance.\n*\n* @function\n* @memberof! MultiRedisClient\n* @public\n* @param {redis|Array} clients - The redis client/s\n* @returns {MultiRedisClient} The multiple redis client instance\n* @example\n* ```js\n* //create multiple redis clients\n* var redis = require('redis');\n* var client1 = redis.createClient(...);\n* var client2 = redis.createClient(...);\n*\n* //create the wrapper client\n* var MultipleRedis = require('multiple-redis');\n* var multiClient = MultipleRedis.createClient([client1, client2]);\n*\n* //run any command on the multi client instead of the original clients\n* multiClient.set('string key', 'string val', callback);\n* ```\n*\n*",
+            "description": "Creates and returns a new MultiRedisClient instance.",
+            "examples": [
+                "```js\n//create multiple redis clients\nvar redis = require('redis');\nvar client1 = redis.createClient(...);\nvar client2 = redis.createClient(...);\n\n//create the wrapper client\nvar MultipleRedis = require('multiple-redis');\nvar multiClient = MultipleRedis.createClient([client1, client2]);\n\n//run any command on the multi client instead of the original clients\nmultiClient.set('string key', 'string val', callback);\n```"
+            ],
+            "forceMemberof": true,
+            "kind": "function",
+            "longname": "MultiRedisClient.InchTest.Functions.multiple_signatures",
+            "memberof": "MultiRedisClient",
+            "meta": {
+                "code": {
+                    "id": "astnode100000089",
+                    "name": "InchTest.Functions.multiple_signatures",
+                    "paramnames": [],
+                    "type": "FunctionExpression",
+                    "value": "function"
+                },
+                "filename": "inch_test.js",
+                "lineno": 115,
+                "path": "/src",
+                "range": [
+                    3015,
+                    3082
+                ]
+            },
+            "name": "InchTest.Functions.multiple_signatures",
+            "params": [
+                {
+                    "description": "The redis client/s",
+                    "name": "clients",
+                    "type": {
+                        "names": [
+                            "redis",
+                            "Array"
+                        ]
+                    }
+                }
+            ],
+            "returns": [
+                {
+                    "description": "The multiple redis client instance",
+                    "type": {
+                        "names": [
+                            "MultiRedisClient"
+                        ]
+                    }
+                }
+            ],
+            "scope": "static"
+        },
+        {
+            "access": "public",
+            "comment": "\n*\n* @function\n* @memberof! MultiRedisClient\n* @public\n* @param {Array} connectionInfo - The redis client/s connection info\n* @param {string} connectionInfo.host - The redis host\n* @param {number} connectionInfo.post - The redis port\n* @param {Array} [options] - Used when this client creates the redis clients\n* @returns {MultiRedisClient} The multiple redis client instance\n* @example\n* ```js\n* //create the wrapper client with connection info\n* var MultipleRedis = require('multiple-redis');\n* var multiClient = MultipleRedis.createClient([{\n*   host: 'host1',\n*   port: 6379\n* }, {\n*   host: 'host2',\n*   port: 6379\n* }], options);\n*\n* //run any command on the multi client instead of the original clients\n* multiClient.set('string key', 'string val', callback);\n* ```\n*/",
+            "examples": [
+                "```js\n//create the wrapper client with connection info\nvar MultipleRedis = require('multiple-redis');\nvar multiClient = MultipleRedis.createClient([{\n  host: 'host1',\n  port: 6379\n}, {\n  host: 'host2',\n  port: 6379\n}], options);\n\n//run any command on the multi client instead of the original clients\nmultiClient.set('string key', 'string val', callback);\n```"
+            ],
+            "forceMemberof": true,
+            "kind": "function",
+            "longname": "MultiRedisClient.InchTest.Functions.multiple_signatures",
+            "memberof": "MultiRedisClient",
+            "meta": {
+                "code": {
+                    "id": "astnode100000089",
+                    "name": "InchTest.Functions.multiple_signatures",
+                    "paramnames": [],
+                    "type": "FunctionExpression",
+                    "value": "function"
+                },
+                "filename": "inch_test.js",
+                "lineno": 115,
+                "path": "/src",
+                "range": [
+                    3015,
+                    3082
+                ]
+            },
+            "name": "InchTest.Functions.multiple_signatures",
+            "params": [
+                {
+                    "description": "The redis client/s connection info",
+                    "name": "connectionInfo",
+                    "type": {
+                        "names": [
+                            "Array"
+                        ]
+                    }
+                },
+                {
+                    "description": "The redis host",
+                    "name": "connectionInfo.host",
+                    "type": {
+                        "names": [
+                            "string"
+                        ]
+                    }
+                },
+                {
+                    "description": "The redis port",
+                    "name": "connectionInfo.post",
+                    "type": {
+                        "names": [
+                            "number"
+                        ]
+                    }
+                },
+                {
+                    "description": "Used when this client creates the redis clients",
+                    "name": "options",
+                    "optional": true,
+                    "type": {
+                        "names": [
+                            "Array"
+                        ]
+                    }
+                }
+            ],
+            "returns": [
+                {
+                    "description": "The multiple redis client instance",
+                    "type": {
+                        "names": [
+                            "MultiRedisClient"
+                        ]
+                    }
+                }
+            ],
+            "scope": "static"
+        },
+        {
             "comment": "/**\n*\n* This function takes no arguments.\n*\n* Examples:\n*\n*   > InchTest.Naming.resource_name(MyApp.User)\n*   \"user\"\n*   > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n*   \"user\"\n*/",
             "description": "This function takes no arguments.\n\nExamples:\n\n  > InchTest.Naming.resource_name(MyApp.User)\n  \"user\"\n  > InchTest.Naming.resource_name(MyApp.UserView, \"View\")\n  \"user\"",
             "kind": "function",
@@ -250,17 +380,17 @@
             "memberof": "InchTest.CodeExamples",
             "meta": {
                 "code": {
-                    "id": "astnode100000094",
+                    "id": "astnode100000104",
                     "name": "single_code_example",
                     "type": "FunctionExpression",
                     "value": "function"
                 },
                 "filename": "inch_test.js",
-                "lineno": 80,
+                "lineno": 129,
                 "path": "/src",
                 "range": [
-                    1742,
-                    1798
+                    3325,
+                    3381
                 ]
             },
             "name": "single_code_example",
@@ -274,17 +404,17 @@
             "memberof": "InchTest.CodeExamples",
             "meta": {
                 "code": {
-                    "id": "astnode100000099",
+                    "id": "astnode100000109",
                     "name": "multiple_code_examples",
                     "type": "FunctionExpression",
                     "value": "function"
                 },
                 "filename": "inch_test.js",
-                "lineno": 101,
+                "lineno": 150,
                 "path": "/src",
                 "range": [
-                    2227,
-                    2286
+                    3810,
+                    3869
                 ]
             },
             "name": "multiple_code_examples",
