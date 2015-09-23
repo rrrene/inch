@@ -2,8 +2,15 @@
 
 ## 0.7.0
 
-- Elixir: Skip analysis for function parameters starting with '_'
+BREAKING CHANGE:
+
 - CLI: Use an exit status different from zero in case of suggestions
+
+Improvements:
+
+- Elixir: Skip analysis for function parameters starting with '_'
+- JavaScript: Add support for @ignore and istanbul ignore comments
+- JavaScript: Add support for @also (multiple signatures)
 
 ## 0.6.4
 
@@ -13,7 +20,7 @@
 ## 0.6.3
 
 - Elixir: Recognize callbacks and macros
-- NodeJS: Improve param type detection
+- JavaScript: Improve param type detection
 
 ## 0.6.2
 
