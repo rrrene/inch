@@ -4,7 +4,7 @@
 
 BREAKING CHANGE:
 
-- CLI: Use an exit status different from zero in case of suggestions
+- CLI: Uses an exit status different from zero in case of suggestions. This might break workflows based on `&&` (e.g. `rake && inch && ...`).
 
 Improvements:
 
