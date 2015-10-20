@@ -7,6 +7,8 @@ module Inch
     class Diff
       include Utils::ShellHelper
 
+      GIT_SUBDIR = ".git"
+
       attr_reader :codebase_old
       attr_reader :codebase_new
       attr_reader :comparer
@@ -18,13 +20,18 @@ module Inch
       #   one is compared against
       def initialize(dir, config, before_rev, after_rev = nil)
         @work_dir = dir
-        @codebase_old = codebase_for(before_rev, config)
-        @codebase_new = if after_rev.nil?
-                          Codebase.parse(work_dir, config)
-                        else
-                          codebase_for(after_rev, config)
-                        end
-        @comparer = API::Compare::Codebases.new(@codebase_old, @codebase_new)
+        if @codebase_old = codebase_for(before_rev, config)
+          @codebase_new = if after_rev.nil?
+                            Codebase.parse(work_dir, config)
+                          else
+                            codebase_for(after_rev, config)
+                          end
+          @comparer = API::Compare::Codebases.new(@codebase_old, @codebase_new)
+        end
+      end
+
+      def failed?
+        @comparer.nil?
       end
 
       private
@@ -33,10 +40,11 @@ module Inch
         if (cached = codebase_from_cache(revision))
           cached
         else
-          codebase = codebase_from_copy(work_dir, config, revision)
-          filename = Codebase::Serializer.filename(revision)
-          Codebase::Serializer.save(codebase, filename)
-          codebase
+          if codebase = codebase_from_copy(work_dir, config, revision)
+            filename = Codebase::Serializer.filename(revision)
+            Codebase::Serializer.save(codebase, filename)
+            codebase
+          end
         end
       end
 
@@ -46,6 +54,8 @@ module Inch
       end
 
       def codebase_from_copy(original_dir, config, revision)
+        return unless File.exist?( File.join(original_dir, GIT_SUBDIR) )
+
         codebase = nil
         Dir.mktmpdir do |tmp_dir|
           new_dir = copy_work_dir(original_dir, tmp_dir)

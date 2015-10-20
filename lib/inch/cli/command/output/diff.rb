@@ -11,8 +11,16 @@ module Inch
           # @param comparer [API::Compare::Codebases]
           def initialize(options, comparer)
             @options = options
-            @comparer = comparer
+            if @comparer = comparer
+              display_diff
+            else
+              display_failure
+            end
+          end
 
+          private
+
+          def display_diff
             added    = @comparer.added_objects
             improved = @comparer.improved_objects
             degraded = @comparer.degraded_objects
@@ -24,7 +32,10 @@ module Inch
             end
           end
 
-          private
+          def display_failure
+            ui.trace 'Could not diff current directory.'
+            ui.trace 'To use `inch diff` please run it from the repository root containing .git!'
+          end
 
           def show(added, improved, degraded)
             unless added.empty? && improved.empty?

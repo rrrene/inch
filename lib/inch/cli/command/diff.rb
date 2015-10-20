@@ -8,10 +8,16 @@ module Inch
       class Diff < Base
         include Utils::ShellHelper
 
+        EXIT_STATUS_FAILED = 1
+
         register_command_as :diff
 
         def description
           'Shows a diff'
+        end
+
+        def exit_status
+          @exit_status || super
         end
 
         def usage
@@ -27,6 +33,8 @@ module Inch
                                before_rev, after_rev)
 
           Output::Diff.new(@options, diff.comparer)
+
+          @exit_status = EXIT_STATUS_FAILED if diff.failed?
         end
 
         private
