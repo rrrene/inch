@@ -336,7 +336,7 @@ Shows you an overview of the codebase.
 
 ### inch show
 
-Shows you details about what can be approved in a specific object.
+Shows you details about what can be improved in a specific object.
 
     $ inch show Inch::SourceParser#find_object
 
