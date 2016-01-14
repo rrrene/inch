@@ -472,7 +472,7 @@ Inch would not exist without Loren Segal's [YARD](http://yardoc.org/).
 
 ## License
 
-Inch is released under the MIT License. See the LICENSE.txt file for further
+Inch is released under the MIT License. See the LICENSE file for further
 details.
 
 For YARD's licensing, see YARD's README under http://yardoc.org/
