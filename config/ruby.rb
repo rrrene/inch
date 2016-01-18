@@ -55,7 +55,18 @@ Inch::Config.register(:ruby) do
         return_description  0.0
       end
 
-      if !object.has_parameters? || object.setter?
+      if object.setter?
+        return_description  return_description + parameters
+
+        if object.original_docstring == ""
+          # we don't count parameters when the docstring is missing or implicit
+          parameters          0.0
+        else
+          parameters          parameters + return_description
+        end
+      end
+
+      if !object.has_parameters?
         return_description  docstring + parameters
         docstring           docstring + parameters
         parameters          0.0

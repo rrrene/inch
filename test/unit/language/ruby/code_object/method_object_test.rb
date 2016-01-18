@@ -216,6 +216,20 @@ describe ::Inch::Language::Ruby::CodeObject::MethodObject do
       assert_equal 0, m.score
     end
 
+    it 'should recognize a manually defined setter method that is docced via param' do
+      m = @objects.find('InchTest#manual_setter_full_doc_via_param=')
+      refute m.getter?
+      assert m.setter?, 'should be a setter'
+      assert m.score >= 80, "score was #{m.score}"
+    end
+
+    it 'should recognize a manually defined setter method that is docced via return' do
+      m = @objects.find('InchTest#manual_setter_full_doc_via_return=')
+      refute m.getter?
+      assert m.setter?, 'should be a setter'
+      assert m.score >= 80, "score was #{m.score}"
+    end
+
     it 'should recognize a getter in a manually defined getter/setter pair' do
       m = @objects.find('InchTest#manual_getset')
       assert m.getter?, 'should be a getter'

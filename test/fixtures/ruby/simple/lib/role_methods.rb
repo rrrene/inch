@@ -17,6 +17,14 @@ module InchTest
   def manual_setter=(val)
   end
 
+  # @param val [String] the manual setter
+  def manual_setter_full_doc_via_param=(val)
+  end
+
+  # @return [String] the manual setter
+  def manual_setter_full_doc_via_return=(val)
+  end
+
   attr_writer :attr_setter
 
   def bang_method!
