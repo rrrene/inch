@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.1 (pre)
+
+- Ruby: Setters can now be documented via their @param or @return
+
 ## 0.7.0
 
 BREAKING CHANGE:
