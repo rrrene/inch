@@ -42,7 +42,12 @@ module Inch
                     a
                   else
                     if a == '\\\\'
-                      name_from_tuple(*b.first)
+                      candidate = b.first
+                      if candidate.is_a?(Array)
+                        name_from_tuple(*candidate)
+                      else
+                        candidate
+                      end
                     else
                       warn "[WARN] could not parse FunctionSignature: #{[a, _, b].inspect}"
                     end
