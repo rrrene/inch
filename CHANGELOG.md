@@ -1,8 +1,9 @@
 # Changelog
 
-## 0.7.1 (pre)
+## 0.7.1
 
 - Ruby: Setters can now be documented via their @param or @return
+- Elixir: Fix bug regarding parameter name recognition
 
 ## 0.7.0
 
