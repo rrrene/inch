@@ -190,7 +190,7 @@ The grade distribution does a much better job of painting the bigger picture.
 
 ## Features
 
-Inch is build to parse [YARD](http://yardoc.org/),
+Inch is built to parse [YARD](http://yardoc.org/),
 [RDoc](http://rdoc.rubyforge.org/) and [TomDoc](http://tomdoc.org/)
 style documentation comments, but works reasonably well with unstructured
 comments.
