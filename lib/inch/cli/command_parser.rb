@@ -34,6 +34,11 @@ module Inch
     class CommandParser
       include TraceHelper
 
+      # Represents a fake command, i.e. `--help` for use in the CLI.
+      #
+      # @api private
+      FakeCommand = Struct.new(:exit_status)
+
       class << self
         # @return [Hash{Symbol => Command}] the mapping of command names to
         #   command classes to parse the user command.
@@ -77,7 +82,7 @@ module Inch
           command = commands[command_name].new
           ui.trace format('  %-8s %s', command_name, command.description)
         end
-        exit 0
+        FakeCommand.new(0)
       end
 
       # Runs the {Command} object matching the command name of the first
