@@ -44,7 +44,7 @@ module Inch
             # @see CodeObject::Ruby::MethodParameterObject#splat?
             class Splat < Base
               applicable_if :splat?
-              priority      +1
+              priority(1)
             end
 
             # Role assigned to parameters that are blocks, e.g. +&block+
@@ -52,7 +52,7 @@ module Inch
             # @see CodeObject::Ruby::MethodParameterObject#block?
             class Block < Base
               applicable_if :block?
-              priority      +1
+              priority(1)
             end
 
             # Role assigned to parameters that are documented, but not part of
@@ -61,7 +61,7 @@ module Inch
             # @see CodeObject::Ruby::MethodParameterObject#wrongly_mentioned?
             class WithWrongMention < Base
               applicable_if :wrongly_mentioned?
-              priority      +1
+              priority(1)
 
               def suggestion
                 "The parameter '#{object.name}' seems not to be part of the " \
@@ -74,7 +74,7 @@ module Inch
             # @see CodeObject::Ruby::MethodParameterObject#bad_name?
             class WithBadName < Base
               applicable_if :bad_name?
-              priority      +1
+              priority(1)
             end
           end
         end
