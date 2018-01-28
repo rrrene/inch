@@ -237,10 +237,6 @@ module Inch
                 visibility == :public
               end
 
-              def in_root?
-                depth == 1
-              end
-
               # @return [Boolean] +true+ if the object has no documentation at
               #   all
               def undocumented?
