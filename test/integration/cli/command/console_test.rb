@@ -1,10 +1,15 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../../test_helper')
 
+class Inch::CLI::Command::Output::Console
+  def run_pry
+    nil
+  end
+end
+
 describe ::Inch::CLI::Command::Console do
   before do
     Dir.chdir fixture_path(:ruby, :simple)
     @command = ::Inch::CLI::Command::Console
-    @command.stub(:run_pry)
   end
 
   it 'should run with exit status' do
