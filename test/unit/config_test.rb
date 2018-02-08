@@ -8,7 +8,7 @@ describe ::Inch::Config do
   end
 
   it 'should parse .inch.yml if present' do
-    dir = fixture_path(:ruby, :"inch-yml")
+    dir = fixture_path(:ruby, "inch-yml")
     config = Inch::Config.for(:ruby, dir)
     refute config.codebase.included_files.empty?
     refute config.codebase.excluded_files.empty?
