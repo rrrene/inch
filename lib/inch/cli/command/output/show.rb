@@ -40,7 +40,7 @@ module Inch
 
           def print_roles_info(o)
             if o.roles.empty?
-              echo 'No roles assigned.'.dark
+              echo 'No roles assigned.'.color(:dark)
             else
               o.roles.each do |role|
                 next unless role.suggestion

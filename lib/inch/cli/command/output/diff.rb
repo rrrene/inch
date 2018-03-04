@@ -60,19 +60,19 @@ module Inch
             ui.trace rev_hint
             ui.trace
             ui.trace 'Format: grade (before -> after), priority, and name. ' \
-                      "Try `--help' for options.".dark
+                      "Try `--help' for options.".color(:dark)
           end
 
           def puts_added(o)
             grade = colored_grade(o)
-            change = '  +  '.dark + grade + '  ' + priority_arrow(o.priority)
+            change = '  +  '.color(:dark) + grade + '  ' + priority_arrow(o.priority)
             ui.sub(" #{change}  #{o.fullname}")
           end
 
           def puts_improved(before, o)
             before_grade = colored_grade(before)
             grade = colored_grade(o)
-            change = before_grade + ' -> '.dark + grade + '  ' +
+            change = before_grade + ' -> '.color(:dark) + grade + '  ' +
               priority_arrow(o.priority)
             ui.sub(" #{change}  #{o.fullname}")
           end

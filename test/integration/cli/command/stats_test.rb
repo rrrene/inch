@@ -41,7 +41,7 @@ describe ::Inch::CLI::Command::Stats do
       @command.run('--format=json')
     end
     refute out.empty?, 'there should be some output'
-    assert err.empty?, "there should be no errors: #{err.yellow}"
+    assert err.empty?, "there should be no errors: #{err.color(:yellow)}"
   end
 
   it 'should output info when run with --format=yaml' do
@@ -49,7 +49,7 @@ describe ::Inch::CLI::Command::Stats do
       @command.run('--format=yaml')
     end
     refute out.empty?, 'there should be some output'
-    assert err.empty?, "there should be no errors: #{err.yellow}"
+    assert err.empty?, "there should be no errors: #{err.color(:yellow)}"
   end
 
   it 'should output info when run with --help' do

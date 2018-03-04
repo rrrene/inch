@@ -31,8 +31,8 @@ module Inch
 
             if @omitted > 0
               ui.trace
-              ui.trace "This output omitted #{@omitted} objects. ".dark +
-                  'Use `--all` to display all objects.'.dark
+              ui.trace "This output omitted #{@omitted} objects. ".color(:dark) +
+                  'Use `--all` to display all objects.'.color(:dark)
             end
           end
 
@@ -50,7 +50,7 @@ module Inch
             omitted = range.objects.size - display_count
             if omitted > 0
               @omitted += omitted
-              echo range.color, "...  (omitting #{omitted} objects)".dark
+              echo range.color, "...  (omitting #{omitted} objects)".color(:dark)
             end
           end
 

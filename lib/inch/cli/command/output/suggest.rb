@@ -60,7 +60,7 @@ module Inch
                       else
                         "Only considering priority objects: #{arrows}"
                       end
-            "#{pretext}  (use `--help` for options).".dark
+            "#{pretext}  (use `--help` for options).".color(:dark)
           end
 
           def display_files

@@ -31,7 +31,7 @@ module Inch
             print_grades_by_priority
             print_priorities
             ui.trace
-            ui.trace 'Try `--format json|yaml` for raw numbers.'.dark
+            ui.trace 'Try `--format json|yaml` for raw numbers.'.color(:dark)
           end
 
           def print_grades

@@ -56,7 +56,7 @@ module Inch
 
           def print_roles_info(o)
             if o.roles.empty?
-              echo 'No roles assigned.'.dark
+              echo 'No roles assigned.'.color(:dark)
             else
               o.roles.each do |role|
                 print_role_info(role)
@@ -70,7 +70,7 @@ module Inch
             score = colored_role_score(role)
 
             priority = role.priority.to_s.rjust(4)
-            priority = priority.dark if role.priority == 0
+            priority = priority.color(:dark) if role.priority == 0
 
             echo name.ljust(40) + score + priority
             print_min_max_score(role)
@@ -96,7 +96,7 @@ module Inch
 
           def colored_role_score(role)
             if role.potential_score
-              "(#{role.potential_score})".rjust(5).yellow.dark
+              "(#{role.potential_score})".rjust(5).color(:yellow).color(:dark)
             else
               value = role.score
               colored_score value, value.abs.to_s.rjust(4)
@@ -105,9 +105,9 @@ module Inch
 
           def colored_score(value, score)
             if value < 0
-              ('-' + score).red
+              ('-' + score).color(:red)
             elsif value > 0
-              ('+' + score).green
+              ('+' + score).color(:green)
             else
               ' ' + score
             end

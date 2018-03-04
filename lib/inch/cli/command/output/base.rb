@@ -28,7 +28,7 @@ module Inch
 
           def priority_arrow(priority, color = :white)
             Evaluation::PriorityRange.all.each do |range|
-              return range.arrow.color(color).dark if range.include?(priority)
+              return range.arrow.color(color).color(:dark) if range.include?(priority)
             end
           end
 

@@ -149,7 +149,7 @@ module Inch
           # @return [void]
           def kill(msg = nil)
             ui.warn usage
-            ui.warn msg.red unless msg.nil?
+            ui.warn msg.color(:red) unless msg.nil?
             ui.warn "Try `--help' for more information."
             exit 1
           end
@@ -178,7 +178,7 @@ module Inch
           # @param [OptionParser::ParseError] err the exception raised by the
           #   option parser
           def unrecognized_option(err)
-            ui.warn "Unrecognized/#{err.message}".red
+            ui.warn "Unrecognized/#{err.message}".color(:red)
           end
         end
       end
