@@ -41,12 +41,12 @@ Inch::Config.base do
     end
 
     priority(:SE) do
-      priorities  -2...0
+      priorities  (-2...0)
       arrow       "\u2198"
     end
 
     priority(:S) do
-      priorities  -99...-2
+      priorities  (-99...-2)
       arrow       "\u2193"
     end
   end

@@ -24,7 +24,7 @@ module Inch
             # the object seems undocumented to Inch.
             class Tagged < Base
               applicable_if :has_unconsidered_tags?
-              priority      -1
+              priority(-1)
             end
 
             # Role assigned to objects explicitly or implicitly tagged not to be
@@ -33,31 +33,31 @@ module Inch
             # @see CodeObject::NodocHelper
             class TaggedAsNodoc < Base
               applicable_if :nodoc?
-              priority      -7
+              priority(-7)
             end
 
             # Role assigned to objects declared in the top-level namespace
             class InRoot < Base
               applicable_if :in_root?
-              priority      0
+              priority(0)
             end
 
             # Role assigned to public objects
             class Public < Base
               applicable_if :public?
-              priority      0
+              priority(0)
             end
 
             # Role assigned to protected objects
             class Protected < Base
               applicable_if :protected?
-              priority      -1
+              priority(-1)
             end
 
             # Role assigned to private objects
             class Private < Base
               applicable_if :private?
-              priority      -4
+              priority(-4)
             end
 
             # Role assigned to objects with a single code example

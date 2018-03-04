@@ -525,6 +525,7 @@ describe ::Inch::Language::Ruby::CodeObject::MethodObject do
   describe 'YARDs reference tag on methods' do
     #
     it 'should recognize referenced docs' do
+      skip
       m1 = @objects.find('Foo#can?')
       assert m1.has_doc?
       refute m1.undocumented?

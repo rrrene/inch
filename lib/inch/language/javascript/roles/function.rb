@@ -14,7 +14,7 @@ module Inch
             # @see CodeObject::Ruby::MethodObject#has_many_parameters?
             class WithManyParameters < Base
               applicable_if :has_many_parameters?
-              priority      +2
+              priority(2)
             end
 
             # Role assigned to methods where the return value is typed in the
@@ -52,25 +52,25 @@ module Inch
             # @see CodeObject::Ruby::MethodObject#has_many_lines?
             class WithManyLines < Base
               applicable_if :has_many_lines?
-              priority      +2
+              priority(2)
             end
 
             # Role assigned to methods whose name end in a '!'
             class WithBangName < Base
               applicable_if :bang_name?
-              priority      +3
+              priority(3)
             end
 
             # Role assigned to methods whose name end in a '?'
             class WithQuestioningName < Base
               applicable_if :questioning_name?
-              priority      -4
+              priority(-4)
             end
 
             # Role assigned to methods which are aliased
             class HasAlias < Base
               applicable_if :has_alias?
-              priority      +2
+              priority(2)
             end
 
             # Role assigned to methods that are constructors
@@ -93,7 +93,7 @@ module Inch
               applicable_if :overridden?
               # It seems more important to document the overridden method,
               # than the overriding one
-              priority      -2
+              priority(-2)
 
               # This role doesnot assign a score.
               def score

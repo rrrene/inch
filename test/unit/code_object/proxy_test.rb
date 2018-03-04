@@ -26,7 +26,7 @@ describe ::Inch::CodeObject::Proxy do
     assert m.has_code_example?
   end
 
-  def test_method_with_code_examples
+  def test_method_with_a_code_example
     m = @objects.find('Foo::Bar#method_with_one_example')
     assert m.has_code_example?
     refute m.has_multiple_code_examples?
@@ -37,12 +37,12 @@ describe ::Inch::CodeObject::Proxy do
     assert m.has_multiple_code_examples?
   end
 
-  def test_method_with_code_examples
+  def test_method_with_tagged_code_examples
     m = @objects.find('Foo::Bar#method_with_tagged_example')
     assert m.has_multiple_code_examples?
   end
 
-  def test_method_with_code_examples
+  def test_method_with_two_tagged_code_examples
     m = @objects.find('Foo::Bar#method_with_2tagged_examples')
     assert m.has_multiple_code_examples?
   end

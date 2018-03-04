@@ -21,11 +21,11 @@ module Inch
 
             class Public < Object::Public
               applicable_if :public?
-              priority      -1
+              priority(-1)
             end
             class Private < Object::Private
               applicable_if :private?
-              priority      -3
+              priority(-3)
             end
 
             class WithCodeExample < Object::WithCodeExample

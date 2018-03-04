@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../../test_helper')
 
 class Inch::CLI::Command::Output::Console
   def run_pry
-    nil # instead of binding.pry
+    nil
   end
 end
 
