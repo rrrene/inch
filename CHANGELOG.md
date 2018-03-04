@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.0
+
+- CLI: Do not include `Term::ANSIColor` into `String`
+- Ruby: Use newer version of YARD
+
 ## 0.7.1
 
 - Ruby: Setters can now be documented via their @param or @return
