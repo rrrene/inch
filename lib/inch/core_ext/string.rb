@@ -9,6 +9,10 @@ module Inch
     def on_color(color_name)
       Term::ANSIColor.on_color(color_name, self)
     end
+
+    def uncolor
+      Term::ANSIColor.uncolor(self)
+    end
   end
 end
 
