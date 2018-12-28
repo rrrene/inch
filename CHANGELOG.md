@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.0
+
+- Elixir: Add support for API format of InchEx v2
+
 ## 0.8.0
 
 - CLI: Do not include `Term::ANSIColor` into `String`
