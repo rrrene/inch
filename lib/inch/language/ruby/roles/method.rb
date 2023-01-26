@@ -32,13 +32,13 @@ module Inch
               end
             end
 
-            # Role assigned to methods where the return value is decribed in the
+            # Role assigned to methods where the return value is described in the
             # docs
             class WithReturnDescription < Base
               applicable_if :return_described?
             end
 
-            # Role assigned to methods where the return value is not decribed
+            # Role assigned to methods where the return value is not described
             class WithoutReturnDescription < Missing
               applicable_unless :return_described?
 
