@@ -28,6 +28,6 @@ jobs:
       - name: Run Test
         run: |
           bundle install
-          inch
+          bundle exec inch
         env:
           CI: true
