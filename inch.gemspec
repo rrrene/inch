@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['rf@bamaru.de']
   spec.summary       = 'Documentation measurement tool for Ruby'
   spec.description   = 'Documentation measurement tool for Ruby, based on YARD.'
-  spec.homepage      = 'http://trivelop.de/inch/'
+  spec.homepage      = 'https://trivelop.de/inch/'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
